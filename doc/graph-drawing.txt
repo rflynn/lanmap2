@@ -1,0 +1,117 @@
+
+global settings:
+  node-padding: 
+
+node:machine
+	size[min..max]:total bandwidth bytes
+  distance from center: total edges
+
+edge:
+	thickness:total bandwidth between nodes
+	color:function of total bandwidth
+
+force:
+  target: element receiving force
+  source: element contributing force
+  strength: original strength of force * (source.size / target.size)
+  direction: slope of source / target
+  distance: radius(source)
+
+canvas:
+	laid out in Cartesian coordinates, center [0,0]
+  no maximum size
+  canvas has inherent forces, pulling slightly stronger vertically towards center than horizontally towards center,
+  and pulling slightly stronger to the right than the left
+    this helps enforces a rectangular shape which will fit a computer screen better
+
+behavior:
+  nodes MUST NOT overlap
+  all nodes are initially inserted at the center of the canvas
+  larger nodes displace smaller nodes
+  graph layout should minimize total edge length
+	the distance between a node and center [0,0] should be roughly proportional to the size of itself and all of the nodes it is connected to
+	the distance between two nodes should be inversely proportional to the amount of traffic between them
+	the thickness of an edge is logarithmically proportional to the traffic on it
+  edges must not overlap nodes
+  edge intersections must be minimalized
+  the graph is updated in an on-going basis via well-defined steps
+  the graph must calculate the *minimum changes* required to update the graph and follow all above rules
+
+operations:
+  add node
+  increase node size
+  node add edge
+  node increase edge
+
+requirements:
+  all operations must be deterministic; must reproduce same graph given same input
+
+given nodes of the same size with no edges, nodes added to the graph
+should generate a circular formation; pulled towards the center but kept
+equi-distant from it by the other nodes
+
+empty:
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+
+all nodes are dropped ostensibly in the center of the graph.
+with no other nodes pushing on it, we stay where we are.
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+. . . .A. . . .
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+
+node B is inserted directly on top of node A. because nodes
+cannot overlap, B must initiate a force on A. but in which direction?
+B calculates forces:
+  canvas
+    the canvas pushes slightly to the right, and this is the initial force
+    that starts B in motion
+  any overlapping nodes
+    in this particular case, because B lands directly on top of A, all
+    forces are equally distributed in all directions and this has no
+    direct affect, yet.
+ 
+given our initial state, we move B slightly to the right and test again
+now that the center of B is to the right of the center of A, A exterts a very strong (quantify)
+force on B, with a distance of radius(A). B reciprocates an opposing force on A in the opposite
+direction. the forces are scaled based on the nodes' size, and since A and B are the same size
+and have no edges they exert equal and opposite forces on each other.
+
+loop until forces drop below epsilon or until force distances drop below 0.5px:
+  recursively calculate all forces applied
+  apply forces to distance/2
+
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+. . .A. .B. . .
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+
+. . . . . . . .
+. . . . . . . .
+. . . .C. . . .
+. . .A. .B. . .
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+
+. . . . . . . .
+. . . . . . . .
+. . . .C. . . .
+. . .A. .B. . .
+. . . .D. . . .
+. . . . . . . .
+. . . . . . . .
+
+

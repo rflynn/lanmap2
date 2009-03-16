@@ -1,0 +1,33 @@
+# ex: set ff=dos ts=2 et:
+# $Id$
+
+#
+#
+#
+
+0/8,                "Current network",
+10/8,               "Private network",
+14/8,               "Public data network",
+127/8,              "Loopback",
+128.0/16,           "Reserved",
+169.254/16,         "Link-local",
+172.16/12,          "Private network",
+191.255/16,         "Reserved",
+192.0.0/24,         "Reserved",
+192.0.2/24,         "Documentation and example code",
+192.88.99/24,       "IPv6->IPv4 relay",
+192.168/16,         "Private network",
+192.18/15,          "Network benchmark tests",
+223.255.255/24,     "Reserved",
+# * Multicast 224-239.x.x.x (ref: RFC3171)
+224/4,              "Multicast",
+224.0.0/24,         "Local Network Control Block"
+224.0.1/24,         "Internetwork Control Block"
+224.1/16,           "ST Multicast Groups"
+224.2/16,           "SDP/SAP Block"
+232/8,              "Source Specific Multicast Block"
+233/8,              "GLOP Block"
+239/8,              "Administratively Scoped"
+240/4,              "Reserved",
+255.255.255.255/32, "Network benchmark tests",
+

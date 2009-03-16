@@ -1,0 +1,25 @@
+#--------------------------------
+User-agent: cisco-googlebot-enterprise
+Disallow: /bug-navigator # Bug Data
+# Disallow: /cgi-bin # allow test crawls for TAC support content
+Disallow: /pcgi-bin # no programs
+Disallow: /univ-src/ccden # will get content through /univercd
+Disallow: /cpropub/univercd # obsolete
+Disallow: /jobs     # temporary entry per performance team
+#--------------------------------
+
+#--------------------------------
+User-agent: *
+Disallow: /bug-navigator # Bug Data
+Disallow: /cgi-bin # no programs
+Disallow: /pcgi-bin # no programs
+Disallow: /univ-src/ccden # will get content through /univercd
+Disallow: /cpropub/univercd # obsolete
+Disallow: /jobs     # temporary entry per performance team
+#--------------------------------
+
+#--------------------------------
+User-agent: Yandex
+Disallow: /global/RU/
+#--------------------------------
+

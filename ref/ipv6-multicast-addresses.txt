@@ -1,0 +1,376 @@
+
+INTERNET PROTOCOL VERSION 6 MULTICAST ADDRESSES
+
+(last updated 2009-01-20)
+
+IPv6 multicast addresses are defined in "IP Version 6 Addressing
+Architecture" [RFC4291].  This defines fixed scope and variable scope
+multicast addresses.  
+
+IPv6 multicast addresses are distinguished from unicast addresses by the
+value of the high-order octet of the addresses: a value of 0xFF (binary
+11111111) identifies an address as a multicast address; any other value
+identifies an address as a unicast address.
+
+The rules for assigning new IPv6 multicast addresses are defined in
+[RFC3307].   IPv6 multicast addresses not listed below are reserved.
+
+Current IPv6 multicast addresses are listed below.
+
+
+Fixed Scope Multicast Addresses
+-------------------------------
+
+These permanently assigned multicast addresses are valid over a specified
+scope value.
+
+ Node-Local Scope
+ ----------------
+
+   FF01:0:0:0:0:0:0:1     All Nodes Address                  [RFC4291]
+   FF01:0:0:0:0:0:0:2     All Routers Address                [RFC4291]
+   FF01:0:0:0:0:0:0:FB    mDNSv6                             [Cheshire]
+
+ Link-Local Scope
+ ----------------
+
+   FF02:0:0:0:0:0:0:1     All Nodes Address                  [RFC4291]
+   FF02:0:0:0:0:0:0:2     All Routers Address                [RFC4291]
+   FF02:0:0:0:0:0:0:3     Unassigned                         [JBP]
+   FF02:0:0:0:0:0:0:4     DVMRP Routers                      [RFC1075,JBP]
+   FF02:0:0:0:0:0:0:5     OSPFIGP                            [RFC2328,Moy]
+   FF02:0:0:0:0:0:0:6     OSPFIGP Designated Routers         [RFC2328,Moy]
+   FF02:0:0:0:0:0:0:7     ST Routers                         [RFC1190,KS14]
+   FF02:0:0:0:0:0:0:8     ST Hosts                           [RFC1190,KS14]
+   FF02:0:0:0:0:0:0:9     RIP Routers                        [RFC2080]
+   FF02:0:0:0:0:0:0:A     EIGRP Routers                      [Farinacci]
+   FF02:0:0:0:0:0:0:B     Mobile-Agents                      [Bill Simpson]
+   FF02:0:0:0:0:0:0:C     SSDP                               [UPnP]
+   FF02:0:0:0:0:0:0:D     All PIM Routers                    [Farinacci]
+   FF02:0:0:0:0:0:0:E     RSVP-ENCAPSULATION                 [Braden]
+   FF02:0:0:0:0:0:0:F     UPnP                               [UPnP]
+   FF02:0:0:0:0:0:0:16    All MLDv2-capable routers          [RFC3810]
+   FF02:0:0:0:0:0:0:6A    All-Snoopers                       [RFC4286]
+   FF02:0:0:0:0:0:0:6B    PTP-pdelay                         [IEEE1588, K.Lee]  02 February 2007
+   FF02:0:0:0:0:0:0:6C    Saratoga                           [Wood]  30 August 2007
+   FF02:0:0:0:0:0:0:6D    LL-MANET-Routers                   [RFC-ietf-manet-iana-07.txt]
+   FF02:0:0:0:0:0:0:6E    IGRS                               [Zhou]  20 January 2009
+   FF02:0:0:0:0:0:0:FB    mDNSv6                             [Cheshire]
+
+   FF02:0:0:0:0:0:1:1     Link Name                          [Harrington]
+   FF02:0:0:0:0:0:1:2     All-dhcp-agents                    [RFC3315]
+   FF02:0:0:0:0:0:1:3     Link-local Multicast Name
+                          Resolution                         [RFC4795]
+   FF02:0:0:0:0:0:1:4     DTCP Announcement                  [Vieth, Tersteegen]
+   
+   FF02:0:0:0:0:1:FFXX:XXXX     Solicited-Node Address       [RFC4291]
+
+   FF02:0:0:0:0:2:FF00::/104    Node Information Queries     [RFC4620]
+
+
+ Site-Local Scope
+ ----------------
+
+   FF05:0:0:0:0:0:0:2       All Routers Address              [RFC4291]
+   FF05:0:0:0:0:0:0:FB      mDNSv6                           [Cheshire]
+
+   FF05:0:0:0:0:0:1:3       All-dhcp-servers                 [RFC3315]
+   FF05:0:0:0:0:0:1:4       Deprecated (2003-03-12)    
+   FF0X:0:0:0:0:0:1:1000    Service Location, Version 2      [RFC3111]
+    -FF0X:0:0:0:0:0:1:13FF  
+
+
+Variable Scope Multicast Addresses
+----------------------------------
+
+These permanently assigned multicast addresses are valid over all scope
+ranges.  This is shown by an "X" in the scope field of the address that
+means any legal scope value.
+
+Note that, as defined in [RFC4291], IPv6 multicast addresses which
+are only different in scope represent different groups.  Nodes must
+join each group individually.
+
+The IPv6 multicast addresses with variable scope are listed below.
+
+   FF0X:0:0:0:0:0:0:0     Reserved Multicast Address         [RFC4291]
+   FF0X:0:0:0:0:0:0:C     SSDP                               [UPnP]
+   FF0X:0:0:0:0:0:0:FB    mDNSv6                             [Cheshire]
+
+   FF0X:0:0:0:0:0:0:100   VMTP Managers Group                [RFC1045,DRC3]
+   FF0X:0:0:0:0:0:0:101   Network Time Protocol (NTP)        [RFC1119,DLM1]
+   FF0X:0:0:0:0:0:0:102   SGI-Dogfight                       [AXC]
+   FF0X:0:0:0:0:0:0:103   Rwhod                              [SXD]
+   FF0X:0:0:0:0:0:0:104   VNP                                [DRC3]
+   FF0X:0:0:0:0:0:0:105   Artificial Horizons - Aviator      [BXF]
+   FF0X:0:0:0:0:0:0:106   NSS - Name Service Server          [BXS2]
+   FF0X:0:0:0:0:0:0:107   AUDIONEWS - Audio News Multicast   [MXF2]
+   FF0X:0:0:0:0:0:0:108   SUN NIS+ Information Service       [CXM3]
+   FF0X:0:0:0:0:0:0:109   MTP Multicast Transport Protocol   [SXA]
+   FF0X:0:0:0:0:0:0:10A   IETF-1-LOW-AUDIO                   [SC3]
+   FF0X:0:0:0:0:0:0:10B   IETF-1-AUDIO                       [SC3]
+   FF0X:0:0:0:0:0:0:10C   IETF-1-VIDEO                       [SC3]
+   FF0X:0:0:0:0:0:0:10D   IETF-2-LOW-AUDIO                   [SC3]
+   FF0X:0:0:0:0:0:0:10E   IETF-2-AUDIO                       [SC3]
+   FF0X:0:0:0:0:0:0:10F   IETF-2-VIDEO                       [SC3]
+
+   FF0X:0:0:0:0:0:0:110   MUSIC-SERVICE                      [Guido van Rossum]
+   FF0X:0:0:0:0:0:0:111   SEANET-TELEMETRY                   [Andrew Maffei]
+   FF0X:0:0:0:0:0:0:112   SEANET-IMAGE                       [Andrew Maffei]
+   FF0X:0:0:0:0:0:0:113   MLOADD                             [Braden]
+   FF0X:0:0:0:0:0:0:114   any private experiment             [JBP]
+   FF0X:0:0:0:0:0:0:115   DVMRP on MOSPF                     [Moy]
+   FF0X:0:0:0:0:0:0:116   SVRLOC                             [Guttman]
+   FF0X:0:0:0:0:0:0:117   XINGTV                             <hgxing&aol.com>
+   FF0X:0:0:0:0:0:0:118   microsoft-ds                       <arnoldm&microsoft.com>
+   FF0X:0:0:0:0:0:0:119   nbc-pro                            <bloomer&birch.crd.ge.com>
+   FF0X:0:0:0:0:0:0:11A   nbc-pfn                            <bloomer&birch.crd.ge.com>
+   FF0X:0:0:0:0:0:0:11B   lmsc-calren-1                      [Uang]
+   FF0X:0:0:0:0:0:0:11C   lmsc-calren-2                      [Uang]
+   FF0X:0:0:0:0:0:0:11D   lmsc-calren-3                      [Uang]
+   FF0X:0:0:0:0:0:0:11E   lmsc-calren-4                      [Uang]
+   FF0X:0:0:0:0:0:0:11F   ampr-info                          [Janssen]
+
+   FF0X:0:0:0:0:0:0:120   mtrace                             [Casner]
+   FF0X:0:0:0:0:0:0:121   RSVP-encap-1                       [Braden]
+   FF0X:0:0:0:0:0:0:122   RSVP-encap-2                       [Braden]
+   FF0X:0:0:0:0:0:0:123   SVRLOC-DA                          [Guttman]
+   FF0X:0:0:0:0:0:0:124   rln-server                         [Kean]
+   FF0X:0:0:0:0:0:0:125   proshare-mc                        [Lewis]
+   FF0X:0:0:0:0:0:0:126   dantz                              [Yackle]
+   FF0X:0:0:0:0:0:0:127   cisco-rp-announce                  [Farinacci]
+   FF0X:0:0:0:0:0:0:128   cisco-rp-discovery                 [Farinacci]
+   FF0X:0:0:0:0:0:0:129   gatekeeper                         [Toga]
+   FF0X:0:0:0:0:0:0:12A   iberiagames                        [Marocho]
+   FF0X:0:0:0:0:0:0:12B   X Display                          [McKernan]
+   FF0X:0:0:0:0:0:0:12C   oap-multicast                      [Eastham]
+   FF0X:0:0:0:0:0:0:12D   DvbServDisc                        [Willigen]
+   FF0X:0:0:0:0:0:0:12E   Ricoh-device-ctrl                  [Ohhira]           
+   FF0X:0:0:0:0:0:0:12F   Ricoh-device-ctrl                  [Ohhira]
+
+   FF0X:0:0:0:0:0:0:130   UPnP                               [UPnP]   21 September 2006
+   FF0X:0:0:0:0:0:0:131   Systech Mcast                      [Jakubiec]  21 September 2006
+   FF0X:0:0:0:0:0:0:132   omasg                              [Lipford]   21 September 2006
+   FF0X:0:0:0:0:0:0:133   ASAP                               [RFC5352]
+   
+   FF0X:0:0:0:0:0:0:181   PTP-primary                        [IEEE1588, K.Lee]  02 February 2007
+   FF0X:0:0:0:0:0:0:182   PTP-alternate1                     [IEEE1588, K.Lee]  02 February 2007
+   FF0X:0:0:0:0:0:0:183   PTP-alternate2                     [IEEE1588, K.Lee]  02 February 2007
+   FF0X:0:0:0:0:0:0:184   PTP-alternate3                     [IEEE1588, K.Lee]  02 February 2007
+   FF0X:0:0:0:0:0:0:18C   All ACs multicast address          [RFC-ietf-capwap-protocol-specification-15.txt]
+
+   FF0X:0:0:0:0:0:0:201  "rwho" Group (BSD) (unofficial)     [JBP]
+   FF0X:0:0:0:0:0:0:202   SUN RPC PMAPPROC_CALLIT            [BXE1]
+
+   FF0X:0:0:0:0:0:0:300   Mbus/Ipv6                          [RFC3259]
+
+   FF0X:0:0:0:0:0:2:0000
+    -FF0X:0:0:0:0:0:2:7FFD  Multimedia Conference Calls      [SC3]
+   FF0X:0:0:0:0:0:2:7FFE    SAPv1 Announcements              [SC3]
+   FF0X:0:0:0:0:0:2:7FFF    SAPv0 Announcements (deprecated) [SC3]
+   FF0X:0:0:0:0:0:2:8000
+    -FF0X:0:0:0:0:0:2:FFFF  SAP Dynamic Assignments          [SC3]
+
+FF3X:0::0-FF3X:0000:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF (FF3X:0000:/32) Source-Specific Multicast block
+Registration Rules:
+Addresses in FF3X:0000:/32 but not listed below are reserved for future SSM
+address use, but are currently invalid. 
+FF3X::4000:1-FF3X::7FFF:FFFF - IETF consensus
+FF3X::8000:0-FF3X::FFFF:FFFF - Dynamically allocated by hosts when needed [RFC4607].
+
+Address/Range                Description                         Reference
+---------------------------  ----------------------------------  ---------
+FF3X::0:0-FF3X::3FFF:FFFF    Invalid addresses                   [RFC4607]
+FF3X::4000:0                 Reserved                            [RFC4607]
+FF3X::4000:1-FF3X::7FFF:FFFF Reserved for IANA allocation        [RFC4607]
+FF3X::8000:0-FF3X::FFFF:FFFF Reserved for local host allocation  [RFC4607]
+
+
+References
+----------
+[IEEE1588] http://ieee1588.nist.gov/
+
+[RFC1045]  Cheriton, D., "VMTP: Versatile Message Transaction Protocol
+           Specification", RFC 1045, February 1988.
+
+[RFC1075]  Waitzman, D., Partridge, C., and S. Deering, "Distance
+           Vector Multicast Routing Protocol", RFC 1075, November
+           1988.
+
+[RFC1119]  Mills, D., "Network Time Protocol (Version 1),
+           Specification and Implementation", STD 12, RFC 1119, July
+           1988.
+
+[RFC1190]  Topolcic, C., Editor, "Experimental Internet Stream
+           Protocol, Version 2 (ST-II)", RFC 1190, October 1990.
+
+[RFC2080]  Malkin, G., and R. Minnear, "RIPng for IPv6", RFC 2080,
+           January 1997.
+
+[RFC2462]  Thompson, S., and T. Narten, "IPv6 Stateless Address
+           Autoconfiguration", RFC 1971, December 1998.
+
+[RFC3111]  Guttman, E., "Service Location Protocol", RFC 3111,
+           May 2001.
+
+[RFC2328]  Moy, J., "OSPF Version 2", STD 54, RFC 2328, April 1998.
+
+[RFC3259]  J. Ott, C. Perkins, and D. Kutscher, "A Message Bus for 
+           Local Coordination", RFC 3259, April 2002.
+
+[RFC3315]  R. Droms, J. Bound, B. Volz, T. Lemon, C. Perkins, and M. Carney,
+           "Dynamic Host Configuration Protocol for IPv6 (DHCPv6)",
+           RFC 3315, July 2003.
+
+[RFC3810]  R. Vida,  L. Costa, Eds., "Multicast Listener Discovery Version 2 
+           (MLDv2) for IPv6", RFC 3810, June 2004.
+
+[RFC4286]  B. Haberman and J. Martin, "Multicast Router Discovery", 
+           RFC 4286, December 2005.
+
+[RFC4291]  Hinden, R., and S. Deering, "IP Version 6 Addressing
+           Architecture", RFC 4291, February 2006.
+
+[RFC4620]  M. Crawford and B. Haberman, Ed. "IPv6 Node Information Queries",
+           RFC 4620, August 2006.
+
+[RFC4607]  H. Holbrook and B. Cain, "Source-Specific Multicast for IP",
+           RFC 4607, August 2006.
+
+[RFC4795]  B. Aboba, D. Thaler, L. Esibov, "Link-local Multicast Name          
+           Resolution (LLMNR)", RFC 4795, January 2007.
+
+[RFC-ietf-manet-iana-07.txt]
+           I. Chakeres, "IANA Allocations for MANET Protocols", RFC XXXX, 
+           Month Year.
+           
+[RFC5352]  R. Stewart, Q. Xie, M. Stillman, M. Tuexen, "Aggregate Server 
+           Access Protocol (ASAP)", RFC 5352, September 2008.
+
+[RFC-ietf-capwap-protocol-specification-15.txt]
+           P. Calhoun, Ed., M. Montemurro, Ed., D. Stanley, Ed., "CAPWAP 
+           Protocol Specification", RFC XXXX, Month Year.
+
+People
+------
+[Aboba] Bernard Aboba, <bernarda&windows.microsoft.com>, May 2004.
+
+<arnoldm&microsoft.com>
+
+[AXC] Andrew Cherenson, <arc&SGI.COM>
+
+[Braden] Bob Braden, <braden&isi.edu>, April 1996.
+
+[Bob Brenner]
+
+[Bressler] David J. Bressler, <bressler&tss.com>, April 1996.
+
+<bloomer&birch.crd.ge.com>
+
+[Bound] Jim Bound, <bound&zk3.dec.com>
+
+[BXE1] Brendan Eic, <brendan&illyria.wpd.sgi.com>
+
+[BXF] Bruce Factor, <ahi!bigapple!bruce&uunet.UU.NET>
+
+[BXS2] Bill Schilit, <schilit&parc.xerox.com>
+
+[Casner] Steve Casner, <casner&isi.edu>, January 1995.
+
+[Cheshire] Stuart Cheshire, <iana&multicastdns.org>, 05 October 2005.
+
+[CXM3] Chuck McManis, <cmcmanis&sun.com>
+
+[Tim Clark]
+
+[DLM1] David Mills, <Mills&HUEY.UDEL.EDU>
+
+[DRC3] Dave Cheriton, <cheriton&PESCADERO.STANFORD.EDU>
+
+[DXS3] Daniel Steinber, <Daniel.Steinberg&Eng.Sun.COM>
+
+[Eastham] Bryant Eastham, <protocols&pewla.us.pewg.panasonic.com>, April 2005.
+
+[Farinacci] Dino Farinacci, <dino&cisco.com>
+
+[GSM11] Gary S. Malkin, <GMALKIN&XYLOGICS.COM>
+
+[Guttman] Erik Guttman, <erik.guttman&sun.com>, May 2001.
+
+[Harrington] Dan Harrington, <dan&lucent.com>, July 1996.
+
+<hgxing&aol.com>
+
+[IANA] IANA, <iana&iana.org>
+
+[Jakubiec] Dan Jakubiec, <dan.jakubiec&systech.com>, 21 September 2006.
+
+[Janssen] Rob Janssen, <rob&pe1chl.ampr.org>, January 1995.
+
+[JBP] Jon Postel, <postel&isi.edu>
+
+[JXM1] Jim Miner, <miner&star.com>
+
+[Kean] Brian Kean, <bkean&dca.com>, August 1995.
+
+[KS14] <mystery contact>
+
+[Lee] Choon Lee, <cwl&nsd.3com.com>, April 1996.
+
+[K.Lee] Kang Lee, <kang.lee&nist.gov>, 02 February 2007.
+   
+[Lewis] Mark Lewis, <Mark_Lewis&ccm.jf.intel.com>, October 1995.
+
+[Lipford] Mark Lipford, <mark.a.lipford&sprint.com>, 21 September 2006.
+
+[Malamud] Carl Malamud, <carl&radio.com>, January 1996.
+
+[Andrew Maffei]
+
+[Marohco] Jose Luis Marocho, <73374.313&compuserve.com>, July 1996.
+
+[McKernan] John McKernan, <john.mckernan&sun.com>, May 2003.
+
+[Moy] John Moy, <jmoy&casc.com>
+
+[MXF2] Martin Forssen, <maf&dtek.chalmers.se>
+
+[Ohhira] Kohki Ohhira, <ohhira&src.ricoh.co.jp>, 20 June 2006.
+
+[Perkins] Charlie Perkins, <cperkins&corp.sun.com>
+
+[Guido van Rossum]
+
+[SC3] Steve Casner, <casner&isi.edu>
+
+[Simpson] Bill Simpson, <bill.simpson&um.cc.umich.edu> November 1994.
+
+[Joel Snyder]
+
+[SXA] Susie Armstrong, <Armstrong.wbst128&XEROX.COM>
+
+[SXD] Steve Deering, <deering&cisco.com>
+   
+[Tersteegen] Hanno Tersteegen, <hanno.tersteegen&fokus.fraunhofer.de>, May 2004.
+
+[Toga] Jim Toga, <jtoga&ibeam.jf.intel.com>, May 1996.
+   
+[Tynan] Dermot Tynan, <dtynan&claddagh.ie>, August 1995.
+
+[Uang] Yea Uang, <uang&force.decnet.lockheed.com> November 1994.
+
+[UPnP] UPnP Forum, <upnpadmin&forum.upnp.org>, April 2002, 17 August 2006, 21 September 2006.
+   
+[Vieth] Moritz Vieth, <moritz.vieth&fokus.fraunhofer.de>, May 2004.
+
+[Willigen] Bert van Willigen, <bert.vanwilligen&philips.com>, 16 September 2005.
+
+[Wood] Lloyd Wood, <lwood&cisco.com>, 30 August 2007.
+
+[Yackle] Dotty Yackle, <ditty_yackle&dantz.com>, February 1996.
+
+[Zhou] Xiaoyu Zhou, <zhouxyi&lenovo.com>, 20 January 2009.
+
+[]
+
+

@@ -1,0 +1,24 @@
+# ex: set ff=dos:
+# $Id$
+# define hardware: CPUs, architectures, machines
+
+# major CPU families
+x86,x86,
+PPC,PPC,
+ARM,ARM,
+Alpha,Alpha,
+
+# x86 major types
+8088,x86,
+8086,8088,
+286,8086,
+386,286,
+486,386,
+586,486,
+686,586,
+
+# personal computer major types
+PC,x86,
+MacPPC,PPC,
+MacIntel,686,
+

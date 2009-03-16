@@ -1,0 +1,73 @@
+# ex: set ff=dos ts=2 et:
+# $Id$
+
+input
+
+  hint.sql
+    db.oui
+      map IEEE802.3 MAC address OUI prefixes to their vendor organizations
+    db.map
+      map 'hint' output to the software/systems that generate it
+
+ ./cap
+  [libpcap]
+  parse data
+  report
+  [libsqlite3]
+    rep_addr -> db.addr
+    rep_hint -> db.hint
+    rep_traffic -> db.traffic
+
+output
+  link hints to their maps
+    hint <-> map
+  aggregate linked addresses into 'hosts'
+    db.addr <-> db.addr
+      [(a,b),(b,c),(d,e)] -> [(a,b,c),(d,e)]
+
+
+
+Predefined Data
+------------------------------------------------------
+
+QUESTION: is it better (with regards to clarity and updates)
+to keep everything in a .csv file and convert explicitly to SQL...
+or should we keep the data in SQL?
+
+def-os.csv
+def-app.csv
+def-hardware.csv
+def-vendor.csv
+
+map-app-http-UserAgent.xml
+map-os-bootp-VendorClass.sql
+map-
+
+allagents.xml                 map-app-http-UserAgent.csv (<-- allagents.xml)
+app_def.csv                   def-app.csv
+bootp_hint_Vendor_Class.csv   map-os-bootp-VendorClass.csv
+bootp_option_fingerprint.csv  
+browse_os.csv
+cdp_hint_platform.csv
+dns_hint_TXT.csv
+hardware_def.csv
+http_header_def.csv
+http_hint_Server.csv
+http_hint_User-Agent.csv
+http_hint_X-Powered-By.csv
+icmp_echo_hint.csv
+import-oui
+import-oui.c
+import-oui.sh
+ipv4_def.csv
+llc_org_def.csv
+mac_vendor_def.csv            map-IEEE8023-vendor.sql
+os_def.csv                    def-os.csv
+oui.txt
+research
+samples
+smb_fingerprint.csv
+ssdp_header_def.csv
+ssdp_hint_Server.csv
+tcp_hint.csv
+

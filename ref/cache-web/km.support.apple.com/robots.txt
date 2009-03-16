@@ -1,0 +1,3 @@
+# robots for Inquira throttling
+User-agent: IQ-WWW
+Request-rate: 5/1  #maximum rate is 5 pages per second

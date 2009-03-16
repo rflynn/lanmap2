@@ -1,0 +1,33 @@
+# ex: set ff=dos:
+# $Id$
+
+#
+#
+
+Mac OS 9.2.2 Open Transport 2.7.9 Power Mac G4 (Graphite),"",
+BlackBerry,"",
+MSFT 5.0,"",
+
+
+# Ref: Cisco, DHCP OPTION 43 for Lightweight Cisco Aironet Access Points Configuration Example [web page]
+#      <URL: http://www.cisco.com/en/US/tech/tk722/tk809/technologies_configuration_example09186a00808714fe.shtml>
+#      [Accessed Jan 8 2009]
+#Vendor Class Identifier (VCI),Access Point
+Airespace.AP1200,Cisco Aironet 1000 series,
+Cisco AP c1100,Cisco Aironet 1100 serie,
+Cisco AP c1130,Cisco Aironet 1130 series,
+Cisco AP c1200,Cisco Aironet 1200 series,
+Cisco AP c1200,Cisco Aironet 1230 series,
+Cisco AP c1240,Cisco Aironet 1240 series,
+Cisco AP c1250,Cisco Aironet 1250 Series,
+Cisco AP c1300,Cisco Aironet 1300 series,
+Cisco AP c1500,Cisco Aironet 1500 series,
+Cisco AP.OAP1500,Cisco Aironet 1500 series,
+Cisco AP.LAP1505,Cisco Aironet 1500 series,
+Cisco AP.LAP1510,Cisco Aironet 1500 series,
+Cisco AP c1520,Cisco Aironet 1500 series,
+Airespace.AP1200,Cisco Aironet 1500 series,
+Cisco Bridge/AP/WGB c3201,Cisco 3201 Lightweight Access Point,
+Cisco AP c520,Cisco 521 Wireless Express Access Point,
+Cisco AP801,AP801 (embedded in 86x/88x series ISRs),
+

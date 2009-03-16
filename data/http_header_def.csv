@@ -1,0 +1,96 @@
+# ex: set ff=dos:
+# $Id$
+
+# define all HTTP headers in which we are interested; this will obviously be a small subset of all possible headers.
+# LANmap uses this file to figure out which headers to save and which to ignore; this implementation greatly
+# increases its speed and efficiency of header matching, as headers can be assigned a numeric index instead of
+# requiring string-matching.
+
+# Type,Name,Explanation
+# Type = "Req" | "Resp" | "Gen"
+
+# 
+# Please include references where possible:
+#
+# References:
+#
+# 	1 Fielding, R. et all. RFC 2616: Hypertest Transfer Protocol -- HTTP/1.1
+# 		[web page] June 1999 <URL: http://tools.ietf.org/rfc/rfc2616.txt> [Accessed 18 Dec 2008]
+# 	2 Troost, R. et all. RFC 2183 The Content-Disposition Header Field
+# 		[web page] Aug 1997 <URL:http://tools.ietf.org/rfc/rfc2183.txt> [Accessed 18 Dec 2008]
+# 	3 Miller, Jim. Platform for Internet Content Selection Version 1.1
+# 		[web page] May 1996 <URL: http://www.w3.org/PICS/labels.html> [Accessed 18 Dec 2008]
+#
+
+# General Header Fields
+# Ref #1 S 4.5
+#Gen,Cache-Control,
+#Gen,Connection,
+#Gen,Date,
+#Gen,Pragma,
+#Gen,Trailer,
+#Gen,Transfer-Encoding,
+#Gen,Upgrade,
+#Gen,Via,
+#Gen,Warning,
+
+# Request Header
+#Req,Accept,
+#Req,Accept-Charset,
+#Req,Accept-Encoding,
+#Req,Accept-Language,
+#Req,Authorization,
+#Req,Expect,
+#Req,From,
+#Req,Host,
+#Req,If-Match,
+#Req,If-Modified-Since,
+#Req,If-Range,
+#Req,If-Unmodified-Since,
+#Req,Max-Forwards,
+#Req,Proxy-Authorization,
+#Req,Range,
+#Req,Referer,
+#Req,TE,
+Req,User-Agent,"see http_hint_User-Agent.csv"
+
+# Response Headers
+#Resp,Accept-Ranges,
+#Resp,Age,
+#Resp,Allow,
+#Resp,Content-Encoding,
+#Resp,Content-Disposition,
+#Resp,Content-Language,
+#Resp,Content-Length,
+#Resp,Content-Location,
+#Resp,Content-MD5,
+#Resp,Content-Range,
+#Resp,Content-Type,
+#Resp,ETag,
+#Resp,Expires,
+#Resp,Last-Modified,
+#Resp,Location,
+#Resp,P3P,"Ref needed"
+#Resp,Proxy-Authenticate,
+#Resp,Retry-After,
+Resp,Server,"see http_hint_Server.csv"
+#Resp,SetCookie,
+#Resp,Transfer-Encoding,
+#Resp,Vary,
+#Resp,WWW-Authenticate,
+
+# X- Response Headers
+# Custom "X-"-prefixed response headers
+# Please provide reference/info
+Resp,X-Powered-By,"Common PHP header, discloses version"
+#Resp,X-Vary-Options,
+Resp,X-Cache,"squid?"
+Resp,X-Cache-Lookup,"squid?"
+Resp,X-Content-Type-Options,"gmail.com"
+#Resp,X-Forwarded-For,
+#Resp,X-Forwarded-Host,
+#Resp,X-Forwarded-Server,
+#Resp,X-WAP-Profile,
+#Resp,X-WAP-Profile-Diff,
+#Resp,pics-label,"Ref #3"
+

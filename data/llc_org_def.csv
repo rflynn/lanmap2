@@ -1,0 +1,9 @@
+# ex: set ff=dos:
+# $Id$
+# LLC Organizations, matches 24-bit 'org' code
+
+# Code,Org
+
+0x000003,Cisco
+0x080007,Apple
+

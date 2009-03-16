@@ -1,0 +1,11 @@
+
+#TTL,OSVer,Hint,Comment
+128,4.0,WinNT4,NT4
+128,5.0,WinNT5,2k
+128,5.1,WinNT5.1,XP
+128,5.2,WinNT5.2,2k3
+128,6.0,WinNT6,Vista
+128,6.1,WinNT6.1,Windows7(?)
+ 64,4.9,Linux,Samba running on Linux
+255,4.9,BSD,Samba running on *BSD
+

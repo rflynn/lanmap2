@@ -1,0 +1,472 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="robots" content="index,follow" />
+    <meta name="creator" content="rfcmarkup version 1.70" />
+    <link rel="icon" href="/images/rfc.png" type="image/png" />
+    <link rel="shortcut icon" href="/images/rfc.png" type="image/png" />
+    <title>RFC 3514 - The Security Flag in the IPv4 Header</title>
+    
+    <style type="text/css">
+	body {
+	    margin: 0px 8px;
+            font-size: 1em;
+	}
+        h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	    font-weight: bold;
+            line-height: 0pt;
+            display: inline;
+            white-space: pre;
+            font-family: monospace;
+            font-size: 1em;
+	    font-weight: bold;
+        }
+        pre {
+            font-size: 1em;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+	.pre {
+	    white-space: pre;
+	    font-family: monospace;
+	}
+	.header{
+	    font-weight: bold;
+	}
+        .newpage {
+            page-break-before: always;
+        }
+        .invisible {
+            text-decoration: none;
+            color: white;
+        }
+        @media print {
+            body {
+                font-size: 10.5pt;
+            }
+            h1, h2, h3, h4, h5, h6 {
+                font-size: 10.5pt;
+            }
+        
+            a:link, a:visited {
+                color: inherit;
+                text-decoration: none;
+            }
+            .noprint {
+                display: none;
+            }
+        }
+	@media screen {
+	    .grey, .grey a:link, .grey a:visited {
+		color: #777;
+	    }
+            .docinfo {
+                background-color: #EEE;
+            }
+            .top {
+                border-top: 7px solid #EEE;
+            }
+            .bgwhite  { background-color: white; }
+            .bgred    { background-color: #F44; }
+            .bggrey   { background-color: #666; }
+            .bgbrown  { background-color: #840; }            
+            .bgorange { background-color: #FA0; }
+            .bgyellow { background-color: #EE0; }
+            .bgmagenta{ background-color: #F4F; }
+            .bgblue   { background-color: #66F; }
+            .bgcyan   { background-color: #4DD; }
+            .bggreen  { background-color: #4F4; }
+
+            .legend   { font-size: 90%; }
+            .cplate   { font-size: 70%; border: solid grey 1px; }
+	}
+    </style>
+
+    <script type="text/javascript"><!--
+    function addHeaderTags() {
+	var spans = document.getElementsByTagName("span");
+	for (var i=0; i < spans.length; i++) {
+	    var elem = spans[i];
+	    if (elem) {
+		var level = elem.getAttribute("class");
+                if (level == "h1" || level == "h2" || level == "h3" || level == "h4" || level == "h5" || level == "h6") {
+                    elem.innerHTML = "<"+level+">"+elem.innerHTML+"</"+level+">";		
+                }
+	    }
+	}
+    }
+    var legend_html = "Colour legend:<br />      <table>         <tr><td>Unknown:</td>          <td><span class='cplate bgwhite'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Draft:</td>            <td><span class='cplate bgred'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Informational:</td>    <td><span class='cplate bgorange'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Experimental:</td>     <td><span class='cplate bgyellow'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Best Common Practice:</td><td><span class='cplate bgmagenta'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Proposed Standard:</td><td><span class='cplate bgblue'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Draft Standard:</td>   <td><span class='cplate bgcyan'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Standard:</td>         <td><span class='cplate bggreen'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Historic:</td>         <td><span class='cplate bggrey'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Obsolete:</td>         <td><span class='cplate bgbrown'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>     </table>";
+    function showElem(id) {
+        var elem = document.getElementById(id);
+        elem.innerHTML = eval(id+"_html");
+        elem.style.visibility='visible';
+    }
+    function hideElem(id) {
+        var elem = document.getElementById(id);
+        elem.style.visibility='hidden';        
+        elem.innerHTML = "";
+    }
+    // -->
+    </script>
+</head>
+<body onload="addHeaderTags()">
+   <div style="height: 13px;">
+      <div onmouseover="this.style.cursor='pointer';"
+         onclick="showElem('legend');"
+         onmouseout="hideElem('legend')"
+	 style="height: 6px; position: absolute;"
+         class="pre noprint docinfo bgorange"
+         title="Click for colour legend." >                                                                        </div>
+      <div id="legend"
+           class="docinfo noprint pre legend"
+           style="position:absolute; top: 4px; left: 4ex; visibility:hidden; background-color: white; padding: 4px 9px 5px 7px; border: solid #345 1px; "
+           onmouseover="showElem('legend');"
+           onmouseout="hideElem('legend');">
+      </div>
+   </div>
+<span class="pre noprint docinfo top">[<a href="../html/" title="Document search and retrieval page">RFCs/IDs</a>] [<a href="/rfc/rfc3514.txt" title="Plaintext version of this document">Plain Text</a>]                                                 </span><br />
+<span class="pre noprint docinfo">                                                                        </span><br />
+<span class="pre noprint docinfo">                                                           INFORMATIONAL</span><br />
+<span class="pre noprint docinfo">                                                                        </span><br />
+<pre>
+Network Working Group                                        S. Bellovin
+Request for Comments: 3514                            AT&amp;T Labs Research
+Category: Informational                                     1 April 2003
+
+
+                  <span class="h1">The Security Flag in the IPv4 Header</span>
+
+Status of this Memo
+
+   This memo provides information for the Internet community.  It does
+   not specify an Internet standard of any kind.  Distribution of this
+   memo is unlimited.
+
+Copyright Notice
+
+   Copyright (C) The Internet Society (2003).  All Rights Reserved.
+
+Abstract
+
+   Firewalls, packet filters, intrusion detection systems, and the like
+   often have difficulty distinguishing between packets that have
+   malicious intent and those that are merely unusual.  We define a
+   security flag in the IPv4 header as a means of distinguishing the two
+   cases.
+
+<span class="h2"><a name="section-1">1</a>. Introduction</span>
+
+   Firewalls [<a href="#ref-CBR03" title='"Firewalls and Internet Security: Repelling the Wily Hacker"'>CBR03</a>], packet filters, intrusion detection systems, and
+   the like often have difficulty distinguishing between packets that
+   have malicious intent and those that are merely unusual.  The problem
+   is that making such determinations is hard.  To solve this problem,
+   we define a security flag, known as the "evil" bit, in the IPv4
+   [<a href="./rfc791" title='"Internet Protocol"'>RFC791</a>] header.  Benign packets have this bit set to 0; those that
+   are used for an attack will have the bit set to 1.
+
+<span class="h3"><a name="section-1.1">1.1</a>. Terminology</span>
+
+   The keywords MUST, MUST NOT, REQUIRED, SHALL, SHALL NOT, SHOULD,
+   SHOULD NOT, RECOMMENDED, MAY, and OPTIONAL, when they appear in this
+   document, are to be interpreted as described in [<a href="./rfc2119" title='"Key words for use in RFCs to Indicate Requirement Levels"'>RFC2119</a>].
+
+<span class="h2"><a name="section-2">2</a>. Syntax</span>
+
+   The high-order bit of the IP fragment offset field is the only unused
+   bit in the IP header.  Accordingly, the selection of the bit position
+   is not left to IANA.
+
+
+
+
+
+<span class="grey">Bellovin                     Informational                      [Page 1]</span>
+</pre><pre class='newpage'><a name="page-2" id="page-2" href="#page-2" class="invisible"> </a>
+<span class="grey"><a href="./rfc3514">RFC 3514</a>          The Security Flag in the IPv4 Header      1 April 2003</span>
+
+
+   The bit field is laid out as follows:
+
+             0
+            +-+
+            |E|
+            +-+
+
+   Currently-assigned values are defined as follows:
+
+   0x0  If the bit is set to 0, the packet has no evil intent.  Hosts,
+        network elements, etc., SHOULD assume that the packet is
+        harmless, and SHOULD NOT take any defensive measures.  (We note
+        that this part of the spec is already implemented by many common
+        desktop operating systems.)
+
+   0x1  If the bit is set to 1, the packet has evil intent.  Secure
+        systems SHOULD try to defend themselves against such packets.
+        Insecure systems MAY chose to crash, be penetrated, etc.
+
+<span class="h2"><a name="section-3">3</a>. Setting the Evil Bit</span>
+
+   There are a number of ways in which the evil bit may be set.  Attack
+   applications may use a suitable API to request that it be set.
+   Systems that do not have other mechanisms MUST provide such an API;
+   attack programs MUST use it.
+
+   Multi-level insecure operating systems may have special levels for
+   attack programs; the evil bit MUST be set by default on packets
+   emanating from programs running at such levels.  However, the system
+   MAY provide an API to allow it to be cleared for non-malicious
+   activity by users who normally engage in attack behavior.
+
+   Fragments that by themselves are dangerous MUST have the evil bit
+   set.  If a packet with the evil bit set is fragmented by an
+   intermediate router and the fragments themselves are not dangerous,
+   the evil bit MUST be cleared in the fragments, and MUST be turned
+   back on in the reassembled packet.
+
+   Intermediate systems are sometimes used to launder attack
+   connections.  Packets to such systems that are intended to be relayed
+   to a target SHOULD have the evil bit set.
+
+   Some applications hand-craft their own packets.  If these packets are
+   part of an attack, the application MUST set the evil bit by itself.
+
+   In networks protected by firewalls, it is axiomatic that all
+   attackers are on the outside of the firewall.  Therefore, hosts
+   inside the firewall MUST NOT set the evil bit on any packets.
+
+
+
+<span class="grey">Bellovin                     Informational                      [Page 2]</span>
+</pre><pre class='newpage'><a name="page-3" id="page-3" href="#page-3" class="invisible"> </a>
+<span class="grey"><a href="./rfc3514">RFC 3514</a>          The Security Flag in the IPv4 Header      1 April 2003</span>
+
+
+   Because NAT [<a href="./rfc3022" title='"Traditional IP Network Address Translator (Traditional NAT)"'>RFC3022</a>] boxes modify packets, they SHOULD set the evil
+   bit on such packets.  "Transparent" http and email proxies SHOULD set
+   the evil bit on their reply packets to the innocent client host.
+
+   Some hosts scan other hosts in a fashion that can alert intrusion
+   detection systems.  If the scanning is part of a benign research
+   project, the evil bit MUST NOT be set.  If the scanning per se is
+   innocent, but the ultimate intent is evil and the destination site
+   has such an intrusion detection system, the evil bit SHOULD be set.
+
+<span class="h2"><a name="section-4">4</a>. Processing of the Evil Bit</span>
+
+   Devices such as firewalls MUST drop all inbound packets that have the
+   evil bit set.  Packets with the evil bit off MUST NOT be dropped.
+   Dropped packets SHOULD be noted in the appropriate MIB variable.
+
+   Intrusion detection systems (IDSs) have a harder problem.  Because of
+   their known propensity for false negatives and false positives, IDSs
+   MUST apply a probabilistic correction factor when evaluating the evil
+   bit.  If the evil bit is set, a suitable random number generator
+   [<a href="./rfc1750" title='"Randomness Recommendations for Security"'>RFC1750</a>] must be consulted to determine if the attempt should be
+   logged.  Similarly, if the bit is off, another random number
+   generator must be consulted to determine if it should be logged
+   despite the setting.
+
+   The default probabilities for these tests depends on the type of IDS.
+   Thus, a signature-based IDS would have a low false positive value but
+   a high false negative value.  A suitable administrative interface
+   MUST be provided to permit operators to reset these values.
+
+   Routers that are not intended as as security devices SHOULD NOT
+   examine this bit.  This will allow them to pass packets at higher
+   speeds.
+
+   As outlined earlier, host processing of evil packets is operating-
+   system dependent; however, all hosts MUST react appropriately
+   according to their nature.
+
+<span class="h2"><a name="section-5">5</a>. Related Work</span>
+
+   Although this document only defines the IPv4 evil bit, there are
+   complementary mechanisms for other forms of evil.  We sketch some of
+   those here.
+
+   For IPv6 [<a href="./rfc2460" title='"Internet Protocol, Version 6 (IPv6) Specification"'>RFC2460</a>], evilness is conveyed by two options.  The first,
+   a hop-by-hop option, is used for packets that damage the network,
+   such as DDoS packets.  The second, an end-to-end option, is for
+   packets intended to damage destination hosts.  In either case, the
+
+
+
+<span class="grey">Bellovin                     Informational                      [Page 3]</span>
+</pre><pre class='newpage'><a name="page-4" id="page-4" href="#page-4" class="invisible"> </a>
+<span class="grey"><a href="./rfc3514">RFC 3514</a>          The Security Flag in the IPv4 Header      1 April 2003</span>
+
+
+   option contains a 128-bit strength indicator, which says how evil the
+   packet is, and a 128-bit type code that describes the particular type
+   of attack intended.
+
+   Some link layers, notably those based on optical switching, may
+   bypass routers (and hence firewalls) entirely.  Accordingly, some
+   link-layer scheme MUST be used to denote evil.  This may involve evil
+   lambdas, evil polarizations, etc.
+
+   DDoS attack packets are denoted by a special diffserv code point.
+
+   An application/evil MIME type is defined for Web- or email-carried
+   mischief.  Other MIME types can be embedded inside of evil sections;
+   this permit easy encoding of word processing documents with macro
+   viruses, etc.
+
+<span class="h2"><a name="section-6">6</a>. IANA Considerations</span>
+
+   This document defines the behavior of security elements for the 0x0
+   and 0x1 values of this bit.  Behavior for other values of the bit may
+   be defined only by IETF consensus [<a href="./rfc2434" title='"Guidelines for Writing an IANA Considerations Section in RFCs"'>RFC2434</a>].
+
+<span class="h2"><a name="section-7">7</a>. Security Considerations</span>
+
+   Correct functioning of security mechanisms depend critically on the
+   evil bit being set properly.  If faulty components do not set the
+   evil bit to 1 when appropriate, firewalls will not be able to do
+   their jobs properly.  Similarly, if the bit is set to 1 when it
+   shouldn't be, a denial of service condition may occur.
+
+<span class="h2"><a name="section-8">8</a>. References</span>
+
+   [<a name="ref-CBR03" id="ref-CBR03">CBR03</a>]   W.R. Cheswick, S.M. Bellovin, and A.D. Rubin, "Firewalls
+             and Internet Security: Repelling the Wily Hacker", Second
+             Edition, Addison-Wesley, 2003.
+
+   [<a name="ref-RFC791" id="ref-RFC791">RFC791</a>]  Postel, J., "Internet Protocol", STD 5, <a href="./rfc791">RFC 791</a>, September
+             1981.
+
+   [<a name="ref-RFC1750" id="ref-RFC1750">RFC1750</a>] Eastlake, D., 3rd, Crocker, S. and J. Schiller, "Randomness
+             Recommendations for Security", <a href="./rfc1750">RFC 1750</a>, December 1994.
+
+   [<a name="ref-RFC2119" id="ref-RFC2119">RFC2119</a>] Bradner, S., "Key words for use in RFCs to Indicate
+             Requirement Levels", <a href="./bcp14">BCP 14</a>, <a href="./rfc2119">RFC 2119</a>, March 1997.
+
+   [<a name="ref-RFC2434" id="ref-RFC2434">RFC2434</a>] Narten, T. and H. Alvestrand, "Guidelines for Writing an
+             IANA Considerations Section in RFCs", <a href="./bcp26">BCP 26</a>, <a href="./rfc2434">RFC 2434</a>,
+             October 1998.
+
+
+
+<span class="grey">Bellovin                     Informational                      [Page 4]</span>
+</pre><pre class='newpage'><a name="page-5" id="page-5" href="#page-5" class="invisible"> </a>
+<span class="grey"><a href="./rfc3514">RFC 3514</a>          The Security Flag in the IPv4 Header      1 April 2003</span>
+
+
+   [<a name="ref-RFC2460" id="ref-RFC2460">RFC2460</a>] Deering, S. and R. Hinden, "Internet Protocol, Version 6
+             (IPv6) Specification", <a href="./rfc2460">RFC 2460</a>, December 1998.
+
+   [<a name="ref-RFC3022" id="ref-RFC3022">RFC3022</a>] Srisuresh, P. and K. Egevang, "Traditional IP Network
+             Address Translator (Traditional NAT)", <a href="./rfc3022">RFC 3022</a>, January
+             2001.
+
+<span class="h2"><a name="section-9">9</a>. Author's Address</span>
+
+   Steven M. Bellovin
+   AT&amp;T Labs Research
+   Shannon Laboratory
+   180 Park Avenue
+   Florham Park, NJ 07932
+
+   Phone: +1 973-360-8656
+   EMail: bellovin@acm.org
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="grey">Bellovin                     Informational                      [Page 5]</span>
+</pre><pre class='newpage'><a name="page-6" id="page-6" href="#page-6" class="invisible"> </a>
+<span class="grey"><a href="./rfc3514">RFC 3514</a>          The Security Flag in the IPv4 Header      1 April 2003</span>
+
+
+<span class="h2"><a name="section-10">10</a>. Full Copyright Statement</span>
+
+   Copyright (C) The Internet Society (2003).  All Rights Reserved.
+
+   This document and translations of it may be copied and furnished to
+   others, and derivative works that comment on or otherwise explain it
+   or assist in its implementation may be prepared, copied, published
+   and distributed, in whole or in part, without restriction of any
+   kind, provided that the above copyright notice and this paragraph are
+   included on all such copies and derivative works.  However, this
+   document itself may not be modified in any way, such as by removing
+   the copyright notice or references to the Internet Society or other
+   Internet organizations, except as needed for the purpose of
+   developing Internet standards in which case the procedures for
+   copyrights defined in the Internet Standards process must be
+   followed, or as required to translate it into languages other than
+   English.
+
+   The limited permissions granted above are perpetual and will not be
+   revoked by the Internet Society or its successors or assigns.
+
+   This document and the information contained herein is provided on an
+   "AS IS" basis and THE INTERNET SOCIETY AND THE INTERNET ENGINEERING
+   TASK FORCE DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING
+   BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION
+   HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF
+   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+
+Acknowledgement
+
+   Funding for the RFC Editor function is currently provided by the
+   Internet Society.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Bellovin                     Informational                      [Page 6]
+</pre><pre class='newpage'>
+
+</pre><br />
+<span class="noprint"><small><small>Html markup produced by rfcmarkup 1.70, available from
+<a href="http://tools.ietf.org/tools/rfcmarkup/">http://tools.ietf.org/tools/rfcmarkup/</a>
+</small></small></span>
+</body></html>

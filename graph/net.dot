@@ -1,0 +1,22 @@
+digraph {
+  node [fontsize=8,penwidth=1,color="#EEEEEE",shape=record,overlap=vpsc,fontname="Verdana"];
+  edge [color="#777777",arrowsize=0.5,fontname="Verdana",fontsize=4];
+  "Outside" [label=<
+<TABLE BORDER="0" CELLSPACING="1" CELLPADDING="0">
+  <TR><TD><IMG SRC="../img/icons-tango/network-cloud.png"/></TD></TR><TR>
+  <TD>Outside<BR/></TD></TR></TABLE>>];
+  "00:03:47:92:d4:f3" [label=<
+  <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="0">
+    <TR><TD><IMG SRC="../img/os/Linux2.6-32.png"/></TD></TR><TR>
+    <TD>00:03:47:92:d4:f3<BR/>OS=Linux2.6,SunOS4.1.x<BR/>192.168.1.200<BR/></TD></TR></TABLE>>];
+  "00:21:29:70:ea:46" [label=<
+  <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="0">
+    <TR><TD><IMG SRC="../img/dev/Router-WRT54G-32.png"/></TD></TR><TR>
+    <TD>00:21:29:70:ea:46<BR/>Dev=Router-WRT54G<BR/>Role=Gateway<BR/>OS=Linux2.4.x,Linux2.6<BR/>192.168.1.1<BR/></TD></TR></TABLE>>];
+"00:03:47:92:d4:f3" -> "00:02:fd:ac:48:c0" [penwidth=2.0,color="#444444"]
+"00:03:47:92:d4:f3" -> "00:1b:63:a4:95:bc" [penwidth=0.1,color="#787878"]
+"00:03:47:92:d4:f3" -> "00:21:29:70:ea:46" [penwidth=4.9,color="#0f0000"]
+"00:03:47:92:d4:f3" -> "192.168.1.101" [penwidth=0.1,color="#7a7a7a"]
+"00:03:47:92:d4:f3" -> "192.168.1.2" [penwidth=1.9,color="#464646"]
+"00:21:29:70:ea:46" -> "00:03:47:92:d4:f3" [penwidth=5.8,color="#2a0000"]
+}

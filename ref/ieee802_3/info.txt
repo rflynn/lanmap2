@@ -1,0 +1,8 @@
+http://standards.ieee.org/getieee802/802.3.html
+
+http://standards.ieee.org/getieee802/download/802.3-2005_section1.pdf
+http://standards.ieee.org/getieee802/download/802.3-2005_section2.pdf
+http://standards.ieee.org/getieee802/download/802.3-2005_section3.pdf
+http://standards.ieee.org/getieee802/download/802.3-2005_section4.pdf
+http://standards.ieee.org/getieee802/download/802.3-2005_section5.pdf
+

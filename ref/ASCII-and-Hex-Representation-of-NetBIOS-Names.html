@@ -1,0 +1,330 @@
+<html lang="en-us"><head><link title="Microsoft Support Search" type="application/opensearchdescription+xml" rel="search" href="/common/opensearchdescriptor.aspx?ln=en-us" /><meta name="DCSext.sup_cid" content="194203" /><meta name="DCSext.sup_cln" content="en-us" /><meta name="DCSext.sup_ct" content="kb" /><meta name="DCSext.sup_ln" content="en-us" /><meta name="DCSext.sup_sd" content="gn" /><script type="text/javascript" src="/common/script/gsfx/common.js?17"></script><script type="text/javascript">setCookie("gssSITE","gn",'',true);</script><script type="text/javascript">setCookie("gssTHEME","gn",'',true);</script><script type="text/javascript">setCookie("gssTOOLBAR","gn",'',true);</script><script type="text/javascript">SaveToFavoritesData.savingMsg='Saving Favorites';SaveToFavoritesData.connectionErrorMsg='Cannot Connect';SaveToFavoritesData.savedMsg='Favorites Saved';SaveToFavoritesData.noSaveErrorMsg='Cannot Save';SaveToFavoritesData.surveyUrl='\x2fcommon\x2fsurvey.aspx\x3fscid\x3dsw\x3ben\x3b1076\x26surveystyle\x3dpopup\x26showpage\x3d1\x26site\x3dgn\x26siteregion\x3den-us\x26url\x3d%2fdefault.aspx%2fkb%2f194203\x26p0\x3dkb\x26p1\x3den-us\x26p2\x3d194203';SaveToFavoritesData.noCookieUrl='\x2fgp\x2fnocookies';</script><style type="text/css">#SendFeedback_tr{display:none;}</style><meta name="robots" content="nofollow,noarchive" /><meta name="Search.Assets" content="1" /><meta name="Search.Description" content="NetBIOS&#32;names&#32;are&#32;16&#32;bytes&#32;long,&#32;but&#32;they&#32;are&#32;mapped&#32;to&#32;a&#32;32-byte&#32;wide&#32;string&#32;of&#32;alphabet&#32;&#40;A,B...O,P&#41;&#32;using&#32;a&#32;reversible,&#32;half-ASCII,&#32;biased&#32;encoding.&#32;The&#32;algorithm&#32;used&#32;to&#32;encode&#32;NetBIOS&#32;names&#32;is&#32;as&#32;follows&#58;&#32;Each&#32;half-octet&#32;of&#32;the&#32;NetBIOS&#32;name&#32;is..." /><meta name="Search.DateModified" content="2007-01-23T18&#58;10&#58;45" /><meta name="Search.scid" content="kb&#59;en-us&#59;194203" /><meta name="Search.Title" content="ASCII&#32;and&#32;Hex&#32;Representation&#32;of&#32;NetBIOS&#32;Names" /><meta name="Search.Products" content="255923&#32;36977&#32;185507&#32;357152" /><meta name="Search.KBParents" content="7606&#32;3188&#32;6842&#32;5881&#32;3194&#32;6843&#32;6713&#32;6513&#32;1139&#32;10435&#32;7864&#32;9980" /><meta name="KBParents" content="7606&#32;3188&#32;6842&#32;5881&#32;3194&#32;6843&#32;6713&#32;6513&#32;1139&#32;10435&#32;7864&#32;9980" /><meta name="Search.Audiences" content="kbAudEndUser" /><meta name="Search.ContentType" content="kb" /><meta name="Search.Retire" content="0" /><meta name="Search.ContentID" content="194203" /><meta name="Search.KeyWords" content="kbinfo&#32;KB194203" /><meta name="Search.MT" content="0" /><meta name="Search.KB3" content="0" /><meta name="Keywords" content="kbinfo KB194203" /><meta name="Description" content="NetBIOS&#32;names&#32;are&#32;16&#32;bytes&#32;long,&#32;but&#32;they&#32;are&#32;mapped&#32;to&#32;a&#32;32-byte&#32;wide&#32;string&#32;of&#32;alphabet&#32;&#40;A,B...O,P&#41;&#32;using&#32;a&#32;reversible,&#32;half-ASCII,&#32;biased&#32;encoding.&#32;The&#32;algorithm&#32;used&#32;to&#32;encode&#32;NetBIOS&#32;names&#32;is&#32;as&#32;follows&#58;&#32;Each&#32;half-octet&#32;of&#32;the&#32;NetBIOS&#32;name&#32;is..." /><meta name="MS.LOCALE" content="en" /><meta http-equiv="content-type" content="text/html; charset=utf-8" /><script type="text/javascript" src="/common/script/gsfx/search.js?17"></script><script type="text/javascript" src="http://autocomplete.support.microsoft.com/script/ac.js?17"></script><script type="text/javascript">var gCookieDomain='';</script><title>ASCII and Hex Representation of NetBIOS Names</title><XMLREADER><link rel="stylesheet" type="text/css" href="/common/css/default/default.css?17" /><link rel="stylesheet" type="text/css" href="/common/css/default/xmlContent.css?17" /><script type="text/javascript" src="/common/script/gsfx/kb.js?17"></script><link rel="stylesheet" type="text/css" href="/common/css/default/stickypanel.css?17" /><link rel="stylesheet" type="text/css" href="/common/css/default/branding.css?17" /></XMLREADER>
+<!-- RESG: 12/23/2008 12:29:12 PM - RESX: 1/1/0001 12:00:00 AM -->
+<!-- (c) 2008 Microsoft Corporation. All Rights Reserved -->
+<script type="text/javascript">var PersonalizationInfo='a2IxOTQyMDMIZW4tdXMIQVNDSUkgYW5kIEhleCBSZXByZXNlbnRhdGk_';</script><script type="text/javascript">var enableSiteSurvey = true;</script></head><body onload="thisLoad();" onunload="thisUnload();">
+<style type="text/css">  
+    body 
+    {
+        
+            background:url('/library/images/support/cn/gsfx_brnd_gn_top_bgrd.gif') repeat-x #C8E3F1;
+        
+    }
+
+    
+    
+    #gsfx_brnd_SiteHeaderImage
+    {
+        height:0px;
+    }
+    
+    
+    
+    .gsfx_brnd_NetworkLink, .gsfx_brnd_NetworkLink:visited, .gsfx_brnd_NetworkLink a, .gsfx_brnd_NetworkLink a:visited
+    {
+        color: #cdcbce;
+    }
+    
+    .gsfx_brnd_NetworkLink:hover, .gsfx_brnd_NetworkLink:active, .gsfx_brnd_NetworkLink:focus, 
+    .gsfx_brnd_NetworkLink a:hover, .gsfx_brnd_NetworkLink a:active, .gsfx_brnd_NetworkLink a:focus
+    {
+        color: #f9d060;
+        border-bottom-color: #f9d060;
+    }
+    
+    #gsfx_brnd_NetworkHeader, #gsfx_brnd_NetworkHeaderLinks
+    {
+        color: #ffffff;
+    }
+
+    #gsfx_brnd_SiteHeader, #gsfx_brnd_PageLogoWrapper, #gsfx_brnd_PageTitle, #gsfx_brnd_SearchWrapper a, #gsfx_bsrch_poweredbycell span
+    {
+        color: #ffffff;
+    }
+    
+    #gsfx_bsrch_catsel a, #gsfx_bsrch_catsel span
+    {
+        border-color: #ffffff;
+    }
+
+    #gsfx_brnd_SiteFooter, #gsfx_brnd_SiteFooterWrap
+    {
+        color: #ffffff;
+    }
+
+    #gsfx_brnd_NetworkFooter, #gsfx_brnd_FooterLinkContainer, #gsfx_brnd_FooterLinkContainer span, 
+    #gsfx_brnd_copyright_container, #gsfx_brnd_copyright_container span
+    {
+        color: #ffffff;
+    }
+        
+    
+    </style>
+<!--[if lte IE 6]>
+<style type="text/css">
+    #gsfx_brnd_PageHeaderImage {background:none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='', sizingMethod='image');}
+    #gsfx_brnd_SiteImgWedge {background:none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='', sizingMethod='scale');}    
+    #gsfx_brnd_PageLogo {visibility:hidden;}
+    #gsfx_brnd_legacy_PageLogo {filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/library/images/support/cn/gsfx_brnd_ms_logo.png', sizingMethod='image');}
+    #gsfx_brnd_MSLogo {visibility:hidden;}
+    #gsfx_brnd_legacy_MSLogo {filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/library/images/support/cn/gsfx_brnd_ms_logo_sml_wht.png', sizingMethod='image');}
+</style>
+<![endif]-->
+
+
+<div id="gsfx_brnd_CenterContent">
+<div id="gsfx_brnd_PageWrapper">
+    <div id="gsfx_brnd_PageContainer">
+        <div id="gsfx_brnd_PageHeaderImage"></div>    
+        <div id="gsfx_brnd_HeaderContainer">
+            <div id="gsfx_brnd_NetworkHeader">
+                <div id="gsfx_brnd_CorpMarketingContainer" class="gsfx_brnd_NetworkLeft">
+                    <div id="gsfx_brnd_CorpMarketingSpace" class="gsfx_brnd_NetworkLeft">
+                        
+                    </div>
+                </div>
+                <!--Table is used here in order to properly order the links for LTR and RTL while maintaining the correct tab order-->
+                <table summary="Network Header Links" id="gsfx_brnd_NetworkHeaderLinks" class="gsfx_brnd_NetworkRight">
+                    <tr>
+                        <td class="gsfx_brnd_NetworkLinkContainer">
+                            <span id="gsfx_brnd_LocalName">
+                                United States
+                            </span>
+                        </td>
+                        <td class="gsfx_brnd_NetworkLinkContainer gsfx_brnd_NetworkLink">
+                            <a href="/common/international.aspx" id="L_153552">Change</a>
+                        </td>
+                        
+                        <td class="gsfx_brnd_NetworkLinkContainer gsfx_brnd_HeaderSeperator">|</td>
+                        
+                        <td class="gsfx_brnd_NetworkLinkContainer gsfx_brnd_NetworkLink">
+                            <a href="http://www.microsoft.com/library/toolbar/3.0/sitemap/en-us.mspx" id="L_153551">All Microsoft Sites</a>
+                        </td>
+                        
+                        
+                    </tr>
+                </table>
+            </div>
+            <div id="gsfx_brnd_SiteHeader">            
+                <div id="gsfx_brnd_SiteHeaderImageContainer">
+                    <div id="gsfx_brnd_SiteHeaderImage">
+                    
+                    </div>
+                </div>
+                <!--[if lte IE 6]><div id="gsfx_brnd_legacy_PageLogo" class="gsfx_brnd_NetworkLeft"></div><![endif]-->
+                <div id="gsfx_brnd_PageLogoWrapper" class="gsfx_brnd_NetworkLeft">
+                    <a id="gsfx_brnd_PageLogoLink" href="http://www.microsoft.com"><img id="gsfx_brnd_PageLogo" alt="Microsoft" src="/library/images/support/cn/gsfx_brnd_ms_logo.png" /></a>
+                    <span id="gsfx_brnd_PageTitle">Help and Support</span>
+                </div>
+                <div id="gsfx_brnd_SearchWrapper" class="gsfx_brnd_NetworkRight">
+                    
+<form id="frmsrch" action="/search/default.aspx" onsubmit="SaveSimpleSearch();" method="get">
+
+    <div id="gsfx_bsrch_catsel">
+    <script type='text/javascript'>setACStartChars('4:');</script>    
+    
+                <input type="hidden" id="catalog" name="catalog" value="LCID=1033" />
+    
+    &nbsp;</div>
+    
+    <div id="gsfx_bsrch_divQuery"><input type="text" id="gsfx_bsrch_query" name="query" maxlength="200" value="" autocomplete="off" /><span class="gsfx_bsrch_buttonwrap" id="gsfx_bsrch_srch"><input type="submit" id="gsfx_bsrch_srchbtn" value="Search Site" /></span>
+    <span class="gsfx_bsrch_buttonwrap" id="gsfx_bsrch_websrch"><input type="button" id="gsfx_bsrch_websrchbtn" value="Web" onclick="submitSimpleSearch('http://search.live.com/results.aspx?mkt=en-us&q=', document.getElementById('gsfx_bsrch_query').value);" /></span><br /></div>
+    <script type="text/javascript">try{MS.Support.AC.MakeAutoComplete({id:'gsfx_bsrch_query', lcid:'1033', acURL:'http://autocomplete.support.microsoft.com', statsObj:StatsDotNet, startChar:'4', bubbleside:'left'});}catch(e){}</script>
+
+    
+        <div id="gsfx_bsrch_poweredbycell" class="gsfx_brnd_NetworkTextRight">
+            <span>powered by</span><span id="liveimg"><img alt="" class="gsfx_img_png" style="width: 24;height: 24;" src="/library/images/support/en-US/gsfx_bsrch_live_logo.png" /><!--[if lte IE 6]><div alt="" class="gsfx_div_png" style="width:24px;height:24px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/library/images/support/en-US/gsfx_bsrch_live_logo.png', sizingMethod='scale');"></div><![endif]--></span><span>Live Search</span>
+        </div>
+    
+        
+    <div class="hiddenformels">
+        <input type="hidden" name="mode" value="r" />
+    </div>
+    <noscript><style type="text/css">#gsfx_bsrch_catsel a {display:none;} #gsfx_bsrch_websrch {display:none;}</style></noscript>
+</form>
+
+
+<script type="text/javascript">
+InitSrch();
+InitAC('gsfx_bsrch_query');MS_AddEvent(window, 'load', function() {gsfx_bsrch_InitCatSelection('gsfx_bsrch_query', '4:');});
+</script>
+                </div>
+            </div>
+        </div>
+        <div id="gsfx_brnd_TopCorners" class="gsfx_brnd_CornerContainer">
+            <div class="gsfx_brnd_TBBorders gsfx_brnd_TransBG" id="gsfx_brnd_TopBorder">
+            </div>
+            <div class="gsfx_brnd_Corner" id="gsfx_brnd_LUpperCorner">
+            </div>
+        </div>
+        <div id="gsfx_brnd_LocalToolBar" class="gsfx_brnd_TransBG gsfx_brnd_SideBorder"><ul id="gsfx_brnd_LocalLinks"><li class="gsfx_brnd_LocalLink"><a href="/" id="L_153581"><span>Help and Support Home</span></a></li><li class="gsfx_brnd_LocalSeperator">&nbsp;</li><li class="gsfx_brnd_LocalLink"><a href="/select/?target=hub" id="L_153582"><span>Select a Product</span></a></li><li class="gsfx_brnd_LocalSeperator">&nbsp;</li><li class="gsfx_brnd_LocalLink"><a href="/search/?adv=1" id="L_153583"><span>Advanced Search</span></a></li></ul></div>
+        
+        <div id="gsfx_brnd_ToolbarShadow" class="gsfx_brnd_TransBG gsfx_brnd_SideBorder"><div id="gsfx_brnd_shadow"></div></div>
+        
+        <div id="gsfx_brnd_ContentContainer" class="gsfx_brnd_TransBG gsfx_brnd_SideBorder">
+            <div id="contentArea">            
+
+<div id="mainRow"><div class="primaryTable"><table cellpadding="0" cellspacing="0" class="primaryTable"><tr><td class="primaryMainColumn"><div id="mainColumn"><div id="kb" class="kb"><div id="kb_default" class="kb_default ltr"><!-- - -KB 3 start- - --><a id="top"></a><div class="articleProperty">Article ID: 194203 - Last Review: January 23, 2007 - Revision: 2.2</div><h1 class="title">ASCII and Hex Representation of NetBIOS Names</h1><div class="appliesToLink"><a href="#appliesto">View products that this article applies to.</a></div><script type="text/javascript">if (!loadTOCNode) {var loadTOCNode = function(){}}</script><div class="notice">This article was previously published under Q194203</div><div id="kb_section" class="section"><div id="kb_expandcollapseall" class="expandcollapseall"><a href="javascript:void(0);" class="expandalltext">Expand all</a> | <a href="javascript:void(0);" class="collapsealltext">Collapse all</a><script type="text/javascript">
+          if (kb_page_object)
+          {
+            kb_page_object.kb_imageExpandHoverText = 'Click to expand this image';
+          }
+        </script></div><h2 class="subTitle" id="tocHeadRef"><span>SUMMARY</span><div class="sectionpreview_closed"></div></h2><script type="text/javascript">
+              loadTOCNode(1, 'summary');
+            </script><div class="sbody">
+NetBIOS names are 16 bytes long, but they are mapped to a 32-byte wide
+string of alphabet (A,B...O,P) using a reversible, half-ASCII, biased
+encoding.
+<div class="topOfPage"><a href="#top"><img src="/library/images/support/kbgraphics/public/en-us/uparrow.gif" alt="">Back to the top</a></div></div><h2 class="subTitle" id="tocHeadRef"><span>MORE INFORMATION</span><div class="sectionpreview_closed"></div></h2><script type="text/javascript">
+              loadTOCNode(1, 'moreinformation');
+            </script><div class="sbody">
+The algorithm used to encode NetBIOS names is as follows:<br><br>
+
+Each half-octet of the NetBIOS name is encoded into 1 byte of the 32-byte
+field. The first half-octet is encoded into the first byte, the second half-
+octet into the second byte, and so on. Each 4-bit, half-octet of the
+NetBIOS name is treated as an 8-bit, right-adjusted, zero-filled binary
+number. This number is added to the value of the ASCII character 'A'
+(hexadecimal 41). The resulting 8-bit number is stored in the appropriate
+byte.<br><br>
+
+This encoding results in a NetBIOS name being represented as a sequence of
+32 ASCII, upper-case characters from the set {A,B,C...N,O,P}. The NetBIOS
+scope identifier is a valid domain name (without a leading dot).<br><br>
+
+An ASCII dot (2E hexadecimal) and the scope identifier are appended to the
+encoded form of the NetBIOS name, the result forming a valid domain name.<br><br>
+
+For example, the NetBIOS name "THE NETBIOS NAME" in the NetBIOS scope
+"SCOPE.ID.COM" would be represented at level one by the ASCII character
+string:
+<div class="kb_intextwrapper"><div class="kb_intextbody"><pre class="in_text">
+   FEEIEFCAEOEFFEECEJEPFDCAEOEBENEF.SCOPE.ID.COM
+				</pre></div></div>
+
+The following is a list of characters and their corresponding encoded ASCII
+and hex values:
+<div class="kb_intextwrapper"><div class="kb_intextbody"><pre class="in_text">
+   Character   ASCII Code    Hex Code
+   ----------------------------------
+
+   A            EB            45 42
+   B            EC            45 43
+   C            ED            45 44
+   D            EE            45 45
+   E            EF            45 46
+   F            EG            45 47
+   G            EH            45 48
+   H            EI            45 49
+   I            EJ            45 4A
+   J            EK            45 4B
+   K            EL            45 4C
+   L            EM            45 4D
+   M            EN            45 4E
+   N            EO            45 4F
+   O            EP            45 50
+   P            FA            46 41
+   Q            FB            46 42
+   R            FC            46 43
+   S            FD            46 44
+   T            FE            46 45
+   U            FF            46 46
+   V            FG            46 47
+   W            FH            46 48
+   X            FI            46 49
+   Y            FJ            46 4A
+   Z            FK            46 4B
+
+   0            DA            44 41
+   1            DB            44 42
+   2            DC            44 43
+   3            DD            44 44
+   4            DE            44 45
+   5            DF            44 46
+   6            DG            44 47
+   7            DH            44 48
+   8            DI            44 49
+   9            DJ            44 4A
+
+   &lt;space&gt;      CA            43 41
+   !            CB            43 42
+   "            CC            43 43
+   #            CD            43 44
+   $            CE            43 45
+   %            CF            43 46
+   &amp;            CG            43 47
+   '            CH            43 48
+   (            CI            43 49
+   )            CJ            43 4A
+   *            CK            43 4B
+   +            CL            43 4C
+   ,(comma)     CM            43 4D
+   -(hyphen)    CN            43 4E
+   .(period)    CO            43 4F
+   =            DN            44 4E
+   :(colon)     DK            44 4B
+   ;(semicolon) DL            44 4C
+   @            EA            45 41
+   ^            FO            46 4F
+   _(underscore)FP            46 50
+   {            HL            48 4C
+   }            HN            48 4E
+   ~            HO            48 4F
+				</pre></div></div><b>NOTE</b>: The above mapping list can be useful while reading network traces
+because information is sent on the wire in the above encoded format.
+<div class="topOfPage"><a href="#top"><img src="/library/images/support/kbgraphics/public/en-us/uparrow.gif" alt="">Back to the top</a></div></div><h2 class="subTitle" id="tocHeadRef"><span>REFERENCES</span><div class="sectionpreview_closed"></div></h2><script type="text/javascript">
+              loadTOCNode(1, 'references');
+            </script><div class="sbody">
+For more information, see RFC 1001.
+<div class="topOfPage"><a href="#top"><img src="/library/images/support/kbgraphics/public/en-us/uparrow.gif" alt="">Back to the top</a></div></div></div><div class="sbody norollup"><div class="appliesTo"><hr><a id="appliesto"></a><h5>APPLIES TO</h5><ul><li>Microsoft Windows NT Server 4.0 Standard Edition</li><li>Microsoft Windows NT Workstation 4.0 Developer Edition</li><li>Microsoft Windows 98 Standard Edition</li><li>Microsoft Windows 95</li></ul></div><div class="topOfPage"><a href="#top"><img src="/library/images/support/kbgraphics/public/en-us/uparrow.gif" alt="">Back to the top</a></div><div class="keywords"><table><tr><td class="header"><h5>Keywords: 
+              </h5></td><td class="text">kbinfo KB194203</td></tr></table></div><div class="topOfPage"><a href="#top"><img src="/library/images/support/kbgraphics/public/en-us/uparrow.gif" alt="">Back to the top</a></div></div><!-- - -KB 3 end- - --></div></div></div></td><td class="primaryThinColumn"><div id="thinColumn" style="float: none;"><div class="wp getHelp"><table align="center" cellpadding="0" cellspacing="0"><tr><td class="image"><a href="/gethelp/default.aspx?content=kb;en-us;194203" id="L_174092"><img alt="" src="/library/images/support/en-US/Help_support_55.gif" /></a></td><td class="text"><h1>Get Help Now</h1><a href="/gethelp/default.aspx?content=kb;en-us;194203" id="L_174092">Contact a support professional by E-mail, Online, or Phone</a></td></tr></table></div><div class="wp articleTrans"><h1>Article Translations</h1><form name="frmArticleTrans" action="/" onsubmit="return SwitchLanguage(29803);"><div><table cellpadding="0" cellspacing="0"><tr><td><select name="scid"><option value="kb;ar;194203">Arabic</option><option value="kb;fr;194203">French</option><option value="kb;de;194203">German</option><option value="kb;it;194203">Italian</option><option value="kb;ja;194203">Japanese</option><option value="kb;pt-br;194203">Portuguese (Brazil)</option><option value="kb;pt;194203">Portuguese (Portugal)</option><option value="kb;zh-cn;194203">Simplified Chinese</option><option value="kb;es;194203">Spanish</option><option value="kb;zh-tw;194203">Traditional Chinese</option></select></td><td class="spacer">&nbsp;</td><td><input type="image" alt="Translate the article" style="width: 24;height: 24;" onmouseover="this.src='/library/images/support/EN-US/go_right_02-over.gif';" onmouseout="this.src='/library/images/support/en-US/GSSSM_rltlngRelatedlanguages.gif';" src="/library/images/support/en-US/GSSSM_rltlngRelatedlanguages.gif" /><a id="KBLangListRedirect" href="" /></td></tr></table></div></form></div><div class="wp" id="RelatedSupportCenters"><table cellspacing="0" class="LCT"><tr><td class="textColumn"><h1><span class="linkCon">Related Support Centers</span><span class="linkConTop"></span></h1><ul><li><span><a href="/?scid=ph;en-us;1139">Windows 98</a></span></li></ul></td></tr></table></div><div class="wp" id="SupportTools"><table cellspacing="0" class="LCT"><tr><td class="textColumn"><h1><span class="linkCon">Page Tools</span><span class="linkConTop"></span></h1><ul><li id="PrintPage_tr"><span><a href="/gp/noscript" id="PrintPage" title="Print this page" onclick="return MS_HandleClick(this,'SupportTools', true);">Print this page</a></span></li><li id="EmailPage_tr"><span><a href="mailto:?subject=ASCII%20and%20Hex%20Representation%20of%20NetBIOS%20Names&amp;body=http%3a%2f%2fsupport.microsoft.com%2fdefault.aspx%2fkb%2f194203" id="EmailPage" title="E-mail this page" onclick="return MS_HandleClick(this,'SupportTools', true);">E-mail this page</a></span></li></ul></td></tr></table></div></div></td></tr></table></div></div><div id="bottomRow"><div class="wp getHelp"><table align="center" cellpadding="0" cellspacing="0"><tr><td class="image"><a href="/gethelp/default.aspx?content=kb;en-us;194203" id="L_174092"><img alt="" src="/library/images/support/en-US/Help_support_55.gif" /></a></td><td class="text"><h1>Get Help Now</h1><a href="/gethelp/default.aspx?content=kb;en-us;194203" id="L_174092">Contact a support professional by E-mail, Online, or Phone</a></td></tr></table></div></div>
+                        
+            </div>
+        </div>
+        
+        <div id="gsfx_brnd_BottomCorners" class="gsfx_brnd_CornerContainer">
+            <div class="gsfx_brnd_TBBorders gsfx_brnd_TransBG" id="gsfx_brnd_BottomBorder"></div>
+            <div class="gsfx_brnd_Corner" id="gsfx_brnd_LLowerCorner"></div>
+        </div>
+        
+        <div id="gsfx_brnd_WidthFix"></div>
+        
+        <div id="gsfx_brnd_FooterContainer">
+            <div id="gsfx_brnd_SiteFooter" class="gsfx_brnd_NetworkLeft">
+                Help and Support
+            </div>
+
+            <table id="gsfx_brnd_NetworkFooter" class="gsfx_brnd_NetworkRight"><tr>
+                <td id="gsfx_brnd_FooterLinkContainer">
+                    <!--Table is wrapped in a div tag to facilitate proper alignment and stacking-->
+                    <div class="gsfx_brnd_FooterLinks" id="gsfx_brnd_SiteFooterLinks">
+                        <!--Table is used here in order to properly order the links for LTR and RTL while maintaining the correct tab order-->                        
+                        <table summary="Site Footer Links" class="gsfx_brnd_NetworkRight"><tr><td class="gsfx_brnd_NetworkLinkContainer gsfx_brnd_NetworkLink"><a href="/gp/csa" id="L_157327"><span>Services Agreement</span></a></td></tr></table>                        
+                    </div>
+                    
+
+                    <!--Table is wrapped in a div tag to facilitate proper alignment and stacking-->
+                    <div class="gsfx_brnd_FooterLinks" id="gsfx_brnd_NetworkFooterLinks">
+                        <!--Table is used here in order to properly order the links for LTR and RTL while maintaining the correct tab order-->
+                        <table summary="Network Footer Links" class="gsfx_brnd_NetworkRight"><tr><td class="gsfx_brnd_NetworkLinkContainer gsfx_brnd_NetworkLink"><a href="/contactus/?ws=support" id="L_153553"><span>Contact Us</span></a></td><td class="gsfx_brnd_NetworkLinkContainer gsfx_brnd_FooterSeperator">|</td><td class="gsfx_brnd_NetworkLinkContainer gsfx_brnd_NetworkLink"><a href="http://go.microsoft.com/?linkid=4412892" id="L_153554"><span>Terms of Use</span></a></td><td class="gsfx_brnd_NetworkLinkContainer gsfx_brnd_FooterSeperator">|</td><td class="gsfx_brnd_NetworkLinkContainer gsfx_brnd_NetworkLink"><a href="http://go.microsoft.com/?linkid=4412893" id="L_153555"><span>Trademarks</span></a></td><td class="gsfx_brnd_NetworkLinkContainer gsfx_brnd_FooterSeperator">|</td><td class="gsfx_brnd_NetworkLinkContainer gsfx_brnd_NetworkLink"><a href="http://go.microsoft.com/?linkid=4412894" id="L_153556"><span>Privacy Statement</span></a></td></tr></table>
+                    </div>
+                </td>
+                <td id="gsfx_brnd_copyright_container">
+                    <div id="gsfx_brnd_MSLogoContainer" >
+                        <!--[if lte IE 6]><div id="gsfx_brnd_legacy_MSLogo"></div><![endif]-->
+                        <img id="gsfx_brnd_MSLogo" alt="Microsoft" src="/library/images/support/cn/gsfx_brnd_ms_logo_sml_wht.png" />
+                        <img id="gsfx_brnd_MSLogoPrint" alt="Microsoft" src="/library/images/support/cn/gsfx_brnd_ms_logo_sml_blk.png" />
+                    </div>
+                    <span id="gsfx_brnd_copyright">&copy;2008 Microsoft</span>
+                </td>
+            </tr></table>
+        </div>
+    </div>
+</div>
+</div>
+<style type="text/css">   
+    #gsfx_brnd_CenterContent, #gsfx_brnd_PageWrapper
+    {
+        background: url('/library/images/support/cn/gsfx_brnd_gn_bottom_bgrd.png') repeat-x bottom;
+    }    
+</style>
+<script type="text/javascript" src="/common/script/gsfx/branding.js?17"></script><script type="text/javascript" src="/common/script/gsfx/wtInit.js?17"></script><script type="text/javascript" src="/common/script/gsfx/wtCore.js?17"></script><noscript><img alt="" id="DCSIMG" width="1" height="1" src="http://m.webtrends.com/dcsxia05c00000s926v0z4tru_3w4l/njs.gif?dcsuri=/nojavascript&WT.js=No" /></noscript><img id="webmetriximg" alt="" src="/library/images/support/cn/onepix.gif" /><noscript><img id="StatsDotNetImgNoScript" alt="" src="http://support.microsoft.com/LTS/default.aspx?SSID=1&#38;SiteLCID=1033&#38;SsVersion=GSS4.7&#38;SiteCulture=en-us&#38;ContentCulture=en-us&#38;In404Url=&#38;EventCollectionID=1&#38;URL=%2fdefault.aspx&#38;ContentType=kb&#38;ContentLCID=1033&#38;ContentID=194203&#38;Platform=unknown&#38;BrandID=1&#38;ContentProperties=6%3d9%7c7%3d2.2%7c9%3dkbAudEndUser%20%7c" /></noscript><img id="StatsDotNetImg" name="StatsDotNetImg" alt="" src="/library/images/support/cn/onepix.gif" /><script type="text/javascript">StatsDotNet.disabled=false;StatsDotNet.host='http\x3a\x2f\x2fsupport.microsoft.com\x2fLTS\x2fdefault.aspx';StatsDotNet.ssId='1';StatsDotNet.siteLcId='1033';StatsDotNet.SiteCulture='en-us';StatsDotNet.SsVersion='GSS4.7';StatsDotNet.url='\x2fdefault.aspx';StatsDotNet.ContentCulture ='en-us';StatsDotNet.contentType='kb';StatsDotNet.contentLn='1033';StatsDotNet.contentId='194203';StatsDotNet.platform='unknown';StatsDotNet.eventCollectionId=1;StatsDotNet.siteBrandId='1';StatsDotNet.onUnloadTimeout=300;StatsDotNet.userAgentString='wget\x2f1.10.2';StatsDotNet.ContentProperties='6\x3d9\x7c7\x3d2.2\x7c9\x3dkbAudEndUser \x7c';</script><script language="javascript">if(window.top == window && enableSiteSurvey) document.write('<script language="javascript" src="/library/svy/broker.js"></scr'+'ipt>');</script><script type="text/javascript">function thisLoad(){MS_WebMetrix('http\x3a\x2f\x2fc.microsoft.com\x2ftrans_pixel.asp\x3fTYPE\x3dSSPV\x26SOURCE\x3dSUPPORT\x26GUID\x3d1F4FC18C-F71E-47fb-8FC9-612F8EE59C61\x26URI\x3d\x252fgn\x252fen-us\x252fkb_en-us_194203\x26R\x3d');StatsDotNet.LogPageOnLoad();}function thisUnload(){}</script></body></html>

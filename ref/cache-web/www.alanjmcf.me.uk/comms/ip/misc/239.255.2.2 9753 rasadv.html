@@ -1,0 +1,284 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>On 239.255.2.2 9753 rasadv</title>
+	
+	<style type="text/css">
+		code	{ font-weight: bold }	/* i.e. CodeEmbedded */
+		pre.CodeExample	{ margin-left: 20px }
+		div.NewInsert	{ border-left: 1px solid green; padding-left: 5px }
+	</style>
+</head>
+<body>
+
+
+<!-- ========================================= -->
+<h1>Summary</h1>
+<p>It has been noticed by some people that some Windows 2000, 
+(and Windows XP, and Windows Server 2003) etc machines send 
+a multicast packet to group address 239.255.2.2. I have <i>some</i> 
+information on this subject...  I hope it will be of use.</p>
+
+<p>In summary I do not believe that these packets create any security 
+risk.</p>
+
+<p style="margin-bottom: 0px">Alan J. McFarlane</p>
+
+<ul style="list-style-type: none; margin-left:0; padding-left: 0;
+			margin-top: 0">
+	<li>26<sup>th</sup> August 2002 &#x2014; First version</li>
+	<li>10<sup>th</sup> December 2002 &#x2014; Updated with information on netsh etc</li>
+	<li>16<sup>th</sup> April 2004 &#x2014; Updated with a note on not 
+   seeing the packets and a note on the use of RRAS for VPN access.</li>
+	<li>16<sup>th</sup> August 2004 &#x2014; Updated with information that the feature
+	 is still present in Windows Server 2003.</li>
+	<li>11<sup>th</sup> January 2005 &#x2014; Minor update to information on which 
+	platforms have this feature.</li>
+</ul>
+
+
+<!-- ========================================= -->
+<h1>What</h1>
+
+<p>It is a UDP packet destined to IP Group Address 239.255.2.2 and port 
+9753.  The data content of the UDP packet is "Hostname=" followed by 
+the PC's hostname (and then a LF and a NUL).  The multicast address 
+239.255.2.2 is registered at <a href="http://www.iana.org/">IANA's</a> 
+<a href="http://www.iana.org/assignments/multicast-addresses">Multicast 
+Addresses</a> list as "rasadv" i.e.</p>
+<pre class="CodeExample">...
+239.255.000.000-239.255.255.255 Site-Local Scope           [Meyer,RFC2365]
+239.255.002.002  rasadv                                    [Thaler]
+</pre>
+
+Note also that the address is within the "IPv4 Local Scope" range 
+<a href="http://www.ietf.org/rfc/rfc2365.txt">[RFC2365]</a>, that 
+is the range 239.255.0.0 to 239.255.255.255 (i.e. 239.255.0.0/16).  
+Traffic destined to destinations should be kept within a 'local' area, 
+and certainly within a physical site.
+
+
+<p>Port 9753 is defined in the 
+<a href="http://www.iana.org/assignments/port-numbers">Port Numbers</a> 
+list also as "rasadv" i.e.</p>
+
+<pre class="CodeExample">...
+rasadv		9753/tcp    rasadv
+rasadv		9753/udp    rasadv
+#			    Dave Thaler &lt;dthaler@microsoft.com>
+...
+</pre>
+
+<p>A packet as captured by Netmon (on my PC's LAN interface) is shown 
+here:</p>
+
+<pre class="CodeExample">Frame   Time   Src MAC Addr   Dst MAC Addr   Protocol   Description   Src Other Addr   Dst Other Addr   Type Other Addr
+
+3   1136.811782  LOCAL   USC IN7F0202   UDP   IP Multicast: Src Port: Unknown, (1034); Dst Port JYRAALAN2K   239.255.2.2    
++ Frame: Base frame properties
+  ETHERNET: ETYPE = 0x0800 : Protocol = IP:  DOD Internet Protocol
+    + ETHERNET: Destination address : 01005E7F0202
+    + ETHERNET: Source address : 100000112233
+      ETHERNET: Frame Length : 63 (0x003F)
+      ETHERNET: Ethernet Type : 0x0800 (IP:  DOD Internet Protocol)
+      ETHERNET: Ethernet Data: Number of data bytes remaining = 49 (0x0031)
+  IP: ID = 0x1F4D; Proto = UDP; Len: 49
+      IP: Version = 4 (0x4)
+      IP: Header Length = 20 (0x14)
+      IP: Precedence = Routine
+      IP: Type of Service = Normal Service
+      IP: Total Length = 49 (0x31)
+      IP: Identification = 8013 (0x1F4D)
+    + IP: Flags Summary = 0 (0x0)
+      IP: Fragment Offset = 0 (0x0) bytes
+      IP: Time to Live = 15 (0xF)
+      IP: Protocol = UDP - User Datagram
+      IP: Checksum = 0x6A9E
+      IP: Source Address = 192.105.90.102
+      IP: Destination Address = 239.255.2.2
+      IP: Data: Number of data bytes remaining = 29 (0x001D)
++ UDP: IP Multicast: Src Port: Unknown, (1034); Dst Port: Unknown (9753); Length = 29 (0x1D)
+
+00000:  01 00 5E 7F 02 02 10 00 00 11 22 33 08 00 45 00   ..^...........E.
+00010:  00 31 1F 4D 00 00 0F 11 6A 9E C0 69 5A 66 EF FF   .1.M............
+00020:  02 02 04 0A 26 19 00 1D BE 38 <b>48 6F 73 74 6E 61</b>   ....&...¾8<b>Hostna</b>
+00030:  <b>6D 65 3D 74 68 65 70 63 73 6E 61 6D 65 0A 00      me=thepcsname</b>.. 
+</pre>
+<p>(Personal information in the trace has been changed i.e. source MAC 
+and IP address and hostname).</p>
+
+
+<!-- ========================================= -->
+<h1>When</h1>
+<p>Monitoring shows that a packet is send once per hour.</p>
+
+
+<!-- ========================================= -->
+<h1>Why</h1>
+<p>It is presumed that the packets are sent to advertise that the 
+local machine is running RAS/RRAS (that is "[Routing and] Remote Access Server" 
+for any non-Microsoft aware readers).  No documentation of this has 
+been found however.</p>
+<p>This behaviour is useful in a corporate network where it will 
+allow administrators to detect any Windows machines that are 
+running RAS. Unauthorised RAS devices create a very dangerous 
+security risk, no use in having that super-duper firewall if people can 
+dial-in to your network through some unprotected RAS device.</p>
+
+<p>
+It appears that the <code>netsh</code> tool within Windows 
+can be used to show the advertising RAS servers.  It has a command 
+<code>show activeservers</code> within the <code>ras</code> context that
+will display any advertisements received.  It listens on the multicast 
+address and will thus receive any of these advertisements sent on the 
+'Local Scope' network.  For instance:
+</p>
+<pre class="CodeExample">C:\>netsh
+netsh>ras
+ras>show activeservers
+
+Timestamp                 Sender
+------------------------  ----------------------------------
+Tue Dec 10 18:36:49 2002  192.105.90.102 (thepcsdnsname.example.com)
+   Hostname=thepcsname
+</pre>
+
+<p>There is a tool in the Resource Kit called <code>raslist.exe</code>
+that serves a similar purpose.  When run, it produces initially:
+</p>
+<pre class="CodeExample">C:\>"\Program Files\Resource Pro Kit\raslist.exe"
+RASLIST - list of RAS servers on the net
+press &lt;ESC&gt; to exit
+Initializing...
+Ready to receive RAS announces on LANA0
+</pre>
+<p>
+The <code>LANA0</code> identifier suggests to me NetBIOS use, which is 
+odd.  Anyway on my machine when I use it I do not see the IGMP Report 
+appear on my active LAN card, this is likely due to the machine having 
+multiple NIC and dial-up connections defined (if not active).  
+It is probably best to use the <code>netsh</code> version.</p>
+<p>
+Note: As for all Multicast receive usage, if you are running a packet 
+sniffer or a personal firewall that logs such outgoing traffic, when you 
+run either of the commands you will (should) see an 
+IGMP Membership report packet for the group (i.e. 239.255.2.2) being 
+sent.   This is the Internet Group Management Protocol being used to 
+tell the network that this machines wants to receive traffic on the 
+239.255.2.2 multicast group.  If your network is multicast enabled then 
+your machine will start to receive the advertisement from the machines 
+running RAS on your network.  You also will continue being sent regular 
+IGMP Membership Query packets from the elected Multicast router on your 
+network, your machine will send the same Report in reply to each.
+If your network is not multicast enabled 
+then you will only receive advertisement from machines on the same LAN 
+segment.
+</p>
+
+
+
+<!-- ========================================= -->
+<h1>How (does it affect me)</h1>
+<p>If you are connected directly to the Internet, whether through 
+dial-up, CableModem, <i>x</i>DSL, you may be worried that the sending 
+of this packet poses some security risk to you.</p>
+
+<p>Firstly I do not hold to the idea that a device is safer if 
+arbitrary machines on the Internet cannot detect its presence.  
+If an attacker is going to run an attack, he just runs the attack on 
+the given service on a large arbitrary set of addresses.  He does 
+not bother to attempt to find which machines are active by Pinging etc.  
+Nor is it worth trying to find out by secondary means whether a 
+particular service is active, just attack the service and see if it 
+responds or fails...
+</p>
+
+<h2>Scope of delivery</h2>
+<p>As this packet is being sent to a group 
+address it requires that a Multicast enabled 
+network exists to forward it.  A router that does not have special 
+multicast configuration applied will not forward such packets.  
+I personally know of no ISPs that have multicast enabled their network.  
+If any have it is likely that they are set up to deliver multicast to 
+the clients but not allow them to send multicasts.  You would have to be 
+specifically authorised to send multicast packets through its network.  
+Usually the first router (remote access device, CMTS, DSLAM etc) will 
+not forward multicasts and will just drop them.  
+As noted in the <b><i>What</i></b> section the group address used by 
+these packets should restrict the delivery of them to within the local 
+site.
+The only receiver of these packets could thus be the ISP itself and 
+only then if they have carried out special configuration on the first 
+hop router.</p>
+
+<h2>Information exposed</h2>
+<p>Now lets look at what information the packets might expose.  
+There are four pieces of information possibly exposed</p>
+<ul>
+<li>firstly that a device exists currently with that IP address</li>
+<li>secondly that it is running Windows 2000 or similar</li>
+<li>thirdly the hostname that the PC is configured with</li>
+<li>fourthly that the PC is running RAS</li>
+</ul>
+<p>The first three pieces of 
+information will be provided already to your ISP at connect time; 
+for dial-up though PPP negotiation and on Cable Modem etc through 
+DHCP.  So it does not provide any new information.</p>
+
+<p>The information that RAS is running is the only piece of 
+new information being exposed to your ISP.  The fact that you are running 
+RAS is not terribly useful anyway, to try an attack dial-in they will have to 
+know the phone number of the attached modem.</p>
+
+<p>I thus feel that the risk created by these packets is  
+low to non-existent.</p>
+
+<h2>Later notes</h2>
+<p>It has also been pointed out to me that RRAS could be being used to 
+accept VPN connections from the Internet.  This creates a different 
+risk from when only modems are being used: there is no need to know 
+the phone number that the modem is attached to...</p>
+
+<p>For a long while I was not seeing any of these packets from RRAS 
+even though RRAS was running.  At the time I had no modem devices 
+configured, but was just using the IrNet ("Infrared Port") connection 
+type.  So, does 
+RRAS only send the rasadv packets when a modem is configured, or was I 
+just not seeing them because I wasn't looking hard enough..., or was 
+something else at play...?  Anyway they have returned now.</p>
+
+<p>Later.  Of course, after all that waffling about them disappearing 
+and reappearing, they have now disappeared again.</p>
+
+<p>This feature also exists in Windows XP, and 
+I've had a report that this feature exists in Windows Server 2003 
+(thanks).</p>
+
+
+<hr/>
+
+<center>Any information on this or any other relevant information including 
+any errors in this document would be appreciated in order to improve 
+this document. Please send emails to alanjmcf AT yahoo.com.</center>
+
+<center>Copyright &copy; 2002,2004 Alan J. McFarlane. All rights reserved.</center>
+
+<center>Document for information only, no warranties blah de blah, 
+all trademarks etc.</center>
+
+
+<!--WEBBOT bot="HTMLMarkup" startspan ALT="Site Meter" -->
+<script type="text/javascript" language="JavaScript">var site="sm6alanjmcf"</script>
+<script type="text/javascript" language="JavaScript1.2" src="../../../../sm6.sitemeter.com/js/counter.js%3Fsite=sm6alanjmcf">
+</script>
+<noscript>
+<a href="http://sm6.sitemeter.com/stats.asp?site=sm6alanjmcf" target="_top">
+<img src="../../../../sm6.sitemeter.com/meter.asp%3Fsite=sm6alanjmcf" alt="Site Meter" border=0></a>
+</noscript>
+<!-- Copyright (c)2002 Site Meter -->
+<!--WEBBOT bot="HTMLMarkup" Endspan -->
+
+
+</body>
+</html>

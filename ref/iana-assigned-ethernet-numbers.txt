@@ -1,0 +1,765 @@
+
+Ether Types
+
+(last updated 2008-09-09)
+
+NOTE: Please see [RFC5342] for current information and registration procedures. 
+This registry will be revised soon and will be replaced with up-to-date 
+information.
+
+Many of the networks of all classes are Ethernets (10Mb) or
+Experimental Ethernets (3Mb).  These systems use a message "type"
+field in much the same way the ARPANET uses the "link" field.
+
+If you need an Ether Type, contact:
+
+IEEE Registration Authority
+IEEE Standards Department
+445 Hoes Lane
+Piscataway, NJ 08854
+Phone +1 732 562 3813
+Fax: +1 732 562 1571
+Email: <ieee-registration-authority&ieee.org>
+http://standards.ieee.org/regauth/index.html
+
+
+The following list of EtherTypes is contributed unverified information
+from various sources.  Another list of EtherTypes is maintained by
+Michael A. Patton and is accessible at:
+
+    <URL:http://www.cavebear.com/CaveBear/Ethernet/>
+    <URL:ftp://ftp.cavebear.com/pub/Ethernet-codes>
+
+
+Assignments:
+
+Ethertype         Exp. Ethernet   Description           References
+-------------     -------------   -----------           ----------
+decimal  Hex      decimal  octal
+  0000   0000-05DC   -       -    IEEE802.3 Length Field   [XEROX]
+  0257   0101-01FF   -       -    Experimental             [XEROX]  
+  0512   0200        512   1000   XEROX PUP (see 0A00)   [8,XEROX]
+  0513   0201        -      -     PUP Addr Trans (see 0A01)[XEROX]
+         0400                     Nixdorf                  [XEROX]
+  1536   0600       1536   3000   XEROX NS IDP         [133,XEROX]
+         0660                     DLOG                     [XEROX]
+         0661                     DLOG                     [XEROX]
+  2048   0800        513   1001   Internet IP (IPv4)        [IANA]
+  2049   0801        -      -     X.75 Internet            [XEROX]
+  2050   0802        -      -     NBS Internet             [XEROX]
+  2051   0803        -      -     ECMA Internet            [XEROX]
+  2052   0804        -      -     Chaosnet                 [XEROX]
+  2053   0805        -      -     X.25 Level 3             [XEROX]
+  2054   0806        -      -     ARP                       [IANA]
+  2055   0807        -      -     XNS Compatability        [XEROX]
+  2056   0808        -      -     Frame Relay ARP        [RFC1701]
+  2076   081C        -      -     Symbolics Private         [DCP1]
+  2184   0888-088A   -      -     Xyplex                   [XEROX]
+  2304   0900        -      -     Ungermann-Bass net debugr[XEROX]
+  2560   0A00        -      -     Xerox IEEE802.3 PUP      [XEROX]
+  2561   0A01        -      -     PUP Addr Trans           [XEROX]
+  2989   0BAD        -      -     Banyan VINES             [XEROX]
+  2990   0BAE        -      -     VINES Loopback         [RFC1701]
+  2991   0BAF        -      -     VINES Echo             [RFC1701]
+  4096   1000        -      -     Berkeley Trailer nego    [XEROX]
+  4097   1001-100F   -      -     Berkeley Trailer encap/IP[XEROX]
+  5632   1600        -      -     Valid Systems            [XEROX]
+ 16962   4242        -      -     PCS Basic Block Protocol [XEROX]
+ 21000   5208        -      -     BBN Simnet               [XEROX]
+ 24576   6000        -      -     DEC Unassigned (Exp.)    [XEROX]
+ 24577   6001        -      -     DEC MOP Dump/Load        [XEROX]
+ 24578   6002        -      -     DEC MOP Remote Console   [XEROX]
+ 24579   6003        -      -     DEC DECNET Phase IV Route[XEROX]
+ 24580   6004        -      -     DEC LAT                  [XEROX]
+ 24581   6005        -      -     DEC Diagnostic Protocol  [XEROX]
+ 24582   6006        -      -     DEC Customer Protocol    [XEROX]
+ 24583   6007        -      -     DEC LAVC, SCA            [XEROX]
+ 24584   6008-6009   -      -     DEC Unassigned           [XEROX]
+ 24592   6010-6014   -      -     3Com Corporation         [XEROX]
+ 25944   6558        -      -     Trans Ether Bridging   [RFC1701]
+ 25945   6559        -      -     Raw Frame Relay        [RFC1701]
+ 28672   7000        -      -     Ungermann-Bass download  [XEROX]
+ 28674   7002        -      -     Ungermann-Bass dia/loop  [XEROX] 
+ 28704   7020-7029   -      -     LRT                      [XEROX]
+ 28720   7030        -      -     Proteon                  [XEROX]
+ 28724   7034        -      -     Cabletron                [XEROX]
+ 32771   8003        -      -     Cronus VLN            [131,DT15]
+ 32772   8004        -      -     Cronus Direct         [131,DT15]
+ 32773   8005        -      -     HP Probe                 [XEROX]
+ 32774   8006        -      -     Nestar                   [XEROX]
+ 32776   8008        -      -     AT&T                     [XEROX]
+ 32784   8010        -      -     Excelan                  [XEROX]
+ 32787   8013	     -      -     SGI diagnostics            [AXC]
+ 32788   8014        -      -     SGI network games          [AXC]
+ 32789   8015        -      -     SGI reserved               [AXC]
+ 32790   8016	     -      -     SGI bounce server          [AXC]
+ 32793   8019        -      -     Apollo Domain            [XEROX]
+ 32815   802E        -      -     Tymshare                 [XEROX]
+ 32816   802F        -      -     Tigan, Inc.              [XEROX]
+ 32821   8035        -      -     Reverse ARP             [48,JXM]
+ 32822   8036        -      -     Aeonic Systems           [XEROX]
+ 32824   8038        -      -     DEC LANBridge            [XEROX]
+ 32825   8039-803C   -      -     DEC Unassigned           [XEROX]
+ 32829   803D        -      -     DEC Ethernet Encryption  [XEROX]
+ 32830   803E        -      -     DEC Unassigned           [XEROX]
+ 32831   803F        -      -     DEC LAN Traffic Monitor  [XEROX]
+ 32832   8040-8042   -      -     DEC Unassigned           [XEROX]
+ 32836   8044        -      -     Planning Research Corp.  [XEROX]
+ 32838   8046        -      -     AT&T                     [XEROX]
+ 32839   8047        -      -     AT&T                     [XEROX]
+ 32841   8049        -      -     ExperData                [XEROX]   
+ 32859   805B        -      -     Stanford V Kernel exp.   [XEROX]
+ 32860   805C        -      -     Stanford V Kernel prod.  [XEROX]
+ 32861   805D        -      -     Evans & Sutherland       [XEROX]
+ 32864   8060        -      -     Little Machines          [XEROX]
+ 32866   8062        -      -     Counterpoint Computers   [XEROX]
+ 32869   8065        -      -     Univ. of Mass. @ Amherst [XEROX]
+ 32870   8066        -      -     Univ. of Mass. @ Amherst [XEROX]
+ 32871   8067        -      -     Veeco Integrated Auto.   [XEROX]
+ 32872   8068        -      -     General Dynamics         [XEROX]
+ 32873   8069        -      -     AT&T                     [XEROX]
+ 32874   806A        -      -     Autophon                 [XEROX]
+ 32876   806C        -      -     ComDesign                [XEROX]
+ 32877   806D        -      -     Computgraphic Corp.      [XEROX]
+ 32878   806E-8077   -      -     Landmark Graphics Corp.  [XEROX]
+ 32890   807A        -      -     Matra                    [XEROX]
+ 32891   807B        -      -     Dansk Data Elektronik    [XEROX]
+ 32892   807C        -      -     Merit Internodal           [HWB]
+ 32893   807D-807F   -      -     Vitalink Communications  [XEROX]
+ 32896   8080        -      -     Vitalink TransLAN III    [XEROX]
+ 32897   8081-8083   -      -     Counterpoint Computers   [XEROX]
+ 32923   809B        -      -     Appletalk                [XEROX]
+ 32924   809C-809E   -      -     Datability               [XEROX]
+ 32927   809F        -      -     Spider Systems Ltd.      [XEROX]
+ 32931   80A3        -      -     Nixdorf Computers        [XEROX]
+ 32932   80A4-80B3   -      -     Siemens Gammasonics Inc. [XEROX]
+ 32960   80C0-80C3   -      -     DCA Data Exchange Cluster[XEROX]
+ 32964   80C4        -      -     Banyan Systems           [XEROX]
+ 32965   80C5        -      -     Banyan Systems           [XEROX]
+ 32966   80C6        -      -     Pacer Software           [XEROX]
+ 32967   80C7        -      -     Applitek Corporation     [XEROX]
+ 32968   80C8-80CC   -      -     Intergraph Corporation   [XEROX]
+ 32973   80CD-80CE   -      -     Harris Corporation       [XEROX]
+ 32975   80CF-80D2   -      -     Taylor Instrument        [XEROX]
+ 32979   80D3-80D4   -      -     Rosemount Corporation    [XEROX]
+ 32981   80D5        -      -     IBM SNA Service on Ether [XEROX]
+ 32989   80DD        -      -     Varian Associates        [XEROX]
+ 32990   80DE-80DF   -      -     Integrated Solutions TRFS[XEROX]
+ 32992   80E0-80E3   -      -     Allen-Bradley            [XEROX]
+ 32996   80E4-80F0   -      -     Datability               [XEROX]
+ 33010   80F2        -      -     Retix                    [XEROX]
+ 33011   80F3        -      -     AppleTalk AARP (Kinetics)[XEROX]
+ 33012   80F4-80F5   -      -     Kinetics                 [XEROX]
+ 33015   80F7        -      -     Apollo Computer          [XEROX]
+ 33023   80FF        -      -     Wellfleet Communications [XEROX]
+ 33024   8100        -      -     IEEE 802.1Q VLAN-tagged frames (initially Wellfleet)
+ 33025   8101-8103   -      -     Wellfleet Communications [XEROX]
+ 33031   8107-8109   -      -     Symbolics Private        [XEROX]
+ 33072   8130        -      -     Hayes Microcomputers     [XEROX]
+ 33073   8131        -      -     VG Laboratory Systems    [XEROX]
+ 33074   8132-8136                Bridge Communications    [XEROX]
+ 33079   8137-8138   -      -     Novell, Inc.             [XEROX]
+ 33081   8139-813D   -      -     KTI                      [XEROX]
+         8148                     Logicraft                [XEROX]
+         8149                     Network Computing Devices[XEROX]
+         814A                     Alpha Micro              [XEROX]
+ 33100   814C        -      -     SNMP                      [JKR1]
+         814D                     BIIN                     [XEROX]
+         814E                     BIIN                     [XEROX]
+         814F                     Technically Elite Concept[XEROX]
+         8150                     Rational Corp            [XEROX]
+         8151-8153                Qualcomm                 [XEROX]
+         815C-815E                Computer Protocol Pty Ltd[XEROX]
+         8164-8166                Charles River Data System[XEROX]
+	 817D			  XTP			   [XEROX]
+	 817E	                  SGI/Time Warner prop.    [XEROX]
+	 8180	                  HIPPI-FP encapsulation   [XEROX]
+	 8181	                  STP, HIPPI-ST            [XEROX]
+	 8182	                  Reserved for HIPPI-6400  [XEROX]
+	 8183	                  Reserved for HIPPI-6400  [XEROX]
+	 8184-818C                Silicon Graphics prop.   [XEROX]
+         818D                     Motorola Computer        [XEROX]
+         819A-81A3                Qualcomm                 [XEROX]
+         81A4                     ARAI Bunkichi            [XEROX]
+         81A5-81AE                RAD Network Devices      [XEROX]
+         81B7-81B9                Xyplex                   [XEROX]
+         81CC-81D5                Apricot Computers        [XEROX]
+         81D6-81DD                Artisoft                 [XEROX]
+         81E6-81EF                Polygon                  [XEROX]
+         81F0-81F2                Comsat Labs              [XEROX]
+         81F3-81F5                SAIC                     [XEROX]
+         81F6-81F8                VG Analytical            [XEROX]
+         8203-8205                Quantum Software         [XEROX]
+         8221-8222                Ascom Banking Systems    [XEROX]
+         823E-8240                Advanced Encryption Syste[XEROX]
+         827F-8282                Athena Programming       [XEROX]
+         8263-826A                Charles River Data System[XEROX]
+         829A-829B                Inst Ind Info Tech       [XEROX]
+         829C-82AB                Taurus Controls          [XEROX]
+         82AC-8693                Walker Richer & Quinn    [XEROX]
+         8694-869D                Idea Courier             [XEROX]
+         869E-86A1                Computer Network Tech    [XEROX]
+         86A3-86AC                Gateway Communications   [XEROX]
+         86DB                     SECTRA                   [XEROX]
+         86DE                     Delta Controls           [XEROX]
+         86DD                     IPv6                      [IANA]
+ 34543   86DF        -      -     ATOMIC                  [Postel]
+         86E0-86EF                Landis & Gyr Powers      [XEROX]
+         8700-8710                Motorola                 [XEROX]
+ 34667   876B        -      -     TCP/IP Compression     [RFC1144]
+ 34668   876C        -      -     IP Autonomous Systems  [RFC1701]
+ 34669   876D        -      -     Secure Data            [RFC1701]
+         880B                     PPP                       [IANA] 
+         8847                     MPLS                      [RFC5332]
+         8848                     MPLS with upstream-assigned label  [RFC5332]
+         8A96-8A97                Invisible Software       [XEROX]
+ 34915   8863        -      -     PPPoE Discovery Stage  [RFC2516]
+ 34916   8864        -      -     PPPoE Session Stage    [RFC2516]
+ 36864   9000        -      -     Loopback                 [XEROX]
+ 36865   9001        -      -     3Com(Bridge) XNS Sys Mgmt[XEROX]
+ 36866   9002        -      -     3Com(Bridge) TCP-IP Sys  [XEROX]
+ 36867   9003        -      -     3Com(Bridge) loop detect [XEROX]
+ 65280	 FF00        -      -     BBN VITAL-LanBridge cache[XEROX] 
+         FF00-FF0F                ISC Bunker Ramo          [XEROX]
+ 65535   FFFF        -      -     Reserved               [RFC1701]
+
+The standard for transmission of IP datagrams over Ethernets and
+Experimental Ethernets is specified in [RFC894] and [RFC895]
+respectively.
+
+NOTE:  Ethernet 48-bit address blocks are assigned by the IEEE.
+
+IEEE Registration Authority
+c/o Iris Ringel
+IEEE Standards Department
+445 Hoes Lane, P.O. Box 1331
+Piscataway, NJ 08855-1331
+Phone +1 732 562 3813
+Fax: +1 732 562 1571
+Email: <i.ringel&ieee.org>
+
+
+ETHERNET VENDOR ADDRESS COMPONENTS or ORGANIZATIONALLY UNIQUE IDENTIFIERS
+
+Ethernet hardware addresses are 48 bits, expressed as 12 hexadecimal
+digits (0-9, plus A-F, capitalized).  These 12 hex digits consist of
+the first/left 6 digits (which should match the vendor of the Ethernet
+interface within the station) and the last/right 6 digits which
+specify the interface serial number for that interface vendor.
+
+These high-order 3 octets (6 hex digits) are also known as the
+Organizationally Unique Identifier or OUI.
+
+Ethernet addresses might be written unhyphenated (e.g., 123456789ABC),
+or with one hyphen (e.g., 123456-789ABC), but should be written
+hyphenated by octets (e.g., 12-34-56-78-9A-BC).
+
+These addresses are physical station addresses, not multicast nor
+broadcast, so the second hex digit (reading from the left) will be
+even, not odd.
+
+At present, it is not clear how the IEEE assigns Ethernet block
+addresses.  Whether in blocks of 2**24 or 2**25, and whether
+multicasts are assigned with that block or separately.  A portion of
+the vendor block address is reportedly assigned serially, with the
+other portion intentionally assigned randomly.  If there is a global
+algorithm for which addresses are designated to be physical (in a
+chipset) versus logical (assigned in software), or globally-assigned
+versus locally-assigned addresses, some of the known addresses do not
+follow the scheme (e.g., AA0003; 02xxxx).
+
+Another list of Ethernet vendor address components is maitained by
+Michael A. Patton and is accessible at:
+
+    <URL:http://www.cavebear.com/CaveBear/Ethernet/vendor.html>
+    <URL:ftp://ftp.cavebear.com/pub/Ethernet-codes>
+    <URL:gopher://ftp.cavebear.com/00/pub/Ethernet-codes>
+
+00000C  Cisco
+00000E  Fujitsu
+00000F  NeXT
+000010  Sytek
+00001D  Cabletron
+000020  DIAB (Data Intdustrier AB)
+000022  Visual Technology
+00002A  TRW
+000032  GPT Limited (reassigned from GEC Computers Ltd)
+00005A  S & Koch
+00005E  IANA
+000065  Network General
+00006B  MIPS
+000077  Interphase Corporation
+00007A  Ardent
+000080  Cray Communications A/S
+000089  Cayman Systems  Gatorbox
+000093  Proteon
+00009F  Ameristar Technology
+0000A2  Wellfleet
+0000A3  Network Application Technology
+0000A6  Network General (internal assignment, not for products)
+0000A7  NCD             X-terminals
+0000A9  Network Systems
+0000AA  Xerox           Xerox machines
+0000B3  CIMLinc
+0000B7  Dove            Fastnet
+0000BC  Allen-Bradley
+0000C0  Western Digital
+0000C5  Farallon phone net card
+0000C6  HP Intelligent Networks Operation (formerly Eon Systems)
+0000C8  Altos
+0000C9  Emulex          Terminal Servers
+0000D0  Develcon
+0000D7  Dartmouth College (NED Router)
+0000D8  3Com? Novell?   PS/2
+0000DD  Gould
+0000DE  Unigraph
+0000E2  Acer Counterpoint
+0000EF  Alantec
+0000FD  High Level Hardvare (Orion, UK)
+000102  BBN             BBN internal usage (not registered)
+0010D1  BlazeNet
+001700  Kabel
+0020AF  3COM ???
+0020C9  Victron
+002094  Cubix
+008064  Wyse Technology / Link Technologies
+00802B  IMAC ???
+00802D  Xylogics, Inc.  Annex terminal servers
+00808C  Frontier Software Development
+0080C2  IEEE 802.1 Committee
+0080D3  Shiva
+00A03E  ATM Forum
+00AA00  Intel
+00DD00  Ungermann-Bass
+00DD01  Ungermann-Bass
+020701  Racal InterLan
+020406  BBN             BBN internal usage (not registered)
+026086  Satelcom MegaPac (UK)
+02608C  3Com            IBM PC; Imagen; Valid; Cisco
+02CF1F  CMC             Masscomp; Silicon Graphics; Prime EXL
+080002  3Com (Formerly Bridge)
+080003  ACC (Advanced Computer Communications)
+080005  Symbolics       Symbolics LISP machines
+080008  BBN
+080009  Hewlett-Packard
+08000A  Nestar Systems
+08000B  Unisys
+080011  Tektronix, Inc.
+080014  Excelan         BBN Butterfly, Masscomp, Silicon Graphics
+080017  NSC
+08001A  Data General
+08001B  Data General
+08001E  Apollo
+080020  Sun             Sun machines
+080022  NBI
+080025  CDC
+080026  Norsk Data (Nord)
+080027  PCS Computer Systems GmbH
+080028  TI              Explorer
+08002B  DEC
+08002E  Metaphor
+08002F  Prime Computer  Prime 50-Series LHC300
+080036  Intergraph      CAE stations
+080037  Fuji-Xerox
+080038  Bull
+080039  Spider Systems
+080041  DCA Digital Comm. Assoc.
+080045  ???? (maybe Xylogics, but they claim not to know this number)
+080046  Sony
+080047  Sequent
+080049  Univation
+08004C  Encore
+08004E  BICC
+080056  Stanford University
+080058  ???             DECsystem-20
+08005A  IBM
+080067  Comdesign
+080068  Ridge
+080069  Silicon Graphics
+08006E  Concurrent      Masscomp
+080075  DDE (Danish Data Elektronik A/S)
+08007C  Vitalink        TransLAN III
+080080  XIOS
+080086  Imagen/QMS
+080087  Xyplex          terminal servers
+080089  Kinetics        AppleTalk-Ethernet interface
+08008B  Pyramid
+08008D  XyVision        XyVision machines
+080090  Retix Inc       Bridges
+484453  HDS ???
+800010  AT&T            
+AA0000  DEC             obsolete
+AA0001  DEC             obsolete
+AA0002  DEC             obsolete
+AA0003  DEC             Global physical address for some DEC machines
+AA0004  DEC             Local logical address for systems running 
+                        DECNET
+The CFxxxx Series
+
+RFC 2153 describes a method of usings a "pseudo OUI" for certain
+purposes when there is no appropriate regular OUI assigned.  These are
+listed here.
+
+CF0001  Data Comm for Business                                  [McCain]
+
+ETHERNET MULTICAST ADDRESSES
+
+An Ethernet multicast address consists of the multicast bit, the
+23-bit vendor component, and the 24-bit group identifier assigned by
+the vendor.  For example, DEC is assigned the vendor component
+08-00-2B, so multicast addresses assigned by DEC have the first
+24-bits 09-00-2B (since the multicast bit is the low-order bit of the
+first byte, which is "the first bit on the wire").
+
+Another list of Ethernet multicast addresses is maintained by Michael
+A. Patton and is accessible at:
+
+    <URL:http://www.cavebear.com/CaveBear/ether-codes.html>
+    <URL:ftp://ftp.cavebear.com/pub/Ethernet-codes>
+    <URL:gopher://ftp.cavebear.com/00/pub/Ethernet-codes>
+
+Ethernet                Type
+Address                 Field   Usage
+
+Multicast Addresses:
+
+01-00-5E-00-00-00-      0800    Internet Multicast        [RFC1112]
+01-00-5E-7F-FF-FF
+01-00-5E-80-00-00-      8847/8848  MPLS Multicast         [RFC5332]
+01-00-5E-8F-FF-FF
+01-00-5E-90-00-00-      ????    Internet reserved by IANA
+01-00-5E-FF-FF-FF
+01-80-C2-00-00-00       -802-   Spanning tree (for bridges)
+09-00-02-04-00-01?      8080?   Vitalink printer
+09-00-02-04-00-02?      8080?   Vitalink management
+09-00-09-00-00-01       8005    HP Probe
+09-00-09-00-00-01       -802-   HP Probe
+09-00-09-00-00-04       8005?   HP DTC
+09-00-1E-00-00-00       8019?   Apollo DOMAIN
+09-00-2B-00-00-00       6009?   DEC MUMPS?
+09-00-2B-00-00-01       8039?   DEC DSM/DTP?
+09-00-2B-00-00-02       803B?   DEC VAXELN?
+09-00-2B-00-00-03       8038    DEC Lanbridge Traffic Monitor (LTM)
+09-00-2B-00-00-04       ????    DEC MAP End System Hello
+09-00-2B-00-00-05       ????    DEC MAP Intermediate System Hello
+09-00-2B-00-00-06       803D?   DEC CSMA/CD Encryption?
+09-00-2B-00-00-07       8040?   DEC NetBios Emulator?
+09-00-2B-00-00-0F       6004    DEC Local Area Transport (LAT)
+09-00-2B-00-00-1x       ????    DEC Experimental
+09-00-2B-01-00-00       8038    DEC LanBridge Copy packets 
+                                (All bridges)
+09-00-2B-01-00-01       8038    DEC LanBridge Hello packets 
+                                (All local bridges)
+                                1 packet per second, sent by the
+                                designated LanBridge
+09-00-2B-02-00-00       ????    DEC DNA Lev. 2 Routing Layer routers?
+09-00-2B-02-01-00       803C?   DEC DNA Naming Service Advertisement?
+09-00-2B-02-01-01       803C?   DEC DNA Naming Service Solicitation?
+09-00-2B-02-01-02       803E?   DEC DNA Time Service?
+09-00-2B-03-xx-xx       ????    DEC default filtering by bridges?
+09-00-2B-04-00-00       8041?   DEC Local Area Sys. Transport (LAST)?
+09-00-2B-23-00-00       803A?   DEC Argonaut Console?
+09-00-4E-00-00-02?      8137?   Novell IPX
+09-00-56-00-00-00-      ????    Stanford reserved
+09-00-56-FE-FF-FF
+09-00-56-FF-00-00-      805C    Stanford V Kernel, version 6.0
+09-00-56-FF-FF-FF
+09-00-77-00-00-01       ????    Retix spanning tree bridges
+09-00-7C-02-00-05       8080?   Vitalink diagnostics
+09-00-7C-05-00-01       8080?   Vitalink gateway?
+0D-1E-15-BA-DD-06       ????    HP
+AB-00-00-01-00-00       6001    DEC Maintenance Operation Protocol 
+                                (MOP) Dump/Load Assistance
+AB-00-00-02-00-00       6002    DEC Maintenance Operation Protocol 
+                                (MOP) Remote Console
+                                1 System ID packet every 8-10 minutes,
+                                by every:
+                                DEC LanBridge
+                                DEC DEUNA interface
+                                DEC DELUA interface
+                                DEC DEQNA interface
+                                (in a certain mode)
+AB-00-00-03-00-00       6003    DECNET Phase IV end node Hello 
+                                packets 1 packet every 15 seconds, 
+                                sent by each DECNET host
+AB-00-00-04-00-00       6003    DECNET Phase IV Router Hello packets
+                                1 packet every 15 seconds, sent by 
+                                the DECNET router
+AB-00-00-05-00-00       ????    Reserved DEC through
+AB-00-03-FF-FF-FF
+AB-00-03-00-00-00       6004    DEC Local Area Transport (LAT) - old
+AB-00-04-00-xx-xx       ????    Reserved DEC customer private use
+AB-00-04-01-xx-yy       6007    DEC Local Area VAX Cluster groups
+                                Sys. Communication Architecture (SCA)
+CF-00-00-00-00-00       9000    Ethernet Configuration Test protocol 
+                                (Loopback)
+
+Broadcast Address:
+
+FF-FF-FF-FF-FF-FF       0600    XNS packets, Hello or gateway search?
+                                6 packets every 15 seconds, per XNS 
+                                station
+FF-FF-FF-FF-FF-FF       0800    IP (e.g. RWHOD via UDP) as needed
+FF-FF-FF-FF-FF-FF       0804    CHAOS
+FF-FF-FF-FF-FF-FF       0806    ARP (for IP and CHAOS) as needed
+FF-FF-FF-FF-FF-FF       0BAD    Banyan
+FF-FF-FF-FF-FF-FF       1600    VALID packets, Hello or gateway 
+                                search?
+                                1 packets every 30 seconds, per VALID 
+                                station
+FF-FF-FF-FF-FF-FF       8035    Reverse ARP
+FF-FF-FF-FF-FF-FF       807C    Merit Internodal (INP)
+FF-FF-FF-FF-FF-FF       809B    EtherTalk
+
+
+
+IANA ETHERNET ADDRESS BLOCK - UNICAST USE
+
+The IANA owns an Ethernet address block which may be used for
+unicast address assignments or other special purposes.
+
+The IANA may assign unicast global IEEE 802 MAC address from it's
+assigned OUI (00-00-5E) for use in IETF standard track protocols.  The
+intended usage is for dynamic mapping between IP addresses and IEEE
+802 MAC addresses.  These IEEE 802 MAC addresses are not to be
+permanently assigned to any hardware interface, nor is this a
+substitute for a network equipment supplier getting its own OUI.
+
+The address block in IEEE binary is:  0000 0000 0000 0000 0111 1010
+
+In the normal Internet dotted decimal notation this is 0.0.94 since
+the bytes are transmitted higher order first and bits within bytes are
+transmitted lower order first.
+
+IEEE CSMA/CD and Token Bus bit transmission order: 00 00 5E
+
+IEEE Token Ring bit transmission order: 00 00 7A
+
+Appearance on the wire (bits transmitted from left to right):
+
+    0                           23                            47
+    |                           |                             |
+    0000 0000 0000 0000 0111 1010 xxxx xxxx xxxx xxxx xxxx xxxx
+    |
+    Multicast Bit
+
+Appearance in memory (bits transmitted right-to-left within octets,
+octets transmitted left-to-right):
+
+    0                           23                            47
+    |                           |                             |
+    0000 0000 0000 0000 0101 1110 xxxx xxxx xxxx xxxx xxxx xxxx
+            |
+            Multicast Bit
+
+The latter representation corresponds to the Internet standard
+bit-order, and is the format that most programmers have to deal with.
+Using this representation, the range of Internet Unicast addresses is:
+
+       00-00-5E-00-00-00  to  00-00-5E-FF-FF-FF  in hex, or
+
+       0.0.94.0.0.0  to  0.0.94.255.255.255  in dotted decimal
+
+The low order 24 bits of these unicast addresses are assigned as
+follows:
+
+Dotted Decimal          Description			Reference
+----------------------- ------------------------------- ---------
+000.000.000-000.000.255 Reserved			[IANA]
+000.001.000-000.001.255 Virtual Router Redundancy (VRRP)	[RFC3768]
+
+
+
+IANA ETHERNET ADDRESS BLOCK - MULTICAST USE
+
+The IANA owns an Ethernet address block which may be used for
+multicast address asignments or other special purposes.
+
+The address block in IEEE binary is:  0000 0000 0000 0000 0111 1010
+
+In the normal Internet dotted decimal notation this is 0.0.94 since
+the bytes are transmitted higher order first and bits within bytes are
+transmitted lower order first.
+
+IEEE CSMA/CD and Token Bus bit transmission order: 00 00 5E
+
+IEEE Token Ring bit transmission order: 00 00 7A
+
+Appearance on the wire (bits transmitted from left to right):
+
+    0                           23                            47
+    |                           |                             |
+    1000 0000 0000 0000 0111 1010 xxxx xxx0 xxxx xxxx xxxx xxxx
+    |                                     |
+    Multicast Bit                         0 = Internet Multicast
+                                          1 = Assigned by IANA for
+                                              other uses
+
+Appearance in memory (bits transmitted right-to-left within octets,
+octets transmitted left-to-right):
+
+    0                           23                            47
+    |                           |                             |
+    0000 0001 0000 0000 0101 1110 0xxx xxxx xxxx xxxx xxxx xxxx
+            |                     |
+            Multicast Bit         0 = Internet Multicast
+                                  1 = Assigned by IANA for other uses
+
+The latter representation corresponds to the Internet standard
+bit-order, and is the format that most programmers have to deal with.
+Using this representation, the range of Internet Multicast addresses
+is:
+
+       01-00-5E-00-00-00  to  01-00-5E-7F-FF-FF  in hex, or
+
+       1.0.94.0.0.0  to  1.0.94.127.255.255  in dotted decimal
+
+
+Modified EUI-64 Addresses in the IANA Ethernet Address Block - per [RFC5214]
+
+Modified EUI-64 addresses ([RFC4291], Appendix A) in the IANA Ethernet 
+Address Block are formed by concatenating the 24-bit IANA OUI (00-00-5E) 
+with a 40-bit extension identifier and inverting the "u" bit, i.e., the 
+"u" bit is set to one (1) to indicate universal scope and it is set to 
+zero (0) to indicate local scope.
+
+Modified EUI-64 addresses have the following appearance in memory
+(bits transmitted right-to-left within octets, octets transmitted
+left-to-right):
+
+   0                       23                                        63
+   |        OUI            |            extension identifier         |
+   000000ug00000000 01011110xxxxxxxx xxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx
+
+   When the first two octets of the extension identifier encode the
+   hexadecimal value 0xFFFE, the remainder of the extension identifier
+   encodes a 24-bit vendor-supplied id as follows:
+
+   0                       23               39                       63
+   |        OUI            |     0xFFFE     |   vendor-supplied id   |
+   000000ug00000000 0101111011111111 11111110xxxxxxxx xxxxxxxxxxxxxxxx
+
+   When the first octet of the extension identifier encodes the
+   hexadecimal value 0xFE, the remainder of the extension identifier
+   encodes a 32-bit IPv4 address as follows:
+
+   0                       23      31                                63
+   |        OUI            |  0xFE |           IPv4 address          |
+   000000ug00000000 0101111011111110 xxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx
+
+
+
+SNAP PROTOCOL IDS IN THE IANA ETHERNET ADDRESS BLOCK
+
+The Sub-Network Access Protocol (SNAP) header contains 40 bits: 24
+bits containing an IEEE-assigned Organizationally Unique Identifier
+(OUI), and 16 bits containing a Protocol Identifier (PID).  The OUIs
+are the same as those used in the Ethernet Vendor Address Components
+list above.  The IANA's OUI, 00-00-5E, may be used in SNAP headers
+with the appropriate PID to identify the protocols listed below.
+
+Note that the IANA restricts this list to protocols that are ONLY
+identified in this manner; if a protocol has an EtherType, then SNAP
+headers identifying that protocol must contain an OUI of 00-00-00,
+with the EtherType in the PID field.
+
+The SNAP PID assignments using the IANA's OUI are:
+
+Protocol ID      Description				References
+-----------      -----------				----------
+decimal  Hex      
+  0001   0001    MARS Data Messages (short form)	[RFC2022]
+  0002   0002    reserved for future NHRP use		[RFC2332]
+  0003   0003    MARS/NHRP Control Messages		[RFC2022, 2332]
+  0004   0004    MARS Data Messages (long form)		[RFC2022]
+  0005   0005    SCSP - Server Cache Sync Protocol      [RFC2334]
+  0006   0006    VRID - Virtual Router MAC Address      [Knight]
+  0007   0007    L2TP                                   [RFC3070]
+  0008   0008    Virtual Private Network ID             [Malis-ID]
+  0009   0009    MSDP-GRE-Protocol Type                 [msdp-ID]
+
+
+References
+----------
+[RFC894]   Hornig, C., "A Standard for the Transmission of IP Datagrams
+           over Ethernet Networks, STD 41, RFC 894, Symbolics, 
+           April 1984.
+
+[RFC895]   Postel, J., "A Standard for the Transmission of IP Datagrams
+           over Experimental Ethernet Networks, STD 42, RFC 895, 
+           USC/Information Sciences Institute, April 1984.
+
+[RFC1112]  Deeering, S., "Host Extensions for IP Multicasting", 
+           STD 5, RFC 1112, Stanford University, August 1989.
+
+[RFC1701]  Hanks, S., Li, T, Farinacci, D., and P. Traina,
+           "Generic Routing Encapsulation", RFC 1701, NetSmiths, Ltd.,
+           and cisco Systems, October 1994.
+
+[RFC2022]  Armitage, G., "Support for Multicast over UNI 3.0/3.1 based
+           ATM Networks", RFC 2022, Bellcore, November 1996.
+
+[RFC2332]  Luciani, J., et al, "NBMA Next Hop Resolution Protocol
+           (NHRP)", RFC 2332, April 1998.
+
+[RFC2334]  Luciani, J., et al, "Server Cache Synchronization Protocol
+           (SCSP)", RFC 2334, April 1998.
+
+[RFC2516]  Mamakos, L., et al, "A Method for Transmitting PPP Over
+           Ethernet (PPPoE)", RFC 2516, February 1999.
+
+[RFC3070]  Rawat, V., R. Tio, S. Nanji, and R. Verma, "Layer Two
+           Tunneling Protocol (L2TP) over Frame Relay", RFC 3070,
+           February 2001.
+
+[RFC3768]  R. Hinden, Ed., "Virtual Router Redundancy Protocol (VRRP)",
+           RFC 3768, April 2004.
+           
+[RFC4291]  R. Hinden, S. Deering, "IP Version 6 Addressing Architecture",
+           RFC 4291, February 2006.
+
+[RFC5214]  F. Templin, T. Gleeson, D. Thaler, "Intra-Site Automatic 
+           Tunnel Addressing Protocol (ISATAP)", RFC 5214, March 2008.
+
+[RFC5332]  T. Eckert, E. Rosen, Ed., R. Aggarwal, Y. Rekhter, "MPLS 
+           Multicast Encapsulations", RFC 5332, August 2008.
+
+[RFC5342]  D. Eastlake, "IANA Considerations and IETF Protocol Usage for 
+           IEEE 802 Parameters", RFC 5342, September 2008.
+
+People
+------
+[AXC] Andrew Cherenson <arc&SGI.COM>
+
+[Hinden] Bon Hinden, <hinden&ipsilon.com>, January 1998.
+
+[HWB] Hans-Werner Braun <HWB&MCR.UMICH.EDU>
+
+[IANA] Internet Assigned Numbers Authority, <iana&iana.org>, October 1996.
+
+[JXM] Joseph Murdock <---none--->
+
+[Knight] S. Knight, <steven.knight&ascend.com>, November 1997.
+
+[Malis] Andy Malis, <malis&ascend.com>, October 1996.
+
+[Malis-ID] <draft-ietf-ion-multiprotocol-atm-02.txt>, April 1999.
+
+[McCain] John McCain, <jmccain&dcbnet.com>, July 1997.
+
+[msdp-ID] <draft-ietf-msdp-spec-09.txt>, May 2001.
+
+[DCP1] David Plummer <DCP&SCRC-QUABBIN.ARPA>
+
+[Postel] Jon Postel <postel&isi.edu>
+
+[JKR1] Joyce K. Reynolds <jkrey&isi.edu>
+
+[Verma] Rohit Verma <Rohit_Verma&mw.3com.com>, August 1998.
+
+[XEROX] Neil Sembower <sembower&eso.mc.xerox.com>
+
+[DT15] Daniel Tappan <Tappan&BBN.COM>
+
+[]
+

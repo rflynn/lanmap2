@@ -1,0 +1,965 @@
+<html>
+<head><title>The Back Orifice Protocol</title></head>
+<body bgcolor="#ffffff">
+
+<h1>The Back Orifice (BO) Protocol</h1>
+
+<h2>Introductory Notes</h2>
+
+<ul>
+
+<li>This specification was obtained by looking at the sources of the
+<a href="http://www.cultdeadcow.com/">BO client for Unix</a> and in
+the development stage of <a
+href="http://www.magnux.com/nobo/">NOBO</a>. It probably doesn't cover
+all aspects of the protocol and may contain incorrect information; such
+items are tagged with &quot;(???)&quot;. If you find something missing
+or wrong in this document, please, <a
+href="mailto:flaviovs@magnux.com">let me know</a>.
+
+<li>All numeric values are represented in decimal notation or, if
+prefixed with a &quot;<code>0x</code>&quot;
+(e.g. &quot;<code>0x0f</code>&quot;), in hexadecimal, unless noted
+otherwise.</li>
+
+</ul>
+
+
+<h2>The Protocol</h2>
+
+<p>The exchange of data between the BO client and server is done using
+encrypted UDP packets. The format of these packer's is simple, as is the
+cryptographic scheme used. The server normally binds to UDP port
+31337, but it may be configured to use another port. All BO packets --
+from the server to the client and vice-versa -- have the same basic
+format. Notice that even if no password is set up on the server and
+client, BO packets are <b>always</b> encrypted.
+
+
+<h2>Packet Format</h2>
+
+BO packets are composed of a 17 bytes header which contains the
+characteristics of the packet, plus payload data (at least 1 byte). The
+packets ends with a one byte CRC (???).
+
+<h3>Packets fields:</h2>
+
+<table border=1>
+<tr>
+<th>Mnemonic</th>
+<th>Size in bytes</th>
+</tr>
+<tr>
+<td>MAGIC</td>
+<td>8</td>
+</tr>
+<tr>
+<td>LEN</td>
+<td>4</td>
+</tr>
+<tr>
+<td>ID</td>
+<td>4</td>
+</tr>
+<tr>
+<td>T</td>
+<td>1</td>
+</tr>
+<tr>
+<td>DATA</td>
+<td>variable</td>
+</tr>
+<tr>
+<td>CRC</td>
+<td>1</td>
+</tr>
+</table>
+
+<h4>Header Fields</h4>
+
+<p> MAGIC - An eight byte string which identifies the BO packet. The
+sequence of characters is fixed and must be the string
+&quot;<code>*!*QWTY?</code>&quot; (star, bang, star, &quot;Q&quot;,
+&quot;W&quot;, &quot;T&quot;, &quot;Y&quot;, question).
+
+<p> LEN - A 32 bit integer which contains the length of the
+entire packet, including the header. The value of this field cannot be
+less than 19 (the header length plus, at least, 1 byte data and 1 byte
+CRC).
+
+<p> ID - A 32 bit integer which contains the identification of the UDP
+packet. This field is used to keep track of the
+fragment sequence number of fragmented packets (???). It's also used by the BO client to
+match a received packet with previously packets sent.
+
+<blockquote><i> 
+The &quot;32 bit integers&quot; used in the header of
+  BO packets aren't transmitted in network order, but with its least
+  significant byte sent first. For example, the &quot;integer&quot;
+  </i><code>0x11bb55ee</code><i> is transmitted is this order:
+  </i><code>0xee</code><i>, </i><code>0x55</code><i>,
+  </i><code>0xbb</code><i> and </i><code>0x11</code><i>.
+  </i></blockquote>
+
+<p>T - This field contains the operation type that the packet
+carries. In this field, the 2 most significant bits are used to flag
+some conditions about the packet, such as the fragmentation of a large
+packet. The remaining 6 bits are used to specify the actual BO
+operation.
+
+<h3>BO Operations</h3>
+
+<table border=1 width="100%">
+<tr>
+<th>Mnemonic</th>
+<th>Value</th>
+<th>Meaning</th>
+</tr>
+
+<tr>
+<td>TYPE_ERROR</td>
+<td>0x00</td>
+<td>Error (???)</td>
+</tr>
+<tr>
+<td>TYPE_PING</td>
+<td>0x01</td>
+<td>&quot;Ping&quot; packet</td>
+</tr>
+<tr>
+<td>TYPE_SYSREBOOT</td>
+<td>0x02</td>
+<td>System reboot</td>
+</tr>
+<tr>
+<td>TYPE_SYSLOCKUP</td>
+<td>0x03</td>
+<td>System lock up</td>
+</tr>
+<tr>
+<td>TYPE_SYSLISTPASSWORDS</td>
+<td>0x04</td>
+<td>List system passwords</td>
+</tr>
+<tr>
+<td>TYPE_SYSVIEWCONSOLE</td>
+<td>0x05</td>
+<td>View console (???)</td>
+</tr>
+<tr>
+<td>TYPE_SYSINFO</td>
+<td>0x06</td>
+<td>Get system information</td>
+</tr>
+<tr>
+<td>TYPE_SYSLOGKEYS</td>
+<td>0x07</td>
+<td>Log pressed keys</td>
+</tr>
+<tr>
+<td>TYPE_SYSENDKEYLOG</td>
+<td>0x08</td>
+<td>Send keypress log</td>
+</tr>
+<tr>
+<td>TYPE_SYSDIALOGBOX</td>
+<td>0x09</td>
+<td>Show a dialog box (message box)</td>
+</tr>
+<tr>
+<td>TYPE_REGISTRYDELETEVALUE</td>
+<td>0x0a</td>
+<td>Delete an value from the registry</td>
+</tr>
+<tr>
+<td>TYPE_REDIRADD</td>
+<td>0x0b</td>
+<td>Create TCP redirection (proxy)</td>
+</tr>
+<tr>
+<td>TYPE_REDIRDEL</td>
+<td>0x0c</td>
+<td>Delete TCP redirection</td>
+</tr>
+<tr>
+<td>TYPE_REDIRLIST</td>
+<td>0x0d</td>
+<td>List TCP redirections</td>
+</tr>
+<tr>
+<td>TYPE_APPADD</td>
+<td>0x0e</td>
+<td>Start application</td>
+</tr>
+<tr>
+<td>TYPE_APPDEL</td>
+<td>0x0f</td>
+<td>End application</td>
+</tr>
+<tr>
+<td>TYPE_NETEXPORTADD</td>
+<td>0x10</td>
+<td>Export a share resource</td>
+</tr>
+<tr>
+<td>TYPE_NETEXPORTDELETE</td>
+<td>0x11</td>
+<td>Cancel share export</td>
+</tr>
+<tr>
+<td>TYPE_NETEXPORTLIST</td>
+<td>0x12</td>
+<td>Show export list</td>
+</tr>
+<tr>
+<td>TYPE_PACKETRESEND</td>
+<td>0x13</td>
+<td>Resend packet (???)</td>
+</tr>
+<tr>
+<td>TYPE_HTTPENABLE</td>
+<td>0x14</td>
+<td>Enable HTTP server</td>
+</tr>
+<tr>
+<td>TYPE_HTTPDISABLE</td>
+<td>0x15</td>
+<td>Disable HTTP server</td>
+</tr>
+<tr>
+<td>TYPE_RESOLVEHOST</td>
+<td>0x16</td>
+<td>Resolve host name</td>
+</tr>
+<tr>
+<td>TYPE_FILEFREEZE</td>
+<td>0x17</td>
+<td>Compress a file</td>
+</tr>
+<tr>
+<td>TYPE_FILEMELT</td>
+<td>0x18</td>
+<td>Uncompress a file</td>
+</tr>
+<tr>
+<td>TYPE_PLUGINEXECUTE</td>
+<td>0x19</td>
+<td>Plug-in execute</td>
+</tr>
+<tr>
+<td>TYPE_PROCESSLIST</td>
+<td>0x20</td>
+<td>Show active processes</td>
+</tr>
+<tr>
+<td>TYPE_PROCESSKILL</td>
+<td>0x21</td>
+<td>Kill a process</td>
+</tr>
+<tr>
+<td>TYPE_PROCESSSPAWN</td>
+<td>0x22</td>
+<td>Start a process</td>
+</tr>
+<tr>
+<td>TYPE_REGISTRYCREATEKEY</td>
+<td>0x23</td>
+<td>Create a key in the registry</td>
+</tr>
+<tr>
+<td>TYPE_REGISTRYSETVALUE</td>
+<td>0x24</td>
+<td>Set the value of a key in the registry</td>
+</tr>
+<tr>
+<td>TYPE_REGISTRYDELETEKEY</td>
+<td>0x25</td>
+<td>Delete a key in the registry</td>
+</tr>
+<tr>
+<td>TYPE_REGISTRYENUMKEYS</td>
+<td>0x26</td>
+<td>Enumerate registry keys</td>
+</tr>
+<tr>
+<td>TYPE_REGISTRYENUMVALS</td>
+<td>0x27</td>
+<td>Enumerate registry values</td>
+</tr>
+<tr>
+<td>TYPE_MMCAPFRAME</td>
+<td>0x28</td>
+<td>Capture a static image (.BMP) from the video capture device</td>
+</tr>
+<tr>
+<td>TYPE_MMCAPAVI</td>
+<td>0x29</td>
+<td>Capture a video stream (.AVI) from the video capture device</td>
+</tr>
+<tr>
+<td>TYPE_MMPLAYSOUND</td>
+<td>0x2a</td>
+<td>Play a sound file (.WAV)</td>
+</tr>
+<tr>
+<td>TYPE_MMLISTCAPS</td>
+<td>0x2b</td>
+<td>Show available image/video capture devices</td>
+</tr>
+<tr>
+<td>TYPE_MMCAPSCREEN</td>
+<td>0x2c</td>
+<td>Capture the screen to a file (.BMP)</td>
+</tr>
+<tr>
+<td>TYPE_TCPFILESEND</td>
+<td>0x2d</td>
+<td>Start sending a file using TCP</td>
+</tr>
+<tr>
+<td>TYPE_TCPFILERECEIVE</td>
+<td>0x2e</td>
+<td>Start receiving a file using TCP</td>
+</tr>
+<tr>
+<td>TYPE_PLUGINLIST</td>
+<td>0x2f</td>
+<td>List (running) plug-ins</td>
+</tr>
+<tr>
+<td>TYPE_PLUGINKILL</td>
+<td>0x30</td>
+<td>Kill plug-in</td>
+</tr>
+<tr>
+<td>TYPE_DIRECTORYLIST</td>
+<td>0x31</td>
+<td>List directory</td>
+</tr>
+<tr>
+<td>TYPE_FILEFIND</td>
+<td>0x34</td>
+<td>Find a file</td>
+</tr>
+<tr>
+<td>TYPE_FILEDELETE</td>
+<td>0x35</td>
+<td>Delete a file</td>
+</tr>
+<tr>
+<td>TYPE_FILEVIEW</td>
+<td>0x36</td>
+<td>View file contents</td>
+</tr>
+<tr>
+<td>TYPE_FILERENAME</td>
+<td>0x37</td>
+<td>Rename a file</td>
+</tr>
+<tr>
+<td>TYPE_FILECOPY</td>
+<td>0x38</td>
+<td>Copy a file</td>
+</tr>
+<tr>
+<td>TYPE_NETVIEW</td>
+<td>0x39</td>
+<td>List all network devices, domain names and shares</td>
+</tr>
+<tr>
+<td>TYPE_NETUSE</td>
+<td>0x3a</td>
+<td>Connect a network resource</td>
+</tr>
+<tr>
+<td>TYPE_NETDELETE</td>
+<td>0x3b</td>
+<td>End connection of a network resource</td>
+</tr>
+<tr>
+<td>TYPE_NETCONNECTIONS</td>
+<td>0x3c</td>
+<td>Show network connections</td>
+</tr>
+<tr>
+<td>TYPE_DIRECTORYMAKE</td>
+<td>0x3d</td>
+<td>Create directory (folder)</td>
+</tr>
+<tr>
+<td>TYPE_DIRECTORYDELETE</td>
+<td>0x3e</td>
+<td>Remove directory</td>
+</tr>
+<tr>
+<td>TYPE_APPLIST</td>
+<td>0x3f</td>
+<td>Show running applications</td>
+</tr>
+
+</table>
+
+<h3>Two most Significant Bits from the Packet Type Byte</h3>
+
+<table width="100%" border=1>
+<tr>
+<th>Mnemonic</th>
+<th>Mask</th>
+<th>Meaning</th>
+</tr>
+<tr>
+<td>PARTIAL_PACKET</td>
+<td>0x80</td>
+<td>This is a partial packet, i.e. expect more to come
+</tr>
+<tr>
+<td>CONTINUED_PACKET</td>
+<td>0x40</td>
+<td>This is a fragment of a fragmented packet</td>
+</tr>
+</table>
+
+<blockquote>
+<i>These two flags are usually combined in intermediate packets containing
+fragments of a bigger "packet". For
+example, a big packet fragmented in 4 smaller ones would be send with
+the following flags:</i>
+
+<blockquote>
+<pre>
+1. PARTIAL_PACKET
+2. PARTIAL_PACKET | CONTINUED_PACKET
+3. PARTIAL_PACKET | CONTINUED_PACKET
+4. CONTINUED_PACKET
+</pre>
+</blockquote>
+</blockquote>
+
+<h2>Data</h2>
+
+The data field of a BO packet comes right after the header. It's
+composed of a simple sequence of characters, ended by a character with
+ASCII code 0 (zero) -- NUL. This terminator character is mandatory --
+this mean that the data field must be at least 1 byte long (???).
+
+<p>The contents of the data field should be interpreted differently if
+the packet goes from the server to the client, or if it goes in the
+opposite way (???). In packets going from the client to the server, up
+to two string sequences can be sent in the data field, as they're
+separated by a NUL character. In packets going from the server to the
+client, there is only one string (???) with the command response.
+
+<h3>Data &quot;Fields&quot;</h3>
+
+<table width="100%" border=1>
+<tr>
+<th>Packet Type</th>
+<th>Field 1</th>
+<th>Field 2</th>
+</tr>
+
+<tr>
+<td>TYPE_ERROR</td>
+<td>(???)</td>
+<td>(???)</td>
+</tr>
+<tr>
+<td>TYPE_PING</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_SYSREBOOT</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_SYSLOCKUP</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_SYSLISTPASSWORDS</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_SYSVIEWCONSOLE</td>
+<td>(???)</td>
+<td>(???)</td>
+</tr>
+<tr>
+<td>TYPE_SYSINFO</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_SYSLOGKEYS</td>
+<td>File name</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_SYSENDKEYLOG</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_SYSDIALOGBOX</td>
+<td>Text</td>
+<td>Title</td>
+</tr>
+<tr>
+<td>TYPE_REGISTRYDELETEVALUE</td>
+<td>Value name</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_REDIRADD</td>
+<td>Port to open</td>
+<td>Address:port</td>
+</tr>
+<tr>
+<td>TYPE_REDIRDEL</td>
+<td>Identification</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_REDIRLIST</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_APPADD</td>
+<td>Executable file name</td>
+<td>TCP port</td>
+</tr>
+<tr>
+<td>TYPE_APPDEL</td>
+<td>Identification</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_NETEXPORTADD</td>
+<td>Share</td>
+<td>Directory, password, note</td>
+</tr>
+<tr>
+<td>TYPE_NETEXPORTDELETE</td>
+<td>Share</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_NETEXPORTLIST</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_PACKETRESEND</td>
+<td>(???)</td>
+<td>(???)</td>
+</tr>
+<tr>
+<td>TYPE_HTTPENABLE</td>
+<td>Port</td>
+<td>Server's root directory</td>
+</tr>
+<tr>
+<td>TYPE_HTTPDISABLE</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_RESOLVEHOST</td>
+<td>Host name</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_FILEFREEZE</td>
+<td>Input file</td>
+<td>Output file</td>
+</tr>
+<tr>
+<td>TYPE_FILEMELT</td>
+<td>Input file</td>
+<td>Output file</td>
+</tr>
+<tr>
+<td>TYPE_PLUGINEXECUTE</td>
+<td>DLL:Function</td>
+<td>Parameters</td>
+</tr>
+<tr>
+<td>TYPE_PROCESSLIST</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_PROCESSKILL</td>
+<td>Identification</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_PROCESSSPAWN</td>
+<td>Executable file name and arguments</td>
+<td>Visible<a href="boproto.html#TYPE_PROCESSSPAWN_NOTE"><sup>1</sup></a></td>
+</tr>
+<tr>
+<td>TYPE_REGISTRYCREATEKEY</td>
+<td>Key</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_REGISTRYSETVALUE</td>
+<td>Value name</td>
+<td>Type,value<a href="boproto.html#TYPE_REGISTRYSETVALUE_NOTE"><sup>2</sup></a></td>
+</tr>
+<tr>
+<td>TYPE_REGISTRYDELETEKEY</td>
+<td>Key</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_REGISTRYENUMKEYS</td>
+<td>Key</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_REGISTRYENUMVALS</td>
+<td>Key</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_MMCAPFRAME</td>
+<td>.BMP file</td>
+<td>Device,width,height,bits</td>
+</tr>
+<tr>
+<td>TYPE_MMCAPAVI</td>
+<td>.AVI file</td>
+<td>Device,seconds,width,height,bits</td>
+</tr>
+<tr>
+<td>TYPE_MMPLAYSOUND</td>
+<td>.WAV file</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_MMLISTCAPS</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_MMCAPSCREEN</td>
+<td>.BMP file</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_TCPFILESEND</td>
+<td>File name</td>
+<td>Address:port</td>
+</tr>
+<tr>
+<td>TYPE_TCPFILERECEIVE</td>
+<td>File name</td>
+<td>Address:port</td>
+</tr>
+<tr>
+<td>TYPE_PLUGINLIST</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_PLUGINKILL</td>
+<td>Identification</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_DIRECTORYLIST</td>
+<td>Directory</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_FILEFIND</td>
+<td>Name (wildcards allowed)</td>
+<td>Root</td>
+</tr>
+<tr>
+<td>TYPE_FILEDELETE</td>
+<td>File name</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_FILEVIEW</td>
+<td>File name</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_FILERENAME</td>
+<td>Old file (???)</td>
+<td>New file (???)</td>
+</tr>
+<tr>
+<td>TYPE_FILECOPY</td>
+<td>Source file</td>
+<td>Destination file</td>
+</tr>
+<tr>
+<td>TYPE_NETVIEW</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_NETUSE</td>
+<td>Network resource</td>
+<td>Password</td>
+</tr>
+<tr>
+<td>TYPE_NETDELETE</td>
+<td>Resource</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_NETCONNECTIONS</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_DIRECTORYMAKE</td>
+<td>Name of the new directory</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_DIRECTORYDELETE</td>
+<td>Directory name</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TYPE_APPLIST</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+
+</table>
+
+<blockquote>
+
+<a name="TYPE_PROCESSSPAWN_NOTE"><sup>1</sup></a> If the second
+parameter is present, the application is made visible. Otherwise, it
+is run hidden.
+
+<p><a name="TYPE_REGISTRYSETVALUE_NOTE"><sup>2</sup></a> The type can
+be &quot;B&quot; for binary, &quot;D&quot; for a double word (DWORD)
+and &quot;S&quot; for a string of character. In binary fields, the
+value is a string containing a sequence of two hexadecimal digits
+(e.g. &quot;<code>ab 11 5f</code>&quot;); in double word fields, the
+value should be specified as a string containing the decimal representation of the DWORD; in string fields, the value is the string.
+
+</blockquote>
+
+<h2>CRC</h2>
+
+After the data field, there is a 1-byte field containing the CRC of the
+packet (???). The BO server seems to silently ignore the value of this
+byte.
+
+<h2>Cryptography</h2>
+
+All BO packets are encrypted. The entire BO packet (including the
+header) is encrypted. The cryptographic scheme used is simple, and
+depends on a secret key (the password) which must be known by the two
+parties. The password is used only to encrypt packets; the password
+never travels over the network.
+
+<p>The encryption is done applying a XOR (exclusive or) operation
+between each byte of the packet and the sequential value returned by a
+random number generator. This generator is initialized with a value
+which depends on the secret password being used in the
+communication. This way, having the same password, both random number
+generator (the server's and the client's one) will be initialized with
+the same seed, and they will return the same sequence of
+&quot;random&quot; numbers which will be used to encrypt/decrypt the
+packet.
+
+<p> This cryptographic scheme isn't strong. As all of the packet
+contents is encrypted, and they always contain a fixed sequence of
+characters (MAGIC) in the header, from inspection of a single encrypted
+packet it may be possible to obtain the initial sequence of random
+numbers generated and use
+a brute force attack to discover the random number
+generator seed. This is very feasible because the range of possible values is somewhat small. The
+methods used to decrypt and encrypt a BO packet without knowing the
+password being used are out of the scope of this document, and are
+left as an exercise to the reader.
+
+<h3>The Random Number Generator</h3>
+
+The BO protocol uses the following random number generator function:
+
+<blockquote>
+<code>BORAND(x) = (x * 214013) + 2531011</code>
+</blockquote>
+
+<p>Where &quot;<code>A * B</code>&quot; denotes the multiplication of
+A by B, and &quot;<code>+</code>&quot; the usual sum operation.
+
+<p>The value of the initial parameter (the seed) is derived from
+the communication password (see below). The next value is always the
+result of the value returned by the last run. For example, a sequence
+of &quot;random&quot; numbers <code>X<sub>1</sub>, X<sub>2</sub>, ...,
+X<sub>n</sub></code> can be obtained in the following way:
+
+<blockquote>
+<pre>
+X<sub>1</sub> = BORAND(IV)
+X<sub>2</sub> = BORAND(X<sub>1</sub>)
+X<sub>3</sub> = BORAND(X<sub>2</sub>)
+    ...
+X<sub>n</sub> = BORAND(X<sub>n - 1</sub>)
+</pre>
+</blockquote>
+
+<p>
+Where <code>IV</code> is the seed and <code>X<sub>n</sub></code> is
+the <i>n<sup>th</sup></i> random number.
+
+<h3>The Seed</h3>
+
+The seed to be used on the BO random number generator is generated
+using the communication password. If no password is being used, the
+special value of 31337 is used as the seed. Otherwise, the following
+algorithm gives the seed from a password <code>S</code>:
+
+<blockquote>
+<pre>
+X = 0
+Y = length (number of characters) of S
+Z = 0
+WHILE X &lt; Y
+	Z = Z + S[X]
+	X = X + 1
+END
+
+X = 0
+WHILE X &lt; Y
+	IF X is odd
+		Z = Z - (S[X] * (Y - X + 1))
+	ELSE
+		Z = Z + (S[X] * (Y - X + 1))
+	END
+	Z = Z % 0x7fffffff
+	X = X + 1
+END
+Z = (Z * Y) % 0x7fffffff
+IV = Z
+</pre>
+</blockquote>
+   
+Where &quot;<code>S[n]</code>&quot; is the <i>n<sup>th</sup></i>
+character of the password, &quot;<code>A % B</code>&quot; the
+remainder of the division of A by B, and &quot;<code>IV</code>&quot;
+the seed we're looking for.
+
+<p>Note: the random number generator is reinitialized with the a new
+seed every time a packet is sent.
+
+<p>Note: the variables <code>X</code>, <code>Y</code> and
+<code>Z</code> are all 32 bit integer. This mean that the most
+significant bits above the 32<sup>nd</sup> one should be ignored when
+an overflow occurs.
+
+<h2>Encrypting/decrypting</h2>
+
+The following algorithm is a demonstration of how a BO packet can be
+encrypted or decrypted:
+
+<blockquote>
+<pre>
+L = length of the BO packet
+X = 0
+Z = IV
+WHILE X &lt; L
+	Z = BORAND(Z)
+ 	P[X] = P[X] ^ ((Z &gt;&gt; 16) &amp; 0xff)
+	X = X + 1
+END
+</pre>
+</blockquote>
+
+Where &quot;<code>P[n]</code>&quot; denotes the <i>n<sup>th</sup></i>
+byte of the packet, &quot;<code>A ^ B</code>&quot; the bitwise
+<em>XOR</em> operation between A and B, &quot;<code>A &gt;&gt;
+B</code>&quot; the 32 bit shift of A by B bits to the right, and
+&quot;<code>A &amp; B</code>&quot; the bitwise AND operation between A
+and B.
+
+
+<h2>TCP file transfer</h2>
+
+The transfer of files using TCP (operations TYPE_TCPFILESEND and
+TYPE_TCPFILERECIVED) is done with the server opening the port specified
+in the parameter of the command.
+
+<p>When the client sends a TYPE_TCPFILESEND packet, the server opens
+the file specified and start listening for a TCP connection on the
+specified TCP port. Then the client connects to that port and start
+sending the file.
+
+<p>When the client wishes to receive a file, it sends a
+TYPE_TCPFILERECEIVE packet specifying the desired file name and
+the TCP port. The server will then open the specified port and start
+transferring the file as soon as someone (probably the client)
+connects to it.
+
+<p>The TCP stream is not encrypted.
+
+<blockquote>
+<i>All this TCP file send/receive stuff is &quot;(???)&quot;.</i>
+</blockquote>
+
+<h2>References</h2>
+
+<ul>
+<li> <a href="http://www.cultdeadcow.com/tools/">BO client for Unix</a></li>
+<li> <a href="http://www.iss.net/xforce/alerts/advise5.html">ISS
+Security Alert Advisory (X-FORCE) -- &quot;Cult of the Dead Cow Back
+Orifice Backdoor&quot;</a></li>
+</ul>
+
+
+<h2>Copyright/disclaimer</h2>
+
+Copyright &copy; 1998-2001 by Fl&aacute;vio Veloso. All rights reserved.
+
+<p>This document and its contents may be copied, used entirely or as
+basis for derived work, either entirely or in parts, freely without
+the need of the author authorization, provided that he must be
+credited for this work. Also, any copies of this document can be
+changed, translated, fixed, etc., without the need of author
+authorization provided that the changes are explicitly noted in the
+changed copy (which does <b>not</b> remove the need of author
+credits).
+
+<p>You do assume all risk and responsibility arising from the use of
+any information contained on this document. In no moment the author
+warrants that this document is entirely correct, and he cannot be made
+responsible if it isn't. If you find any mistake in this document, or
+have some information you think will contribute to make it more
+precise, please mail me at <a
+href="mailto:flaviovs@magnux.com">flaviovs@magnux.com</a>.
+Any information which may help me to get rid of those
+&quot;(???)&quot; are welcome!
+
+<h2>Thanks</h2>
+
+Thanks to the following people who helped me to fix or improve this document:
+<blockquote>
+Markus &lt;markus@?????????.nl&gt;<br>
+J.M. Col&agrave;s &lt;jmcolas@mx3.redestb.es&gt;
+</blockquote>
+
+<p align="center">-x-x-
+
+<p><small>Last updated on November 22, 2001</small>
+
+</body>
+</html>

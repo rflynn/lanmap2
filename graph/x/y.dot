@@ -1,0 +1,40 @@
+digraph {
+  node [fontsize=8,penwidth=1,color="#EEEEEE",shape=record,overlap=vpsc,fontname="Verdana"];
+  edge [color="#777777",arrowsize=0.5,fontname="Verdana",fontsize=4];
+  "Outside" [label=<
+<TABLE BORDER="0" CELLSPACING="1" CELLPADDING="0">
+  <TR><TD><IMG SRC="../../img/icons-tango/network-cloud.png"/></TD></TR><TR>
+  <TD>Outside<BR/></TD></TR></TABLE>>];
+  "00:03:47:92:d4:f3" [label=<
+  <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="0">
+    <TR><TD><IMG SRC="../../img/os/Linux2.6-32.png"/></TD></TR><TR>
+    <TD>00:03:47:92:d4:f3<BR/>OS=Linux2.6,SunOS4.1.x<BR/>192.168.1.200<BR/></TD></TR></TABLE>>];
+  "00:11:f5:0c:c2:e9" [label=<
+  <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="0">
+    <TR><TD><IMG SRC="../../img/os/WinNT5-32.png"/></TD></TR><TR>
+    <TD>00:11:f5:0c:c2:e9<BR/>OS=WinNT5,WinNT5.1,WinNT5.2<BR/>192.168.1.103<BR/>LD47SM361<BR/></TD></TR></TABLE>>];
+  "00:1b:63:a4:95:bc" [label=<
+  <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="0">
+    <TR><TD><IMG SRC="../../img/dev/iMac-7-32.png"/></TD></TR><TR>
+    <TD>00:1b:63:a4:95:bc<BR/>Dev=iMac-7<BR/>Role=Router<BR/>OS=MacOSX<BR/>169.254.1.12<BR/>169.254.80.232<BR/>192.168.1.101<BR/>FE80::21B:63FF:FEA4:95BC<BR/>julia-lins-imac-2<BR/></TD></TR></TABLE>>];
+  "00:21:06:dc:5e:29" [label=<
+  <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="0">
+    <TR><TD><IMG SRC="../../img/dev/BlackBerry-32.png"/></TD></TR><TR>
+    <TD>00:21:06:dc:5e:29<BR/>Dev=BlackBerry<BR/>OS=WinNT5.1<BR/>192.168.1.102<BR/>BLACKBERRY-640A<BR/></TD></TR></TABLE>>];
+  "00:21:06:e2:fb:be" [label=<
+  <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="0">
+    <TR><TD><IMG SRC="../../img/dev/BlackBerry-32.png"/></TD></TR><TR>
+    <TD>00:21:06:e2:fb:be<BR/>Dev=BlackBerry<BR/>192.168.1.100<BR/>BLACKBERRY-FD81<BR/></TD></TR></TABLE>>];
+  "00:21:29:70:ea:46" [label=<
+  <TABLE BORDER="0" CELLSPACING="1" CELLPADDING="0">
+    <TR><TD><IMG SRC="../../img/dev/Router-WRT54G-32.png"/></TD></TR><TR>
+    <TD>00:21:29:70:ea:46<BR/>Dev=Router-WRT54G<BR/>Role=Gateway,Router<BR/>OS=Linux2.4.x,Linux2.6<BR/>192.168.1.1<BR/></TD></TR></TABLE>>];
+"00:03:47:92:d4:f3" -> "00:02:fd:ac:48:c0" [penwidth=2.0,color="#444444"]
+"00:03:47:92:d4:f3" -> "00:1b:63:a4:95:bc" [penwidth=0.5,color="#6f6f6f"]
+"00:03:47:92:d4:f3" -> "00:21:29:70:ea:46" [penwidth=4.7,color="#0a0000"]
+"00:03:47:92:d4:f3" -> "192.168.1.2" [penwidth=1.9,color="#464646"]
+"00:1b:63:a4:95:bc" -> "00:03:47:92:d4:f3" [penwidth=0.6,color="#6b6b6b"]
+"00:1b:63:a4:95:bc" -> "Outside" [];
+"00:21:29:70:ea:46" -> "00:03:47:92:d4:f3" [penwidth=5.6,color="#250000"]
+"00:21:29:70:ea:46" -> "Outside" [];
+}

@@ -1,0 +1,17 @@
+/* BODY */
+#utilbar, #rating, #sidebar { display:none; }
+#sidebar { width:0; }
+#article { float:left; padding:40px 0 0 0; background:url(http://images.apple.com/support/iknow/images/blackapple.gif) no-repeat; }
+#article h1 { background:none; }
+#article.GLOSSARY							h1 { padding-left:20px; background:none; }
+#article.TROUBLESHOOTING-ARTICLES			h1 { padding-left:20px; background:none; }
+#article.DOWNLOADS							h1 { padding-left:20px; background:none; }
+#article.HOWTO-ARTICLES						h1 { padding-left:20px; background:none; }
+#article.SPECIFICATIONS						h1 { padding-left:20px; background:none; }
+#article.BULLET-NEWS						h1 { padding-left:20px; background:none; }
+#article.CAPTURE-REQUESTS					h1 { padding-left:20px; background:none; }
+#article.HOT-DISCUSSIONS					h1 { padding-left:20px; background:none; }
+#article.EMERGING-ISSUES					h1 { padding-left:20px; background:none; }
+#article.COLLABORATIVE-PROCEDURES			h1 { padding-left:20px; background:none; }
+#article.APPLE_DIRECT_SSO_PROCEDURES		h1 { padding-left:20px; background:none; }
+#article.CHANNEL_SALES_SUPPORT_PROCESSES	h1 { padding-left:20px; background:none; }

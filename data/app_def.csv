@@ -1,0 +1,92 @@
+# ex: set ff=dos:
+# $Id$
+#
+# A hierarchy of server types from the very borad to specific
+# application versions.
+#
+#	'hints' target one of these entries, at any level; so for example:
+#		traffic originating from TCP port 80 hints at 'httpd'
+#		http server header containing 'apache' hints at 'apache'
+#	this allows for hints of varying scope which gives us power;
+#	'apache' is a member of webd -> httpd -> apache, so it also
+#	indirectly hints at 'httpd', so we get a strong 'httpd' hint
+#	from both the examples above.
+# 
+# This allows us to aggregate hints of varying scope
+#
+# Fields:
+# 	Id - unique token by which we are referenced
+# 	Parent - id of token which we are under; builds hierarchy
+# 	Name - friendly human-readable description
+# 	Comment - reference or explanation
+#
+# References:
+# 	#1 
+#
+
+# level 0:
+server,server,Server,any app that provides services
+client,client,Client,any app that consumes services
+servent,servent,Servent,apps that produce and consume
+
+# level 1 server: very general classifications of servers
+appd,server,Application server,
+commd,server,Communication server,
+maild,server,Mail server,
+named,server,DNS server,
+webd,server,Web server,
+dbserv,server,Database server,
+printd,server,Print server,
+filed,server,File server,
+gamed,server,Game server,
+dird,server,Directory server,
+p2p,servent,Peer-to-peer app,
+
+# level 2: level 1 protocols
+httpd,webd,HTTP server,
+webfeed,webd,Web Feed server
+rssd,webd,RSS server,
+ldapd,dird,LDAP server,
+gnutella,p2p,Gnutella servent,
+bittorrent,p2p,BitTorrent servent,
+
+# level 3 server: applications
+apache,httpd,Apache Webserver,
+iis,httpd,Microsoft IIS,
+nfsd,filed,NFS,
+djbdns,named,DJBDNS,
+
+# level 4 server: application major versions
+apache1.3.x,apache,Apache Webserver 1.3.x,
+apache2.x,apache,Apache Webserver 2.x,
+iis3x,iis,
+iis4x,iis,
+
+#### client software
+
+# level 2
+webbrowser,client,Web Browser,
+
+# level 3 web browser types
+ie,webbrowser,Internet Explorer,
+netscape,webbrowser,Netscape Navigator,
+webtv,webbrowser,WebTV,
+firefox,netscape,Firefox,
+
+1e1,ie,Internet Explorer 1.x,
+ie2,ie1,Internet Explorer 2.x,
+ie3,ie2,Internet Explorer 3.x,
+ie4,ie3,Internet Explorer 4.x,
+ie5,ie4,Internet Explorer 5.x,
+ie6,ie5,Internet Explorer 6.x,
+ie7,ie6,Internet Explorer 7.x,
+ie8,ie7,Internet Explorer 8.x,
+
+firefox1,firefox,Firefox 1.x,
+firefox2,firefox1,Firefox 2.x,
+firefox3,firefox2,Firefox 3.x,
+
+# common Firefox extensions; please be reasonable and keep to a minimum
+greasemonkey,firefox,GreaseMonkey Firefox plugin,
+
+

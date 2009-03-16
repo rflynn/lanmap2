@@ -1,0 +1,2340 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+        "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<HTML>
+
+<HEAD><TITLE>DNS SRV (RFC 2782) Service Types</TITLE></HEAD>
+
+<BODY>
+<!-- NOTE: Escaped comment markers within!
+<div style="float: right; margin: 0px 10px 10px 20px;">
+<script type="text/javascript"><!\-\-
+google_ad_client = "pub-2342864080724748";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "text_image";
+google_ad_channel ="";
+google_color_border = "336699";
+//\-\-></script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+-->
+
+<H1 align="center">DNS SRV (RFC 2782) Service Types</H1>
+
+<P>To add your protocol to this list, send email to:
+<img src="txt.png" alt="txt.png" width="176" height="14" vspace="3" align="top"> giving:</P>
+
+<OL>
+<LI>Short name of protocol, <b>fourteen characters maximum</b>, conforming to normal DNS host name rules:
+Only lower-case letters, digits, and hyphens; must begin and end with lower-case letter or digit.</LI>
+<LI>Longer, descriptive name of protocol.</LI>
+<LI>Name and email address of responsible person.</LI>
+<LI>URL giving description of protocol. (Or statement that the protocol is proprietary.)</LI>
+<LI>Primary Transport Protocol. ("_udp" or "_tcp", only needed for historical reasons, to determine correct SRV service type)</LI>
+<LI>List of defined TXT record keys
+(see <a href="http://files.dns-sd.org/draft-cheshire-dnsext-dns-sd.txt">draft-cheshire-dnsext-dns-sd.txt</a>, Section 6)
+for this service <i>or</i> URL reference to document describing defined keys.</LI>
+</OL>
+
+<P>The primary historical list of DNS SRV (<a href="http://www.ietf.org/rfc/rfc2782.txt">RFC 2782</a>)
+service type names for existing protocols with well-known port numbers is given in the
+<A HREF="http://www.iana.org/assignments/port-numbers">IANA list of assigned port names and numbers</A>.
+However, that list does not include any information about the defined DNS-SD TXT keys,
+and that list includes only protocols that have fixed well-known port numbers, which is unfortunate,
+because one of the big benefits of DNS SRV is that it obviates the need for fixed port numbers in most cases.</P>
+
+<P>For applications that need a fixed well-known port number, you should list your protocol in both places.
+When you fill out the IANA <a href="http://www.iana.org/cgi-bin/usr-port-number.pl">"Application for User (Registered)
+Port Number"</a> form to get a registered port number for your application protocol, the last section of that form is
+the space for the fourteen-character service protocol name, used by SRV records and DNS-SD.</P>
+
+<P>For applications that do not need a fixed well-known port number, you should list your protocol only on this DNS SRV list.
+Before you send your email, check the <A HREF="http://www.iana.org/assignments/port-numbers">IANA list of assigned port names and numbers</A>
+to make sure that your chosen protocol name is not already in use for a different protocol.</P>
+
+<P>As soon as the correct IANA procedures are in place and formalized, the two lists will be re-unified and managed by IANA.</P>
+
+<P>Unless explicitly specified otherwise, all protocols are assumed to be "_protoname._tcp", not "_protoname._udp".
+Protocols that can run over either UDP or TCP (e.g. NFS) are usually advertised using whichever transport is
+considered the 'normal' or 'primary' mode of operation (and clients should attempt communication with the
+service using either or both transports, as appropriate for the client). Protocols that run <I>only</I>
+over UDP should of course advertise as "_protoname._udp".</P>
+
+
+<PRE>
+
+Service Type    Description
+------------    -----------
+
+<b>1password</b>       1Password Password Manager data sharing and synchronization protocol
+                Roustem Karimov &lt;roustem&nbsp;at&nbsp;agilewebsolutions.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>abi-instrument</b>  Applied Biosystems Universal Instrument Framework
+                Tor Slettnes &lt;slettntn&nbsp;at&nbsp;appliedbiosystems.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys:
+                  product=&lt;short product name/model&gt;
+                  description=&lt;readable name&gt;
+                  version=&lt;firmware/instrument controller version&gt;
+
+<b>accessdata-f2d</b>  FTK2 Database Discovery Service
+                Rick Russell &lt;rrussell&nbsp;at&nbsp;accessdata.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: Proprietary
+
+<b>accessdata-f2w</b>  FTK2 Backend Processing Agent Service
+                Rick Russell &lt;rrussell&nbsp;at&nbsp;accessdata.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: Proprietary
+
+<b>accessone</b>       Strix Systems 5S/AccessOne protocol
+                Scott Herscher &lt;scott&nbsp;at&nbsp;strixsystems.com&gt;
+                Defined TXT keys: None
+
+<b>accountedge</b>     MYOB AccountEdge
+                Defined TXT keys: None
+
+<b>acrobatsrv</b>      Adobe Acrobat
+                Defined TXT keys: type, path, FeedType
+
+<b>actionitems</b>     ActionItems
+                Sailalong Software &lt;CustomerService&nbsp;at&nbsp;Sailalong.com&gt;
+                Defined TXT keys: None
+
+<b>activestorage</b>   Active Storage Device Management Protocol
+                Skip Levens &lt;skip&nbsp;at&nbsp;activestoragelabs.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>addressbook</b>     Address-O-Matic
+                Massimiliano Ribuoli and Marco Stefani &lt;support&nbsp;at&nbsp;address-o-matic.com&gt;
+                Defined TXT keys: None
+
+<b>adobe-vc</b>        Adobe Version Cue
+                Defined TXT keys: txtvers=1, name, version, build
+
+<b>adisk</b>           Automatic Disk Discovery
+                Bob Bradley &lt;bradley&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: sys, dkX
+
+<b>adpro-setup</b>     ADPRO Security Device Setup
+                Patrick Noffke &lt;patrick.noffke&nbsp;at&nbsp;adpro.com.au&gt;
+                Defined TXT keys: txtvers, type
+
+<b>aecoretech</b>      Apple Application Engineering Services
+                Hani Abdelazim &lt;hani&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: None
+
+<b>aeroflex</b>        Aeroflex instrumentation and software
+                David Hagood &lt;david.hagood&nbsp;at&nbsp;aeroflex.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys:
+                  orb_server=&lt;port #&gt; (optional) CORBA ORB server used for resource discovery
+                  product_id=&lt;string&gt; (optional) ID of licensed product
+                  txtvers="*IDN?=&lt;identifier&gt;" (optional) as per LXI specification (for not yet LXI compatible instruments)
+
+<b>afpovertcp</b>      Apple File Sharing
+                Leland Wallace &lt;randall&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: u=&lt;username&gt; p=&lt;password&gt; path=&lt;path&gt;
+
+<b>airport</b>         AirPort Base Station
+                Bob Bradley &lt;bradley&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: waMA;
+
+<b>airprojector</b>    AirProjector
+                Yoshinori Nakayama &lt;yoshinori_nakayama&nbsp;at&nbsp;komatsu-trilink.jp&gt;
+                Protocol description: <a href="http://www.komatsu-trilink.com">http://www.komatsu-trilink.com</a>
+                Defined TXT keys: 
+                  mac=&lt;MAC address&gt;
+                  ip=&lt;IP address&gt;
+                  note=&lt;Location&gt;
+                  use=&lt;Status&gt;
+                  mainprog=&lt;Main program version&gt;
+                  bootprog=&lt;Boot program version&gt;
+
+<b>animolmd</b>        Animo License Manager
+                Phil Barrett &lt;support&nbsp;at&nbsp;cambridgeanimation.com&gt;
+                Defined TXT keys: None
+
+<b>animobserver</b>    Animo Batch Server
+                Phil Barrett &lt;support&nbsp;at&nbsp;cambridgeanimation.com&gt;
+                Defined TXT keys: None
+
+<b>appelezvous</b>     Appelezvous
+                Marco Piovanelli &lt;support&nbsp;at&nbsp;ovolab.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>apple-ausend</b>    Apple Audio Units
+                James McCartney &lt;jmccartney&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: None
+
+<b>apple-midi</b>      Apple MIDI
+                Doug Wyatt &lt;dwyatt&nbsp;at&nbsp;apple.com&gt;
+                Primary Transport Protocol: UDP
+                Defined TXT keys: None
+
+<b>apple-sasl</b>      Apple Password Server
+                David M. O'Rourke &lt;daveo&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: None
+
+<b>applerdbg</b>       Apple Remote Debug Services (OpenGL Profiler)
+                Dave Springer &lt;daves&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: None
+
+<b>appletv</b>         Apple TV
+                Amandeep Jawa &lt;daap&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: txtvers, PrVs, OSsi, MniT
+
+<b>appletv-itunes</b>  Apple TV discovery of iTunes
+                Amandeep Jawa &lt;daap&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: txtvers
+
+<b>appletv-pair</b>    Apple TV Pairing
+                Amandeep Jawa &lt;daap&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: txtvers
+
+<b>aquamon</b>         AquaMon
+                Defined TXT keys: None
+
+<b>asr</b>             Apple Software Restore
+                Shantonu Sen &lt;ssen&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: image=&lt;HTTP URL of disk image&gt;
+
+<b>astnotify</b>       Asterisk Caller-ID Notification Service
+                Sven Slezak &lt;sunny&nbsp;at&nbsp;mezzo.net&gt;
+                Protocol description: <a href="http://mezzo.net/asterisk/app_notify.html">http://mezzo.net/asterisk/app_notify.html</a>
+                Primary Transport Protocol: UDP
+                Defined TXT keys: prefix=&lt;country code prefix&gt; (numeric, additionally '+')
+
+<b>astralite</b>       Astralite
+                Tongji University &lt;neo.gui&nbsp;at&nbsp;gmail.com&gt;
+                Defined TXT keys: None
+
+<b>async</b>           address-o-sync
+                Markus Brand &lt;address-o-sync&nbsp;at&nbsp;slamslash.com&gt;
+                Defined TXT keys: None
+
+<b>axis-video</b>      Axis Video Cameras
+                Kristina Sten &lt;kristina.sten&nbsp;at&nbsp;axis.com&gt;
+                Defined TXT keys: None
+
+<b>auth</b>            Authentication Service
+                Mike St. Johns &lt;stjohns&nbsp;at&nbsp;arpa.mil&gt;
+                Defined TXT keys: None
+
+<b>b3d-convince</b>    3M Unitek Digital Orthodontic System
+                Rajiv Aaron Manglani &lt;rajivmanglani&nbsp;at&nbsp;mmm.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: txtvers=1, protovers=&lt;api version&gt;, guid=&lt;32 hex digits&gt;
+
+<b>bdsk</b>            BibDesk Sharing
+                Adam Maxwell &lt;amaxwell&nbsp;at&nbsp;mac.com&gt;
+                Protocol description: <a href="http://sourceforge.net/projects/bibdesk">http://sourceforge.net/projects/bibdesk</a>
+                Defined TXT keys: txtvers, authenticate
+
+<b>beatpack</b>        BeatPack Synchronization Server for BeatMaker
+                Mathieu Garcia &lt;mathieu.garcia&nbsp;at&nbsp;intua.net&gt;
+                Protocol description: Proprietary (XML files served via HTTP)
+                Defined TXT keys: None
+
+<b>beep</b>            Xgrid Technology Preview
+                David Kramer &lt;dkramer&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: None
+
+<b>bfagent</b>         BuildForge Agent
+                Joe Senner &lt;support&nbsp;at&nbsp;buildforge.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>bigbangchess</b>    Big Bang Chess
+                Freeverse Software &lt;info&nbsp;at&nbsp;freeverse.com&gt;
+                Defined TXT keys: None
+
+<b>bigbangmancala</b>  Big Bang Mancala
+                Freeverse Software &lt;info&nbsp;at&nbsp;freeverse.com&gt;
+                Defined TXT keys: None
+
+<b>bittorrent</b>      BitTorrent Zeroconf Peer Discovery Protocol
+                Robin Perkins &lt;robin.perkins&nbsp;at&nbsp;internode.on.net&gt;
+                Protocol description: <a href="http://www.bittorrent.org/beps/bep_0026.html">http://www.bittorrent.org/beps/bep_0026.html</a>
+                Defined TXT keys: None
+
+<b>blackbook</b>       Little Black Book Information Exchange Protocol
+                David HM Spector &lt;spector&nbsp;at&nbsp;zeitgeist.com&gt; and Paul M Franceus &lt;paul&nbsp;at&nbsp;blueiris.us&gt;
+                Protocol description: Proprietary
+                Defined TXT keys:
+                  product=&lt;application name&gt;
+                  description=&lt;application description name&gt;
+                  version=&lt;application version/build number&gt;
+                  protovers=&lt;version of protocol in use by by this application&gt;
+
+<b>bluevertise</b>     BlueVertise Network Protocol (BNP)
+                Fabrizio Guglielmino &lt;guglielmino&nbsp;at&nbsp;infitsrl.com&gt;
+                Protocol description: Proprietary
+                Primary Transport Protocol: UDP
+                Defined TXT keys: role=&lt;master or slave&gt;
+
+<b>bookworm</b>        Bookworm Client Discovery
+                Arne Dirks &lt;ad&nbsp;at&nbsp;bnc.net&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: flavors
+
+<b>bootps</b>          Bootstrap Protocol Server
+                Bill Croft &lt;Croft&nbsp;at&nbsp;SUMEX-AIM.STANFORD.EDU&gt;
+                Protocol description: <a href="http://www.rfc-editor.org/rfc/rfc951.txt">RFC 951</a>
+                Primary Transport Protocol: UDP
+                Defined TXT keys: None
+
+<b>boundaryscan</b>    Proprietary
+                Uwe Ziegler, Goepel electronic GmbH, &lt;u.ziegler@goepel.com&gt;
+                Protocol description: Proprietary
+                Primary Transport Protocol: UDP
+                Defined TXT keys: blocked=&lt;name of the device&gt;, version=&lt;firmware/instrument controller version&gt;
+
+<b>bousg</b>           Bag Of Unusual Strategy Games
+                Defined TXT keys: None
+
+<b>bri</b>             RFID Reader Basic Reader Interface
+                Thaddeus Ternes &lt;thaddeus.ternes&nbsp;at&nbsp;intermec.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>bsqdea</b>          Backup Simplicity
+                Qdea &lt;support&nbsp;at&nbsp;qdea.com&gt;
+                Defined TXT keys: None
+
+<b>busycal</b>         BusySync Calendar Synchronization Protocol
+                David Riggle &lt;dave&nbsp;at&nbsp;busymac.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: Proprietary
+
+<b>caltalk</b>         CalTalk
+                Joe Groff &lt;arcata&nbsp;at&nbsp;gmail.com&gt;
+                Defined TXT keys: None
+
+<b>cardsend</b>        Card Send Protocol
+                Jeff Grossman &lt;jagrossm&nbsp;at&nbsp;andrew.cmu.edu&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: Proprietary
+
+<b>cheat</b>           The Cheat
+                Chaz McGarvey &lt;chaz&nbsp;at&nbsp;brokenzipper.com&gt;
+                Defined TXT keys: None
+
+<b>chess</b>           Project Gridlock
+                Defined TXT keys: None
+
+<b>chfts</b>           Fluid Theme Server
+                Defined TXT keys: None
+
+<b>chili</b>           The CHILI Radiology System
+                Andre Schroter &lt;A.Schroeter&nbsp;at&nbsp;CHILI-Radiology.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>clipboard</b>       Clipboard Sharing
+                Defined TXT keys: None
+
+<b>clique</b>          Clique Link-Local Multicast Chat Room
+                Telepathy project &lt;telepathy&nbsp;at&nbsp;lists.freedesktop.org&gt;
+                Protocol description: <a href="http://telepathy.freedesktop.org/xmpp/clique">http://telepathy.freedesktop.org/xmpp/clique</a>
+                Primary Transport Protocol: UDP
+                Defined TXT keys: see <a href="http://telepathy.freedesktop.org/xmpp/clique">http://telepathy.freedesktop.org/xmpp/clique</a>
+
+<b>clscts</b>          Oracle CLS Cluster Topology Service
+                David Brower &lt;david.brower&nbsp;at&nbsp;oracle.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>collection</b>      Published Collection Object
+                Brady Anderson &lt;banderso&nbsp;at&nbsp;novell.com&gt;
+                Defined TXT keys: version=?
+
+<b>contactserver</b>   Now Contact
+                Defined TXT keys: None
+
+<b>corroboree</b>      Corroboree Server
+                Heath Raftery &lt;heath&nbsp;at&nbsp;hrsoftworks.net&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+                
+<b>cpnotebook2</b>     NoteBook 2
+                Circus Ponies Support &lt;support&nbsp;at&nbsp;circusponies.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>cuseeme</b>         Conferencing Protocol
+                Marc Manthey &lt;marc&nbsp;at&nbsp;let.de&gt;
+                Protocol description: <a href="http://lettv.de/Cuseemedoku/docindex.htm">http://lettv.de/Cuseemedoku/docindex.htm</a>
+                Primary Transport Protocol: UDP
+                Defined TXT keys: None
+
+<b>cvspserver</b>      CVS PServer
+                Jim Kingdon &lt;kingdon&nbsp;at&nbsp;harvey.cyclic.com&gt;
+                Defined TXT keys: None
+
+<b>cw-codetap</b>      CodeWarrior HTI Xscale PowerTAP
+                Ted Woodward &lt;ted&nbsp;at&nbsp;metrowerks.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>cw-dpitap</b>       CodeWarrior HTI DPI PowerTAP
+                Ted Woodward &lt;ted&nbsp;at&nbsp;metrowerks.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>cw-oncetap</b>      CodeWarrior HTI OnCE PowerTAP
+                Ted Woodward &lt;ted&nbsp;at&nbsp;metrowerks.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>cw-powertap</b>     CodeWarrior HTI COP PowerTAP
+                Ted Woodward &lt;ted&nbsp;at&nbsp;metrowerks.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>cytv</b>            CyTV
+                Network streaming for Elgato EyeTV
+                Andreas Junghans &lt;cytv&nbsp;at&nbsp;lucid-cake.net&gt;
+                Defined TXT keys: None
+
+<b>daap</b>            Digital Audio Access Protocol (iTunes)
+                Amandeep Jawa &lt;daap&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: txtvers, Version, iTSh Version, Machine ID, Database ID, Machine Name, Password
+
+<b>dacp</b>            Digital Audio Control Protocol (iTunes)
+                Amandeep Jawa &lt;daap&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: txtvers, Ver, DbId
+
+<b>device-info</b>     Device Info
+                Stuart Cheshire &lt;cheshire&nbsp;at&nbsp;apple.com&gt;, Marc Krochmal &lt;marc&nbsp;at&nbsp;apple.com&gt;
+                Not a service type. Special name reserved for DNS-SD device info.
+
+<b>difi</b>            EyeHome
+                Elgato &lt;support&nbsp;at&nbsp;elgato.com&gt;
+                Defined TXT keys: None
+
+<b>distcc</b>          Distributed Compiler
+                Martin Pool &lt;mbp&nbsp;at&nbsp;samba.org&gt;
+                Defined TXT keys: Contact Apple&nbsp;at&nbsp;&lt;bonjourdev&nbsp;at&nbsp;apple.com&gt;
+
+<b>ditrios</b>         Ditrios SOA Framework Protocol
+                Mark Schmatz &lt;ditrios&nbsp;at&nbsp;markschmatz.de&gt;
+                Protocol description: <a href="http://www.ditrios.org/index.php?link=tutorial/index">http://www.ditrios.org/index.php?link=tutorial/index</a>                
+                Defined TXT keys: <a href="http://www.ditrios.org/index.php?link=tutorial/index#zeroconf">http://www.ditrios.org/index.php?link=tutorial/index#zeroconf</a>
+
+<b>dltimesync</b>      Local Area Dynamic Time Synchronisation Protocol
+                Geoff Back &lt;geoff&nbsp;at&nbsp;demonlair.co.uk&gt;
+                Protocol description: Proprietary
+                Primary Transport Protocol: UDP
+                Defined TXT keys: None
+
+<b>dns-llq</b>         DNS Long-Lived Queries
+                Kiren Sekar &lt;kiren&nbsp;at&nbsp;apple.com&gt;
+                Protocol description: <a href="http://files.dns-sd.org/draft-sekar-dns-llq.txt">DNS Long-Lived Queries</a>
+                Primary Transport Protocol: UDP
+                Discovery Protocol: RFC 2782
+
+<b>dns-sd</b>          DNS Service Discovery
+                Stuart Cheshire &lt;cheshire&nbsp;at&nbsp;apple.com&gt;, Marc Krochmal &lt;marc&nbsp;at&nbsp;apple.com&gt;
+                Not a service type. Special name reserved for DNS-SD meta queries.
+
+<b>dns-update</b>      DNS Dynamic Update Service
+                Kiren Sekar &lt;kiren&nbsp;at&nbsp;apple.com&gt;
+                DNS Dynamic Update Service for a given domain may not necessarily be provided by
+                the principal name servers as advertised by the domain's "NS" records, and may not
+                necessarily always be provided on port 53. The "<i>_dns-update._udp.&lt;domain&gt;.</i>" SRV record gives
+                the target host and port where DNS Dynamic Update Service is provided for the named domain.
+                Protocol description: <a href="http://www.ietf.org/rfc/rfc2136.txt">RFC 2136</a>, <a href="http://www.ietf.org/rfc/rfc3007.txt">RFC 3007</a>, and others.
+                Primary Transport Protocol: UDP
+                Discovery Protocol: RFC 2782
+
+<b>domain</b>          Domain Name Server
+                Service name originally allocated for Paul Mockapetris &lt;PVM&nbsp;at&nbsp;ISI.EDU&gt;
+                Now advertised and browsed-for by numerous independent
+                server and client implementations.
+                Protocol description: <a href="http://www.ietf.org/rfc/rfc1034.txt">RFC 1034</a>, <a href="http://www.ietf.org/rfc/rfc1035.txt">RFC 1035</a>, and others.
+                Primary Transport Protocol: UDP
+                Discovery Protocol: RFC 2782
+
+<b>dossier</b>         Vortimac Dossier Protocol
+                Rob Minerick &lt;rob&nbsp;at&nbsp;vortimac.com&gt;
+                Defined TXT keys: None
+
+<b>dpap</b>            Digital Photo Access Protocol (iPhoto)
+                Defined TXT keys: txtvers, Version, iPSh Version, Machine ID, Machine Name, Password
+
+<b>dropcopy</b>        DropCopy
+                10base-t Interactive &lt;support&nbsp;at&nbsp;10base-t.com&gt;
+                Defined TXT keys: None
+
+<b>dtrmtdesktop</b>    Desktop Transporter Remote Desktop Protocol
+                Daniel Stodle &lt;daniels&nbsp;at&nbsp;cs.uit.no&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>dvbservdsc</b>      DVB Service Discovery
+                Peter MacAvock &lt;macavock&nbsp;at&nbsp;dvb.org&gt;
+                Protocol description: The protocol is public and is defined in ETSI TS 102 034
+                which is freely (including free of charge) available from ETSI at <a href="http://www.etsi.org">www.etsi.org</a>.
+                Defined TXT keys: None
+
+<b>earphoria</b>       Earphoria
+                Rogue Amoeba &lt;earphoria&nbsp;at&nbsp;rogueamoeba.com&gt;
+                Defined TXT keys: None
+
+<b>ebms</b>            ebXML Messaging
+                Matthew MacKenzie &lt;mattm&nbsp;at&nbsp;adobe.com&gt;
+                Defined TXT keys: Endpoint=&lt;/path/to/endpoint&gt;
+
+<b>ecms</b>            Northrup Grumman/Mission Systems/ESL Data Flow Protocol
+                Dan Goff &lt;Dan.Goff at ngc.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>ebreg</b>           ebXML Registry
+                Matthew MacKenzie &lt;mattm&nbsp;at&nbsp;adobe.com&gt;
+                Defined TXT keys: HttpBinding=&lt;/path/to/registry/http/binding&gt;
+
+<b>ecbyesfsgksc</b>    Net Monitor Anti-Piracy Service
+                Guy Meyer &lt;rominar&nbsp;at&nbsp;mac.com&gt;
+                Defined TXT keys: None
+
+<b>edcp</b>            LaCie Ethernet Disk Configuration Protocol
+                Nicolas Bouilleaud &lt;nbouilleaud&nbsp;at&nbsp;lacie.com&gt;
+                Protocol description: Proprietary
+                Primary Transport Protocol: UDP
+                Defined TXT keys: ip, mac, dhcp, mask, gtwy, wins, name, version
+
+<b>eheap</b>           Interactive Room Software Infrastructure (Event Sharing)
+                Defined TXT keys: None
+
+<b>embrace</b>         DataEnvoy
+                Rob MacGregor &lt;rob.macgregor&nbsp;at&nbsp;sympatico.ca&gt;
+                Defined TXT keys: None
+
+<b>eppc</b>            Remote AppleEvents
+                Steve Zellers &lt;zellers&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: None
+
+<b>esp</b>             Extensis Server Protocol
+                Loren Barr &lt;lbarr&nbsp;at&nbsp;extensis.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>eventserver</b>     Now Up-to-Date
+                Defined TXT keys: None
+
+<b>ewalletsync</b>     Synchronization Protocol for Ilium Software's eWallet
+                Dan Amstutz &lt;dan&nbsp;at&nbsp;iliumsoft.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: name=&lt;friendly device name&gt;
+
+<b>example</b>         Example Service Type
+                Not a real service type.
+                Special 'pretend' service types ("_example._udp" and "_example._tcp")
+                reserved for use in illustrative examples in books and other documentation.
+
+<b>exb</b>             Exbiblio Cascading Service Protocol
+                Claes-Fredrik Mannby &lt;cf&nbsp;at&nbsp;mannby.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: Will be described at <a href="http://www.exbiblio.com">www.exbiblio.com</a>
+
+<b>exec</b>            Remote Process Execution
+                Authentication performed using passwords and UNIX login names.
+                Defined TXT keys: None
+
+<b>extensissn</b>      Extensis Serial Number
+                Extensis &lt;webmaster&nbsp;at&nbsp;extensis.com&gt;
+                Defined TXT keys: None
+
+<b>eyetvsn</b>         EyeTV Sharing
+                Elgato &lt;support&nbsp;at&nbsp;elgato.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: txtvers=1, keyhash=<4 bytes>
+
+<b>facespan</b>        FaceSpan
+                Kerry Hazelgren &lt;hazelgren&nbsp;at&nbsp;facespan.com&gt;
+                Defined TXT keys: None
+
+<b>fairview</b>        Fairview Device Identification
+                Jim Lyle &lt;jim.lyle&nbsp;at&nbsp;siliconimage.com&gt;
+                Protocol description: Proprietary
+                Primary Transport Protocol: UDP
+                Defined TXT keys: DevID=&lt;device id&gt;, DevType=&lt;device type&gt;, DevStat=&lt;device status&gt;
+
+<b>faxstfx</b>         FAXstf
+                Smith Micro &lt;cs&nbsp;at&nbsp;smithmicro.com&gt;
+                Defined TXT keys: None
+
+<b>feed-sharing</b>    NetNewsWire 2.0
+                Ranchero Software &lt;info&nbsp;at&nbsp;ranchero.com&gt;
+                Defined TXT keys: None
+
+<b>fish</b>            Fish
+                Oriol Ferrer Mesia &lt;tm05788&nbsp;at&nbsp;salleurl.edu&gt;
+                Defined TXT keys: None
+
+<b>fix</b>             Financial Information Exchange (FIX) Protocol
+                Joakim Johansson &lt;joakim.johansson&nbsp;at&nbsp;tbricks.com&gt;
+                Protocol description: <a href="http://www.fixprotocol.org/specifications/">http://www.fixprotocol.org/specifications</a>
+                Defined TXT keys:
+                  Currently valid enumerated values:
+                   FIX Session Protocol Versions (SESSIONVERSION): 1.1
+                   FIX Application Protocol Versions (APPLICATIONVERSION): 2.7, 3.0, 4.0, 4.1, 4.2, 4.3, 4.4, 5.0
+
+                  Possible TXT records defined and their values (replace uppercase text with enumerations from the list above):
+                   txtvers=1
+                   fix=APPLICATIONVERSION
+                   fix supported=APPLICATIONVERSION[,APPLICATIONVERSION, ... ,APPLICATIONVERSION]
+                   fixt=SESSIONVERSION
+
+<b>fjork</b>           Fjork
+                John Schilling &lt;john&nbsp;at&nbsp;jschilling.net&gt;
+                Defined TXT keys: None
+
+<b>fl-purr</b>         FilmLight Cluster Power Control Service
+                Darrin Smart &lt;dns-sd&nbsp;at&nbsp;filmlight.ltd.uk&gt;
+                Protocol description: Proprietary
+                Primary Transport Protocol: UDP
+                Defined TXT keys: Proprietary
+
+<b>fmpro-internal</b>  FileMaker Pro
+                Clay Maeckel &lt;clay_maeckel&nbsp;at&nbsp;filemaker.com&gt;
+                Defined TXT keys: None
+
+<b>fmserver-admin</b>  FileMaker Server Administration Communication Service
+                Eric Jacobson &lt;eric_jacobson&nbsp;at&nbsp;filemaker.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>fontagentnode</b>   FontAgent Pro
+                Insider Software &lt;http://www.insidersoftware.com&gt;
+                Defined TXT keys: None
+
+<b>freehand</b>        FreeHand MusicPad Pro Interface Protocol
+                Ted Schroeder &lt;tschroeder&nbsp;at&nbsp;freehandsystems.com&gt;
+                Defined TXT keys: None
+
+<b>ftp</b>             File Transfer
+                Service name originally allocated for Jon Postel &lt;postel&nbsp;at&nbsp;isi.edu&gt;
+                Now advertised and browsed-for by numerous independent
+                server and client implementations.
+                Protocol description: <a href="http://www.ietf.org/rfc/rfc959.txt">RFC 959</a>
+                Defined TXT keys: u=&lt;username&gt; p=&lt;password&gt; path=&lt;path&gt;
+
+<b>ftpcroco</b>        Crocodile FTP Server
+                Xnet Communications &lt;croco&nbsp;at&nbsp;xdsnet.de&gt;
+                Defined TXT keys: None
+
+<b>fv-cert</b>         Fairview Certificate
+                Jim Lyle &lt;jim.lyle&nbsp;at&nbsp;siliconimage.com&gt;
+                Protocol description: Proprietary
+                Primary Transport Protocol: UDP
+                Defined TXT keys: DevID=&lt;device id&gt;, DevPK=&lt;device public key&gt;
+
+<b>fv-key</b>          Fairview Key
+                Jim Lyle &lt;jim.lyle&nbsp;at&nbsp;siliconimage.com&gt;
+                Protocol description: Proprietary
+                Primary Transport Protocol: UDP
+                Defined TXT keys: KeyID=&lt;device id&gt;
+
+<b>fv-time</b>         Fairview Time/Date
+                Jim Lyle &lt;jim.lyle&nbsp;at&nbsp;siliconimage.com&gt;
+                Protocol description: Proprietary
+                Primary Transport Protocol: UDP
+                Defined TXT keys: None
+
+<b>frog</b>            Frog Navigation Systems
+                Rene Jager &lt;renej&nbsp;at&nbsp;frog.nl&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: type, name, id
+
+<b>gbs-smp</b>         SnapMail
+                Eric Harris-Braun &lt;eric&nbsp;at&nbsp;glassbead.com&gt;
+                Defined TXT keys: None
+
+<b>gbs-stp</b>         SnapTalk
+                Eric Harris-Braun &lt;eric&nbsp;at&nbsp;glassbead.com&gt;
+                Defined TXT keys: None
+
+<b>gforce-ssmp</b>     G-Force Control via SoundSpectrum's SSMP TCP Protocol
+                Andy O'Meara &lt;andy&nbsp;at&nbsp;soundspectrum.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>glrdrvmon</b>       OpenGL Driver Monitor
+                Dave Springer &lt;daves&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: None
+
+<b>gpnp</b>            Grid Plug and Play
+                David Brower &lt;david.brower&nbsp;at&nbsp;oracle.com&gt;
+                Protocol description: <a href="http://www.ietf.org/rfc/rfc3920.txt">RFC 3920</a>
+                Defined TXT keys: None
+
+<b>grillezvous</b>     Roxio ToastAnywhere(tm) Recorder Sharing
+                Defined TXT keys: AppID=&lt;application id&gt; KeyHash=&lt;application license key hash&gt;
+
+<b>growl</b>           Growl
+                Defined TXT keys: None
+
+<b>guid</b>            Special service type for resolving by GUID (Globally Unique Identifier)
+                Defined TXT keys: Varies; Depends on type of service being offered/resolved
+                Although DNS-SD does not recommend or advocate using GUIDs as the primary name
+                of an offered service (<a href="http://www.dns-sd.org/DNS-SD-GUIDs.html">why not?</a>), it does support use of GUIDs as service names
+                where developers want to use them that way.
+                Typically users do not browse for GUIDs. They are not user-friendly and not very
+                informative. Typically, the service is advertised as usual, using a user-friendly
+                name. One of the TXT record attributes is a GUID for the service instance.
+                Once the user has browsed and chosen the desired service instance via its user-friendly
+                name, the service is resolved, the TXT record is retrieved, and the GUID is stored.
+                A given network service instance is therefore being advertised two ways, for example:
+                    &lt;User-Friendly-Name&gt;._ptp._tcp.local
+                    &lt;GUID&gt;._guid._tcp.local
+                On subsequent accesses to the service, the GUID-based name is resolved, and that
+                particular service instance is discovered, even if the user has subsequently
+                changed the user-friendly name to something else.
+                Note: Although each different logical service type needs to have its own different
+                DNS-SD service type, all GUID-based names use the same pseudo-type: "_guid._tcp".
+                There is no possibility of name conflict because (by definition) GUIDs are globally unique.
+
+<b>h323</b>            H.323 Real-time audio, video and data communication call setup protocol
+                Will MacDonald &lt;will&nbsp;at&nbsp;codian.com&gt;
+                Defined TXT keys: None
+
+<b>helix</b>           MultiUser Helix Server
+                Larry Atkin &lt;shasta&nbsp;at&nbsp;qsatoolworks.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>hmcp</b>            Home Media Control Protocol
+                Will Lahr &lt;will&nbsp;at&nbsp;disruptivegroup.com&gt;
+                Defined TXT keys: None
+
+<b>http</b>            World Wide Web HTML-over-HTTP
+                Tim Berners-Lee &lt;timbl&nbsp;at&nbsp;W3.org&gt;
+                Protocol description: <a href="http://www.ietf.org/rfc/rfc2616.txt">RFC 2616</a>
+                Defined TXT keys: u=&lt;username&gt; p=&lt;password&gt; path=&lt;path to document&gt;
+                (see <a href="http://www.dns-sd.org/txtrecords.html#http">txtrecords.html#http</a>)
+                NOTE: The meaning of this service type, though called just "http", actually
+                denotes something more precise than just "any data transported using HTTP".
+                The DNS-SD service type "http" should only be used to advertise content that:
+                 * is served over HTTP,
+                 * can be displayed by "typical" web browser client software, and
+                 * is intented primarily to be viewed by a human user.
+                Of course, the definition of "typical web browser" is subjective, and may
+                change over time, but for practical purposes the DNS-SD service type "http"
+                can be understood as meaning "human-readable HTML content served over HTTP".
+                In some cases other widely-supported content types may also be appropriate,
+                such as plain text over HTTP, or JPEG image over HTTP.
+                Content types not intented primarily for viewing by a human user, or not
+                widely-supported in web browsing clients, should not be advertised as
+                DNS-SD service type "http", even if they do happen to be transported over HTTP.
+                Such types should be advertised as their own logical service type with their
+                own DNS-SD service type, for example, XUL (XML User Interface Language)
+                transported over HTTP is advertised explicitly as DNS-SD service type "xul-http".
+
+<b>https</b>           HTTP over SSL/TLS
+                Tim Berners-Lee &lt;timbl&nbsp;at&nbsp;W3.org&gt;
+                Protocol description: <a href="http://www.ietf.org/rfc/rfc2616.txt">RFC 2616</a>
+                <b>NOTE:</b> Web browsers like Safari and Internet Explorer (with the <a href="http://www.apple.com/bonjour/">Bonjour for Windows plugin</a>)
+                <b>DO NOT</b> browse for DNS-SD service type "_https._tcp" in addition to browsing for "_http._tcp".
+                This is a conscious decision to reduce proliferation of service types, to help keep
+                DNS-SD efficient on the network. Today, if a user types <i>http://www.mybank.com/</i> into their
+                web browser, the web server automatically redirects the user to <i>https://www.mybank.com/</i>.
+                Rather than having an entirely different DNS-SD service type for https, we recommend
+                using the same redirection mechanism: advertise a plain "http" service, which consists
+                of nothing except an HTTP redirection to the desired "https" URL.
+                Work is currently being done on adding mechanisms to HTTP and TLS to allow the server
+                to tell the client that it needs to activate TLS on the current connection before
+                proceeding. If this becomes widely adopted, it further justifies the decision to
+                not create a separate DNS-SD service type "_https._tcp", because security becomes
+                just another one of the things that is negotiated on a per-connection basis (like
+                content-type negotiation today) rather than being an entirely separate thing.
+
+<b>homeauto</b>        iDo Technology Home Automation Protocol
+                Tony de Rijk &lt;idotechnology&nbsp;at&nbsp;mac.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>honeywell-vid</b>   Honeywell Video Systems
+                Shankar Prasad &lt;Shankar.Prasad&nbsp;at&nbsp;honeywell.com&gt;
+                Protocol description: Proprietary
+                Primary Transport Protocol: UDP
+                Defined TXT keys: None
+
+<b>hotwayd</b>         Hotwayd
+                Defined TXT keys: None
+
+<b>howdy</b>           Howdy messaging and notification protocol
+                Joseph Sickel &lt;js&nbsp;at&nbsp;ozate.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>hpr-bldlnx</b>      HP Remote Build System for Linux-based Systems
+                Jeffrey J. Walls &lt;jeff.walls&nbsp;at&nbsp;hp.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: rh73, rhel3, rhel4, deb31, suse102
+
+<b>hpr-bldwin</b>      HP Remote Build System for Microsoft Windows Systems
+                Jeffrey J. Walls &lt;jeff.walls&nbsp;at&nbsp;hp.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: xp, vista
+
+<b>hpr-db</b>          Identifies systems that house databases for the Remote Build System and Remote Test System
+                Jeffrey J. Walls &lt;jeff.walls&nbsp;at&nbsp;hp.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: bld, tst, mstr
+
+<b>hpr-rep</b>         HP Remote Repository for Build and Test Results
+                Jeffrey J. Walls &lt;jeff.walls&nbsp;at&nbsp;hp.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: bld, tst, official
+
+<b>hpr-toollnx</b>     HP Remote System that houses compilers and tools for Linux-based Systems
+                Jeffrey J. Walls &lt;jeff.walls&nbsp;at&nbsp;hp.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: rh73, rhel3, rhel4, deb31, suse102
+
+<b>hpr-toolwin</b>     HP Remote System that houses compilers and tools for Microsoft Windows Systems
+                Jeffrey J. Walls &lt;jeff.walls&nbsp;at&nbsp;hp.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: xp, vista
+
+<b>hpr-tstlnx</b>      HP Remote Test System for Linux-based Systems
+                Jeffrey J. Walls &lt;jeff.walls&nbsp;at&nbsp;hp.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: rh73, rhel3, rhel4, deb31, suse102
+
+<b>hpr-tstwin</b>      HP Remote Test System for Microsoft Windows Systems
+                Jeffrey J. Walls &lt;jeff.walls&nbsp;at&nbsp;hp.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: xp, vista
+
+<b>hydra</b>           SubEthaEdit
+                TheCodingMonkeys &lt;monkeys&nbsp;at&nbsp;codingmonkeys.de&gt;
+                Defined TXT keys: None
+
+<b>iax</b>             Inter Asterisk eXchange, ease-of-use NAT friendly open VoIP protocol
+                Benjamin Kowarsch &lt;benjamin&nbsp;at&nbsp;sunrise-tel.com&gt; November 2004
+                Protocol Description: <a href="http://www.cornfed.com/iax.pdf">http://www.cornfed.com/iax.pdf</a> (work in progress)
+                Primary Transport Protocol: UDP
+                Defined TXT keys:
+                  auth          plaintext | md5 | rsakeys
+                  userid        alphanumeric, additionally '_', '+', '-'
+                  secret        any printable ASCII characters
+                  domain        any DNS domain name or IP address
+                  extension     alphanumeric, additionally '*', '#', '_', '+', '-'
+                  context       alphanumeric, additionally '_', '+', '-'
+                  trunk         yes | no | 0 | 1
+                  welcome       alphanumeric, additionally '*', '#', '_', '+', '-'
+                  voicemail     alphanumeric, additionally '*', '#', '_', '+', '-'
+                  reception     alphanumeric, additionally '*', '#', '_', '+', '-'
+                  echotest      alphanumeric, additionally '*', '#', '_', '+', '-'
+                  ivrtest       alphanumeric, additionally '*', '#', '_', '+', '-'
+                All of these TXT record keys are optional, they may be omitted.
+                Further keys may be added in the future.
+
+<b>ibiz</b>            iBiz Server
+                IGG Software &lt;ian&nbsp;at&nbsp;iggsoftware.com&gt;
+                Defined TXT keys: None
+
+<b>ica-networking</b>  Image Capture Networking
+                Baskaran Subramaniam &lt;baskaran&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: None
+
+<b>ican</b>            Northrup Grumman/TASC/ICAN Protocol
+                Laurent Mihalkovic &lt;ljp_m&nbsp;at&nbsp;mac.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>ichalkboard</b>     iChalk
+                Math Game House Software &lt;mathgamehouse&nbsp;at&nbsp;mac.com&gt;
+                Defined TXT keys: None
+
+<b>ichat</b>           iChat 1.0
+                Jens Alfke &lt;jens&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: Proprietary
+
+<b>iconquer</b>        iConquer
+                Andrew Zamler-Carhart &lt;andrew&nbsp;at&nbsp;zamler-carhart.com&gt;
+                Defined TXT keys: None
+
+<b>idata</b>           Generic Data Acquisition and Control Protocol
+                Carson Fenimore &lt;carson.fenimore&nbsp;at&nbsp;inl.gov&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>idsync</b>          SplashID Synchronization Service
+                Justin Cepelak &lt;jcepelak&nbsp;at&nbsp;splashdata.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: Proprietary
+
+<b>ifolder</b>         Published iFolder
+                Brady Anderson &lt;banderso&nbsp;at&nbsp;novell.com&gt;
+                Defined TXT keys: version=?
+
+<b>ihouse</b>          Idle Hands iHouse Protocol
+                Toby Smith &lt;dns&nbsp;at&nbsp;idlehands.net&gt;
+                Defined TXT keys: None
+
+<b>ilynx</b>           iLynX
+                iOS Software &lt;ios&nbsp;at&nbsp;free.fr&gt;
+                Defined TXT keys: None
+
+<b>imap</b>            Internet Message Access Protocol
+                Mark Crispin &lt;MRC&nbsp;at&nbsp;CAC.Washington.EDU&gt;
+                Discovery Protocol: RFC 2782
+
+<b>imidi</b>           iMidi
+                Robert Grant &lt;rob&nbsp;at&nbsp;grantedsw.com&gt;
+                Defined TXT keys: None
+
+<b>inova-ontrack</b>   Inova Solutions OnTrack Display Protocol
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>idcws</b>           Intermec Device Configuration Web Services
+                Thaddeus Ternes &lt;thaddeus.ternes&nbsp;at&nbsp;intermec.com&gt;
+                Protocol description: Proprietary web service for configuring embedded devices
+                Defined TXT keys: version=&lt;x.xx&gt;
+
+<b>ipbroadcaster</b>   IP Broadcaster
+                10base-t Interactive &lt;support&nbsp;at&nbsp;10base-t.com&gt;
+                Defined TXT keys: None
+
+<b>ipp</b>             IPP (Internet Printing Protocol)
+                Carl-Uno Manros &lt;manros&nbsp;at&nbsp;cp10.es.xerox.com&gt;
+                Defined TXT keys: See <a href="http://developer.apple.com/networking/bonjour/BonjourPrinting.pdf">BonjourPrinting.pdf</a>.
+
+<b>irmc</b>            Intego Remote Management Console
+                Olivier Delecluse &lt;odelecluse&nbsp;at&nbsp;intego.com&gt;
+                Defined TXT keys: RMC Client Version=&lt;version&gt;, MAC Address=&lt;address&gt;
+
+<b>iscsi</b>           Internet Small Computer Systems Interface (iSCSI)
+                Protocol description: <a href="http://www.ietf.org/rfc/rfc3720.txt">RFC 3720</a>
+                Defined TXT keys: None
+
+<b>isparx</b>          iSparx
+                Philipp Dreiss &lt;dreiss&nbsp;at&nbsp;isparx.de&gt;
+                Defined TXT keys: None
+
+<b>ispq-vc</b>         iSpQ VideoChat
+                Chris Silverberg &lt;csilverberg&nbsp;at&nbsp;nanocom.com&gt;
+                Defined TXT keys: None
+
+<b>ishare</b>          iShare
+                Steve Dekorte &lt;steve&nbsp;at&nbsp;dekorte.com&gt;
+                Defined TXT keys: None
+
+<b>isticky</b>         iSticky
+                Insist &lt;support&nbsp;at&nbsp;isticky.net&gt;
+                Defined TXT keys: None
+
+<b>istorm</b>          iStorm
+                Math Game House Software &lt;mathgamehouse&nbsp;at&nbsp;mac.com&gt;
+                Defined TXT keys: None
+
+<b>itsrc</b>           iTunes Socket Remote Control
+                Kevin Leacock &lt;kevin&nbsp;at&nbsp;itchycode.com&gt;
+                Protocol description: <a href="http://www.itchycode.com/">http://www.itchycode.com</a>
+                Defined TXT keys: None
+
+<b>iwork</b>           iWork Server
+                IGG Software &lt;ian&nbsp;at&nbsp;iggsoftware.com&gt;
+                Defined TXT keys: None
+
+<b>jcan</b>            Northrup Grumman/TASC/JCAN Protocol
+                Laurent Mihalkovic &lt;ljp_m&nbsp;at&nbsp;mac.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>jeditx</b>          Jedit X
+                Satoshi Matsumoto &lt;satoshi&nbsp;at&nbsp;artman21.co.jp&gt;
+                Protocol description: <a href="http://www.artman21.net/">http://www.artman21.net</a>
+                Defined TXT keys: None
+
+<b>jini</b>            Jini Service</b> Discovery
+                Daniel Steinberg &lt;daniel&nbsp;at&nbsp;oreilly.com&gt;
+                Protocol description: Convention giving a deterministic programmatic mapping
+                between Jini service</b> interface names and subtypes of the DNS-SD</b> service</b>
+                meta-type "_jini._tcp". For example, a client wishing to discover objects
+                that implement the "com.oreilly.ExampleService" interface would broswse for
+                the DNS-SD</b> service</b> subtype "ExampleService.oreilly.com._sub._jini._tcp".
+                (Note: Using Apple's Bonjour programming API, service</b> subtypes
+                like this are expressed as a comma-separated list following
+                main type, e.g. "_jini._tcp,ExampleService.oreilly.com".
+                This allows an object that implements several interfaces to specify
+                all of those interfaces in a list when it registers its service</b>.
+                When browsing for services, at most a single subtype is allowed.)
+                Defined TXT keys: None
+
+<b>jtag</b>            Proprietary
+                Uwe Ziegler, Goepel electronic GmbH, &lt;u.ziegler@goepel.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: blocked=&lt;name of the device&gt;, version=&lt;firmware/instrument controller version&gt;
+
+<b>kerberos</b>        Kerberos
+                B. Clifford Neuman &lt;bcn&nbsp;at&nbsp;isi.edu&gt;
+                Description: <a href="http://www.cybersafe.ltd.uk/docs_standards/draft-ietf-krb-wg-krb-dns-locate-03.txt">draft-ietf-krb-wg-krb-dns-locate-03.txt</a>
+                Discovery Protocol: RFC 2782
+
+<b>kerberos-adm</b>    Kerberos Administration
+                Description: <a href="http://www.cybersafe.ltd.uk/docs_standards/draft-ietf-krb-wg-krb-dns-locate-03.txt">draft-ietf-krb-wg-krb-dns-locate-03.txt</a>
+                Discovery Protocol: RFC 2782
+
+<b>ktp</b>             Kabira Transaction Platform
+                Ramiro Sarmiento &lt;ramiro&nbsp;at&nbsp;kabira.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>lan2p</b>           Lan2P Peer-to-Peer Network Protocol
+                smash (Ben Guild) &lt;smash&nbsp;at&nbsp;smashsworld.com&gt;
+                Protocol description: <a href="http://www.lan2p.com">http://www.lan2p.com</a>
+                Defined TXT keys: None
+
+<b>lapse</b>           Gawker
+                Phil Piwonka &lt;wnka&nbsp;at&nbsp;users.sourceforge.net&gt;
+                Defined TXT keys: None
+
+<b>lanrevagent</b>     LANrev Agent
+                Martin Bestmann &lt;martin&nbsp;at&nbsp;poleposition-sw.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: 
+                  txtvers
+                  server=&lt;main LANrev server for agent&gt;
+                  vers=&lt;version of LANrev Agent&gt;
+                  build=&lt;build number of LANrev Agent&gt;
+                  id=&lt;agent identifier&gt;
+
+<b>lanrevserver</b>    LANrev Server
+                Martin Bestmann &lt;martin&nbsp;at&nbsp;poleposition-sw.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>ldap</b>            Lightweight Directory Access Protocol
+                Tim Howes &lt;Tim.Howes&nbsp;at&nbsp;terminator.cc.umich.edu&gt;
+                Protocol description: <a href="http://www.ietf.org/rfc/rfc2253.txt">RFC 2253</a>
+                Discovery Protocol: RFC 2782
+
+<b>lexicon</b>         Lexicon Vocabulary Sharing
+                Jacob Godwin-Jones &lt;jacob&nbsp;at&nbsp;likethought.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>liaison</b>         Liaison
+                Brian Cully &lt;shmit&nbsp;at&nbsp;kublai.com&gt;
+                Defined TXT keys: None
+
+<b>llrp</b>            RFID reader Low Level Reader Protocol
+                Paul Dietrich &lt;registrar&nbsp;at&nbsp;impinj.com&gt;
+                Protocol description: <a href="http://www.epcglobalinc.org/standards/EPCglobal_LLRP_Ratified_Standard_20April_20042007_V1.0.pdf">EPCglobal</a>
+                Defined TXT keys: None
+
+<b>lobby</b>           Gobby
+                0x539 dev group <a href="http://darcs.0x539.de/trac/obby/cgi-bin/trac.cgi">gobby.0x539.de</a>
+                Defined TXT keys: None
+
+<b>logicnode</b>       Logic Pro Distributed Audio
+                Nikolaus Gerteis &lt;ngerteis&nbsp;at&nbsp;apple.com&gt;
+                Primary Transport Protocol: UDP
+                Defined TXT keys: None
+
+<b>login</b>           Remote Login a la Telnet
+                Automatic authentication performed based on priviledged port numbers
+                and distributed data bases which identify "authentication domains".
+                Defined TXT keys: None
+
+<b>lontalk</b>         LonTalk over IP (ANSI 852)
+                Michael Tennefoss &lt;mtennefoss&nbsp;at&nbsp;echelon.com&gt;
+                Defined TXT keys: None
+
+<b>lonworks</b>        Echelon LNS Remote Client
+                Michael Tennefoss &lt;mtennefoss&nbsp;at&nbsp;echelon.com&gt;
+                Defined TXT keys: None
+
+<b>lsys-appserver</b>  Linksys One Application Server API
+                Frank Zerangue &lt;fzerang&nbsp;at&nbsp;cisco.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys:
+                   path=value (relative URL)
+                   engname=value (string)
+
+<b>lsys-camera</b>     Linksys One Camera API
+                Frank Zerangue &lt;fzerang&nbsp;at&nbsp;cisco.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys:
+                   brand=value (string)
+                   model=value (string)
+                   version=value (string)
+
+<b>lsys-ezcfg</b>      LinkSys EZ Configuration
+                Frank Zerangue &lt;fzerang&nbsp;at&nbsp;cisco.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys:
+                  model=value (string)
+                  serial=value (sring)
+                  hwversion=value (string)
+                  swversion=value (string)
+                  ifversion=value (string)
+                  type=value (string)
+                  mac=value (12 hex digits)
+
+<b>lsys-oamp</b>       LinkSys Operations, Administration, Management, and Provisioning
+                Frank Zerangue &lt;fzerang&nbsp;at&nbsp;cisco.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys:
+                  model=value (string)
+                  serial=value (sring)
+                  hwversion=value (string)
+                  swversion=value (string)
+                  ifversion=value (string)
+                  type=value (string)
+                  mac=value (12 hex digits)
+
+<b>lux-dtp</b>         Lux Solis Data Transport Protocol
+                Laurence Flath &lt;lflath&nbsp;at&nbsp;luxsolis.com&gt;
+                Defined TXT keys: None
+
+<b>lxi</b>             LXI
+                Nick Barendt &lt;nbarendt&nbsp;at&nbsp;vxitech.com&gt;
+                Protocol description: Currently in draft; When published, will be found here: <a href="http://www.lxistandard.org">www.lxistandard.org</a>
+                Defined TXT keys: txtvers, *IDN?=&lt;response defined by IEEE 488; e.g., manufacturer, model, serial number, version&gt;
+
+<b>macfoh</b>          MacFOH
+                Shaun Wexler &lt;dev&nbsp;at&nbsp;macfoh.com&gt;
+                Defined TXT keys: None
+
+<b>macfoh-admin</b>    MacFOH admin services
+                Shaun Wexler &lt;dev&nbsp;at&nbsp;macfoh.com&gt;
+                Defined TXT keys: None
+
+<b>macfoh-audio</b>    MacFOH audio stream
+                Shaun Wexler &lt;dev&nbsp;at&nbsp;macfoh.com&gt;
+                Primary Transport Protocol: UDP
+                Defined TXT keys: None
+
+<b>macfoh-events</b>   MacFOH show control events
+                Shaun Wexler &lt;dev&nbsp;at&nbsp;macfoh.com&gt;
+                Primary Transport Protocol: UDP                
+                Defined TXT keys: None
+
+<b>macfoh-data</b>     MacFOH realtime data
+                Shaun Wexler &lt;dev&nbsp;at&nbsp;macfoh.com&gt;
+                Primary Transport Protocol: UDP                
+                Defined TXT keys: None
+
+<b>macfoh-db</b>       MacFOH database
+                Shaun Wexler &lt;dev&nbsp;at&nbsp;macfoh.com&gt;
+                Defined TXT keys: None
+
+<b>macfoh-remote</b>   MacFOH Remote
+                Shaun Wexler &lt;dev&nbsp;at&nbsp;macfoh.com&gt;
+                Defined TXT keys: None
+
+<b>macminder</b>       Mac Minder
+                Luma Code &lt;support&nbsp;at&nbsp;lumacode.com&gt;
+                Defined TXT keys: None
+
+<b>maestro</b>         Maestro Music Sharing Service</b>
+                Luke Steffen &lt;lukesteffen&nbsp;at&nbsp;deusty.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>magicdice</b>       Magic Dice Game Protocol
+                Mike Yenco &lt;mike&nbsp;at&nbsp;yenco.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>mbconsumer</b>      MediaBroker++ Consumer
+                Nate Rivard &lt;nrivard&nbsp;at&nbsp;cc.gatech.edu&gt;
+                Protocol description: <a href="http://coweb.cc.gatech.edu/sysHackfest/128">http://coweb.cc.gatech.edu/sysHackfest/128</a>
+                Defined TXT keys: None
+
+<b>mbproducer</b>      MediaBroker++ Producer
+                Nate Rivard &lt;nrivard&nbsp;at&nbsp;cc.gatech.edu&gt;
+                Protocol description: <a href="http://coweb.cc.gatech.edu/sysHackfest/128">http://coweb.cc.gatech.edu/sysHackfest/128</a>
+                Defined TXT keys: None
+
+<b>mbserver</b>        MediaBroker++ Server
+                Nate Rivard &lt;nrivard&nbsp;at&nbsp;cc.gatech.edu&gt;
+                Protocol description: <a href="http://coweb.cc.gatech.edu/sysHackfest/128">http://coweb.cc.gatech.edu/sysHackfest/128</a>
+                Defined TXT keys: None
+
+<b>mcrcp</b>           MediaCentral
+                equinux &lt;mediacentral&nbsp;at&nbsp;equinux.comdu&gt;
+                Defined TXT keys: None
+
+<b>mesamis</b>         Mes Amis
+                Providing a means of directly connecting with friends without third-party involvement.
+                David Priest &lt;priest&nbsp;at&nbsp;sfu.ca&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>mimer</b>           Mimer SQL Engine
+                Mimer &lt;info&nbsp;at&nbsp;mimer.se&gt;
+                Defined TXT keys: None
+
+<b>mi-raysat</b>       Mental Ray for Maya
+                Autodesk &lt;me.licensing&nbsp;at&nbsp;autodesk.com&gt;
+                Defined TXT keys: None
+
+<b>modolansrv</b>      modo LAN Services
+                Matt Craig &lt;matt&nbsp;at&nbsp;luxology.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>moneysync</b>       SplashMoney Synchronization Service
+                Justin Cepelak &lt;jcepelak&nbsp;at&nbsp;splashdata.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: Proprietary
+
+<b>moneyworks</b>      MoneyWorks Gold and MoneyWorks Datacentre network service</b>
+                Rowan Daniell &lt;rowan&nbsp;at&nbsp;cognito.co.nz&gt;
+                Defined TXT keys: None
+
+<b>moodring</b>        Bonjour Mood Ring tutorial program
+                Daniel Steinberg &lt;daniel&nbsp;at&nbsp;oreilly.com&gt;
+                Defined TXT keys: txtvers=1 mood=&lt;ascii digit from 0-4&gt;
+
+<b>mother</b>          Mother script server protocol
+                Jonathan &lt;jonathan&nbsp;at&nbsp;mugginsoft.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: user, ssl
+
+<b>mp3sushi</b>        MP3 Sushi
+                Alexandre Carlhian &lt;alex&nbsp;at&nbsp;appeule.com&gt;
+                Defined TXT keys: None
+
+<b>mslingshot</b>      Martian SlingShot
+                Martin Technology &lt;support&nbsp;at&nbsp;martian.com&gt;
+                Defined TXT keys: displayName, passwordRequired, acceptsUpdates
+
+<b>mysync</b>          MySync Protocol
+                Martin Redington &lt;mildm8nnered&nbsp;at&nbsp;gmail.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>mttp</b>            MenuTunes Sharing
+                iThink Software &lt;contact&nbsp;at&nbsp;ithinksw.com&gt;
+                Defined TXT keys: None
+
+<b>mxs</b>             MatrixStore
+                Object Matrix &lt;support&nbsp;at&nbsp;object-matrix.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+                  mxs.system.id=&lt;system id&gt;
+                  mxs.system.version=&lt;system layer version&gt;
+                  mxs.cluster.id=&lt;cluster id the system belongs to&gt;
+
+<b>ncbroadcast</b>     Network Clipboard Broadcasts
+                Thom McGrath &lt;thom&nbsp;at&nbsp;thezaz.com&gt;
+                Defined TXT keys: Contact The ZAZ Software &lt;networkclipboard&nbsp;at&nbsp;thezaz.com&gt;
+
+<b>ncdirect</b>        Network Clipboard Direct Transfers
+                Thom McGrath &lt;thom&nbsp;at&nbsp;thezaz.com&gt;
+                Defined TXT keys: Contact The ZAZ Software &lt;networkclipboard&nbsp;at&nbsp;thezaz.com&gt;
+
+<b>ncsyncserver</b>    Network Clipboard Sync Server
+                Thom McGrath &lt;thom&nbsp;at&nbsp;thezaz.com&gt;
+                Defined TXT keys: Contact The ZAZ Software &lt;networkclipboard&nbsp;at&nbsp;thezaz.com&gt;
+
+<b>net-assistant</b>   Apple Remote Desktop
+                Michael Stein &lt;mvs&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: None
+
+<b>net2display</b>     Vesa Net2Display
+                Kenneth B. Ocheltree &lt;kennetho&nbsp;at&nbsp;us.ibm.com&gt;
+                Protocol description: <a href="http://www.ncl.cs.columbia.edu/publications/adeac2006_fordist.pdf">www.ncl.cs.columbia.edu/publications/adeac2006_fordist.pdf</a>
+                Defined TXT keys: None
+
+<b>netrestore</b>      NetRestore
+                Mike Bombich &lt;bombich&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: message, status, progress
+
+<b>newton-dock</b>     Escale
+                Paul Guyot &lt;pguyot&nbsp;at&nbsp;kallisys.net&gt;
+                Defined TXT keys: None
+
+<b>nfs</b>             Network File System - Sun Microsystems
+                Brent Callaghan &lt;brent&nbsp;at&nbsp;terra.eng.sun.com&gt;
+                Protocol description: <a href="http://www.ietf.org/rfc/rfc1813.txt">RFC 1813</a>
+                Defined TXT keys: path=&lt;path to mount point&gt;
+
+<b>nssocketport</b>    DO over NSSocketPort
+                Douglas Davidson &lt;drd&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: None
+
+<b>ntlx-arch</b>       American Dynamics Intellex Archive Management Service</b>
+                Gary Sands &lt;gsands&nbsp;at&nbsp;tycoint.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: txtvers, macaddress, protovers, model, serial
+
+<b>ntlx-ent</b>        American Dynamics Intellex Enterprise Management Service</b>
+                Gary Sands &lt;gsands&nbsp;at&nbsp;tycoint.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: txtvers, macaddress, protovers, model, serial
+
+<b>ntlx-video</b>      American Dynamics Intellex Video Service</b>
+                Gary Sands &lt;gsands&nbsp;at&nbsp;tycoint.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: txtvers, macaddress, protovers, model, serial, control, event
+
+<b>ntp</b>             Network Time Protocol
+                Service</b> name originally allocated for Dave Mills &lt;Mills&nbsp;at&nbsp;HUEY.UDEL.EDU&gt;
+                Now advertised and browsed-for by numerous independent
+                server and client implementations.
+                Protocol description: <a href="http://www.ietf.org/rfc/rfc958.txt">RFC 958</a>
+                Primary Transport Protocol: UDP
+                Defined TXT keys: None
+
+<b>ntx</b>             Tenasys
+                Carl Ellis &lt;carl.ellis&nbsp;at&nbsp;tenasys.com&gt;
+                Protocol description: Proprietary
+                Primary Transport Protocol: UDP
+                Defined TXT keys: None
+
+<b>obf</b>             Observations Framework
+                Matthew Baker &lt;matt.baker&nbsp;at&nbsp;intermec.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: version=&lt;value&gt
+
+<b>objective</b>       Means for clients to locate servers in an Objective (http://www.objective.com) instance.
+                Marc Bailey &lt;marc&nbsp;at&nbsp;objective.com&gt;
+                Protocol description: Proprietary SOAP/iiop, CORBA/iiop and SOAP/http bindings supported.
+                Defined TXT keys:
+                  txtvers='1'
+                  type={'production'|'standby'|'test'|'demo'}
+                  protocol={['SOAP'],['CORBA']}
+                  transport=['iiop']|['http']
+
+<b>oce</b>             Oce Common Exchange Protocol
+                Dion Slijp &lt;dion.slijp&nbsp;at&nbsp;oce.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: type, version
+
+<b>odabsharing</b>     OD4Contact
+                Objective Decision &lt;od4contact&nbsp;at&nbsp;objective-decision.com&gt;
+                Defined TXT keys: None
+
+<b>ofocus-conf</b>     OmniFocus setting configuration
+                Timothy J. Wood &lt;tjw&nbsp;at&nbsp;omnigroup.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>ofocus-sync</b>     OmniFocus document synchronization
+                Timothy J. Wood &lt;tjw&nbsp;at&nbsp;omnigroup.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: Proprietary
+
+<b>olpc-activity1</b>  One Laptop per Child activity
+                One Laptop per Child/Collabora Ltd. &lt;devel&nbsp;at&nbsp;lists.laptop.org&gt;
+                Protocol description: <a href="http://wiki.laptop.org/go/Shared_Activity_Protocol_1.0">http://wiki.laptop.org/go/Shared_Activity_Protocol_1.0</a>
+                Primary Transport Protocol: UDP
+                Defined TXT keys: see <a href="http://wiki.laptop.org/go/Shared_Activity_Protocol_1.0">http://wiki.laptop.org/go/Shared_Activity_Protocol_1.0</a>
+
+<b>omni-bookmark</b>   OmniWeb
+                The Omni Group &lt;info&nbsp;at&nbsp;omnigroup.com&gt;
+                Defined TXT keys: None
+
+<b>openbase</b>        OpenBase SQL
+                Defined TXT keys: None
+
+<b>oprofile</b>        oprofile server protocol
+                Rob Bradford &lt;rob&nbsp;at&nbsp;o-hand.com&gt;
+                Protocol description: Open source implementation but undocumented as yet
+                Defined TXT keys: None
+
+<b>ovready</b>         ObjectVideo OV Ready Protocol
+                Gary Myers &lt;gmyers&nbsp;at&nbsp;objectvideo.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: txtvers, protovers
+
+<b>owhttpd</b>         OWFS (1-wire file system) web server
+                Paul H Alfille &lt;paul.alfille&nbsp;at&nbsp;gmail.com&gt;
+                Protocol description: <a href="http://www.owfs.org/index.php?page=owhttpd">http://www.owfs.org/index.php?page=owhttpd</a>
+                Defined TXT keys: txtvers
+
+<b>owserver</b>        OWFS (1-wire file system) server
+                Paul H Alfille &lt;paul.alfille&nbsp;at&nbsp;gmail.com&gt;
+                Protocol description: <a href="http://www.owfs.org/index.php?page=owserver_protocol">http://www.owfs.org/index.php?page=owserver_protocol</a>
+                Defined TXT keys: txtvers
+
+<b>parentcontrol</b>   Remote Parental Controls
+                John Scalo &lt;scalo&nbsp;at&nbsp;apple.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>passwordwallet</b>  PasswordWallet Data Synchronization Protocol
+                Sanford Selznick &lt;sanford-srvtype&nbsp;at&nbsp;selznick.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>pcast</b>           Mac OS X Podcast Producer Server
+                Nick Brosnahan &lt;nbrosnahan&nbsp;at&nbsp;apple.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>p2pchat</b>         Peer-to-Peer Chat (Sample Java Bonjour application)
+                Roger Pantos &lt;rpantos&nbsp;at&nbsp;apple.com&gt;
+                Primary Transport Protocol: UDP
+                Defined TXT keys: None
+
+<b>parliant</b>        PhoneValet Anywhere
+                Parliant Corporation <a href="http://www.parliant.com/">www.parliant.com</a>
+                Defined TXT keys: None
+
+<b>pdl-datastream</b>  Printer Page Description Language Data Stream (vendor-specific)
+                Stuart Cheshire &lt;pdl-datastream&nbsp;at&nbsp;apple.com&gt; September 2002
+                Defined TXT keys: See <a href="http://developer.apple.com/networking/bonjour/BonjourPrinting.pdf">BonjourPrinting.pdf</a>.
+                Note: Actual PDL depends on printer in question; may be Postscript,
+                Epson ESC/P, HP PCL, etc.; contact respective printer vendors for
+                details of each individual PDL. List of PDLs supported by a given
+                printer is indicated by the "pdl" key in the TXT record.
+
+<b>pgpkey-hkp</b>      Horowitz Key Protocol (HKP)
+                Marc Horowitz &lt;marc&nbsp;at&nbsp;mit.edu&gt;
+                Protocol description: <a href="http://www.mit.edu/afs/net.mit.edu/project/pks/thesis/paper/thesis.html">http://www.mit.edu/afs/net.mit.edu/project/pks/thesis/paper/thesis.html</a>
+                Defined TXT keys: None
+
+<b>pgpkey-https</b>    PGP Keyserver using HTTP/1.1
+                Jeroen Massar &lt;jeroen&nbsp;at&nbsp;unfix.org&gt;
+                Protocol description: <a href="http://www.ietf.org/rfc/rfc2816.txt">RFC 2816</a>
+                Defined TXT keys: path=&lt;path on the server where the HKP applications reside&gt;
+                                  normally: "path=/pks/"
+
+<b>pgpkey-https</b>    PGP Keyserver using HTTPS
+                Jeroen Massar &lt;jeroen&nbsp;at&nbsp;unfix.org&gt;
+                Protocol description: <a href="http://www.ietf.org/rfc/rfc2818.txt">RFC 2818</a>
+                Defined TXT keys: path=&lt;path on the server where the HKP applications reside&gt;
+                                  normally: "path=/pks/"
+
+<b>pgpkey-ldap</b>     PGP Keyserver using LDAP
+                Jeroen Massar &lt;jeroen&nbsp;at&nbsp;unfix.org&gt;
+                Protocol description: <a href="http://www.ietf.org/rfc/rfc2251.txt">RFC 2251</a>
+                Defined TXT keys: None
+
+<b>pgpkey-mailto</b>   PGP Key submission using SMTP
+                Jeroen Massar &lt;jeroen&nbsp;at&nbsp;unfix.org&gt;
+                Protocol description: <a href="http://www.ietf.org/rfc/rfc2821.txt">RFC 2821</a>
+                Defined TXT keys: user=&lt;user portion of the mail address&gt;
+
+<b>photoparata</b>     Photo Parata Event Photography Software
+                Sam Carleton &lt;scarleton&nbsp;at&nbsp;miltonstreet.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>pictua</b>          Pictua Intercommunication Protocol
+                Isaack Rasmussen &lt;isaack&nbsp;at&nbsp;pictua.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>piesync</b>         pieSync Computer to Computer Synchronization
+                Timothy Wayper &lt;timmy&nbsp;at&nbsp;wunderbear.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+                
+<b>piu</b>             Pedestal Interface Unit by RPM-PSI
+                James Nikolai &lt;jamesnikolai&nbsp;at&nbsp;rpm-psi.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>poch</b>            Parallel OperatiOn and Control Heuristic (Pooch)
+                Dean Dauger &lt;D&nbsp;at&nbsp;DaugerResearch.com&gt;
+                Defined TXT keys: None
+
+<b>pop3</b>            Post Office Protocol - Version 3
+                Marshall Rose &lt;mrose&nbsp;at&nbsp;dbc.mtview.ca.us&gt;
+                Protocol description: <a href="http://www.ietf.org/rfc/rfc1939.txt">RFC 1939</a>
+                Discovery Protocol: RFC 2782
+
+<b>postgresql</b>      PostgreSQL Server
+                Defined TXT keys: None
+
+<b>powereasy-erp</b>   PowerEasy ERP
+                Ulaganathan Sriramulu &lt;ulag&nbsp;at&nbsp;effigent.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: ip, port, name, instance, cgi-alias, major-version, minor-version, custom
+
+<b>powereasy-pos</b>   PowerEasy Point of Sale
+                Murthy Parthasarathi &lt;pvmurthy&nbsp;at&nbsp;effigent.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: ip, port, type, device-id, major-version, minor-version, custom
+
+<b>pplayer-ctrl</b>    Piano Player Remote Control
+                Juraj Zopp &lt;juraj.zopp&nbsp;at&nbsp;pianoforce.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: Proprietary
+
+<b>presence</b>        Peer-to-peer messaging / Link-Local Messaging
+                XMPP Registrar &lt;registrar&nbsp;at&nbsp;xmpp.org&gt;
+                Protocol description: <a href="http://www.xmpp.org/extensions/xep-0174.html">http://www.xmpp.org/extensions/xep-0174.html</a>
+                Defined TXT keys: See <a href="http://www.xmpp.org/registrar/linklocal.html">http://www.xmpp.org/registrar/linklocal.html</a>
+                Note: Registration updated May 2007. Was formerly listed as "iChat AV" (Apple's IM client
+                for Mac OS X) with TXT keys: txtvers, port.p2pj, phsh, vc, 1st, AIM, msg, status, last
+                When first shipped in Mac OS X 10.2, iChat's peer-to-peer messaging protocol was
+                created to solve the problem of serverless messaging between peers on the same link.
+                However, there is nothing inherent in the protocol that limits it to being only link-local;
+                it was simply an artifact of iChat in Mac OS X 10.2 using link-local <a href="http://www.multicastdns.org/">Multicast DNS</a> to
+                discover peers. With the advent of <a href="http://www.dns-sd.org/">Wide-Area DNS-SD</b></a>, it is also possible to use iChat's
+                <a href="http://www.dns-sd.org/iChatWideArea.html">peer-to-peer messaging between machines on different links</a>.
+
+<b>print-caps</b>      Retrieve a description of a device's print capabilities
+                Troy Bergstrand &lt;troy.bergstrand&nbsp;at&nbsp;hp.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>printer</b>         Spooler (more commonly known as "LPR printing" or "LPD printing")
+                Protocol description: <a href="http://www.ietf.org/rfc/rfc1179.txt">RFC 1179</a>
+                Defined TXT keys: See <a href="http://developer.apple.com/networking/bonjour/BonjourPrinting.pdf">BonjourPrinting.pdf</a>.
+
+<b>profilemac</b>      Profile for Mac medical practice management software
+                David Sinclair &lt;bonjour&nbsp;at&nbsp;profilemac.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>prolog</b>          Prolog
+                Mike Brady &lt;brady&nbsp;at&nbsp;cs.tcd.ie&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: version=&lt;version number&gt;
+
+<b>ptnetprosrv2</b>    PTNetPro Service</b>
+                Profiling and performance analysis protocol for Shark 4.0 and BigTop.
+                Apple Computer &lt;perftools-feedback&nbsp;at&nbsp;group.apple.com&gt;
+                Defined TXT keys: None
+
+<b>ptp</b>             Picture Transfer Protocol
+                Petronel Bigioi &lt;petronel&nbsp;at&nbsp;fotonation.com&gt;
+                Defined TXT keys: guid=&lt;Device guid&gt;
+
+<b>ptp-req</b>         PTP Initiation Request Protocol
+                Mark Wood &lt;mark.d.wood&nbsp;at&nbsp;kodak.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: txtvers, guid, c0, c1, c2, ..., where the number of c_n attributes is variable
+
+<b>qbox</b>            QBox Appliance Locator
+                Geoff Back &lt;geoff.back&nbsp;at&nbsp;autocue.co.uk&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>qttp</b>            QuickTime Transfer Protocol
+                Stuart Cheshire &lt;cheshire&nbsp;at&nbsp;apple.com&gt;
+                Protocol description: QuickTime media (a ".mov file") transported over HTTP.
+                A QTTP-compliant server does not need to implement every detail of the entire HTTP specification
+                (e.g. POST and PUT) but it does need to implement HTTP partial GETs to allow a client to perform
+                random-access reads into the file rather than having to fetch the entire thing.
+                Defined TXT keys: u=&lt;username&gt; p=&lt;password&gt; path=&lt;path to document&gt; (Same as for _http._tcp)
+
+<b>quinn</b>           Quinn Game Server
+                Simon Haertel &lt;simonhaertel&nbsp;at&nbsp;web.de&gt;
+                Defined TXT keys: None
+
+<b>rakket</b>          Rakket Client Protocol
+                Orion Reblitz-Richardson &lt;orionr&nbsp;at&nbsp;rakket.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>raop</b>            Remote Audio Output Protocol (AirTunes)
+                Rob Newberry &lt;rnewberry&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: Contact Apple&nbsp;at&nbsp;&lt;bonjourdev&nbsp;at&nbsp;apple.com&gt;
+
+<b>rbr</b>             RBR Instrument Communication
+                Greg Johnson &lt;greg.johnson&nbsp;at&nbsp;ieee.org&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>rce</b>             PowerCard
+                DeVoeSquared &lt;support&nbsp;at&nbsp;devoesquared.com&gt;
+                Defined TXT keys: None
+
+<b>realplayfavs</b>    RealPlayer Shared Favorites
+                RealNetworks &lt;macplayer&nbsp;at&nbsp;real.com&gt;
+                Defined TXT keys: None
+
+<b>recipe</b>          Recipe Sharing Protocol
+                Daniel G. Taylor &lt;dan&nbsp;at&nbsp;programmer-art.org&gt;
+                Protocol description: <a href="http://www.recipemanager.org/rsp/">http://www.recipemanager.org/rsp/</a>
+                Defined TXT keys: <a href="http://www.recipemanager.org/rsp/rsp10draft.html#dnssd">http://www.recipemanager.org/rsp/rsp10draft.html#dnssd</b></a>
+
+<b>remoteburn</b>      LaCie Remote Burn
+                Serge DE LUCA &lt;sdeluca&nbsp;at&nbsp;lacie.com&gt;
+                Defined TXT keys: server_version, min_client_version
+
+<b>renderpipe</b>      ARTvps RenderDrive/PURE Renderer Protocol
+                Andrew Hoddinott &lt;support&nbsp;at&nbsp;artvps.com&gt;
+                Defined TXT keys: None
+
+<b>rendezvouspong</b>  RendezvousPong
+                Math Game House Software &lt;mathgamehouse&nbsp;at&nbsp;mac.com&gt;
+                Defined TXT keys: None
+
+<b>resacommunity</b>   Community Service</b>
+                Mr Stephane MONS &lt;stephane.mons&nbsp;at&nbsp;free.fr&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>resol-vbus</b>      RESOL VBus
+                Daniel Wippermann &lt;Daniel.Wippermann&nbsp;at&nbsp;resol.de&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>retrospect</b>      Retrospect backup and restore service</b>
+                Michael Marks &lt;marks_michael&nbsp;at&nbsp;emc.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>rfb</b>             Remote Frame Buffer (used by <a href="http://www.realvnc.com/">VNC</a>)
+                Andrew van der Stock &lt;ajv&nbsp;at&nbsp;greebo.net&gt;
+                Defined TXT keys: None
+
+<b>rfbc</b>            Remote Frame Buffer Client (Used by VNC viewers in listen-mode)
+                Ole-Morten Duesund &lt;ole-morten.duesund&nbsp;at&nbsp;bbvisuals.no&gt;
+                Defined TXT keys: server=dns-name/ip-address:port of currently displayed VNC server.
+                  Empty if not showing anything/available.
+
+<b>rfid</b>            RFID Reader Mach1(tm) Protocol
+                Paul Dietrich &lt;registrar&nbsp;at&nbsp;impinj.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>riousbprint</b>     Remote I/O USB Printer Protocol
+                Rob Newberry &lt;rnewberry&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: See <a href="http://developer.apple.com/networking/bonjour/BonjourPrinting.pdf">BonjourPrinting.pdf</a>.
+
+<b>roku-rcp</b>        Roku Control Protocol
+                Don Woodward &lt;dwoodward&nbsp;at&nbsp;rokulabs.com&gt;
+                Defined TXT keys: txtvers=1
+
+<b>rsmp-server</b>     Remote System Management Protocol (Server Instance)
+                Geoff Back &lt;geoff&nbsp;at&nbsp;demonlair.co.uk&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: apiver=&lt;major.minor&gt;
+
+<b>rsync</b>           Rsync
+                Andrew Tridgell &lt;tridge&nbsp;at&nbsp;samba.anu.edu.au&gt;
+                Protocol description: <a href="http://samba.anu.edu.au/rsync/">http://samba.anu.edu.au/rsync</a>
+                Defined TXT keys: None
+
+<b>rtsp</b>            Real Time Streaming Protocol
+                Rob Lanphier &lt;robla&nbsp;at&nbsp;prognet.com&gt;
+                Protocol description: <a href="http://www.ietf.org/rfc/rfc2326.txt">RFC 2326</a>
+                Defined TXT keys: None
+
+<b>rubygems</b>        RubyGems GemServer
+                Rich Kilmer &lt;rich&nbsp;at&nbsp;infoether.com&gt;
+                Protocol description: <a href="http://rubygems.rubyforge.org/wiki/wiki.pl?GemServer">GemServer</a>
+                Defined TXT keys: None
+
+<b>safarimenu</b>      Safari Menu
+                Jesus De Meyer &lt;jesus&nbsp;at&nbsp;edot-studios.com&gt;
+                Defined TXT keys: None
+
+<b>sallingbridge</b>   Salling Clicker Sharing
+                Jonas Salling &lt;jonas&nbsp;at&nbsp;salling.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>sallingclicker</b>  Salling Clicker Service</b>
+                Jonas Salling &lt;jonas&nbsp;at&nbsp;salling.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>salutafugijms</b>   Salutafugi Peer-To-Peer Java Message Service</b> Implementation
+                David Walend &lt;david&nbsp;at&nbsp;walend.net&gt; or &lt;dev&nbsp;at&nbsp;salutafugijms.dev.java.net&gt;
+                Protocol description: <a href="https://salutafugijms.dev.java.net/">salutafugijms.dev.java.net</a>
+                Defined TXT keys: <a href="https://salutafugijms.dev.java.net/nonav/api/net/walend/salutafugijms/SalutaProperties.html">SalutaProperties</a>
+
+<b>sandvox</b>         Sandvox
+                Karelia Software
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>scanner</b>         Bonjour Scanning
+                Baskaran Subramaniam &lt;baskaran&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: None
+
+<b>schick</b>          Schick
+                Heiko Kretschmer &lt;info&nbsp;at&nbsp;wurst-wasser.net&gt;
+                Defined TXT keys: None
+
+<b>scone</b>           Scone
+                James Moore &lt;jam&nbsp;at&nbsp;wirerimmed.com&gt;
+                Defined TXT keys: None
+
+<b>scpi-raw</b>        IEEE 488.2 (SCPI) Socket
+                Nick Barendt &lt;nbarendt&nbsp;at&nbsp;vxitech.com&gt;
+                Protocol description: Interpreter that accepts IEEE 488.2 commands;
+                "scpi-raw" has an IANA reserved port of 5025
+                Defined TXT keys: None
+
+<b>scpi-telnet</b>     IEEE 488.2 (SCPI) Telnet
+                Nick Barendt &lt;nbarendt&nbsp;at&nbsp;vxitech.com&gt;
+                Protocol description: Telnet server that accepts IEEE 488.2 commands;
+                "scpi-telnet" has an IANA reserved port of 5024
+                Defined TXT keys: None
+
+<b>sdsharing</b>       Speed Download
+                Yazsoft &lt;info&nbsp;at&nbsp;yazsoft.com&gt;
+                Defined TXT keys: None
+
+<b>see</b>             SubEthaEdit 2
+                TheCodingMonkeys &lt;monkeys&nbsp;at&nbsp;codingmonkeys.de&gt;
+                Defined TXT keys: txtvers=1, name=&lt;Full Name&gt;, userid=&lt;User ID&gt;, version=2
+
+<b>seeCard</b>         seeCard
+                Stefan Pantke &lt;sales&nbsp;at&nbsp;turingart.com&gt;
+                Defined TXT keys: None
+
+<b>senteo-http</b>     Senteo Assessment Software Protocol
+                Michael Boyle &lt;michaelboyle&nbsp;at&nbsp;smarttech.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>sentillion-vlc</b>  Sentillion Vault System
+                George Hartz &lt;george.hartz&nbsp;at&nbsp;sentillion.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>sentillion-vlt</b>  Sentillion Vault Systems Cluster
+                George Hartz &lt;george.hartz&nbsp;at&nbsp;sentillion.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>serendipd</b>       serendiPd Shared Patches for Pure Data
+                Hans-Christoph Steiner &lt;hans&nbsp;at&nbsp;eds.org&gt;
+                Protocol description: <a href="http://at.or.at/serendipd/">http://at.or.at/serendipd/</a>
+                Defined TXT keys: None
+
+<b>servereye</b>       ServerEye AgentContainer Communication Protocol
+                Andreas Behr &lt;andreas.behr&nbsp;at&nbsp;kraemer-it.de&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>servermgr</b>       Mac OS X Server Admin
+                Jeff Albouze &lt;foup&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: None
+
+<b>services</b>        DNS Service Discovery
+                Stuart Cheshire &lt;cheshire&nbsp;at&nbsp;apple.com&gt;, Marc Krochmal &lt;marc&nbsp;at&nbsp;apple.com&gt;
+                Not a service type. Special name reserved for DNS-SD meta queries.
+
+<b>sessionfs</b>       Session File Sharing
+                Anthony Williams &lt;tonydubs&nbsp;at&nbsp;gmail.com&gt;
+                Protocol description: This project is for the purposes of research only.  It is the original work
+                of Anthony Williams and Geet Duggal, copyrighted as of 2005.  Website soon to be constructed.
+                Defined TXT keys: Text keys are the file extensions of any file the user plans to share, i.e. pdf, doc, mp3.
+
+<b>sftp-ssh</b>        Secure File Transfer Protocol over SSH
+                Bryan Cole &lt;bryan.cole&nbsp;at&nbsp;teraview.com&gt;
+                Protocol description: <a href="http://tools.ietf.org/wg/secsh/draft-ietf-secsh-filexfer/draft-ietf-secsh-filexfer-13.txt">draft-ietf-secsh-filexfer-13.txt</a>
+                Defined TXT keys: u=&lt;username&gt; p=&lt;password&gt; path=&lt;path&gt;
+
+<b>shell</b>           like exec, but automatic authentication is performed as for login server.
+                Defined TXT keys: None
+
+<b>shipsgm</b>         Swift Office Ships
+                Verek &lt;info&nbsp;at&nbsp;verek.com&gt;
+                Defined TXT keys: None
+
+<b>shipsinvit</b>      Swift Office Ships
+                Verek &lt;info&nbsp;at&nbsp;verek.com&gt;
+                Defined TXT keys: None
+
+<b>shoppersync</b>     SplashShopper Synchronization Service
+                Justin Cepelak &lt;jcepelak&nbsp;at&nbsp;splashdata.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: Proprietary
+
+<b>shoutcast</b>       Nicecast
+                Rogue Amoeba &lt;nicecast&nbsp;at&nbsp;rogueamoeba.com&gt;
+                Defined TXT keys: None
+
+<b>sip</b>             Session Initiation Protocol, signalling protocol for VoIP
+                Benjamin Kowarsch &lt;benjamin&nbsp;at&nbsp;sunrise-tel.com&gt; November 2004
+                Protocol Description: <a href="http://www.ietf.org/rfc/rfc3261.txt">http://www.ietf.org/rfc/rfc3261.txt</a> (work in progress)
+                Primary Transport Protocol: UDP
+                Defined TXT keys:
+                  sipver        SIP version
+                  sipstd        RFC number of SIP standard to comply with
+                  auth          plaintext | md5 | rsakeys
+                  userid        alphanumeric, additionally '_', '+', '-'
+                  secret        any printable ASCII characters
+                  realm         SIP realm (see RFC3261)
+                  fromuser      username for SIP "from" header (see RFC3261)
+                  fromdomain    domain for SIP "from" header (see RFC3261)
+                  registrar     SIP registrar (see RFC3261)
+                  proxy         SIP proxy (see RFC3261)
+                  natproxy      SIP proxy for NATed clients
+                  outproxy      outbound SIP proxy (see RFC3261)
+                  stunserver    STUN server DNS name or IP address
+                  contact       SIP URI (see RFC3261)
+                  dtmfmode      inband | rfc2833 | sipinfo
+                  welcome       SIP URI (see RFC3261)
+                  voicemail     SIP URI (see RFC3261)
+                  reception     SIP URI (see RFC3261)
+                  echotest      SIP URI (see RFC3261)
+                  ivrtest       SIP URI (see RFC3261)
+                Further TXT record keys may be added in the future.
+
+<b>sipuri</b>          Session Initiation Protocol Uniform Resource Identifier
+                Jae Woo Lee &lt;jae&nbsp;at&nbsp;cs.columbia.edu&gt;
+                Protocol Description: <a href="http://tools.ietf.org/html/draft-lee-sip-dns-sd-uri-00">draft-lee-sip-dns-sd-uri-00</a>
+                Defined TXT keys: Defined in URL specification
+
+<b>sironaxray</b>      Sirona Xray Protocol
+                Michael Dalpiaz &lt;Michael.Dalpiaz&nbsp;at&nbsp;sirona.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: Manufacturer=Sirona
+
+<b>skype</b>           Skype
+                Protocol description: <a href="http://skype.com/products/explained.html">http://skype.com/products/explained.html</a>
+                Defined TXT keys: platform, status, auth, rversion, version
+
+<b>sleep-proxy</b>     Sleep Proxy Server
+                Stuart Cheshire &lt;cheshire&nbsp;at&nbsp;apple.com&gt;, Marc Krochmal &lt;marc&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: None
+
+<b>slimcli</b>         SliMP3 Server Command-Line Interface
+                Dean Blackketter &lt;dean&nbsp;at&nbsp;slimdevices.com&gt;
+                Defined TXT keys: None
+
+<b>slimhttp</b>        SliMP3 Server Web Interface
+                Dean Blackketter &lt;dean&nbsp;at&nbsp;slimdevices.com&gt;
+                Defined TXT keys: None
+
+<b>smb</b>             Server Message Block over TCP/IP
+                Defined TXT keys: u=&lt;username&gt; p=&lt;password&gt; path=&lt;path&gt;
+
+<b>soap</b>            Simple Object Access Protocol
+                Andrew Donoho &lt;awd&nbsp;at&nbsp;us.ibm.com&gt;
+                Defined TXT keys: None
+                Subtypes: The specific SOAP-based protocol being offered.
+                Note: Browsing for _soap._tcp as a generic service is useful only in development tools.
+                For any given application, it should browse for the specific semantic service (subtype
+                of _soap._tcp) it requires. Browsing for _soap._tcp would simply find all services
+                that happened to be built on top of SOAP technology, without regard for whether the
+                service they provide is at all relevant to what this application wants to do.
+
+<b>sox</b>             Simple Object eXchange
+                Igor Mozolevsky &lt;igor&nbsp;at&nbsp;itaufait.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: Proprietary
+
+<b>spearcat</b>        sPearCat Host Discovery
+                Pierre Frisch &lt;pierre.frisch&nbsp;at&nbsp;spearway.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: applicationname=&lt;Application Name&gt;, osname=&lt;OS Name&gt;, sslsupport=&lt;Uses SSL&gt;
+
+<b>spike</b>           Shared Clipboard Protocol
+                Scott Herscher &lt;scott&nbsp;at&nbsp;porchdogsoft.com&gt;
+                Defined TXT keys: None
+
+<b>spincrisis</b>      Spin Crisis
+                Sphera Software &lt;contact&nbsp;at&nbsp;sphera-soft.com&gt;
+                Defined TXT keys: None
+
+<b>spl-itunes</b>      launchTunes
+                David Nanian &lt;dnanian&nbsp;at&nbsp;shirt-pocket.com&gt;
+                Defined TXT keys: None
+
+<b>spr-itunes</b>      netTunes
+                David Nanian &lt;dnanian&nbsp;at&nbsp;shirt-pocket.com&gt;
+                Defined TXT keys: None
+
+<b>splashsync</b>      SplashData Synchronization Service
+                Justin Cepelak &lt;jcepelak&nbsp;at&nbsp;splashdata.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: Proprietary
+
+<b>ssh</b>             SSH Remote Login Protocol
+                Tatu Ylonen &lt;ylo&nbsp;at&nbsp;cs.hut.fi&gt;
+                Defined TXT keys: u=&lt;username&gt; p=&lt;password&gt;
+
+<b>ssscreenshare</b>   Screen Sharing
+                Defined TXT keys: None
+
+<b>strateges</b>       Strateges
+                Jean-Olivier Lanctot-D. &lt;jolivierld&nbsp;at&nbsp;clichesw.com&gt;
+                Defined TXT keys: None
+
+<b>sge-exec</b>        Sun Grid Engine (Execution Host)
+                Bill Van Etten &lt;Bill&nbsp;at&nbsp;BioTeam.net&gt;
+                Defined TXT keys: None
+
+<b>sge-qmaster</b>     Sun Grid Engine (Master)
+                Bill Van Etten &lt;Bill&nbsp;at&nbsp;BioTeam.net&gt;
+                Defined TXT keys: None
+                Note: Sun Grid Engine "Submit Hosts" browse for _sge-qmaster._tcp service
+                to find a queue master to which they should submit jobs.
+                Sun Grid Engine "Queue Masters" browse for _sge-exec._tcp service
+                to find all the execution hosts that are advertising their availability
+                and willingness to do that work. For more information see <a href="http://bioteam.net/">http://bioteam.net/</a>
+
+<b>sparql</b>          SPARQL Protocol and RDF Query Language
+                Alex Tucker &lt;alex&nbsp;at&nbsp;floop.org.uk&gt;
+                Protocol description: <a href="http://www.w3.org/TR/rdf-sparql-protocol/">http://www.w3.org/TR/rdf-sparql-protocol/</a>
+                Defined TXT keys:
+                  txtvers=1
+                  path=&lt;relative or absolute URL of endpoint&gt;
+                  protovers=&lt;number&gt; [if not specified then default is 1.0, corresponding to <a href="http://www.w3.org/TR/2008/REC-rdf-sparql-protocol-20080115/">SPARQL version</a>]
+                  binding=&lt;HTTP | SOAP&gt; [if not specified then default is HTTP]
+                  vocabs=&lt;space separated list of URIs&gt; [RDF vocabularies or OWL ontologies used by the endpoint]
+                  metadata=&lt;URL&gt; [to fetch RDF/XML description of SPARQL service]
+
+<b>stanza</b>          Lexcycle Stanza service for discovering shared books
+                Marc Prud'hommeaux &lt;support&nbsp;at&nbsp;lexcycle.com&gt;
+                Protocol description: SOAP over HTTP
+                Defined TXT keys: None
+
+<b>stickynotes</b>     Sticky Notes
+                Johnnie Walker &lt;mrwalker&nbsp;at&nbsp;randomsequence.com&gt;
+                Defined TXT keys: None
+
+<b>submission</b>      Message Submission
+                Jeroen Massar &lt;jeroen&nbsp;at&nbsp;unfix.org&gt;
+                Protocol description: <a href="http://www.ietf.org/rfc/rfc2476.txt">RFC 2476</a>
+                Defined TXT keys: None
+
+<b>supple</b>          Supple Service protocol
+                Dave Christianson &lt;dbc1&nbsp;at&nbsp;cs.washington.edu&gt;
+                Defined TXT keys: type url
+
+<b>svn</b>             Subversion
+                CollabNet <a href="http://www.collab.net/">www.collab.net<a>
+                Defined TXT keys: None
+
+<b>swcards</b>         Signwave Card Sharing Protocol
+                Signwave Networking Development Team &lt;mail&nbsp;at&nbsp;signwave.co.uk&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>swordfish</b>       Swordfish Protocol for Input/Output
+                Jim Wallace &lt;jim&nbsp;at&nbsp;cs.dal.ca&gt;
+                Protocol description: <a href="http://www.cs.dal.ca/~jim/Swordfish/">www.cs.dal.ca/~jim/Swordfish</a>
+                Defined TXT keys: None
+
+<b>sxqdea</b>          Synchronize! Pro X
+                Qdea &lt;support&nbsp;at&nbsp;qdea.com&gt;
+                Defined TXT keys: None
+
+<b>sybase-tds</b>      Sybase Server
+                Defined TXT keys: None
+
+<b>syncopation</b>     Syncopation Synchronization Protocol by Sonzea
+                Sonzea, LLC &lt;support&nbsp;at&nbsp;sonzea.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>syncqdea</b>        Synchronize! X Plus 2.0
+                Qdea &lt;support&nbsp;at&nbsp;qdea.com&gt;
+                Defined TXT keys: None
+
+<b>taccounting</b>     Data Transmission and Synchronization
+                John MacMullin &lt;john.macmullin&nbsp;at&nbsp;cox.net&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>tbricks</b>         tbricks internal protocol
+                Joakim Johansson &lt;joakim.johansson&nbsp;at&nbsp;tbricks.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: txtvers=1, sesna, seid, setype, cosna, coid,
+                    cotype, sysna, syna, syid, subsyid, venid, protocols, pid
+
+<b>tcu</b>             Tracking Control Unit by RPM-PSI
+                James Nikolai &lt;jamesnikolai&nbsp;at&nbsp;rpm-psi.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>teamlist</b>        ARTIS Team Task
+                ARTIS Software &lt;contact&nbsp;at&nbsp;artissoftware.com&gt;
+                Defined TXT keys: None
+
+<b>teleport</b>        teleport
+                Julien Robert &lt;jul&nbsp;at&nbsp;abyssoft.com&gt;
+                Primary Transport Protocol: UDP
+                Defined TXT keys: None
+
+<b>telnet</b>          Telnet
+                Service name originally allocated for Jon Postel &lt;postel&nbsp;at&nbsp;isi.edu&gt;
+                Now advertised and browsed-for by numerous independent
+                server and client implementations.
+                Protocol description: <a href="http://www.ietf.org/rfc/rfc0854.txt">RFC 854</a>
+                Defined TXT keys: u=&lt;username&gt; p=&lt;password&gt;
+
+<b>tftp</b>            Trivial File Transfer
+                David Clark &lt;ddc&nbsp;at&nbsp;LCS.MIT.EDU&gt;
+                Protocol description: <a href="http://www.ietf.org/rfc/rfc783.txt">RFC 783</a>
+                Primary Transport Protocol: UDP
+                Defined TXT keys: None
+
+<b>ticonnectmgr</b>    TI Connect Manager Discovery Service
+                Stephen Reid &lt;sreid&nbsp;at&nbsp;ti.com&gt;
+                Defined TXT keys: None
+
+<b>timbuktu</b>        Timbuktu
+                Neal Trautman &lt;neal&nbsp;at&nbsp;netopia.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>tinavigator</b>     TI Navigator Hub 1.0 Discovery Service
+                Stephen Reid &lt;sreid&nbsp;at&nbsp;ti.com&gt;
+                Defined TXT keys: None
+
+<b>tivo-hme</b>        TiVo Home Media Engine Protocol
+                Developer Support &lt;devsupport&nbsp;at&nbsp;tivo.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>tivo-music</b>      TiVo Music Protocol
+                Developer Support &lt;devsupport&nbsp;at&nbsp;tivo.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>tivo-photos</b>     TiVo Photos Protocol
+                Developer Support &lt;devsupport&nbsp;at&nbsp;tivo.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>tivo-remote</b>     TiVo Remote Protocol
+                Developer Support &lt;devsupport&nbsp;at&nbsp;tivo.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: protocol, path, swversion, platform, TSN
+
+<b>tivo-videos</b>     TiVo Videos Protocol
+                Developer Support &lt;devsupport&nbsp;at&nbsp;tivo.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: protocol, path, swversion, platform, TSN
+
+<b>tomboy</b>          Tomboy
+                Alex Graveley &lt;alex&nbsp;at&nbsp;beatniksoftware.com&gt;
+                Protocol description: <a href="http://www.beatniksoftware.com/tomboy/">http://www.beatniksoftware.com/tomboy</a>
+                Defined TXT keys: None
+
+<b>toothpicserver</b>  ToothPics Dental Office Support Server
+                Milton Pulis &lt;toothpic&nbsp;at&nbsp;fastq.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>touch-able</b>      iPhone and iPod touch Remote Controllable
+                Amandeep Jawa &lt;daap&nbsp;at&nbsp;apple.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: txtvers, CtlN, DbId, Ver, DvTy, OSsi, DvSv
+
+<b>touch-remote</b>    iPhone and iPod touch Remote Pairing
+                Amandeep Jawa &lt;daap&nbsp;at&nbsp;apple.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: txtvers, DvNm, Pair, RemV, RemN, DvTy
+
+<b>tryst</b>           Tryst
+                Francisco Ryan Tolmasky &lt;ftolmasky&nbsp;at&nbsp;adelphia.net&gt;
+                Defined TXT keys: None
+
+<b>ttp4daemon</b>      TechTool Pro 4 Anti-Piracy Service
+                Micromat &lt;support&nbsp;at&nbsp;micromat.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>tunage</b>          Tunage Media Control Service
+                Matt Patenaude &lt;MattPat&nbsp;at&nbsp;mattpat.net&gt;
+                Protocol description: <a href="http://tunage.tuneconnect.net">http://tunage.tuneconnect.net</a>
+                Defined TXT keys: None
+
+<b>tuneranger</b>      TuneRanger
+                Acertant Technologies, Inc.
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>ubertragen</b>      Ubertragen
+                Widgetschmie.de
+                Defined TXT keys: None
+
+<b>uddi</b>            Universal Description, Discovery and Integration
+                Paul Denning &lt;pauld&nbsp;at&nbsp;mitre.org&gt;
+                Protocol description: <a href="http://uddi.org/pubs/uddi-v3.0.2-20041019.htm">http://uddi.org/pubs/uddi-v3.0.2-20041019.htm</a>
+                Defined TXT keys: TBD
+
+<b>uddi-inq</b>        Universal Description, Discovery and Integration Inquiry
+                Paul Denning &lt;pauld&nbsp;at&nbsp;mitre.org&gt;
+                Protocol description: <a href="http://uddi.org/pubs/uddi-v3.0.2-20041019.htm">http://uddi.org/pubs/uddi-v3.0.2-20041019.htm</a>
+                Defined TXT keys: TBD
+
+<b>uddi-pub</b>        Universal Description, Discovery and Integration Publishing
+                Paul Denning &lt;pauld&nbsp;at&nbsp;mitre.org&gt;
+                Protocol description: <a href="http://uddi.org/pubs/uddi-v3.0.2-20041019.htm">http://uddi.org/pubs/uddi-v3.0.2-20041019.htm</a>
+                Defined TXT keys: TBD
+
+<b>uddi-sub</b>        Universal Description, Discovery and Integration Subscription
+                Paul Denning &lt;pauld&nbsp;at&nbsp;mitre.org&gt;
+                Protocol description: <a href="http://uddi.org/pubs/uddi-v3.0.2-20041019.htm">http://uddi.org/pubs/uddi-v3.0.2-20041019.htm</a>
+                Defined TXT keys: TBD
+
+<b>uddi-sec</b>        Universal Description, Discovery and Integration Security
+                Paul Denning &lt;pauld&nbsp;at&nbsp;mitre.org&gt;
+                Protocol description: <a href="http://uddi.org/pubs/uddi-v3.0.2-20041019.htm">http://uddi.org/pubs/uddi-v3.0.2-20041019.htm</a>
+                Defined TXT keys: TBD
+
+<b>upnp</b>            Universal Plug and Play
+                Andrew Donoho &lt;awd&nbsp;at&nbsp;us.ibm.com&gt;
+                Defined TXT keys: None
+                Subtypes: The specific UPnP Forum protocol being offered.
+                Note: Browsing for _upnp._tcp as a generic service is useful only in development tools.
+                For any given application, it should browse for the specific semantic service (subtype
+                of _upnp._tcp) it requires. Browsing for _upnp._tcp would simply find all services that
+                happen to use an application protocol designed by the UPnP Forum, without regard for
+                whether the service they provide is at all relevant to what this application wants to do.
+
+<b>uswi</b>            Universal Switching Corporation products
+                Roger Lemberg &lt;rlemberg&nbsp;at&nbsp;uswi.com&gt;
+                Protocol description: <a href="http://www.uswi.com/PDF/Technical/Manuals/USC%20Interface%20Control%20Protocol%20REV%20D.pdf">www.uswi.com</a>
+                Defined TXT keys: None
+
+<b>utest</b>           uTest
+                Gregory Power &lt;gpower&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: None
+
+<b>ve-decoder</b>      American Dynamics VideoEdge Decoder Control Service
+                Gary Sands &lt;gsands&nbsp;at&nbsp;tycoint.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: txtvers, macaddress, protovers, model, serial, path, idp
+
+<b>ve-encoder</b>      American Dynamics VideoEdge Encoder Control Service
+                Gary Sands &lt;gsands&nbsp;at&nbsp;tycoint.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: txtvers, macaddress, protovers, model, serial, path, idp
+
+<b>ve-recorder</b>     American Dynamics VideoEdge Recorder Control Service
+                Gary Sands &lt;gsands&nbsp;at&nbsp;tycoint.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: txtvers, macaddress, protovers, model, serial, path, idp
+
+<b>visel</b>           visel Q-System services
+                Lehpaner Sasa &lt;lsasa&nbsp;at&nbsp;visel.it&gt;
+                Protocol description: Proprietary
+                Defined TXT keys:
+                  Version=&lt;service version&gt;
+                  Type=&lt;service type&gt;
+                  Name=&lt;service Name&gt;
+                  Zone=&lt;service zone&gt;
+                  ID=&lt;serviceID&gt;
+                  SString=&lt;serviceString&gt;
+                  SString1=&lt;serviceString&gt;
+
+<b>volley</b>          Volley
+                David Catmull &lt;uncommon&nbsp;at&nbsp;uncommonplace.com&gt;
+                Protocol description: <a href="http://www.uncommonplace.com/volley/wiki/tiki-index.php?page=Network+Protocol">http://www.uncommonplace.com/volley/wiki/tiki-index.php?page=Network+Protocol</a>
+                Defined TXT keys: None
+
+<b>vos</b>             Virtual Object System (using VOP/TCP)
+                Reed Hedges &lt;reed&nbsp;at&nbsp;interreality.org&gt;, Peter Amstutz &lt;tetron&nbsp;at&nbsp;interreality.org&gt;
+                Protocol description: "Creating Interreality" available at <a href="http://interreality.org">http://interreality.org</a>
+                Defined TXT keys:
+                  url=&lt;Object URL with full path&gt;
+                  type=&lt;Comma-seperated list of object types&gt;
+                  title=&lt;Short title of service&gt;
+                  descr=&lt;Short description of service&gt;
+
+<b>vue4rendercow</b>   VueProRenderCow
+                Defined TXT keys: None
+
+<b>vxi-11</b>          VXI-11 TCP/IP Instrument Protocol
+                Nick Barendt &lt;nbarendt&nbsp;at&nbsp;vxitech.com&gt;
+                Protocol description: VXI-11 as defined by the <a href="http://www.vxibus.org">VXI Bus Consortium</a>
+                Defined TXT keys: None
+
+<b>webdav</b>          World Wide Web Distributed Authoring and Versioning (WebDAV)
+                Y. Y. Goland &lt;yarong&nbsp;at&nbsp;microsoft.com&gt;
+                Protocol description: <a href="http://www.ietf.org/rfc/rfc2518.txt">RFC 2518</a>
+                Defined TXT keys: u=&lt;username&gt; p=&lt;password&gt; path=&lt;path&gt;
+
+<b>webdavs</b>         WebDAV over SSL/TLS
+                Y. Y. Goland &lt;yarong&nbsp;at&nbsp;microsoft.com&gt;
+                Protocol description: <a href="http://www.ietf.org/rfc/rfc2518.txt">RFC 2518</a>
+                Defined TXT keys: u=&lt;username&gt; p=&lt;password&gt; path=&lt;path&gt;
+                
+<b>whamb</b>           Whamb
+                Whamb &lt;support&nbsp;at&nbsp;whamb.com&gt;
+                Defined TXT keys: None
+
+<b>wired</b>           Wired Server
+                Zanka Software &lt;axel&nbsp;at&nbsp;zankasoftware.com&gt;
+                Defined TXT keys: None
+
+<b>witap</b>           WiTap Sample Game Protocol
+                Rory McGuire &lt;rlpm&nbsp;at&nbsp;apple.com&gt
+                Protocol description: <a href="http://developer.apple.com/iphone/library/samplecode/WiTap/">http://developer.apple.com/iphone/library/samplecode/WiTap/</a>
+                Defined TXT keys: None
+
+<b>wkgrpsvr</b>        Workgroup Server Discovery
+                Forest Hill &lt;forest&nbsp;at&nbsp;apple.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>workstation</b>     Workgroup Manager
+                Kevin Arnold &lt;imlucid&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: None
+
+<b>wormhole</b>        Roku Cascade Wormhole Protocol
+                Don Woodward &lt;dwoodward&nbsp;at&nbsp;rokulabs.com&gt;
+                Defined TXT keys: txtvers=1
+
+<b>workgroup</b>       Novell collaboration workgroup
+                Brady Anderson &lt;banderso&nbsp;at&nbsp;novell.com&gt;
+                Defined TXT keys: version=? description=?
+
+<b>ws</b>              Web Services
+                Andrew Donoho &lt;awd&nbsp;at&nbsp;us.ibm.com&gt;
+                Defined TXT keys: None
+                Subtypes: The specific Web Services-based protocol being offered.
+                Note: Browsing for _ws._tcp as a generic service is useful only in development tools.
+                For any given application, it should browse for the specific semantic service (subtype
+                of _ws._tcp) it requires. Browsing for _ws._tcp would simply find all services that
+                happened to be built on top of Web Services technology, without regard for whether
+                the service they provide is at all relevant to what this application wants to do.
+
+<b>wtc-heleos</b>      Wyatt Technology Corporation HELEOS
+                Brent Fulgham &lt;bfulgham&nbsp;at&nbsp;wyatt.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>wtc-qels</b>        Wyatt Technology Corporation QELS
+                Brent Fulgham &lt;bfulgham&nbsp;at&nbsp;wyatt.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>wtc-rex</b>         Wyatt Technology Corporation Optilab rEX
+                Roy Reapor &lt;rreapor&nbsp;at&nbsp;wyatt.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>wtc-viscostar</b>   Wyatt Technology Corporation ViscoStar
+                Roy Reapor &lt;rreapor&nbsp;at&nbsp;wyatt.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>wtc-wpr</b>         Wyatt Technology Corporation DynaPro Plate Reader
+                Brent Fulgham &lt;bfulgham&nbsp;at&nbsp;wyatt.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: None
+
+<b>wwdcpic</b>         PictureSharing sample code
+                Marc Krochmal &lt;marc&nbsp;at&nbsp;apple.com&gt;
+                Protocol description: <a href="http://developer.apple.com/samplecode/PictureSharing/index.html">http://developer.apple.com/samplecode/PictureSharing/index.html</a>
+                Defined TXT keys: None
+
+<b>xcodedistcc</b>     Xcode Distributed Compiler
+                Scott Tooker &lt;tooker&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: None
+
+<b>xgate-rmi</b>       xGate Remote Management Interface
+                Tim Jobling &lt;tim&nbsp;at&nbsp;cambridgeimaging.co.uk&gt;
+                Protocol description: Proprietary
+                Defined TXT keys:
+                  tech=value (string)
+                  model=value (string)
+                  version=value (string)                
+
+<b>xgrid</b>           Xgrid
+                David Kramer &lt;dkramer&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: None
+
+<b>xmms2</b>           XMMS2 IPC Protocol
+                Tobias Rundstrom &lt;tru&nbsp;at&nbsp;xmms.org&gt;
+                Protocol description: <a href="http://wiki.xmms2.xmms.se/index.php/XMMS2_IPC_Protocol">http://wiki.xmms2.xmms.se/index.php/XMMS2_IPC_Protocol</a>
+                Defined TXT keys: None
+
+<b>xmp</b>             Xperientia Mobile Protocol
+                Henric Bergh &lt;henric.bergh&nbsp;at&nbsp;xperientia.com&gt;
+                Protocol description: Proprietary
+                Defined TXT keys: txtvers, user, system, nodeid, desc
+
+<b>xmpp-client</b>     XMPP Client Connection
+                Peter Saint-Andre &lt;stpeter&nbsp;at&nbsp;jabber.org&gt;
+                Protocol description: <a href="http://www.ietf.org/rfc/rfc3920.txt">RFC 3920</a>
+                Discovery Protocol: RFC 2782
+
+<b>xmpp-server</b>     XMPP Server Connection
+                Peter Saint-Andre &lt;stpeter&nbsp;at&nbsp;jabber.org&gt;
+                Protocol description: <a href="http://www.ietf.org/rfc/rfc3920.txt">RFC 3920</a>
+                Discovery Protocol: RFC 2782
+                
+<b>xsanclient</b>      Xsan Client
+                Jeff Albouze &lt;foup&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: None
+
+<b>xsanserver</b>      Xsan Server
+                Jeff Albouze &lt;foup&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: None
+
+<b>xsansystem</b>      Xsan System
+                Jeff Albouze &lt;foup&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: None
+
+<b>xserveraid</b>      XServe Raid
+                Bob Bradley &lt;bradley&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: Contact Apple&nbsp;at&nbsp;&lt;bonjourdev&nbsp;at&nbsp;apple.com&gt;
+
+<b>xsync</b>           Xserve RAID Synchronization
+                Bob Bradley &lt;bradley&nbsp;at&nbsp;apple.com&gt;
+                Defined TXT keys: Contact Apple&nbsp;at&nbsp;&lt;bonjourdev&nbsp;at&nbsp;apple.com&gt;
+
+<b>xtimelicence</b>    xTime License
+                AppMac Software &lt;appmac&nbsp;at&nbsp;appmac.com&gt;
+                Defined TXT keys: None
+
+<b>xtshapro</b>        xTime Project
+                AppMac Software &lt;appmac&nbsp;at&nbsp;appmac.com&gt;
+                Defined TXT keys: None
+
+<b>xul-http</b>        XUL (XML User Interface Language) transported over HTTP
+                Eran Gampel &lt;eran&nbsp;at&nbsp;aoe6.net&gt;
+                Protocol description: <a href="http://www.mozilla.org/projects/xul/">XML User Interface Language (XUL)</a> over HTTP.
+                Defined TXT keys: u=&lt;username&gt; p=&lt;password&gt; path=&lt;path to document&gt; (Same as for _http._tcp)
+
+</PRE>
+
+<P>The following services have been observed 'in the wild' using tools like
+<a href="http://www.tildesoft.com/Programs.html">Bonjour Browser</a>,
+but they have not been officially registered at DNS-SD.org, and they are not legal SRV
+service type names according to IANA rules because they are more than fourteen characters
+long and/or contain illegal characters.</P>
+
+<P>They are listed here solely for informational purposes.</P>
+
+<PRE>
+Service Type             Description
+------------             -----------
+
+<b>bigbangbackgammon</b>        Big Bang Backgammon
+                         Freeverse Software &lt;info&nbsp;at&nbsp;freeverse.com&gt;
+
+<b>bigbangcheckers</b>          Big Bang Checkers
+                         Freeverse Software &lt;info&nbsp;at&nbsp;freeverse.com&gt;
+
+<b>clipboardsharing</b>         ClipboardSharing
+                         Erik Lagercrantz &lt;erik&nbsp;at&nbsp;lagercrantz.ath.cx&gt;
+
+<b>gds_db</b>                   InterBase Database Remote Protocol
+
+<b>netmonitorserver</b>         Net Monitor Server
+                         Guy Meyer &lt;rominar&nbsp;at&nbsp;mac.com&gt;
+
+<b>presence_olpc</b>            OLPC Presence
+
+<b>pop_2_ambrosia</b>           Pop-Pop
+
+<b>profCastLicense</b>          ProfCast
+
+<b>WorldBook2004ST</b>          World Book Encyclopedia
+                         MacKiev &lt;support&nbsp;at&nbsp;mackiev.com&gt;
+</PRE>
+
+<HR><address><A HREF="http://www.dns-sd.org/">http://www.dns-sd.org</A></address>
+
+</BODY>
+</HTML>
+

@@ -1,0 +1,213 @@
+# ex: set ff=dos ts=2 et:
+# $Id$
+
+How Do We Classify Machines, Period?
+
+Precedence: How Do Others Do It?
+
+  Nmap
+
+    http://nmap.org/data/os-classes.txt
+
+    Vendor
+      Manufacturer of product; company
+    Product
+      
+    Version
+    Function
+
+    Examples:
+      Apple,iPhone OS,2.X,phone
+      Canon,embedded,,printer
+      Cisco,IOS,11.X,router
+      Microsoft,Windows,XP,general purpose
+
+    Vendor
+      ...
+    Product
+      $ cat nmap-os-classes-2009-01-02.txt | cut -d\| -f2 | cut -d\" -f1 | sort | uniq -c | sort -rn
+        325 embedded
+         50 Linux
+         22 Windows
+         11 FreeBSD
+          7 ZyNOS
+          7 IOS
+          5 Solaris
+          5 NetBSD
+          5 Mac OS X
+          5 iPhone OS
+          5 CatOS
+          4 z/OS
+          4 Symbian OS
+          4 OpenVMS
+          4 OpenBSD
+          4 IronWare
+          3 VxWorks
+          3 SGOS
+          3 NetWare
+          3 JUNOS
+          3 IRIX
+          3 AOS
+          3 AIX
+          2 VRP
+          2 UnixWare
+          2 Tru64 UNIX
+          2 SonicOS
+          2 SecureOS
+          2 RTOS
+          2 RouterOS
+          2 OS/400
+          2 OS/2
+          2 Minix
+          2 Mac OS
+          2 LCOS
+          2 IPSO
+          2 HP-UX
+          2 Digital UNIX
+          2 AsyncOS
+          1 z/VM
+          1 TOPS-20
+          1 SunOS
+          1 SmartEdge OS
+          1 SINIX
+          1 SFTOS
+          1 SCO UNIX
+          1 RISC OS
+          1 ReliantUNIX
+          1 RAIDiator
+          1 QNX
+          1 pSOS
+          1 Plan 9
+          1 PIX OS
+          1 PC-BSD
+          1 OS/390
+          1 OPENSTEP
+          1 OpenServer
+          1 OneFS
+          1 NX-OS
+          1 Nut/OS
+          1 NIOS
+          1 NEXTSTEP
+          1 NET+OS
+          1 lwIP
+          1 iRMX
+          1 IPAD-OS
+          1 iLO
+          1 i5/OS
+          1 Hurd
+          1 ExtremeWare
+          1 ESX Server
+          1 eCos
+          1 DYNIX
+          1 DragonFly BSD
+          1 Data ONTAP
+          1 ComOS
+          1 BSD/OS
+          1 BS2000/OSD
+          1 A/UX
+          1 AmigaOS
+          1 ACNS
+    Version
+      ...
+    Function
+      $ cat os-classes.txt | cut -d\| -f4 | cut -d\" -f1 | sort | uniq -c | sort -rn
+        104 general purpose
+         52 broadband router
+         50 WAP
+         42 switch
+         41 specialized
+         35 firewall
+         33 storage-misc
+         27 router
+         25 media device
+         23 printer
+         16 webcam
+         14 VoIP phone
+         12 VoIP gateway
+         11 print server
+          9 remote management
+          9 power-device
+          9 phone
+          8 PBX
+          5 web proxy
+          4 load balancer
+          3 terminal
+          3 PDA
+          3 game console
+          3 encryption accelerator
+          3 bridge
+          2 web server
+          2 VoIP adapter
+          2 terminal server
+          2 telecom-misc
+          2 oscilloscope
+          1 TV
+          1 server appliance
+          1 security system
+          1 projector
+          1 mail server
+          1 broadband modem
+          1 authentication server
+          1 ATM
+
+    Device Classes
+      Unknown
+      Router
+      Switch
+      Bridge
+      General purpose
+        Server
+        PC
+          Desktop
+          Laptop
+      Printer
+      PDA
+      PhoneLandline
+      PhoneMobile
+      GameConsole
+      ATM
+
+Device
+  Manufacturer
+  Model
+  Class
+    Unknown
+    Router
+    Switch
+    Bridge
+    Server
+    PC
+    PC - Desktop
+    PC - Laptop
+    Printer
+    PDA
+    PhoneLandline
+    PhoneMobile
+    GameConsole
+    ATM
+  Operating System
+    Version
+  Application
+    Major Type {Mail, etc}
+    Vendor
+    Name
+    Version
+      Major
+      Minor
+    
+
+References:
+
+	#1 Apple "How to identify your iMac" [web page]
+		 <URL: http://support.apple.com/kb/HT1463> [Accessed Jan 2 2009]
+		 [Local cache <URL: ../ref/cache-web/support.apple.com/kb/HT1463>]
+
+	#2 Apple "Mac OS X versions (builds) included with Intel-based Macs " [web page]
+		 <URL: http://support.apple.com/kb/HT1159> [Accessed Jan 2 2009]
+		 [Local cache <URL: ../ref/cache-web/support.apple.com/kb/HT1159>]
+
+	#3 Apple "Mac OS: Versions, builds included with PowerPC Macs (since 1998)" [web page]
+		 <URL: http://support.apple.com/kb/HT2191> [Accessed Jan 2 2009]
+		 [Local cache <URL: ../ref/cache-web/support.apple.com/kb/HT2191>]
+		 
+

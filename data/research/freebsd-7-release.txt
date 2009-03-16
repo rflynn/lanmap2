@@ -1,0 +1,53 @@
+
+FreeBSD 7.0-RELEASE
+
+BOOTP
+
+  DISCOVER
+    IP
+      Differentiated Services Codepoint=0x4(?)
+      Id=0
+      DF=0
+      TTL=16
+    BOOTP
+      53,61,55(1,28,2,121,3,15,6,12)
+
+  REQUEST
+    IP
+      Differentiated Services Codepoint=0x4(?)
+      Id=0
+      DF=0
+      TTL=16
+    BOOTP
+      53,54,50,61,55(1,28,2,121,3,15,6,12)
+
+  "dhclient utility was written by Ted Lemon <mellon@fugue.com> and Elliot Poger <eillot@poger.com>
+
+    Current implementation reworked by Henning Brauer <henning@openbsd.org>
+
+    August 13, 2007
+
+DNS
+  Query
+    DF=0
+    TTL=64
+
+
+ICMP
+  ECHO
+    IP
+      DF=0
+      TTL=64
+    ICMP
+      SeqMSBF=1
+      Data=56
+      Payload=(8 bytes)\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f\x20\x21\x22\x23\x24\x25\x26\x27\x28\x29\x2a\x2b\x2c\x2d\x2e\x2f\x30\x31\x32\x33\x34\x35\x36\x37
+  ECHO REPLY
+    IP
+      DF=0
+      TTL=64
+    ICMP
+      ...
+
+
+

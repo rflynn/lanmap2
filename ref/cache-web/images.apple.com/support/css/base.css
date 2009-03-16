@@ -1,0 +1,144 @@
+@import url(/global/nav/styles/nav.css);
+
+/* RESET */
+html,body,div,ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,pre,form,p,blockquote,fieldset,input { margin: 0; padding: 0; }
+h1,h2,h3,h4,h5,h6,pre,code,address,caption,cite,code,em,strong,th { font-size: 1em; font-weight: normal; font-style: normal; }
+ul,ol { list-style: none; }
+fieldset,img { border: none; }
+caption,th { text-align: left; }
+table { border-collapse: collapse; border-spacing: 0; }
+
+/* LAYOUT */
+.clear { clear:both; }
+.clearer { clear: both; display: block; margin: 0; padding: 0; height: 0; line-height: 1px; font-size: 1px; }
+
+img { behavior:url(/global/scripts/lib/iepngfix.htc); }
+img.left { float: left; margin: 2px 20px 16px 0; }
+img.right { float: right; margin: 2px 0 16px 20px; }
+img.across { margin: 2px 0 16px 0; }
+img.flushleft { margin-left: -20px; }
+img.flushright { margin-right: -20px; }
+
+#container { width: 980px; margin: 0 auto; position: relative; }
+#main { width:100%; position: relative; }
+#content { padding: 18px 20px; position: relative; color: #333; }
+#breadcrumb { clear:both; text-align:center; margin:18px auto; clear:both; font-size:10px; color:#686868; }
+#globalfooter { width:980px; clear: both; position: relative; text-align: center; margin: 18px auto; font-size: 10px; line-height: 18px; padding: 9px 0; color:#76797c; }
+
+/* GRID */
+.column { float: left; }
+.grid2col, .grid2cola, .grid2colb, .grid2colc, .grid2cold, .grid2cole, .grid2colf, .grid3col, .grid3cola, .grid4col, .grid5col, .grid6col { width: 100%; }
+
+.grid2col .column { width: 49%; }
+.grid2col .grid2col .column { width: 47.8%; }
+.grid3col .grid2col .column { width: 46%; }
+.grid4col .grid2col .column { width: 45%; }
+
+.grid2cola .column.first { width: 66%; }
+.grid2cola .column.last { width: 32%; }
+
+.grid2colb .column.first { width: 74.9%; }
+.grid2colb .column.last { width: 23%; }
+
+.grid2colc .column.first { width: 32%; }
+.grid2colc .column.last { width: 66%; }
+
+.grid2cold .column.first { width: 23%; }
+.grid2cold .column.last { width: 74.9%; }
+
+.grid2cole .column.first { width: 79%; }
+.grid2cole .column.last { width: 19%; }
+
+.grid2colf .column.first { width: 19%; }
+.grid2colf .column.last { width: 79%; }
+
+.grid3col .column { width: 32%; margin-left: 2%; }
+.grid2col .grid3col .column { width: 31%; }
+
+.grid3cola .column { width: 58%; margin-left: 2%; }
+.grid3cola .column.first,
+.grid3cola .column.last { width: 19%; }
+
+.grid4col .column { width: 23%; margin-left: 3%; }
+
+.grid5col .column { width: 18.4%; margin-left: 2%; }
+
+.grid6col .column { width: 15%; margin-left: 2%; }
+
+.column.first, .column.last { margin-left: 0 !important; }
+.column.last { float: right !important; }
+
+p.last, ul.last, ol.last, li.last { _width:auto !important; _float:none !important; }
+
+#container:after, #content:after, .grid2col:after, .grid2cola:after, .grid2colb:after, .grid2colc:after, .grid2cold:after, .grid2cole:after, .grid2colf:after, .grid3col:after, .grid3cola:after, .grid4col:after, .grid5col:after, .grid6col:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+#container, #content, .grid2col, .grid2cola, .grid2colb, .grid2colc, .grid2cold, .grid2cole, .grid2colf, .grid3col, .grid3cola, .grid4col, .grid5col, .grid6col { _zoom:1; }
+
+/* TYPE */
+body { font: 12px/18px "Lucida Grande", Geneva, Arial, Verdana, sans-serif; background-color:#fff; color:#333; }
+
+a { color: #2971a7; }
+strong, b { font-weight:bold; }
+em, i { font-style:italic; }
+sup { padding-left:1px; font-size:10px !important; font-weight:normal !important; vertical-align: baseline; position: relative; bottom: 0.33em; color:#76797c; _position:static !important; }
+.sosumi { font-size: 10px !important; color:#76797c; }
+
+#main p { margin-bottom: 18px; }
+#main h1 { font-weight: bold; font-size: 24px; line-height: 36px; margin-bottom: 18px; }
+#main h2 { font-weight: bold; font-size: 16px; line-height: 18px; margin-bottom: 18px; }
+#main h3 { font-weight: bold; font-size: 1em; line-height: 18px; }
+#main h4 { font-weight: bold; font-size: 10px; line-height: 18px; }
+#main p.intro { font-weight: bold; }
+#main .more { text-align: right; }
+
+#main ul { margin-bottom: 18px; list-style: none outside; }
+#main ol { margin-bottom: 18px; list-style: decimal; margin-left: 2.2em; }
+#main ul.square,
+#main ul.circle { margin-left: 2em; }
+#main ul.square { list-style: square outside; }
+#main ul.circle { list-style: circle outside; }
+#main ul ul.circle,
+#main ul ul.square { margin-top: 4px; margin-bottom: 5px; }
+#main ol.sosumi { margin-left: 0; padding-left: 2em; }
+
+#main a.pdf { background: url(http://images.apple.com/global/elements/icons/globaliconpdf12x12.gif) 0 0.4em no-repeat; display: block; padding-left: 20px; }
+#main a.html { background: url(http://images.apple.com/global/elements/icons/globaliconhtml12x12.gif) 0 0.4em no-repeat; display: block; padding-left: 20px; }
+#main a.qt { background: url(http://images.apple.com/global/elements/icons/globaliconqt12x12.gif) 0 0.4em no-repeat; display: block; padding-left: 20px; }
+#main a.ical { background: url(http://images.apple.com/global/elements/icons/globaliconical12x12.gif) 0 0.4em no-repeat; display: block; padding-left: 20px; }
+#main a.dl { background: url(http://images.apple.com/global/elements/icons/globalicondl11x10.gif) 0 0.4em no-repeat; display: block; padding-left: 20px; }
+#main a.dmg { background: url(http://images.apple.com/global/elements/icons/globalicondmg12x12.gif) 0 0.4em no-repeat; display: block; padding-left: 20px; }
+#main a.zip { background: url(http://images.apple.com/global/elements/icons/globaliconzip12x12.gif) 0 0.4em no-repeat; display: block; padding-left: 20px; }
+#main a.keynote { background: url(http://images.apple.com/global/elements/icons/globaliconkeynote12x12.gif) 0 0.4em no-repeat; display: block; padding-left: 20px; }
+#main a.audio { background: url(http://images.apple.com/global/elements/icons/globaliconaudio12x12.gif) 0 0.4em no-repeat; display: block; padding-left: 20px; }
+
+#main .sidebar { font-size: 10px; line-height: 18px; color:#686868; }
+#main .callout { font-size: 11px; line-height: 18px; margin-bottom: 18px; }
+#main .last { margin-bottom: 0; }
+
+/* PRETTY SEARCH */
+input.prettysearch { width:200px; height: 16px; background: url(http://images.apple.com/global/elements/prettysearch/searchfield_repeat.png) center top repeat-x; border: 0px; margin: 0; padding: 3px 0 0 0; font:11px "Lucida Grande", Geneva, Arial, sans-serif; }
+.search-wrapper { position: relative; width: 200px; }
+.search-wrapper input.prettysearch { width: 171px; margin-left: 20px; *margin-top:-1px; *margin-right:-2px; *margin-left:10px; }
+.search-wrapper .left, 
+.search-wrapper .right { behavior:url(/global/scripts/lib/iepngfix.htc); }
+.search-wrapper .left { display: block; position: absolute; left: 0; top: 0; width: 20px; height: 19px; background: url(http://images.apple.com/global/elements/prettysearch/searchfield_leftcap.png) left top no-repeat; }
+.search-wrapper .right { display: block; position: absolute; right: 0; top: 0; width: 10px; height: 19px; background: url(http://images.apple.com/global/elements/prettysearch/searchfield_rightcap.png) right top no-repeat; }
+.search-wrapper.empty.blurred input { color: #7E7E7E; }
+.search-wrapper .reset { position: absolute; width: 11px; height: 11px; overflow:hidden; z-index: 1; right: 4px; top: 4px; background: url(http://images.apple.com/global/elements/prettysearch/close.gif); display: block; cursor: pointer; _cursor:hand; }
+.search-wrapper.empty .reset { display: none; }
+
+/* SEARCH IE FIX */
+.search-wrapper input.prettysearch { *margin-left: 20px; }
+
+/* GLOBAL FOOTER */
+#globalfooter p { margin-bottom: 1em; }
+#globalfooter form { margin: 18px 10px; }
+#globalfooter .search-wrapper { margin: 0 auto; }
+#globalfooter .search-wrapper input.prettysearch { margin-left: 10px; }
+
+/* PRINT */
+@media print {
+	body, #main, #content { color:#000 !important; }
+	a, a:link, a:visited { color:#000 !important; text-decoration:none !important; }
+	#tabs, #globalheader, #globalfooter, #directorynav, .noprint, .hide { display: none !important; }
+	#main a.pdf, #main a.html, #main a.qt, #main a.ical, #main a.dl, #main a.dmg, #main a.zip, #main a.keynote, #main a.audio { padding-left: 0 !important; background-image: none !important; }
+}

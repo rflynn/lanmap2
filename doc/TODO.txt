@@ -1,0 +1,29 @@
+# ex: set ff=dos ts=2 noet:
+# $Id$
+
+
+* devise a simple yet powerful design so that that mappings can be
+  nested arbitrarily in a tree, for example:
+
+	if we know that address A is a Linksys WRT54G device, we
+	should be able to determine, from this specific hint, that
+	it's also a router, a wifi router, has 4 wired ports, runs MIPS
+	and has an image at img/hardware/WRT54G.png, all from that one
+	specific hint.
+
+	we should be able to extrapolate simpler information from a
+	complex hint.
+
+* add support for multiple web-based clients modifying
+
+* add support for populating the 'host' and 'host_addr' tables from
+  our "aggregate" php script; we'll split the process of defining
+  hosts and of creating the actual map into at least 2 separate steps.
+
+* once that's done we can have proper support for the concept of
+  multi-faceted "Devices".
+
+* import list of Cisco devices.
+
+
+

@@ -1,0 +1,324 @@
+<HTML>
+<HEAD>
+<TITLE>Default TTL Values in TCP/IP</TITLE><!--idx-->
+</HEAD>
+
+<BODY>
+
+<H1>Default TTL Values in TCP/IP</H1>
+
+Internet's unbroken growth and recent fundamental topology changes within
+the international backbone occasionally cause some nasty connectivity
+problems. In most cases, the problem could be identified as hosts sending 
+out IP packets with too small initial TTL (Time To Live) values. 
+Worst case maximum
+hop counts of up to 40 can be observed nowadays. TCP and UDP initial TTL
+values should be set to a "safe" value of at least 60 today.
+Look here for more  <A HREF="ttl_info.html">background information</A>.
+
+<UL>
+  <LI><A HREF="#rfcs">A Look into the RFC's</A>
+  <LI><A HREF="#overview">TTL Overview</A>
+  <LI><A HREF="#detailed">Detailed information about TCP/IP stacks</A>
+  <LI><A HREF="#tools">Tools</A>
+</UL>
+
+ 
+
+<HR>
+
+<H4><A NAME="rfcs">A Look into the RFC's</A></H4>
+
+Two RFC's give very clear guidelines for the
+implementation of the TTL field in the Internet Protocol:
+
+<DL>
+<DT><A HREF="http://sunsite.cnlab-switch.ch/ftp/doc/standard/rfc/11xx/1122">Requirements for Internet Hosts -- Communication
+Layers</A>   (RFC 1122, R. Braden, Oct 89): 
+<P>
+<DD>extracts from paragraph 3.2.1.7:
+  <PRE>
+     The IP layer MUST provide a means for the transport layer to
+     set the TTL field of every datagram that is sent.  When a
+     fixed TTL value is used, it MUST be configurable.  The
+     current suggested value will be published in the "Assigned
+     Numbers" RFC.  </PRE>
+
+and <PRE>
+     A fixed value must be at least big enough for the
+     Internet "diameter," i.e., the longest possible path.
+     A reasonable value is about twice the diameter, to
+     allow for continued Internet growth.
+</PRE>
+
+
+<DT><A HREF="http://sunsite.cnlab-switch.ch/ftp/doc/standard/rfc/17xx/1700">Assigned Numbers</A>  (RFC 1700, J.
+Reynolds, J. Postel, October 1994): 
+<P>
+<DD>page 64:<PRE>             IP TIME TO LIVE PARAMETER
+
+     The current recommended default time to live (TTL) for the
+     Internet Protocol (IP) [45,105] is 64.
+  </PRE>
+<P>
+The 'Assigned Numbers' RFC gets periodical updates going back as far
+as 1976. It is interesting to point out that the recommendation for a
+TTL default value of 64 is more than three years old now. It has been
+first published in <A HREF="http://sunsite.cnlab-switch.ch/ftp/doc/standard/rfc/13xx/1340">Assigned Numbers</A>  (RFC
+1340, J. Reynolds, J. Postel, July 1992). 
+
+</DL>
+
+<HR>
+
+<H4><A NAME="overview">TTL Overview</A></H4>
+
+<I>
+Disclaimer:<BR>
+The following list is a best effort overview of some widely used
+TCP/IP stacks. The information was provided by vendors and many
+helpful system administrators.
+We would like to thank all these contributors for their precious help !
+
+SWITCH cannot, however, take any responsibility
+that the provided information is correct. Furthermore,
+SWITCH cannot be made liable for any damage that may arise by the use
+of this information. 
+</I>
+
+<PRE>
+
+	+--------------------+-------+---------+---------+
+	| OS Version	     |"safe" | tcp_ttl | udp_ttl |
+	+--------------------+-------+---------+---------+
+	  AIX			  n	 60	   30		 
+	  DEC Pathworks V5	  n	 30	   30
+	  FreeBSD 2.1R		  y	 64	   64
+	  HP/UX	 9.0x		  n	 30	   30		  
+	  HP/UX	10.01		  y	 64	   64		  
+	  Irix 5.3		  y	 60	   60
+	  Irix 6.x		  y	 60	   60
+	  Linux		 	  y	 64	   64
+	  MacOS/MacTCP 2.0.x	  y	 60	   60
+	  OS/2 TCP/IP 3.0	  y	 64	   64
+	  OSF/1 V3.2A		  n	 60	   30
+	  Solaris 2.x		  y	255	  255
+	  SunOS 4.1.3/4.1.4	  y	 60	   60
+	  Ultrix V4.1/V4.2A	  n	 60	   30
+	  VMS/Multinet		  y	 64	   64
+	  VMS/TCPware		  y	 60	   64
+	  VMS/Wollongong 1.1.1.1  n	128	   30
+	  VMS/UCX (latest rel.)	  y	128	  128	
+	  MS WfW		  n	 32	   32
+	  MS Windows 95		  n	 32	   32
+	  MS Windows NT 3.51      n	 32	   32
+	  MS Windows NT 4.0       y	128	  128
+
+</PRE>
+
+<HR>
+
+<H4><A NAME="detailed">Detailed information about TCP/IP stacks</A></H4>
+
+<DL>
+
+<DT>AIX
+<DD>TCP TTL is 60 but UDP has a too low TTL of 30. The TTL initial
+values can be printed out and modified using the command "no". See the
+man page for more instructions. Further measures might be required to
+make the changes permanent.
+<P>
+
+<DT>DEC PATHWORKS V5 for DOS and Windows
+<DD>TCP and UDP use too low TTLs of 30. These defaults can be modified
+in file 
+  <PRE>
+	C:\PW\PWTCP.INI  add line "IPTTL = 64"  </PRE>
+<P>
+<DT>FreeBSD 2.1R
+<DD>TCP and UDP are set to a safe default of 64. The sysctl command can 
+be used to show and modify (if required) the defaults:
+  <PRE>
+	% /usr/sbin/sysctl net.inet.ip.ttl	   # show parameter
+ 
+	# /usr/sbin/sysctl -w net.inet.ip.ttl=64   # set parameter  </PRE>
+Note that the change isn't permanent.  One has to put this command
+into the /etc/rc or /etc/rc.local scripts to set this parameter after
+every reboot. 
+<P>
+<DT>HP/UX 9.0x	
+<DD>TCP and UDP use too low TTLs of 30. HP Support Center provided the
+<A HREF="#set_ttl">set_ttl tool</A> to modify these defaults.
+<P>
+<DT>HP/UX 10.0x	
+<DD>TCP and UDP values are set to 64.
+<P>
+<DT>Irix 5.3, 6.2, 6.3, 6.4
+<DD>TCP and UDP values are set to 60. The defaults can be modified by 
+changing the file /var/sysgen/master.d/bsd and rebuilding the kernel. 
+<P>
+<DT>Irix 6.5
+<DD>TCP and UDP values are set to 60. The defaults can be modified using 
+the 'systune' command.
+<P>
+<DT>Linux
+<DD>At least after V1.1.59 (and most probably before) Linux uses "safe"
+values of 64 for both TCP and UDP default TTLs. As these values are
+"hardcoded", occasional modifications have to be done deep in the
+source - change the parameter sk->ip_ttl in file net/inet/af_inet.c to
+whatever you think is appropriate for you. Some pointers to find the
+position where sk->ip_ttl is set:
+  <PRE>
+	Linux V1.12.11:		net/inet/af_inet.c	line 695
+	Linux V1.3.45:		net/inet/af_inet.c	line 678
+        Linux V2.2.x:           net/ipv4/ipconfig.c     line 516
+  </PRE>
+<P>
+<DT>MacOS/MacTCP 2.0.x
+<DD>TCP and UDP values are set to 60. 
+<P>
+<DT>OS/2 TCP/IP 3.0	
+<DD>TCP and UDP values are set to 64. 
+<P>
+<DT>OSF/1 V3.2A
+<DD>TCP TTL is 60 but UDP has a too low TTL of 30.
+Modification of TCP/IP stack parameters can be made with netconfig2.3
+<P>
+<DT>Solaris 2.x
+<DD>All versions use a default value of 255 for both TCP and UDP.
+<P>
+<DT>SunOS 4.1.3/4
+<DD>Since version 4.1.3, both TCP and UDP default TTL is set to 60. I
+  have no info about older releases, but these are obsolete anyhow.
+  You can find (or modify) the TTL values in
+  <PRE>
+    udp_ttl: in /usr/kvm/sys/netinet/in_proto.c
+    tcp_ttl: in /usr/kvm/sys/netinet/tcp_timer.h by 
+             changing the parameter TCP_TTL  </PRE>
+<P>
+<DT>Ultrix
+<DD>TCP TTL is 60 but UDP has a too low TTL of 30.
+  Modification of TCP/IP stack parameters can be made with netconfig2.3
+<P>
+<DT>VMS/Multinet
+<DD>All recent versions use a TTL of 64 for TCP and UDP. Should a
+  modification of these parameters be required, it can be done
+  as follows:
+  <PRE>
+    $ MULTINET SET/KERNEL TCP_TTL newvalue
+    $ MULTINET SET/KERNEL UDP_TTL newvalue  </PRE>
+<P>
+<DT>VMS/TCPware
+<DD>TCPware for VMS  (Alpha or VAX CPUs)
+<BR>Default TTL = 60 for both TCP & UDP since at least TCPware 4.1-2A
+<BR>If required for some reason, you can modify the values:
+   <PRE>
+    $ RUN TCPWARE:NETCU
+    NETCU> SET IPDEFAULTTTL default-time-to-live-hops
+    NETCU> EXIT
+   </PRE>
+<P> 
+<DT>VMS/Wollongong Runtime Version 1.1.1.1
+<DD>TCP TTL uses a safe value of 128, but UDP TTL is set to 32.
+<BR>There is no way to change the defaults, but a new Runtime Version
+2.5 is said to fix the problem (i.e. make the parameters configurable).
+
+<P>
+<DT>VMS/UCX
+<DD>The latest version uses safe TTL values of 128 for TCP & UDP. 
+No info on older version available yet. 
+TTL values can be modified, if needed, by typing the command
+   <PRE>
+    $ UCX
+    UCX> set service/protocol=ip=time_to_live=64
+   </PRE>
+<P>
+<DT>MS Windows for Workgroups
+<DD>Unsufficient TTL default values for both TCP and UDP. The defaults
+can be modified in file SYSTEM.INI, MSTCP section, by adding a line:
+   <PRE>
+    DefaultTTL=64
+   </PRE>
+<P>
+<DT>Windows 95
+<DD>The default TTL is 32 for both TCP and UDP. Modification:
+  <BR>
+  - Double click on program 'regedit.exe' in the Windows95 root directory. 
+  <BR>
+  - Go to 'Hkey_Local_Machine\System\CurrentControlSet\Services\VxD\MSTCP.
+  <BR>
+  - Select 'Edit' and in drop-down menu 'new'. Choose a data
+format and enter parameter name and value in the appropriate format:
+   <PRE>
+    'binary value':     DefaultTTL            01 00 00 00
+    'string format':    DefaultTTL            64   </PRE>
+Note that regedit adds quotes itself when using string format !
+<P>
+"Regedit-ophobe" people might alternativly have a look at the <A HREF="#ttlfix">ttlfix utility</A>.
+<P> 
+<DT>Windows NT 3.51
+<DD>The default TTL is 32 for both TCP and UDP. Modification:
+  <BR>
+  - Double click on program 'regedit32.exe' in the '\root\system32' directory. 
+  <BR>
+  - Go to 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
+  <BR>
+  - Change the "DefaultTTL" entry to 
+  <PRE>
+    DefaultTTL     REG_DWORD     64
+  </PRE>
+<P> 
+<DT>Windows NT 4.0
+<DD>The default TTL has been raised to 128 for both TCP and UDP according to 
+<A HREF="http://msdn.microsoft.com/library/backgrnd/html/unicastrouting.htm">
+http://msdn.microsoft.com/library/backgrnd/html/unicastrouting.htm</A>
+</DL>
+
+<HR>
+
+<H4><A NAME="tools">Tools</A></H4>
+
+<DL>
+<DT>netconfig2.3: 	
+<DD>available from: 
+  <A HREF="ftp://cs.ucsd.edu/pub/csl/Netconfig/netconfig2.3.tar.gz">
+   <PRE>ftp://cs.ucsd.edu/pub/csl/Netconfig/netconfig2.3.tar.gz</PRE>
+  </A>
+
+With netconfig you can display and modify TCP/IP parameters in many
+Unix implementations. It does not work for Solaris 2.x however. 
+Be careful when
+installing this tool, by default "make install" sets a "setuid
+root" permission, which is probably not exactly what you want. 
+
+<P>
+<DT><A NAME="set_ttl">set_ttl:</A>
+<DD>An unsupported utility, provided by the HP Support Center, which
+lets you change initial TTL values in HP/UX kernels. 
+<A HREF="hp_set_ttl.html">HP's set_ttl script</A> is also available
+directly from this server. 
+
+<P>
+
+<DT><A NAME="ttlfix">ttlfix:</A>
+<DD>A small utility which automagicly changes Windows95 TTL defaults to safe
+values. Available from 
+  <A HREF="ftp://ftp.active.ch/pub/internet/windows/ttlfix.zip">
+   <PRE>ftp://ftp.active.ch/pub/internet/windows/ttlfix.zip</PRE>
+  </A>
+<BR>
+ttlfix requires 
+<A HREF="ftp://ftp.active.ch/pub/internet/windows/vbrun300.zip">vbrun300.zip</A>
+for startup. Install it in directory  '\windows\system' if not yet there.
+
+</DL>
+
+<HR>
+&#169;
+<a href="http://www.switch.ch/about/overview.html">SWITCH</a> 990408
+<a href="mailto:webmaster@switch.ch">Webmaster</a> -
+<A HREF="http://www.switch.ch/">Welcome Page</A> -
+<A HREF="http://www.switch.ch/search/site_search.html">Search</A>
+</BODY>
+</HTML>
+

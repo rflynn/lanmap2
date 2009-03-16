@@ -1,0 +1,271 @@
+# ex: set ff=dos:
+# $Id$
+
+# Cisco Discovery Protocol (CDP) contains a Platform field (0x0006)
+# which contains a text field that describes the sender system
+
+# References:
+#   #1 Cisco, Frame Formats [web page]
+#      <URL: http://www.cisco.com/univercd/cc/td/doc/product/lan/trsrb/frames.pdf> [Accessed Dec 30 2008] (Local cache: ref/Cisco-Frame-Formats.pdf)
+#   #2 Cisco, Cisco 2500 Series Router Architecture (Document ID: 5750) [web page]
+#      <URL: http://www.cisco.com/en/US/products/hw/routers/ps233/products_tech_note09186a0080094e93.shtml> [Accessed Dec 30 2008]
+#   #3 ISPTrader Cisco Catalyst Switches [web page]
+#      <URL: http://isptrader.com/switches.htm> [Accessed 30 Dec 2008]
+
+# Fields
+# Platform,Hints,Comments
+
+# Routers
+# Ref #1
+# Ref #2
+Cisco 1000,"",
+Cisco 2000,"",
+Cisco 2500,"",
+Cisco 2501,"",
+Cisco 2502,"",
+Cisco 2503,"",
+Cisco 2504,"",
+Cisco 2505,"",
+Cisco 2507,"",
+Cisco 2509,"",
+Cisco 2510,"",
+Cisco 2511,"",
+Cisco 2512,"",
+Cisco 2512,"",
+Cisco 2513,"",
+Cisco 2514,"",
+Cisco 2515,"",
+Cisco 2516,"",
+Cisco 2517,"",
+Cisco 2518,"",
+Cisco 2519,"",
+Cisco 2520,"",
+Cisco 2521,"",
+Cisco 2522,"",
+Cisco 2523,"",
+Cisco 2524,"",
+Cisco 2525,"",
+Cisco 3000,"",
+Cisco 3100,"",
+Cisco 4500,"",
+Cisco 7000,"",
+Cisco 7010,"",
+
+# Switches
+# Ref #1
+# Ref #3
+# Cisco 2940/2955 Series Switches (Small Office Switches)
+WS-C2940-8TF-S,     "",8 10/100 Ethernet ports and 1 100BASE-FX Ethernet ports
+WS-C2940-8TT-S,     "",8 10/100 Ethernet ports and 1 10/100/1000 Ethernet ports
+WS-C2955T-12,       "",12 10/100 Ethernet ports and 2 10/100/1000 Ethernet ports
+# Cisco 2950 Series Switches Click for an email quote request, or call 216-896-9967.
+WS-C2950-12,        "",12 port, 10/100 Catalyst Switch
+WS-C2950-24,        "",24 port, 10/100 Catalyst Switch
+WS-C2950C-24,       "",24 10/100 ports with 2 100BASE-FX uplinks
+WS-C2950G-12-EI,    "",Catalyst 2950, 12 10/100 with 2 GBIC slots
+WS-C2950G-24-EI-DC, "",24 10/100 + 2 GBIC slots
+WS-C2950G-48-EI,    "",Catalyst 2950, 48 10/100 with 2 GBIC slots
+WS-C2950SX-24,      "",24 10/100 ports w/2 1000BASE-SX ports
+WS-C2950SX-48-SI,   "",48 10/100 and 2 1000BASE-SX uplink ports
+WS-C2950T-24,       "",24 10/100 ports w/ 2 10/100/1000BASE-T ports
+WS-C2950T-48-SI,    "",48 10/100 and 2 10/100/1000BASE-T uplinks
+WS-C2955C-12,       "",2955 12 TX w/MM Uplinks
+WS-C2955S-12,       "",2955 12 TX w/Single Mode Uplinks
+WS-C2955T-12,       "",2955 12 TX ports w/ copper uplinks
+# Cisco 2960/29709/2980 Series Switches
+WS-C2960-8TC-L,     "",Catalyst 2960 8 10/100 + 1 T/SFP LAN Base Image
+WS-C2960-24TC-L,    "",Catalyst 2960 24 10/100 + 2T/SFP LAN Base Image
+WS-C2960-24TT-L,    "",Catalyst 2960 24 10/100 + 2 1000BT LAN Base Image
+WS-C2960-48TC-L,    "",Catalyst 2960 48 10/100 + 2 T/SFP LAN Base Image
+WS-C2960-48TT-L,    "",Catalyst 2960 48 10/100 Ports + 2 1000BT LAN Base Image
+WS-C2960G-8TC-L,    "",Catalyst 2960 7 10/100/1000 + 1 T/SFP LAN Base
+WS-C2960G-24TC-L,   "",Catalyst 2960 24 10/100/1000, 4 T/SFP LAN Base Image
+WS-C2960G-48TC-L,   "",Catalyst 2960 48 10/100/1000,  4 T/SFP  LAN Base Image
+WS-C2970G-24TS-E,   "",Catalyst 2970 24 10/100/1000 + 4 T/SFP  LAN Base Image
+WS-C2980G/2980G-A,  "",Catalyst 2980 with 80 10/100 ports + 2 GBIC slots
+
+# 3500 Model Switches
+# Ref #3
+ws-c3524-xl-en,     "",
+ws-c3548-xl-en,     "",
+ws-c3524pwr-xl-en,  "",   
+WS-C3550-12G,       "",10 GBIC + 2 10/100/1000 Standard Image
+WS-C3550-12T,       "",10 10/100/1000 + 2 GBIC Standard Image
+WS-C3550-24-SMI,    "",24 10/100 + 2 GBIC Standard Multilayer Image
+WS-C3550-24-EMI,    "",24 10/100 + 2 GBIC Enhanced Multilayer Image
+WS-C3550-48-SMI,    "",48 10/100 + 2 GBIC Standard Multilayer Image
+WS-C3550-48-EMI,    "",48 10/100 + 2 GBIC Enhanced Multilayer Image
+WS-C3550-24PWR-SMI, "",24 10/100 PWR + 2 GBIC Standard Multilayer Image
+WS-C3550-24PWR-EMI, "",24 10/100 PWR + 2 GBIC Enhanced Multilayer Image
+
+# Catalyst 3560 Series 10/100/1000 Workgroup Switches
+# Ref #3
+WS-C3560G-48PS-S,   "",Catalyst 3560 48 10/100/1000T PoE + 4 SFP Standard Image
+WS-C3560G-48PS-E,   "",Catalyst 3560 48 10/100/1000T PoE + 4 SFP Enhanced Image
+WS-C3560G-24PS-S,   "",Catalyst 3560 24 10/100/1000T PoE + 4 SFP Standard Image
+WS-C3560G-24PS-E,   "",Catalyst 3560 24 10/100/1000T PoE + 4 SFP Enhanced Image
+WS-C3560G-48TS-S,   "",Catalyst 3560 48 10/100/1000T + 4 SFP Standard Image
+WS-C3560G-48TS-E,   "",Catalyst 3560 48 10/100/1000T + 4 SFP Enhanced Image
+WS-C3560G-24TS-S,   "",Catalyst 3560 24 10/100/1000T + 4 SFP Standard Image
+WS-C3560G-24TS-E,   "",Catalyst 3560 24 10/100/1000T + 4 SFP Enhanced Image
+# Catalyst 3560 Series 10/100 Workgroup Switches
+# Ref #3
+WS-C3560-8PC-S,     "",Catalyst 3560 8 10/100 PoE + 1 T/SFP Standard Image
+WS-C3560-48PS-S,    "",Catalyst 3560 48 10/100 PoE + 4 SFP Standard Image
+WS-C3560-48PS-E,    "",Catalyst 3560 48 10/100 PoE + 4 SFP Enhanced Image
+WS-C3560-24PS-S,    "",Catalyst 3560 24 10/100 PoE + 2 SFP Standard Image
+WS-C3560-24PS-E,    "",Catalyst 3560 24 10/100 PoE + 2 SFP Enhanced Image
+WS-C3560-48TS-S,    "",Catalyst 3560 48 10/100 + 4 SFP Standard Image
+WS-C3560-48TS-E,    "",Catalyst 3560 48 10/100 + 4 SFP Enhanced Image
+WS-C3560-24TS-S,    "",Catalyst 3560 24 10/100 + 2 SFP Standard Image
+WS-C3560-24TS-E,    "",Catalyst 3560 24 10/100 + 2 SFP Enhanced Image
+
+# Catalyst 3750 Series 10/100/1000, GE, 10GE Workgroup Switch
+# Ref #3
+WS-C3750G-24T-S,    "",Catalyst 3750 24 10/100/1000T Standard Multilayer Image
+WS-C3750G-24T-E,    "",Catalyst 3750 24 10/100/1000T Enhanced Multilayer Image
+WS-C3750G-24TS-S,   "",Catalyst 3750 24 10/100/1000 + 4 SFP Std Multilayer; 1.5RU
+WS-C3750G-24TS-E,   "",Catalyst 3750 24 10/100/1000 + 4 SFP Enhcd Multilayer;1.5RU
+WS-C3750G-24TS-S1U, "",Catalyst 3750 24 10/100/1000 + 4 SFP Std Multilayer;1RU
+WS-C3750G-24TS-E1U, "",Catalyst 3750 24 10/100/1000 + 4 SFP Enh Multilayer;1RU
+WS-C3750G-24PS-S,   "",Catalyst 3750 24 10/100/1000T PoE + 4 SFP Standard Image
+WS-C3750G-24PS-E,   "",Catalyst 3750 24 10/100/1000T PoE + 4 SFP Enhanced Image
+WS-C3750G-48TS-S,   "",Catalyst 3750 48 10/100/1000T + 4 SFP Standard Multilayer
+WS-C3750G-48TS-E,   "",Catalyst 3750 48 10/100/1000T + 4 SFP Enhanced Multilayer
+WS-C3750G-48PS-S,   "",Catalyst 3750 48 10/100/1000T PoE + 4 SFP Standard Image
+WS-C3750G-48PS-E,   "",Catalyst 3750 48 10/100/1000T PoE + 4 SFP Enhanced Image
+WS-C3750G-16TD-S,   "",Catalyst 3750 16 10/100/1000BT+ 10GbE (req XENPAK) Std Image
+WS-C3750G-16TD-E,   "",Catalyst 3750 16 10/100/1000BT+ 10GbE (req XENPAK) Enh Image
+WS-C3750G-12S-S,    "",Catalyst 3750 12 SFP Standard Multilayer Image
+WS-C3750G-12S-SD,   "",Catalyst 3750 12 SFP DC powered Standard Multilayer Image
+WS-C3750G-12S-E,    "",Catalyst 3750 12 SFP Enhanced Multilayer Image
+WS-C3750-24FS-S,    "",Catalyst 3750 24 100BaseFX + 2 SFP Standard Multilayer Image
+SWLC3750-50-K9,     "",CRYPTO WITH WEB BASED DEV MGR 
+# Catalyst 3750 Series 10/100 Workgroup Switches
+# Ref #3
+WS-C3750-24FS-S,    "",Catalyst 3750 24 100BaseFX + 2 SFP Standard Multilayer Image
+WS-C3750-24PS-S,    "",Catalyst 3750 24 10/100 PoE + 2 SFP Standard Image
+WS-C3750-24PS-E,    "",Catalyst 3750 24 10/100 PoE + 2 SFP Enhanced Image
+WS-C3750-24TS-S,    "",Catalyst 3750 24 10/100 + 2 SFP Standard Multilayer Image
+WS-C3750-24TS-E,    "",Catalyst 3750 24 10/100 + 2 SFP Enhanced Multilayer Image
+WS-C3750-48PS-S,    "",Catalyst 3750 48 10/100 PoE + 4 SFP Standard Image
+WS-C3750-48PS-E,    "",Catalyst 3750 48 10/100 PoE + 4 SFP Enhanced Image
+WS-C3750-48TS-S,    "",Catalyst 3750 48 10/100 + 4 SFP Standard Multilayer Image
+WS-C3750-48TS-E,    "",Catalyst 3750 48 10/100 + 4 SFP Enhanced Multilayer Image
+# Catalyst Express 500 Series
+# Ref #3
+WS-CE500-24TT,      "",24 10/100 and 2 10/100/1000BT uplinks, GUI software
+WS-CE500-24LC,      "",24 10/100 (4 PoE) and 2 10/100/1000BT or SFP uplinks, GUI
+WS-CE500-24PC,      "",24 10/100 (24PoE) and 2 10/100/1000BT or SFP uplinks, GUI sw
+WS-CE500G-12TC,     "",8 10/100/1000BT and 4 10/100/1000BT or SFPs, GUI software
+
+# GBIC and SFP transceiver modules for switches
+# Ref #3
+WS-G5483,           "",1000BASE-T GBIC
+WS-G5484,           "",1000BASE-SX  Short Wavelength  GBIC (Multimode only)
+WS-G5486,           "",1000BASE-LX/LH  long haul  GBIC (singlemode or multimode)
+WS-G5487,           "",1000Base-ZX extended reach GBIC(singlemode)
+GLC-T,              "",1000BASE-T SFP
+GLC-SX-MM,          "",GE SFP, LC connector SX transceiver
+GLC-LH-SM,          "",GE SFP, LC connector LX/LH transceiver
+GLC-FE-100BX-D,     "",100BASE-BX10-D SFP
+GLC-FE-100BX-U,     "",100BASE-BX10-U SFP
+GLC-FE-100FX,       "",100BASE-FX SFP  for FE port
+GLC-FE-100LX,       "",100BASE-LX SFP  for FE port
+GLC-BX-D,           "",1000BASE-BX SFP, 1490NM
+GLC-BX-U,           "",1000BASE-BX SFP, 1310NM
+GLC-ZX-SM,          "",1000BASE-ZX SFP
+X2-10GB-CX4,        "",10GBASE-CX4 X2 Module
+X2-10GB-SR,         "",10GBASE-SR X2 Module
+X2-10GB-ER,         "",10GBASE-ER X2 Module
+X2-10GB-LX4,        "",10GBASE-LX4 X2 Module
+X2-10GB-LR,         "",10GBASE-LR X2 Module
+
+# Ref #3
+# Catalyst 4500 - Chassis
+WS-C4510R,          "",Catalyst 4500 Chassis (10-Slot),fan, no p/s,Red Sup Capable
+WS-C4507R,          "",Catalyst 4500 Chassis (7-Slot),fan, no p/s, Red Sup Capable
+WS-C4506,           "",Catalyst 4500 Chassis (6-Slot),fan, no p/s
+WS-C4503,           "",Catalyst 4500 Chassis (3-Slot),fan, no p/s
+WS-C4506-S2+96,     "",Cat4506 Bundle, 1x 1000AC, 1x S2+, 2x WS-X4148-RJ
+WS-C4503-S2+48,     "",Cat4503 Bundle, 1x 1000AC, 1x S2+, 1x WS-X4148-RJ
+WS-C4506-S4-AP25,   "",Cat4506 Bundle, 1x 1000AC, 1x S4, 1x WS-X4306-GB, 1x4402-25
+WS-C4506-S4-AP50,   "",Cat4506 Bundle, 1x 1000AC, 1x S4, 1x WS-X4306-GB, 1x4402-50
+# Catalyst 4500 PoE Enabled Power Supplies
+PWR-C45-4200ACV,    "",Catalyst 4500 4200W AC dual input Power Supply (Data + PoE)
+PWR-C45-4200ACV/2,  "",Catalyst 4500 4200W AC dual input Power Supply (Data + PoE)
+PWR-C45-2800ACV,    "",Catalyst 4500 2800W AC Power Supply (Data and PoE)
+PWR-C45-2800ACV/2,  "",Catalyst 4500 2800W AC Power Supply (Data and PoE)
+PWR-C45-1300ACV,    "",Catalyst 4500 1300W AC Power Supply (Data and PoE)
+PWR-C45-1300ACV/2,  "",Catalyst 4500 1300W AC Power Supply (Data and PoE)
+PWR-C45-1400DC-P,   "",Catalyst 4500 1400W DC Power Supply w/Int PEM
+PWR-C45-1400DC-P/2, "",Catalyst 4500 1400W DC Power Supply Redundant w/Int PEM
+WS-P4502-1PSU,      "",Catalyst 4500 Aux. Power Shelf (2 slot), incl. one PWR-4502
+PWR-4502,           "",Catalyst 4500 Aux. Power Shelf Redundant Power Supply
+# Catalyst 4500 Non-PoE Power Supplies
+PWR-C45-1400AC,     "",Catalyst 4500 1400W AC Power Supply (Data Only)
+PWR-C45-1000AC/2,   "",Catalyst 4500 1000W AC Power Supply Redundant(Data Only)
+PWR-C45-1400DC,     "",C4500 1400W DC Triple Input SP Power Supply-data only
+PWR-C45-1400DC/2,   "",C4500 1400W DC Triple Input SP Power Supply-data only
+# Catalyst 4500 Supervisor Engines
+WS-X4516-10GE,      "",Catalyst 4500 Supervisor V-10GE, 2x10GE (X2) and 4x1GE (SFP)
+WS-X4516-10GE/2,    "",Catalyst 45xxR Supervisor V-10GE,2x10GE (X2) and 4x1GE (SFP)
+WS-X4516,           "",Catalyst 4500 Supervisor V (2 GE),Console(RJ-45)
+WS-X4516/2,         "",Catalyst 45xxR Redundant Supervisor V (2 GE),Console(RJ-45)
+WS-X4515,           "",Catalyst 4500 Supervisor IV (2 GE),Console(RJ-45)
+WS-X4515/2,         "",Catalyst 4507R Redundant Supervisor IV,(2 GE),Console(RJ-45)
+WS-X4013+10GE,      "",Catalyst 4500 Sup II+10GE, 2x10GE (X2) and 4x1GE (SFP)
+WS-X4013+10GE/2,    "",Catalyst 4507R Sup II+10GE, 2x10GE(X2) and 4x1GE (SFP)
+WS-X4013+,          "",Catalyst 4500 Supervisor II-Plus (IOS), 2GE,Console(RJ-45)
+WS-X4013+/2,        "",Catalyst 4507R Redundant Sup II-Plus,(2GE),Console(RJ-45)
+WS-X4013+TS,        "",Catalyst 4503 SupII-Plus-TS, 12 10/100/1000 PoE+8 SFP slots
+WS-F4531,           "",Catalyst 4500 NetFlow Services Card (Sup IV/V)
+# Catalyst 4500 10/100 Linecards
+WS-X4148-RJ,        "",Catalyst 4500 10/100 Auto Module,  48-Ports (RJ-45)
+WS-X4124-RJ45,      "",Catalyst 4500 10/100 Module,24-Ports(RJ45)
+WS-X4148-RJ21,      "",Catalyst 4500 10/100 Module, 48-Ports Telco (4xRJ21)
+WS-X4148-RJ45V,     "",[EOS,SeePB4052]C4500prestdPoE10/10048-PortsRJ45
+WS-X4248-RJ21V,     "",Catalyst 4500 PoE 802.3af 10/100, 48-Ports (RJ21)
+WS-X4248-RJ45V,     "",Catalyst 4500 PoE 802.3af 10/100, 48-Ports (RJ45)
+WS-X4224-RJ45V,     "",Catalyst 4500 10/100 PoE 802.3af 24-ports  (RJ45)
+WS-X4232-GB-RJ,     "",Catalyst 4500 32-10/100 (RJ-45),2-GE(GBIC)
+WS-X4232-RJ-XX,     "",Catalyst 4500 10/100 Module,32-ports(RJ45)+Modular uplinks
+# Catalyst 4500 10/100/1000 Linecards
+WS-X4548-GB-RJ45,   "",Catalyst 4500 Enhanced 48-Port 10/100/1000 Base-T (RJ-45)
+WS-X4548-GB-RJ45V,  "",Catalyst 4500 PoE 802.3af 10/100/1000, 48-Ports (RJ45)
+WS-X4524-GB-RJ45V,  "",Catalyst 4500 PoE 802.3af 10/ 100/1000 24-ports (RJ45)
+WS-X4506-GB-T,      "",Catalyst 4500 6-Port 10/100/1000 PoE or SFP (Optional)
+WS-X4448-GB-RJ45,   "",Catalyst 4500 48-Port 10/100/1000 Module (RJ45)
+WS-X4424-GB-RJ45,   "",Catalyst 4500 24-port 10/100/1000 Module (RJ45)
+# Catalyst 4500 100 Base-X FE Linecards
+WS-X4248-FE-SFP,    "",Catalyst 4500 48-Port 100BASE-X (SFPs Optional)
+WS-X4124-FX-MT,     "",Catalyst 4500 FE Switching Module, 24- 100FX (MTRJ)
+WS-X4148-FE-BD-LC,  "",Catalyst 4500 FE Module, 48-Port BX-D (LC) (1550)
+WS-X4148-FE-LX-MT,  "",Catalyst 4500 FE module, 48-port 100LX SMF (MTRJ)
+WS-X4148-FX-MT,     "",Catalyst 4500 FE Switching Module, 48-100FX MMF(MTRJ)
+WS-U4504-FX-MT,     "",Catalyst 4500 4-port 100FX(MTRJ) Uplink for WS-X4232-RJ-XX
+# Catalyst 4500 1000 Base-X GE Linecards
+WS-X4306-GB,        "",Catalyst 4500 Gigabit Ethernet Module, 6-Ports (GBIC)
+WS-X4506-GB-T,      "",Catalyst 4500 6-Port 10/100/1000 PoE or SFP (Optional)
+WS-X4302-GB,        "",Catalyst 4500 Gigabit Ethernet Module, 2-Ports (GBIC)
+WS-X4418-GB,        "",Catalyst 4500 GE Module, Server Switching 18-Ports (GBIC)
+WS-X4448-GB-SFP,    "",Catalyst 4500 48-Port 1000Base-X (SFPs Optional)
+
+# IP Phones
+Cisco IP Phone 7920,"",
+Cisco IP Phone 7941,"",
+Cisco WS-C2950T-24,"",
+
+# Ref #1
+# ???
+AGS+,"",
+AGS,"",
+MGS,"",
+CGS,"",
+IGS,"",
+cs500,"",
+Catalyst,"",
+A100,"",
+Synergy,"",
+
+

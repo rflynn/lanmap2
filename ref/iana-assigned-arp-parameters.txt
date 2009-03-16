@@ -1,0 +1,197 @@
+Address Resolution Protocol (ARP) Parameters
+
+(last updated 2008-10-01)
+
+Registries included below:
+- Operation Codes
+- Hardware Types
+- Protocol Types
+
+Note:
+Reverse Address Resolution Protocol Operation Codes
+The Reverse Address Resolution Protocol (RARP) specified in [RFC903]
+uses the "Reverse" codes below.
+
+DYNAMIC REVERSE ARP
+The Dynamic Reverse Address Resolution Protocol (DRARP) uses the
+"DRARP" codes below.  For further information, see [RFC1931]
+
+INVERSE ADDRESS RESOLUTION PROTOCOL
+The Inverse Address Resolution Protocol (IARP) specified in [RFC1293]
+uses the "InARP" codes below.
+
+Registry Name: Operation Codes
+Reference: [RFC826]
+Registration Procedures: Not defined?
+
+Registry:
+Number  Operation Code (op)                      References
+------  ---------------------------------------  ----------
+1       REQUEST                                  [RFC826]
+2       REPLY                                    [RFC826]
+3       request Reverse                          [RFC903]
+4       reply Reverse                            [RFC903]
+5       DRARP-Request                            [RFC1931]
+6       DRARP-Reply                              [RFC1931]
+7       DRARP-Error                              [RFC1931]
+8       InARP-Request                            [RFC1293]
+9       InARP-Reply                              [RFC1293]
+10      ARP-NAK                                  [RFC1577]
+11      MARS-Request                             [Armitage]
+12      MARS-Multi                               [Armitage]
+13      MARS-MServ                               [Armitage]
+14      MARS-Join                                [Armitage]
+15      MARS-Leave                               [Armitage]
+16      MARS-NAK                                 [Armitage]
+17      MARS-Unserv                              [Armitage]
+18      MARS-SJoin                               [Armitage]
+19      MARS-SLeave                              [Armitage]
+20      MARS-Grouplist-Request                   [Armitage]
+21      MARS-Grouplist-Reply                     [Armitage]
+22      MARS-Redirect-Map                        [Armitage]
+23      MAPOS-UNARP                              [Maruyama]
+
+
+Registry Name: Hardware Types
+Reference: [RFC826]
+Registration Procedures: Not defined?
+
+Registry:
+Number  Hardware Type (hrd)                                References
+------  -------------------------------------------------  ----------
+1       Ethernet (10Mb)                                    [JBP]
+2       Experimental Ethernet (3Mb)                        [JBP]
+3       Amateur Radio AX.25                                [PXK]
+4       Proteon ProNET Token Ring                          [Doria]
+5       Chaos                                              [GXP]
+6       IEEE 802 Networks                                  [JBP]
+7       ARCNET                                             [JBP]
+8       Hyperchannel                                       [JBP]
+9       Lanstar                                            [TU]
+10      Autonet Short Address                              [MXB1]
+11      LocalTalk                                          [JKR1]
+12      LocalNet (IBM PCNet or SYTEK LocalNET)             [JXM]
+13      Ultra link                                         [RXD2]
+14      SMDS                                               [GXC1]
+15      Frame Relay                                        [AGM] 
+16      Asynchronous Transmission Mode (ATM)               [JXB2]
+17      HDLC                                               [JBP]
+18      Fibre Channel                                      [RFC4338]
+19      Asynchronous Transmission Mode (ATM)               [RFC2225]
+20      Serial Line                                        [JBP] 
+21      Asynchronous Transmission Mode (ATM)               [MXB1]
+22      MIL-STD-188-220                                    [Jensen]
+23      Metricom                                           [Stone]
+24      IEEE 1394.1995                                     [Hattig]
+25      MAPOS                                              [Maruyama]
+26      Twinaxial                                          [Pitts]
+27      EUI-64                                             [Fujisawa]
+28      HIPARP                                             [JMP]
+29      IP and ARP over ISO 7816-3                         [Guthery]
+30      ARPSec                                             [Etienne] 	    
+31      IPsec tunnel                                       [RFC3456]
+32      InfiniBand (TM)                                    [RFC4391]
+33      TIA-102 Project 25 Common Air Interface (CAI)      [Anderson]
+34      Wiegand Interface                                  [Guthery2]
+35      Pure IP                                            [Perez-Gonzalez]
+
+
+Registry Name: Protocol Type 
+Reference: [RFC826]
+Registration Procedures: Not defined?
+
+Note:
+Use the same codes as listed in the section called "Ethernet Numbers
+of Interest" (all hardware types use this code set for the protocol type). 
+See: <http://www.iana.org/assignments/ethernet-numbers>
+
+
+References
+----------
+[RFC826] Plummer, D., "An Ethernet Address Resolution Protocol or
+         Converting Network Protocol Addresses to 48-bit Ethernet
+         Addresses for Transmission on Ethernet Hardware", STD 37, RFC
+         826, MIT-LCS, November 1982.
+
+[RFC903] Finlayson, R., Mann, T., Mogul, J., and M. Theimer, "A
+         Reverse Address Resolution Protocol", STD 38, RFC 903,
+         Stanford University, June 1984.
+
+[RFC1293] Bradley, T., and C. Brown, "Inverse Address Resolution
+          Protocol", RFC 1293, Wellfleet Communications, Inc.,
+          January 1992.
+
+[RFC1931] David Brownell, "Dynamic RARP Extensions for Automatic 
+          Network Address Acquisition", RFC 1931, April 1996.
+
+[RFC2225] Laubach, M., and J. Halpern, "Classical UP and ARP over
+          ATM", RFC 2225, Com21, Newbridge Networks, October 1997.
+
+[RFC3456] B. Patel, B. Aboba, S. Kelly, and  V. Gupta, "Dynamic Host
+          Configuration Protocol (DHCPv4) Configuration of IPsec 
+          Tunnel Mode", RFC 3456, January 2003.
+
+[RFC4338] C. DeSanti, C. Carlson, R. Nixon, "Transmission of IPv6, IPv4, and
+          Address Resolution Protocol (ARP) Packets over Fibre Channel",
+          RFC 4338, January 2006.
+
+[RFC4391] H.K. Jerry Chu and V. Kashyap, "Transmission of IP over InfiniBand
+          (IPoIB)", RFC 4391, April 2006.
+
+People
+------
+[AGM] Andy Malis, <malis_a&timeplex.com>
+
+[Anderson] Jeff Anderson, Telecommunications Industry of America (TIA)
+           TR-8.5 Formulating Group, <cja015&motorola.com>, June 2004
+
+[Armitage] Grenville Armitage, <gja&thumper.belcore.com>, April 1995.
+
+[GXC1] George Clapp, <meritec!clapp&bellcore.bellcore.com>
+
+[Doria] Avri Doria, <avri&peoteon.com> December 1994.
+
+[Etienne] Jerome Etienne, <jetienne&arobas.net>, June 2000.
+
+[Fujisawa] Kenji Fujisawa, <fujisawa&sm.sony.co.jp>, October 1998.
+
+[Guthery] Scott Guthery, <sguthery&mobile-mind.com>, March 2000.
+
+[Guthery2] Scott Guthery, <sguthery&hidcorp.com>, 25 September 2008.
+
+[GXP] Gill Pratt, <gill%mit-ccc&MC.LCS.MIT.EDU>
+
+[Jensen] Herb Jensen, <hwjensen&itt.com>, February 1995.
+
+[JBP] Jon Postel, <postel&isi.edu>
+
+[JKR1] Joyce K. Reynolds, <jkrey&isi.edu>
+
+[JMP] Jean-Michel Pittet, <jmp&gandalf.engr.sgi.com>, November 1998.
+
+[JXM] Joseph Murdock
+
+[Hattig] Myron Hattig, <Myron_Hattig&ccm.jf.intel.com>, February 1997.
+
+[Maruyama] Mitsuru Maruyama, <mitsuru&ntt-20.ecl.net>, March 1997.
+
+[MXB1] Mike Burrows, <burrows&SRC.DEC.COM>
+
+[Perez-Gonzalez] Inaky Perez-Gonzalez, <inaky.perez-gonzalez&intel.com>, 01 October 2008.
+
+[Pitts] Marion Pitts, <marionp&VNET.IBM.COM>, May 1997.
+
+[PXK] Philip Koch, <Philip.Koch&DARTMOUTH.EDU>
+
+[RXD2] Rajiv Dhingra, <rajiv&ULTRA.COM>
+
+[Stone] Jonathan Stone, <jonathan&DSG.Stanford.edu>, May 1996.
+
+[TU] Tom Unger, <tom&CITI.UMICH>
+
+[Mark Laubach] <laubach&com21.com>  
+
+[Yakov Rekhter] <Yakov&IBM.COM>  
+
+[]
+

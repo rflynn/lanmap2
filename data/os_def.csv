@@ -1,0 +1,549 @@
+# ex: set ff=dos ts=2 et:
+# $Id$
+#
+# A hierarchy of all operating system families and versions
+# that we attempt to identify.
+#
+# We store parent/child relationships so we can generate
+# tree-like visualizations, which are useful in double-checking
+# our data and also because it's fun for computer nerds like us.
+#
+# References:
+#   #1 Levenz, Eric "Open Systems" Jan 12, 2009
+#      <URL: http://www.levenez.com/unix/unix.pdf>
+#   #2 [web page] <URL: http://en.wikipedia.org/wiki/Research_UNIX#Versions>
+#   #3 [web page] <URL: http://en.wikipedia.org/wiki/SunOS>
+#   #4 [web page] <URL: http://en.wikipedia.org/wiki/Solaris_(operating_system)>
+#   #5 [web page] <URL: http://en.wikipedia.org/wiki/Linux_kernel#Version_numbering>
+#   #6 [web page] <URL: http://en.wikipedia.org/wiki/MacOS#Graphical_timeline>
+#   #7 "The History of the NetBSD Project" [web page] http://netbsd.org/about/history.html [Accessed Dec 29 2008]
+#   #8 "System V" <URL: http://en.wikipedia.org/wiki/System_V>
+#   #9 "A Brief History of FreeBSD" <URL: http://www.freebsd.org/doc/en/books/handbook/history.html> [Accessed Jan 13 2009]
+#   #10 "Release Information" <URL: http://www.freebsd.org/releases/>
+#   #11 "Changes made between birth and OpenBSD 2.0." <URL: http://www.openbsd.org/plus20.html>
+#   #12 "DOS Origins" <URL: http://en.wikipedia.org/wiki/DOS#Origins>
+#   #13 "Index of /pub/linux/kernel" [web page] <URL: http://www.kernel.org/pub/linux/kernel/> [Accessed Jan 17 2009]
+#   #14 "NetBSD Formal Releases" [web page] <URL: http://www.netbsd.org/releases/formal.html> [Accessed Jan 17 2009]
+#   #15 "IRIX" [web page] <URL: http://en.wikipedia.org/wiki/IRIX> [Accessed Jan 17 2009]
+
+#Id,Parent,ParentId,Comment
+
+# the empty but necessary mother of all operating systems
+,Unknown,,
+
+# UNIX family
+# Research UNIX by Bell Labs (@ref #2)
+UNICS,UNICS,,
+UNIX,UNIX,UNICS,
+UNIX1,UNIX 1st edition,UNIX,"1971"
+UNIX2,UNIX 2nd edition,UNIX1,"1972"
+UNIX3,UNIX 3rd edition,UNIX2,"1973"
+UNIX4,UNIX 4th edition,UNIX3,"1973"
+UNIX5,UNIX 5th edition,UNIX4,"1974"
+UNIX6,UNIX 6th edition,UNIX5,"1975"
+UNIX7,UNIX 7th edition,UNIX6,"1979; prodigious lineage"
+UNIX8,UNIX 8th edition,UNIX7,"1985"
+UNIX9,UNIX 9th edition,UNIX8,"1986"
+UNIX10,UNIX 10th edition,UNIX9,"1989; last research UNIX"
+Plan9,Plan9,UNIX10,"1993"
+
+SysVR1,UNIX SysVR1,UNIX,"1983 DEC VAX and PDP-11"
+SysVR2,UNIX SysVR2,SysVR1,
+SysVR3,UNIX SysVR3,SysVR2,
+SysVR4,UNIX SysVR4,SysVR3,
+
+# UNIX wars
+UnisoftV7,Unisoft V7,UNIX7,
+AIX,IBM AIX,SysVR3,
+HPUX,HP-UX,SysVR1,
+IRIX,IRIX,SysVR1,
+Xenix,SCO Xenix,UnisoftV7,
+
+#
+# AIM - IBM's UNIX
+#
+# References:
+#   http://www.operating-system.org/betriebssystem/_english/bs-aix.htm#02
+#   http://www.levenez.com/unix/unix_a4.pdf
+#
+AIX2,    AIX RT/2,    AIX,
+AIX2.1.2,AIX RT/2.1.2,AIX2,
+AIX2.2.1,AIX RT/2.2.1,AIX2.1.2,
+AIX3,    AIX/6000 v3, AIX2.2.1,
+AIX3.1,  AIX 3.1,     AIX3,
+AIX3.2,  AIX 3.2,     AIX3.1,
+AIX3.2.5,AIX 3.2.5,   AIX3.2,
+AIX4.1,  AIX 4.1,     AIX3.2.5,
+AIX4.2,  AIX 4.2,     AIX4.1,
+AIX4.2.5,AIX 4.2.5,   AIX4.2,
+AIX4.3,  AIX 4.3,     AIX4.2.5,
+AIX5,    AIX 5L 5.0,  AIX4.3,
+AIX5.1,  AIX 5L 5.1,  AIX5,
+AIX5.2,  AIX 5L 5.2,  AIX5.1,
+AIX5.3,  AIX 5L 5.3,  AIX5.2,
+AIX6,    AIX 6,       AIX5.3,
+AIX6.1,  AIX 6.1,     AIX6,
+
+# @ref #1
+# @ref #14
+IRIX2,    IRIX 2,    IRIX,
+IRIX3,    IRIX 3,    IRIX2,
+IRIX4,    IRIX 4,    IRIX3,
+IRIX5,    IRIX 5,    IRIX4,
+IRIX6,    IRIX 6,    IRIX5,
+IRIX6.1,  IRIX 6.1,  IRIX6,
+IRIX6.2,  IRIX 6.2,  IRIX6.1,
+IRIX6.3,  IRIX 6.3,  IRIX6.2,
+IRIX6.4,  IRIX 6.4,  IRIX6.3,
+IRIX6.5,  IRIX 6.5,  IRIX6.4,
+IRIX6.5.x,IRIX 6.5.x,IRIX6.5,"officially dead as of Sep 6 2006"
+
+# BSD family
+# @ref #1
+# @ref #7
+BSD,BSD BSD,UNIX6,
+1BSD,BSD 1,BSD,
+2BSD,BSD 2,1BSD,
+3BSD,BSD 3,2BSD,
+4BSD,BSD 4,3BSD,
+4.1BSD,BSD 4.1,4BSD,
+4.2BSD,BSD 4.2,4.1BSD,
+4.3BSD,BSD 4.3,4.2BSD,
+4.3BSDTahoe,BSD 4.3 Tahoe,4.3BSD,
+Net/1,BSD Net/1,4.3BSDTahoe,
+4.3BSDReno,BSD 4.3 Reno,4.3BSDTahoe,
+Net/2,BSD Net/2,4.3BSDReno,
+386BSD,BSD 386BSD,Net/2,
+BSD/OS,BSD BSD/OS,Net/2,
+4.4BSD,BSD 4.4,4.3BSDReno,
+4.4BSD-Lite,BSD 4.4-Lite,4.4BSD,
+
+Mach,   Mach,    4.2BSD,
+Mach2,  Mach 2.0,Mach,
+Mach2.5,Mach 2.5,Mach2,
+Mach2.6,Mach 2.6,Mach2.5,
+Mach3,  Mach 3,  Mach2.6,
+Mach4,  Mach 4,  Mach3,
+
+NeXTSTEP, NeXTSTEP,  Mach2,
+NeXTSTEP1,NeXTSTEP 1,NeXTSTEP,
+
+OSF/1,     OSF/1,       4.3BSDTahoe,
+OSF/1-4,   Digital UNIX,OSF/1,
+OSF/1-4F,  Tru64 4.0F,  OSF/1-4,
+OSF/1-5,   Tru64 5.0,   OSF/1-4F,
+OSF/1-5.1, Tru64 5.1,   OSF/1-5,
+OSF/1-5.1a,Tru64 5.1a,  OSF/1-5,
+
+
+# Sun Microsystems SunOS/Solaris
+# @ref #3
+SunOS,     SunOS,      UnisoftV7,"@ref #8 says based on SysVR4..."
+SunOS1,    SunOS 1,    SunOS,
+SunOS2,    SunOS 2,    SunOS1,
+SunOS3,    SunOS 3,    SunOS2,
+SunOS4,    SunOS 4,    SunOS3,
+SunOS4.1,  SunOS 4.1,  SunOS4,
+SunOS4.1.x,Solaris 1.x,SunOS4.1,"Solaris brand"
+SunOS5.0,  Solaris 2,  SunOS4.1.x,
+SunOS5.1,  Solaris 2.1,SunOS5.0,
+SunOS5.2,  Solaris 2.2,SunOS5.1,
+SunOS5.3,  Solaris 2.3,SunOS5.2,
+SunOS5.4,  Solaris 2.4,SunOS5.3,
+SunOS5.5,  Solaris 2.5,SunOS5.4,
+SunOS5.6,  Solaris 2.6,SunOS5.5,
+SunOS5.7,  Solaris 7,  SunOS5.6,"Solaris skips a few versions..."
+SunOS5.8,  Solaris 8,  SunOS5.7,
+SunOS5.9,  Solaris 9,  SunOS5.8,
+SunOS5.9.1,Solaris 9.1,SunOS5.9,
+SunOS5.10, Solaris 10, SunOS5.9,
+
+# @ref #7
+# @ref #9
+NetBSD,NetBSD,4.4BSD-Lite,
+FreeBSD,FreeBSD,386BSD,
+
+# Now runs on toasters
+# @ref #13
+NetBSD0.8,  NetBSD 0.8,  NetBSD,     released April 20, 1993
+NetBSD0.9,  NetBSD 0.9,  NetBSD0.8,  released August 23, 1993
+NetBSD1.0,  NetBSD 1.0,  NetBSD0.9,  released October 26, 1994
+NetBSD1.1,  NetBSD 1.1,  NetBSD1.0,  released November 26, 1995
+NetBSD1.2,  NetBSD 1.2,  NetBSD1.1,  released October 4, 1996
+NetBSD1.2.1,NetBSD 1.2.1,NetBSD1.2,  released May 20, 1997
+NetBSD1.3,  NetBSD 1.3,  NetBSD1.2.1,released January 4, 1998
+NetBSD1.3.1,NetBSD 1.3.1,NetBSD1.3,  released March 9, 1998
+NetBSD1.3.2,NetBSD 1.3.2,NetBSD1.3.1,released May 29, 1998
+NetBSD1.3.3,NetBSD 1.3.3,NetBSD1.3.2,released December 23, 1998
+NetBSD1.4,  NetBSD 1.4,  NetBSD1.3.3,released May 12, 1999
+NetBSD1.4.1,NetBSD 1.4.1,NetBSD1.4,  released August 26, 1999
+NetBSD1.4.2,NetBSD 1.4.2,NetBSD1.4.1,released March 21, 2000
+NetBSD1.4.3,NetBSD 1.4.3,NetBSD1.4.2,released November 25, 2000
+NetBSD1.5,  NetBSD 1.5,  NetBSD1.4.3,released December 6, 2000
+NetBSD1.5.1,NetBSD 1.5.1,NetBSD1.5,  released July 11, 2001
+NetBSD1.5.2,NetBSD 1.5.2,NetBSD1.5.1,released September 13, 2001
+NetBSD1.5.3,NetBSD 1.5.3,NetBSD1.5.2,released July 22, 2002
+NetBSD1.6,  NetBSD 1.6,  NetBSD1.5.3,released September 14, 2002
+NetBSD1.6.1,NetBSD 1.6.1,NetBSD1.6,  released April 21, 2003
+NetBSD1.6.2,NetBSD 1.6.2,NetBSD1.6.1,released March 1, 2004
+NetBSD2.0,  NetBSD 2.0,  NetBSD1.6.2,released December 9, 2004
+NetBSD2.0.1,NetBSD 2.0.1,NetBSD2.0,  tagged in CVS repository but never released in binary form due to hardware problems with build servers
+NetBSD2.0.2,NetBSD 2.0.2,NetBSD2.0.1,released April 14, 2005
+NetBSD2.0.3,NetBSD 2.0.3,NetBSD2.0.2,released October 31, 2005
+NetBSD2.1,  NetBSD 2.1,  NetBSD2.0.3,released November 02, 2005
+NetBSD3.0,  NetBSD 3.0,  NetBSD2.1,  released December 23, 2005
+NetBSD3.0.1,NetBSD 3.0.1,NetBSD3.0,  released July 24, 2006
+NetBSD3.0.2,NetBSD 3.0.2,NetBSD3.0.1,released November 4, 2006
+NetBSD3.1,  NetBSD 3.1,  NetBSD3.0.1,released November 4, 2006
+NetBSD4.0,  NetBSD 4.0,  NetBSD3.0.1,released December 19, 2007
+
+
+# The most mainstream BSD UNIX today
+# @ref #10
+FreeBSD1.0, FreeBSD 1.0, FreeBSD,
+FreeBSD1.1, FreeBSD 1.1, FreeBSD1.0,
+FreeBSD2.x, FreeBSD 2.x, FreeBSD1.0,
+FreeBSD2.0, FreeBSD 2.0, FreeBSD2.x,
+FreeBSD2.1, FreeBSD 2.1, FreeBSD2.0,
+FreeBSD2.2, FreeBSD 2.2, FreeBSD2.1,
+FreeBSD3.x, FreeBSD 3.x, FreeBSD2.0,"Why 2.x branch as parent?"
+FreeBSD3.0, FreeBSD 3.0, FreeBSD3.x,
+FreeBSD3.1, FreeBSD 3.1, FreeBSD3.0,
+FreeBSD3.2, FreeBSD 3.2, FreeBSD3.1,
+FreeBSD3.3, FreeBSD 3.3, FreeBSD3.2,
+FreeBSD3.4, FreeBSD 3.4, FreeBSD3.3,
+FreeBSD3.5, FreeBSD 3.5, FreeBSD3.4,
+FreeBSD4.x, FreeBSD 4.x, FreeBSD3.4,
+FreeBSD4.0, FreeBSD 4.0, FreeBSD4.x,
+FreeBSD4.1, FreeBSD 4.1, FreeBSD4.0,
+FreeBSD4.2, FreeBSD 4.2, FreeBSD4.1,
+FreeBSD4.3, FreeBSD 4.3, FreeBSD4.2,
+FreeBSD4.4, FreeBSD 4.4, FreeBSD4.3,
+FreeBSD4.5, FreeBSD 4.5, FreeBSD4.4,
+FreeBSD4.6, FreeBSD 4.6, FreeBSD4.5,
+FreeBSD4.7, FreeBSD 4.7, FreeBSD4.6,
+FreeBSD4.8, FreeBSD 4.8, FreeBSD4.7,
+FreeBSD4.9, FreeBSD 4.9, FreeBSD4.8,
+FreeBSD4.10,FreeBSD 4.10,FreeBSD4.9,
+FreeBSD4.11,FreeBSD 4.11,FreeBSD4.10,
+FreeBSD5.x, FreeBSD 5.x, FreeBSD4.4,"Which 4.x branch as parent?"
+FreeBSD5.0, FreeBSD 5.0, FreeBSD5.x,
+FreeBSD5.1, FreeBSD 5.1, FreeBSD5.0,
+FreeBSD5.2, FreeBSD 5.2, FreeBSD5.1,
+FreeBSD5.3, FreeBSD 5.3, FreeBSD5.2,
+FreeBSD5.4, FreeBSD 5.4, FreeBSD5.3,
+FreeBSD5.5, FreeBSD 5.5, FreeBSD5.4,
+FreeBSD6.x, FreeBSD 6.x, FreeBSD5.4,
+FreeBSD6.0, FreeBSD 6.0, FreeBSD6.x,
+FreeBSD6.1, FreeBSD 6.1, FreeBSD6.0,
+FreeBSD6.2, FreeBSD 6.2, FreeBSD6.1,
+FreeBSD6.3, FreeBSD 6.3, FreeBSD6.2,
+FreeBSD7.x, FreeBSD 7.x, FreeBSD6.0,
+FreeBSD7.0, FreeBSD 7.0, FreeBSD7.x,
+FreeBSD7.1, FreeBSD 7.1, FreeBSD7.0,
+
+# High-security NetBSD fork
+OpenBSD,OpenBSD,NetBSD1,
+OpenBSD2.x,OpenBSD 2.x,OpenBSD,"OpenBSD began life at 2.x (@ref #11)"
+OpenBSD2.0,OpenBSD 2.0,OpenBSD2.x,
+OpenBSD2.1,OpenBSD 2.1,OpenBSD2.0,
+OpenBSD2.2,OpenBSD 2.2,OpenBSD2.1,
+OpenBSD2.3,OpenBSD 2.3,OpenBSD2.2,
+OpenBSD2.4,OpenBSD 2.4,OpenBSD2.3,
+OpenBSD2.5,OpenBSD 2.5,OpenBSD2.4,
+OpenBSD2.6,OpenBSD 2.6,OpenBSD2.5,
+OpenBSD2.7,OpenBSD 2.7,OpenBSD2.6,
+OpenBSD2.8,OpenBSD 2.8,OpenBSD2.7,
+OpenBSD2.9,OpenBSD 2.9,OpenBSD2.8,
+OpenBSD3.x,OpenBSD 3.x,OpenBSD2.9,
+OpenBSD3.0,OpenBSD 3.0,OpenBSD3.x,
+OpenBSD3.1,OpenBSD 3.1,OpenBSD3.0,
+OpenBSD3.2,OpenBSD 3.2,OpenBSD3.1,
+OpenBSD3.3,OpenBSD 3.3,OpenBSD3.2,
+OpenBSD3.4,OpenBSD 3.4,OpenBSD3.3,
+OpenBSD3.5,OpenBSD 3.5,OpenBSD3.4,
+OpenBSD3.6,OpenBSD 3.6,OpenBSD3.5,
+OpenBSD3.7,OpenBSD 3.7,OpenBSD3.6,
+OpenBSD3.8,OpenBSD 3.8,OpenBSD3.7,
+OpenBSD3.9,OpenBSD 3.9,OpenBSD3.8,
+OpenBSD4.x,OpenBSD 4.x,OpenBSD3.9,
+OpenBSD4.0,OpenBSD 4.0,OpenBSD4.x,
+OpenBSD4.1,OpenBSD 4.1,OpenBSD4.0,
+OpenBSD4.2,OpenBSD 4.2,OpenBSD4.1,
+OpenBSD4.3,OpenBSD 4.3,OpenBSD4.2,
+OpenBSD4.4,OpenBSD 4.4,OpenBSD4.3,
+OpenBSD4.5,OpenBSD 4.5,OpenBSD4.4,
+
+# Andrew Tenanbaum's microkernel OS
+MINIX,MINIX,,
+MINIX1,MINIX 1,MINIX,
+MINIX1.5,MINIX 1.5,MINIX1,
+MINIX2,MINIX 2,MINIX1.5,
+MINIX3,MINIX 3,MINIX2,
+
+# Linux
+# @ref #5
+# @ref #13
+Linux,Linux,,
+Linux0.x,Linux 0.x,Linux,
+Linux1.x,Linux 1.x,Linux0.x,
+Linux1.0,Linux 1.0,Linux1.x,
+Linux1.1,Linux 1.0,Linux1.0,
+Linux1.2,Linux 1.0,Linux1.1,
+Linux1.2.x,Linux 1.2.x,Linux1.2,
+Linux1.3,Linux 1.3,Linux1.2,
+Linux2.x,Linux 2.x,Linux1.3,
+Linux2.0,Linux 2.0,Linux2.x,
+Linux2.0.3x,Linux 2.0.3x,Linux2.0,
+Linux2.1,Linux 2.1,Linux2.0,
+Linux2.2,Linux 2.2,Linux2.1,
+Linux2.3,Linux 2.3,Linux2.2,
+Linux2.4,Linux 2.4,Linux2.3,
+Linux2.5,Linux 2.5,Linux2.4,
+Linux2.6,Linux 2.6,Linux2.5,
+Linux2.6.7,Linux 2.6.7,Linux2.6,
+Linux2.6.8,Linux 2.6.8,Linux2.6.7,
+Linux2.6.9+,Linux 2.6.9+,Linux2.6.8,
+
+# Apple's OS (@ref #6)
+MacOS,MacOS,,
+MacOS1,MacOS 1.x,MacOS,
+MacOS2,MacOS 2.x,MacOS1,
+MacOS3,MacOS 3.x,MacOS2,
+MacOS4,MacOS 4.x,MacOS3,
+MacOS5,MacOS 5.x,MacOS4,
+MacOS6,MacOS 6.x,MacOS5,
+MacOS7,MacOS 7.x,MacOS6,
+MacOS7.0,MacOS 7.0,MacOS7,
+MacOS7.1,MacOS 7.1,MacOS7.0,
+MacOS7.2,MacOS 7.2,MacOS7.1,
+MacOS7.3,MacOS 7.3,MacOS7.2,
+MacOS7.4,MacOS 7.4,MacOS7.3,
+MacOS7.5,MacOS 7.5,MacOS7.4,
+MacOS7.6,MacOS 7.6,MacOS7.5,
+MacOS8,MacOS 8.x,MacOS7,
+MacOS8.0,MacOS 8.0,MacOS8,
+MacOS8.1,MacOS 8.1,MacOS8.0,
+MacOS8.2,MacOS 8.2,MacOS8.1,
+MacOS8.3,MacOS 8.3,MacOS8.2,
+MacOS8.4,MacOS 8.4,MacOS8.3,
+MacOS8.5,MacOS 8.5,MacOS8.4,
+MacOS8.6,MacOS 8.6,MacOS8.5,
+MacOS9,MacOS 9.x,MacOS8,
+MacOS9.0,MacOS 9.0,MacOS9,
+MacOS9.1,MacOS 9.1,MacOS9.0,
+MacOS9.2,MacOS 9.2,MacOS9.1,
+MacOS9.2.2,MacOS 9.2.2,MacOS9.2,
+
+# Apple's Mach-based/BSD-app sexy OS
+MacOSX,MacOS X,Mach3,
+MacOSX10,MacOS X 10 (Cheetah),MacOSX,
+MacOSX10.1,MacOS X 10.1 (Puma),MacOSX10,
+MacOSX10.2,MacOS X 10.2 (Jaguar),MacOSX10.1,
+MacOSX10.3,MacOS X 10.3 (Panther),MacOSX10.2,
+MacOSX10.4,MacOS X 10.4 (Tiger),MacOSX10.3,
+MacOSX10.5,MacOS X 10.5 (Leopard),MacOSX10.4,
+
+# @ref #1
+OpenVMS,OpenVMS,,
+OpenVMS7.2,OpenVMS 7.2,OpenVMS,
+
+RiscOS,RiscOS,,
+RiscOS1,RiscOS 1.x,RiscOS,
+RiscOS2,RiscOS 2.x,RiscOS1,
+RiscOS3,RiscOS 3.x,RiscOS2,
+RiscOS4,RiscOS 4.x,RiscOS3,
+RiscOS5,RiscOS 5.x,RiscOS4,
+
+# Now for the sordid history of Windows...
+# @ref #12
+CP/M,CP/M,,
+CP/M80,CP/M 80,CP/M,
+QDOS,QDOS,CP/M80,
+86DOS,DOS 86,CP/M80,
+
+MS-DOS,MS-DOS,QDOS,
+MS-DOS1.1,MS-DOS 1.1,MS-DOS,
+MS-DOS2,MS-DOS 2,MS-DOS1.1,
+MS-DOS3,MS-DOS 3,MS-DOS2,
+MS-DOS4,MS-DOS 3,MS-DOS3,
+MS-DOS5,MS-DOS 3,MS-DOS4,
+MS-DOS6,MS-DOS 3,MS-DOS5,
+MS-DOS6.22,MS-DOS 3,MS-DOS6,
+MS-DOS7,MS-DOS 3,MS-DOS6.22,"Windows 95A"
+MS-DOS7.1,MS-DOS 3,MS-DOS7,
+MS-DOS8,MS-DOS 3,MS-DOS7.1,"Windows Me"
+
+# References:
+#   1 "OS/2 History Timeline"
+#     <URL: http://pages.prodigy.net/michaln/history/timeline.html>
+#   2 "OS/2" <URL: http://en.wikipedia.org/wiki/OS/2>
+OS/2,             OS/2,                     86DOS,
+OS/2-1.0,         OS/2 1.0,                 OS/2,
+OS/2-1.1,         OS/2 1.1,                 OS/2-1.0,
+OS/2-1.1ee,       OS/2 1.1 Extended Edition,OS/2-1.1,
+OS/2-1.2,         OS/2 1.2,                 OS/2-1.1,
+OS/2-1.2ee,       OS/2 1.2 Extended Edition,OS/2-1.2,"Introduced TCP/IP and Ethernet support (@ref #2)"
+OS/2-1.3,         OS/2 1.3,                 OS/2-1.2,
+OS/2-2.0,         OS/2 2.0,                 OS/2-1.3,
+OS/2-2.1,         OS/2 2.1,                 OS/2-2.0,
+OS/2-for Windows, OS/2 for Windows,         OS/2-2.1,
+OS/2-2.11,        OS/2 2.11,                OS/2-2.1,
+OS/2-2.11 SMP,    OS/2 2.11 SMP,            OS/2-2.11,
+OS/2-3,           OS/2 Warp 3.0,            OS/2-2.11,
+OS/2-Warp Connect,OS/2 Warp Connect,        OS/2-3,
+OS/2-Warp Server, OS/2 Warp Server,         OS/2-Warp Connect,
+OS/2-4,           OS/2 Warp 4.0,            OS/2-Warp Connect,
+OS/2-4.5,         OS/2 Warp 4.5,            OS/2-4,
+
+# Windows References:
+#  "Windows History"
+#   <URL: http://www.levenez.com/windows/> [Accessed Jan 10 2008]
+
+# DOS-based Windows
+Windows,Windows,MS-DOS,
+Win1,Windows 1.x,Windows,
+Win2,Windows 2.x,Win1,
+Win3,Windows 3.x,Win2,
+Win31,Windows 3.1,Win3,
+Win311,Windows 3.11,Win31,
+Win311WG,Windows 3.11 for Workgroups,Win311,
+Win95,Windows 95,Win31,
+Win95b,Windows 95b,Win95,
+Win98,Windows 98,Win95b,
+WinME,Windows ME,Win98,
+
+# NT-based Windows
+#
+WinNT,WinNT,,
+WinNT3.1,WinNT 3.1,WinNT,
+WinNT3.5,WinNT 3.5,WinNT3.1,
+WinNT3.5.1,WinNT 3.5.1,WinNT3.5,
+WinNT4,WinNT 4,WinNT3.5.1,
+WinNT4-SP1,WinNT4 SP1,WinNT4,
+WinNT4-SP2,WinNT4 SP2,WinNT4-SP1,
+WinNT4-SP3,WinNT4 SP3,WinNT4-SP2,
+WinNT4-SP4,WinNT4 SP4,WinNT4-SP3,
+WinNT4-SP5,WinNT4 SP5,WinNT4-SP4,
+WinNT4-SP6,WinNT4 SP6,WinNT4-SP5,
+WinNT4-SP6a,WinNT4 SP6a,WinNT4-SP6,
+WinNT5,Windows 2000,WinNT4,
+WinNT5.1,Windows XP,WinNT5,
+WinNT5.1-SP1,Windows XP SP1,WinNT5.1,
+WinNT5.1-SP2,Windows XP SP2,WinNT5.1-SP1,
+WinNT5.1-64,Windows XP-64,WinNT5.1-SP2,
+WinNT5.2,Windows 2003,WinNT5.1,
+WinNT5.2-SP1,Windows 2003 SP1,WinNT5.2,
+WinNT6,Windows Vista,WinNT5.2,
+WinNT6.1,Windows 7,WinNT6,
+
+# Reference:
+#  "The History of Microsoft Windows CE"
+#  <URL: http://www.hpcfactor.com/support/windowsce/> [Accessed Jan 11 2008]
+
+WinCE,WinCE,,
+WinCE1,WinCE 1.x,WinCE,
+WinCE2,WinCE 2.x,WinCE1,
+WinCE3,WinCE 3.x,WinCE2,
+WinCE4,WinCE 4.x,WinCE3,
+WinCE5,WinCE 5.x,WinCE4,
+WinCE6,WinCE 6.x,WinCE5,
+WinCE7,WinCE 7.x,WinCE6,
+
+PalmOS,PalmOS,,
+PalmOS3,PalmOS 3.x,PalmOS,
+PalmOS3.0,PalmOS 3.0,PalmOS3,
+PalmOS3.1,PalmOS 3.1,PalmOS3.0,
+PalmOS3.2,PalmOS 3.2,PalmOS3.1,
+PalmOS3.3,PalmOS 3.3,PalmOS3.2,
+PalmOS3.5,PalmOS 3.5,PalmOS3.3,
+
+# BeOS
+BeOS,BeOS,,
+BeOS-Dr6,BeOS Dr6,BeOS,
+BeOS-Dr7,BeOS Dr7,BeOS-Dr6,
+BeOS-Dr8,BeOS Dr8,BeOS-Dr7,
+BeOS-APR,BeOS APR,BeOS-Dr8,
+BeOS-PR1,BeOS PR1,BeOS-APR,
+BeOS-PR2,BeOS PR2,BeOS-PR1,
+BeOS-R3,BeOS R3,BeOS-PR2,
+BeOS-R4,BeOS R4,BeOS-R3,
+BeOS-R5,BeOS R5,BeOS-R4,
+BeOS-R5.1,BeOS R5.1,BeOS-R5,
+
+# Novell's Netware
+Netware,Netware,,
+Netware2,Netware 2.x,Netware,
+Netware3,Netware 3.x,Netware2,
+Netware4,Netware 4.x,Netware3,
+Netware4.0,Netware 4.0,Netware3,
+Netware4.1,Netware 4.1,Netware4.0,
+Netware4.2,Netware 4.2,Netware4.1,
+Netware5,Netware 5.x,Netware4.0,
+Netware5.0,Netware 5.0,Netware5,
+Netware5.1,Netware 5.1,Netware5.0,
+Netware6,Netware 6.0,Netware5.1,
+Netware6.5,Netware 6.5,Netware6,
+
+# QNX
+QNX,   QNX            ,,
+QNX1,  QNX 1.0,       QNX,
+QNX2,  QNX 2.0,       QNX1,
+QNX4,  QNX 4.0,       QNX2,
+QNX5,  QNX/Nuetrino 1,QNX4,
+QNX5.1,QNX/Nuetrino 2,QNX5,
+QNX6,  QNX 6,         QNX5.1,
+QNX6.1,QNX 6.1,       QNX6,
+QNX6.2,QNX 6.2,       QNX6.1,
+
+# VMWare
+VMWare,VMWare,,"Virtualization software"
+VMWare5,VMWare 5,VMWare,
+
+#### special-purpose OSes
+
+CatOS,CatOS,,
+
+# Cisco IOS
+IOS,Cisco IOS,,
+IOS1.1,IOS 1.1,IOS,
+IOS1.2,IOS 1.2,IOS1.1,
+PIX,PIX Cisco PIX,,
+PIX5,PIX 5.x,PIX,
+PIX6,PIX 6.x,PIX5,
+
+
+# Reference:
+#   "VxWorks Release History"
+#   <URL: http://www.oshistory.net/metadot/index.pl?id=2559;isa=Category;op=show>
+VxWorks,VxWorks,,
+VxWorks5.0,VxWorks 5.0,VxWorks,
+VxWorks5.1,VxWorks 5.1,VxWorks5.0,
+VxWorks5.3,VxWorks 5.3,VxWorks5.1,
+VxWorks5.4,VxWorks 5.4,VxWorks5.3,
+VxWorks6.2,VxWorks 6.2,VxWorks5.4,
+
+############# printers ############
+
+############# routers ############
+
+WRT54G,Linksys WRT54G,,
+WRT54GL,WRT54G Linksys WRT54GL,WRT54G,
+
+############# bridges #############
+
+# Moxa NPort Express
+NPortExpress,NPort Express,,
+
+# Symbol Spectrum24 serial<->ethernet bridge
+SymbolSpec24,Symbol Sepc24,,
+
+AtopGW,Atop GW,,
+AtopGW21SW,AtopGW 21SW MAXI,AtopGW,
+
+# Perle IOLan bridge
+IOLAN,Perle IOLAN,,
+
+# 3Com wireless web bridge
+3COMWWB,3COM WWB,,
+

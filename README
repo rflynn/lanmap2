@@ -1,0 +1,71 @@
+# ex: set ff=dos ts=2 et:
+
+About
+-----
+
+lanmap2 is a successor to my original lanmap software; it passively listens
+to LAN traffic and can construct an interactive visualization of the machines,
+operating systems and applications present on the LAN from the "hints" it
+extracts.
+
+lanmap2 is a bottom-up rewrite of lanmap; it fixes a lot of protocol parsing
+and abstracts much of the internal application behind well-defined interfaces;
+something lanmap did not do.
+
+That being said, it doesn't currently work quite as lanmap does, so buyer
+beware; however, lanmap2 contains the structure that will allow it to surpass
+lanmap once it is mature.
+
+Installation
+------------
+
+Everything is pretty much manual at this point, oh well.
+
+Dependencies:
+	sqlite3 and libsqlite3 (sqlite2 not acceptable!)
+	libpcap
+	gcc
+	php (to interface with db and generate graphviz input; plan on replacing with lua)
+	graphviz (for graph generating)
+
+1. Build the database
+
+	cd db && ./build-db.sh && cd -
+
+2. Build the capture
+
+	cd src &&  make 2>&1 | grep -v bit-field
+
+
+Use
+---
+
+1. Start capturing
+
+	sudo ./pcap
+
+  The application has to run as root, which is a potential security hazard.
+
+	This currently produces prodigious amounts of output; sue me.
+
+2. Generate a graph after letting the capture run for a while.
+
+	cd graph && ./graph.sh && cd -
+
+	This will generate a graph at graph/net.png
+
+  This runs a bunch of php scripts.
+
+3. View the graph via the web/ crap
+
+  I suggest you map/symlink apache to the web/ directory if you are capable
+
+
+TODO
+----
+
+* Replace php-based "graph"ing scripts with lua-based ones, and include lua
+  runtime and libraries within the lanmap2 package; this will simplify the
+  dependencies and allow more people to run it.
+
+

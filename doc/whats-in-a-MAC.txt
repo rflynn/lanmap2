@@ -1,0 +1,20 @@
+# $Id$
+
+I wonder if there is more information contained in a MAC
+address than just the OUI.
+
+Assuming that manufacturers/vendors have some internal
+organization (not necessarily a valid 
+
+
+IBM Thinkpad
+
+
+all Dell PowerEdge 1U servers....
+
+00:0f:1f:69:f0:2a MERCURY
+00:60:08:32:df:d4 SATURN
+00:0d:56:bc:33:68 JUPITER
+00:11:43:30:20:4d PLUTO
+
+

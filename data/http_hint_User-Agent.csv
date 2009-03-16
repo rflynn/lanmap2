@@ -1,0 +1,23 @@
+# ex: set ff=dos:
+# $Id$
+#
+
+# Hints based on HTTP Request "User-Agent" header
+# Not terribly reliable, easily modified/faked and some applications send absolute
+# garbage, but better than nothing
+
+# Fields: User-Agent,Hint,Comment
+Mozilla/1.22 (compatible; MSIE 2.0d; Windows NT),"ie2=5,WinNT4=1",
+Mozilla/2.0 (compatible; MSIE 2.1; Mac_PowerPC),"ie2=5,MacOS=1,PPC=1",
+Mozilla/2.0 (compatible; MSIE 3.02; Update a; AK; Windows NT),"ie3=5,WinNT=1",
+Mozilla/2.0 (compatible; MSIE 3.02; Update a; AOL 3.0; Windows 95),"ie3=5,Win95=1,aol=1",
+Mozilla/2.0 (compatible; MSIE 3.0; AK; Windows 95),"ie3=5,Win95=1",
+Mozilla/2.0 (compatible; MSIE 3.0; Windows 3.1),"ie3=5,Win31=1",
+Mozilla/2.0 (compatible; MSIE 3.0B; Win32),"ie3=5,WinXP=1",
+Mozilla/4.0 (compatible; MSIE 4.01; AOL 4.0; Windows 98),"ie4=5,aol4=5,Win98=1",
+Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; bgft),"ie7=5,WinNT5.1=1",
+Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0),"ie8=5,WinNT6=1",
+Mozilla/5.0 (X11; U; Linux i686; en-US; rv: 1.9.0.5) Gecko/2008120121 Firefox/3.0.5),"firefox3=5,linux=1,686=1"
+
+monkeyagent,"greasemonkey=10,firefox=10,"
+

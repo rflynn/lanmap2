@@ -1,0 +1,100 @@
+No.     Time        Source                Destination           Protocol Info
+      2 18.875470   192.168.1.104         224.0.0.251           MDNS     Standard query response SRV, cache flush 0 0 548 julia-lins-imac-2.local TXT, cache flush PTR _afpovertcp._tcp.local PTR Julia Lin\342\200\231s iMac (2)._afpovertcp._tcp.local TXT TXT AAAA, cache flush fe80::21b:63ff:fea4:95bc PTR, cache flush julia-lins-imac-2.local A, cache flush 192.168.1.104 PTR, cache flush julia-lins-imac-2.local
+
+Frame 2 (502 bytes on wire, 502 bytes captured)
+Ethernet II, Src: Apple_a4:95:bc (00:1b:63:a4:95:bc), Dst: IPv4mcast_00:00:fb (01:00:5e:00:00:fb)
+Internet Protocol, Src: 192.168.1.104 (192.168.1.104), Dst: 224.0.0.251 (224.0.0.251)
+User Datagram Protocol, Src Port: mdns (5353), Dst Port: mdns (5353)
+Domain Name System (response)
+    [Request In: 4]
+    [Time: -14.374772000 seconds]
+    Transaction ID: 0x0000
+    Flags: 0x8400 (Standard query response, No error)
+    Questions: 0
+    Answer RRs: 10
+    Authority RRs: 0
+    Additional RRs: 0
+    Answers
+        Julia Lin\342\200\231s iMac (2)._afpovertcp._tcp.local: type SRV, class IN, cache flush, priority 0, weight 0, port 548, target julia-lins-imac-2.local
+            Name: Julia Lin\342\200\231s iMac (2)._afpovertcp._tcp.local
+            Type: SRV (Service location)
+            .000 0000 0000 0001 = Class: IN (0x0001)
+            1... .... .... .... = Cache flush: True
+            Time to live: 2 minutes
+            Data length: 26
+            Priority: 0
+            Weight: 0
+            Port: 548
+            Target: julia-lins-imac-2.local
+        Julia Lin\342\200\231s iMac (2)._afpovertcp._tcp.local: type TXT, class IN, cache flush
+            Name: Julia Lin\342\200\231s iMac (2)._afpovertcp._tcp.local
+            Type: TXT (Text strings)
+            .000 0000 0000 0001 = Class: IN (0x0001)
+            1... .... .... .... = Cache flush: True
+            Time to live: 1 hour, 15 minutes
+            Data length: 1
+            Text: 
+        _services._dns-sd._udp.local: type PTR, class IN, _afpovertcp._tcp.local
+            Name: _services._dns-sd._udp.local
+            Type: PTR (Domain name pointer)
+            .000 0000 0000 0001 = Class: IN (0x0001)
+            0... .... .... .... = Cache flush: False
+            Time to live: 1 hour, 15 minutes
+            Data length: 2
+            Domain name: _afpovertcp._tcp.local
+        _afpovertcp._tcp.local: type PTR, class IN, Julia Lin\342\200\231s iMac (2)._afpovertcp._tcp.local
+            Name: _afpovertcp._tcp.local
+            Type: PTR (Domain name pointer)
+            .000 0000 0000 0001 = Class: IN (0x0001)
+            0... .... .... .... = Cache flush: False
+            Time to live: 1 hour, 15 minutes
+            Data length: 2
+            Domain name: Julia Lin\342\200\231s iMac (2)._afpovertcp._tcp.local
+        Julia Lin\342\200\231s iMac (2)._device-info._tcp.local: type TXT, class IN
+            Name: Julia Lin\342\200\231s iMac (2)._device-info._tcp.local
+            Type: TXT (Text strings)
+            .000 0000 0000 0001 = Class: IN (0x0001)
+            0... .... .... .... = Cache flush: False
+            Time to live: 1 hour, 15 minutes
+            Data length: 14
+            Text: model=iMac7,1
+        _kerberos.julia-lins-imac-2.local: type TXT, class IN
+            Name: _kerberos.julia-lins-imac-2.local
+            Type: TXT (Text strings)
+            .000 0000 0000 0001 = Class: IN (0x0001)
+            0... .... .... .... = Cache flush: False
+            Time to live: 2 hours
+            Data length: 51
+            Text: LKDC:SHA1.13DF12E8DAEDA48228E449A4FD2A18961A038CC5
+        julia-lins-imac-2.local: type AAAA, class IN, cache flush, addr fe80::21b:63ff:fea4:95bc
+            Name: julia-lins-imac-2.local
+            Type: AAAA (IPv6 address)
+            .000 0000 0000 0001 = Class: IN (0x0001)
+            1... .... .... .... = Cache flush: True
+            Time to live: 2 minutes
+            Data length: 16
+            Addr: fe80::21b:63ff:fea4:95bc
+        C.B.5.9.4.A.E.F.F.F.3.6.B.1.2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.8.E.F.ip6.arpa: type PTR, class IN, cache flush, julia-lins-imac-2.local
+            Name: C.B.5.9.4.A.E.F.F.F.3.6.B.1.2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.8.E.F.ip6.arpa
+            Type: PTR (Domain name pointer)
+            .000 0000 0000 0001 = Class: IN (0x0001)
+            1... .... .... .... = Cache flush: True
+            Time to live: 2 minutes
+            Data length: 2
+            Domain name: julia-lins-imac-2.local
+        julia-lins-imac-2.local: type A, class IN, cache flush, addr 192.168.1.104
+            Name: julia-lins-imac-2.local
+            Type: A (Host address)
+            .000 0000 0000 0001 = Class: IN (0x0001)
+            1... .... .... .... = Cache flush: True
+            Time to live: 2 minutes
+            Data length: 4
+            Addr: 192.168.1.104
+        104.1.168.192.in-addr.arpa: type PTR, class IN, cache flush, julia-lins-imac-2.local
+            Name: 104.1.168.192.in-addr.arpa
+            Type: PTR (Domain name pointer)
+            .000 0000 0000 0001 = Class: IN (0x0001)
+            1... .... .... .... = Cache flush: True
+            Time to live: 2 minutes
+            Data length: 2
+            Domain name: julia-lins-imac-2.local

@@ -1,0 +1,78 @@
+
+Data
+-----------------------------------------------------------------------------
+operating system
+  version
+
+services - general services that a server might provide
+  domain controller
+  DHCP server
+  mail
+  ftp server
+  database
+  game
+  etc.
+
+clients - general categories of activity a client might do
+  email
+  web surfing
+  streaming video
+  stream audio
+  downloading
+  game playing
+  instant messaging
+  remote shell
+  version control
+  etc.
+
+applications - specific instances of services/clients
+  Microsoft Outlook -> email
+  bittorrent -> downloading
+
+Code
+-----------------------------------------------------------------------------
+protocol
+  protocol-specific data
+
+protocol parsing routines
+
+protocol parsing
+  add to protocol stats
+  "hints"
+    operating system
+    service
+    client
+    application
+      version
+ 
+stats/hints are queued for a set amount of time
+stats/hints are flushed out to a database
+
+Database
+-----------------------------------------------------------------------------
+database entries are tallied
+
+Front End
+-----------------------------------------------------------------------------
+dynamically-updating directed graph showing
+  machines
+  operating system
+  top protocol
+  bandwidth usage per link/direction
+
+  the machines with the most connections and most bandwidth will be towards
+  the center of the graph, 
+
+  the graph should be zoomable:
+    "Show All" - zoom out until all nodes are visible
+    "100%" - a sane 
+
+  machines that are "Unknown" (as defined by a MAC/IP list in Configuration)
+    may be highlighted 
+
+  machines that *are* known may have customizable icons and names to help
+    identify them
+
+  clicking on a node/machine brings up a Profile section, in which the
+    machine's statistics may be viewed in detail
+

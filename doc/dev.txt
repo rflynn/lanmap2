@@ -1,0 +1,26 @@
+# $Id$
+
+How To Structure the Database to Allow Hinting At Individual Properties
+But Also Complex "Device" Types?
+
+Id		Parent	Type	Contents
+N			NULL		Role	Router
+N+1		NULL		Dev		WRT54G
+N+2		Manuf	
+
+Aha, I think I've figured it out.
+
+Being able to identify a full device is the ultimate goal!
+
+Everything else should be subordinate.
+
+Everything else we can hint at is ultimately a device field:
+
+Manufacturer
+Role(s)
+Model#
+Device-specific info
+	(i.e. how many ports on the bridge)
+Image/icon
+
+

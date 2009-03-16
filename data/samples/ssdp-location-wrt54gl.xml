@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<root xmlns="urn:schemas-upnp-org:device-1-0">
+<specVersion>
+<major>1</major>
+<minor>0</minor>
+</specVersion>
+<device>
+<deviceType>urn:schemas-upnp-org:device:InternetGatewayDevice:1</deviceType>
+<friendlyName>Linksys WRT54GL</friendlyName>
+<manufacturer>Linksys Inc.</manufacturer>
+<manufacturerURL>http://www.linksys.com/</manufacturerURL>
+<modelDescription>Internet Access Server</modelDescription>
+<modelName>WRT54GL</modelName>
+<modelNumber>v4.30.11</modelNumber>
+<modelURL>http://www.linksys.com/</modelURL>
+<UDN>uuid:0021-2970-ea46000099dc</UDN>
+<serviceList>
+<service>
+<serviceType>urn:schemas-upnp-org:service:Layer3Forwarding:1</serviceType>
+<serviceId>urn:upnp-org:serviceId:Layer3Forwarding:11</serviceId>
+<controlURL>/uuid:0021-2970-ea46000099dc/Layer3Forwarding:1</controlURL>
+<eventSubURL>/uuid:0021-2970-ea46000099dc/Layer3Forwarding:1</eventSubURL>
+<SCPDURL>/dynsvc/Layer3Forwarding:1.xml</SCPDURL>
+</service>
+</serviceList>
+<deviceList>
+<device>
+<deviceType>urn:schemas-upnp-org:device:WANDevice:1</deviceType>
+<friendlyName>urn:schemas-upnp-org:device:WANDevice:1</friendlyName>
+<manufacturer>Linksys Inc.</manufacturer>
+<manufacturerURL>http://www.linksys.com/</manufacturerURL>
+<modelDescription>Internet Access Server</modelDescription>
+<modelName>WRT54GL</modelName>
+<modelNumber>v4.30.11</modelNumber>
+<modelURL>http://www.linksys.com/</modelURL>
+<UDN>uuid:0021-2970-ea46010099dc</UDN>
+<serviceList>
+<service>
+<serviceType>urn:schemas-upnp-org:service:WANCommonInterfaceConfig:1</serviceType>
+<serviceId>urn:upnp-org:serviceId:WANCommonIFC1</serviceId>
+<controlURL>/uuid:0021-2970-ea46010099dc/WANCommonInterfaceConfig:1</controlURL>
+<eventSubURL>/uuid:0021-2970-ea46010099dc/WANCommonInterfaceConfig:1</eventSubURL>
+<SCPDURL>/dynsvc/WANCommonInterfaceConfig:1.xml</SCPDURL>
+</service>
+</serviceList>
+<deviceList>
+<device>
+<deviceType>urn:schemas-upnp-org:device:WANConnectionDevice:1</deviceType>
+<friendlyName>urn:schemas-upnp-org:device:WANConnectionDevice:1</friendlyName>
+<manufacturer>Linksys Inc.</manufacturer>
+<manufacturerURL>http://www.linksys.com/</manufacturerURL>
+<modelDescription>Internet Access Server</modelDescription>
+<modelName>WRT54GL</modelName>
+<modelNumber>v4.30.11</modelNumber>
+<modelURL>http://www.linksys.com/</modelURL>
+<UDN>uuid:0021-2970-ea46020099dc</UDN>
+<serviceList>
+<service>
+<serviceType>urn:schemas-upnp-org:service:WANIPConnection:1</serviceType>
+<serviceId>urn:upnp-org:serviceId:WANIPConn1</serviceId>
+<controlURL>/uuid:0021-2970-ea46020099dc/WANIPConnection:1</controlURL>
+<eventSubURL>/uuid:0021-2970-ea46020099dc/WANIPConnection:1</eventSubURL>
+<SCPDURL>/dynsvc/WANIPConnection:1.xml</SCPDURL>
+</service>
+<service>
+<serviceType>urn:schemas-upnp-org:service:WANPPPConnection:1</serviceType>
+<serviceId>urn:upnp-org:serviceId:WANPPPConn1</serviceId>
+<controlURL>/uuid:0021-2970-ea46020099dc/WANPPPConnection:1</controlURL>
+<eventSubURL>/uuid:0021-2970-ea46020099dc/WANPPPConnection:1</eventSubURL>
+<SCPDURL>/dynsvc/WANPPPConnection:1.xml</SCPDURL>
+</service>
+</serviceList>
+<presentationURL>http://192.168.1.1:80/index.asp</presentationURL>
+</device>
+</deviceList>
+<presentationURL>http://192.168.1.1:80/index.asp</presentationURL>
+</device>
+</deviceList>
+<presentationURL>http://192.168.1.1:80/index.asp</presentationURL>
+</device>
+</root>

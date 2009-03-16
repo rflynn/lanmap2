@@ -1,0 +1,1633 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- $Revision: 1.40 $ -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- Top Header End -->
+<!-- Bottom Header Start -->
+<title>
+DHCP OPTION 43 for Lightweight Cisco Aironet Access Points Configuration Example - Cisco Systems
+</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/><meta name="concept" content="Wireless, LAN (WLAN)"/><meta name="accessLevel" content="Guest"/><meta name="country" content="US"/><meta name="primaryObjectId" content="ccmigration:09186a00808714fe"/><meta name="docType" content="TSD Technologies Configuration Example"/><meta name="language" content="en"/><meta name="contentType" content="cisco.com#US#postSales"/><meta name="iaPath" content="cisco.com#Technologies#Wireless / Mobility#Wireless, LAN (WLAN)"/><meta name="ioProblemType" content="Configuration"/><meta name="Synonym" content="WLAN (Wireless, LAN),Wireless, LAN (WLAN)"/><meta name="ioContentSource" content="PAWS"/><meta name="locale" content="US"/><meta name="secondaryConcept" content="Cisco 4100 Series Wireless LAN Controllers"/><meta name="secondaryConcept" content="Cisco 2000 Series Wireless LAN Controllers"/><meta name="secondaryConcept" content="Cisco 4400 Series Wireless LAN Controllers"/><meta name="secondaryConcept" content="Cisco 2100 Series Wireless LAN Controllers"/><meta name="secondaryConcept" content="Cisco Aironet 1200 Series"/><meta name="secondaryConcept" content="Cisco Aironet 1100 Series"/><meta name="secondaryConcept" content="Cisco Aironet 1130 AG Series"/><meta name="secondaryConcept" content="Cisco Aironet 1230 AG Series"/><meta name="secondaryConcept" content="Cisco Aironet 1000 Series"/><meta name="secondaryConcept" content="Cisco Aironet 1240 AG Series"/><meta name="secondaryConcept" content="Cisco Catalyst 6500 Series/7600 Series Wireless Services Module (WiSM)"/><meta name="secondaryConcept" content="Cisco Wireless LAN Controller Module"/><meta name="secondaryConcept" content="Cisco Catalyst 3750 Series Integrated Wireless LAN Controllers"/><meta name="secondaryConcept" content="Cisco Airespace 4000 Series Wireless LAN Controller"/><meta name="secondaryConcept" content="Cisco Airespace 3500 Series WLAN Controller"/><meta name="secondaryConcept" content="Cisco Aironet 1250 Series"/><meta name="date" content="Fri Oct 10 00:00:00 PDT 2008"/><meta name="docRequest" content="/en/US/tech/tk722/tk809/technologies_configuration_example09186a00808714fe.shtml"/><meta name="title" content="DHCP OPTION 43 for Lightweight Cisco Aironet Access Points Configuration Example"/>
+
+<script type="text/javascript" src="../../../../../swa/j/global.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../../../swa/c/libra.css" />
+<link rel="stylesheet" type="text/css" media="print" href="../../../../../swa/c/global_print.css" />
+
+<!--Head Script-->
+</head>
+<body id="libra"><!--googleoff: index-->
+<!-- $Revision: 1.4 $ -->
+<div id="framework-base-banner" >
+	<div class="skiplinks">
+		<a href="http://www.cisco.com/" accesskey="1">Home</a> | 
+		<a href="technologies_configuration_example09186a00808714fe.shtml.html#content" accesskey="2">Skip to Content</a> | 
+		<a href="technologies_configuration_example09186a00808714fe.shtml.html#search" >Skip to Search</a> | 
+		<a href="technologies_configuration_example09186a00808714fe.shtml.html#hinav" accesskey="4">Skip to Navigation</a> | 
+		<a href="technologies_configuration_example09186a00808714fe.shtml.html#pagefooter" accesskey="5">Skip to Footer</a> |
+	</div>
+	<div id="framework-logo">			
+		<a href="http://www.cisco.com/en/US/hmpgs/index.html" name="&amp;lpos=ft_" rel="exit"><img border="0" alt="Cisco Systems, Inc." height="73" width="110" src="../../../../../swa/i/logo.gif"></a>
+	</div>
+	<div id="framework-header">
+	    <div class="nav-secondary">
+	         <span class="region-selector"><span class="region">Worldwide</span> 
+	[<a href="http://www.cisco.com/en/US/swassets/sw274/sitewide_country_language_selector.html" onclick="global_openCdcPopup('/en/US/swassets/sw274/sitewide_country_language_selector.html',643,468);return false;" title="Popup: Region/Language Selector">change</a>]</span>				
+	         <a href="http://www.cisco.com/cgi-bin/login" class="login">Log In</a>
+	         <span class="link-delimiter">|</span><a href="http://tools.cisco.com/RPF/register/register.do">Register</a>
+	         <span class="link-delimiter">|</span><a href="http://www.cisco.com/en/US/about/index.html">About Cisco</a>
+	         
+	         
+	     </div>
+	     <span class="search-entitlement">Guest</span><div class="search"><form method="get" action="http://tools.cisco.com/search/JSP/search-results.get" name="sitewidesearch"><label id="search" name="search" accesskey="3" for="searchPhrase">Search </label><input tabindex="1" onfocus="checkClear(this,'Search ')" value="Search " id="searchPhrase" name="strQueryText" type="text"/><input tabindex="2" src="../../../../../swa/i/btn_go.gif" id="go" alt="Go" type="image"/><br/><input name="Search All cisco.com" value="cisco.com" type="hidden"/><input name="language" value="en" type="hidden"/><input name="country" value="US" type="hidden"/><input name="thissection" value="f" type="hidden"/><input name="accessLevel" value="Guest" type="hidden"/>
+</form></div>
+	</div>
+</div>
+<table id="framework-wrapper" cellspacing="0" cellpadding="0" border="0" summary="">
+<tr><td>
+	<div id="cdc-nav-module" class="cdc-rc-container">
+<span class="corner-top"><span class="corner-left"></span></span>
+<table class="nav-container" width="90%" cellspacing="0" cellpadding="0" border="0">
+<tbody>
+<tr>
+<td class="nav">
+<a href="http://www.cisco.com/en/US/netsol/index.html">Solutions</a>
+</td>
+<td class="nav">
+<a href="http://www.cisco.com/en/US/products/index.html">Products & Services</a>
+</td>
+<td class="nav">
+<a href="http://www.cisco.com/en/US/ordering/index.shtml">Ordering</a>
+</td>
+<td class="nav">
+<a href="http://www.cisco.com/en/US/support/index.html">Support</a>
+</td>
+<td class="nav">
+<a href="http://www.cisco.com/en/US/learning/index.html">Training & Events</a>
+</td>
+<td class="nav">
+<a href="http://www.cisco.com/en/US/partners/index.html">Partner Central</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<script type="text/javascript">cdc.util.initBackpack('cdc-nav-module');</script>
+
+
+	<table id="framework-base-main" cellspacing="0" cellpadding="0" border="0" summary="">
+	<tr>
+		<td id="framework-column-left" valign="top"><a name="hinav"></a>
+			<!-- CDC-DM: Hinav Start -->
+			<div class="hinav"><h3>Hierarchical Navigation</h3><ul class="outer"><li><a href="http://www.cisco.com/en/US/hmpgs/index.html" class="parent">HOME</a><ul><li><a href="http://www.cisco.com/en/US/support/index.html" class="parent">SUPPORT</a><ul><li><a href="http://www.cisco.com/web/psa/technologies/tsd_technology_support_configure_guide.html" class="parent">TECHNOLOGY SUPPORT</a><ul><li><a href="http://www.cisco.com/web/psa/technologies/tsd_technology_support_configure_guide.html?c=268435588" class="parent">WIRELESS / MOBILITY</a><ul><li><a href="http://www.cisco.com/en/US/tech/tk722/tk809/tsd_technology_support_protocol_home.html" class="parent">WIRELESS, LAN (WLAN)</a><ul><li><a href="http://www.cisco.com/en/US/tech/tk722/tk809/tsd_technology_support_configure_guide.html" class="parent">CONFIGURE</a><ul><li><a href="http://www.cisco.com/en/US/tech/tk722/tk809/tech_configuration_examples_list.html" class="parent">CONFIGURATION EXAMPLES AND TECHNOTES</a><ul><li><strong><a href="technologies_configuration_example09186a00808714fe.shtml.html" class="selected">DHCP OPTION 43 for Lightweight Cisco Aironet Access Points Configuration Example</a></strong></li></ul></li></ul></li></ul></li></ul></li></ul></li></ul></li></ul></li></ul></div>
+			<!-- CDC-DM: Hinav End -->
+			
+			
+			
+			
+
+<!-- begin embedded feedback form -->
+<a name="anchor_to_feedback"></a> 
+
+<script type="text/javascript" src="../../../../../public/support/feedback/js/tt/right/main_cdc.js">
+</script>
+
+<!-- end feedback form -->
+
+
+			
+			
+			
+			
+			
+		</td>
+		<td id="framework-column-center">
+			<table cellspacing="0" id="framework-base-content">
+				<tr>
+					<td id="framework-column-titles" colspan="2">
+						<div id="framework-content-titles"><!--googleon: index-->
+							 <h1 class="title-section">Wireless, LAN (WLAN)</h1>
+							 <h2 class="title-page">DHCP OPTION 43 for Lightweight Cisco Aironet Access Points Configuration Example</h2>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td id="framework-column-main"><a name="content"></a>
+						<div id="framework-content-main">
+						<!-- Bottom Header End -->
+						<!-- CDC-DM: Main Col Start -->
+							<!-- Start of the actual text content --><!--googleoff: index-->
+							<table id="content-right-top" align="right" border="0" cellspacing="0" cellpadding="0" summary="">
+								<tr><td valign="top" align="right"></td></tr>
+								<tr><td valign="top" align="right"><div class="module-sidebar-xsl">
+<h3 class="main-header">Downloads</h3>
+<ul>
+<li>
+<a href="http://www.cisco.com/application/pdf/paws/97066/dhcp-option-43.pdf" class="contentlink" target="_blank">DHCP OPTION 43 for Lightweight Cisco Aironet Access Points Configuration Example<img src="../../../../../swa/i/icon_pdf.gif" alt="" height="16" width="20" /></a>
+</li>
+</ul>
+</div>
+</td></tr>
+								<tr><td valign="top" align="right"></td></tr>
+								<tr><td valign="top" align="right"></td></tr>
+							</table><!--googleon: index-->
+							<?xml version="1.0" encoding="UTF-8"?>
+<div class="contentMargins"><span class="content">
+<!-- META NAME="audience" CONTENT="support" -->
+<!-- META NAME="contributors" CONTENT="rpremach, mlluis, jwhiteak" -->
+<!-- META NAME="coverage" CONTENT="US" -->
+<!-- META NAME="creator" CONTENT="jakew" -->
+<!-- META NAME="date.created" CONTENT="06-21-2007" -->
+<!-- META NAME="date.expires" CONTENT="10-10-2009" -->
+<!-- META NAME="date.modified" CONTENT="10-10-2008" -->
+<!-- META NAME="identifier" CONTENT="/en/US/tech/tk722/tk809/technologies_configuration_example09186a00808714fe.shtml" -->
+<!-- META NAME="language" CONTENT="US_EN" -->
+<!-- META NAME="maintainers" CONTENT="cco-techtips" -->
+<!-- META NAME="reviewers" CONTENT="rjayasee, jmalit, rpremach" -->
+<!-- META NAME="publishers" CONTENT="krheinz, jvaglia, jmalit" -->
+<!-- META NAME="security" CONTENT="External" -->
+<!-- META NAME="size" CONTENT="50735" -->
+<!-- META NAME="Description" CONTENT=" " -->
+<!-- META NAME="subject.primary" CONTENT="Technologies:Wireless / Mobility:Wireless, LAN (WLAN)" -->
+<!-- META NAME="subject.secondary" CONTENT="Products:Cisco Products:Cisco Interfaces and Modules:Cisco Network Modules:Cisco Wireless LAN Controller Module" -->
+<!-- META NAME="subject.secondary" CONTENT="Products:Cisco Products:Cisco Interfaces and Modules:Cisco Services Modules:Cisco Catalyst 6500 Series/7600 Series Wireless Services Module (WiSM)" -->
+<!-- META NAME="subject.secondary" CONTENT="Products:Cisco Products:Wireless:Access Points:Cisco Aironet 1000 Series" -->
+<!-- META NAME="subject.secondary" CONTENT="Products:Cisco Products:Wireless:Access Points:Cisco Aironet 1100 Series" -->
+<!-- META NAME="subject.secondary" CONTENT="Products:Cisco Products:Wireless:Access Points:Cisco Aironet 1130 AG Series" -->
+<!-- META NAME="subject.secondary" CONTENT="Products:Cisco Products:Wireless:Access Points:Cisco Aironet 1200 Series" -->
+<!-- META NAME="subject.secondary" CONTENT="Products:Cisco Products:Wireless:Access Points:Cisco Aironet 1230 AG Series" -->
+<!-- META NAME="subject.secondary" CONTENT="Products:Cisco Products:Wireless:Access Points:Cisco Aironet 1240 AG Series" -->
+<!-- META NAME="subject.secondary" CONTENT="Products:Cisco Products:Wireless:Access Points:Cisco Aironet 1250 Series" -->
+<!-- META NAME="subject.secondary" CONTENT="Products:Cisco Products:Wireless:Wireless LAN Controllers:Integrated Controllers and Controller Modules:Cisco Catalyst 3750 Series Integrated Wireless LAN Controllers" -->
+<!-- META NAME="subject.secondary" CONTENT="Products:Cisco Products:Wireless:Wireless LAN Controllers:Standalone Controllers:Cisco 2000 Series Wireless LAN Controllers" -->
+<!-- META NAME="subject.secondary" CONTENT="Products:Cisco Products:Wireless:Wireless LAN Controllers:Standalone Controllers:Cisco 2100 Series Wireless LAN Controllers" -->
+<!-- META NAME="subject.secondary" CONTENT="Products:Cisco Products:Wireless:Wireless LAN Controllers:Standalone Controllers:Cisco 4100 Series Wireless LAN Controllers" -->
+<!-- META NAME="subject.secondary" CONTENT="Products:Cisco Products:Wireless:Wireless LAN Controllers:Standalone Controllers:Cisco 4400 Series Wireless LAN Controllers" -->
+<!-- META NAME="subject.secondary" CONTENT="Products:Cisco Products:Wireless:Wireless LAN Controllers:Standalone Controllers:Cisco Airespace 3500 Series WLAN Controller" -->
+<!-- META NAME="subject.secondary" CONTENT="Products:Cisco Products:Wireless:Wireless LAN Controllers:Standalone Controllers:Cisco Airespace 4000 Series Wireless LAN Controller" -->
+<!-- META NAME="title" CONTENT="DHCP OPTION 43 for Lightweight Cisco Aironet Access Points Configuration Example" -->
+<!-- META NAME="type.information" CONTENT="Technology Configuration Example" -->
+<!-- META NAME="type.problem" CONTENT="Configuration" -->
+<!-- META NAME="roadMap" CONTENT="Wireless" -->
+<!-- META NAME="document.id" CONTENT="97066" --><H3>Document ID: 97066</H3>
+
+<br />
+
+<!-- <script language="JavaScript" src="http://www.cisco.com/public/support/feedback/js/tt/right/main.js">&nbsp;</script> -->
+
+<hr />
+<h2>Contents</h2>
+<blockquote>
+<b>
+<a href="technologies_configuration_example09186a00808714fe.shtml.html#intro">Introduction</a>
+</b>
+<br />
+<b>
+<a href="technologies_configuration_example09186a00808714fe.shtml.html#prereq">Prerequisites</a>
+</b>
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="technologies_configuration_example09186a00808714fe.shtml.html#req">Requirements</a>
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="technologies_configuration_example09186a00808714fe.shtml.html#hw">Components Used</a>
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="technologies_configuration_example09186a00808714fe.shtml.html#conv">Conventions</a>
+<br />
+<b>
+<a href="technologies_configuration_example09186a00808714fe.shtml.html#backinfo">Vendor Specific DHCP Options</a>
+</b>
+<br />
+<b>
+<a href="technologies_configuration_example09186a00808714fe.shtml.html#t1">Microsoft DHCP Server</a>
+</b>
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="technologies_configuration_example09186a00808714fe.shtml.html#p1">Cisco 1000 Series APs</a>
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="technologies_configuration_example09186a00808714fe.shtml.html#p2">Lightweight Cisco Aironet 1130, 1240, and 1200 Series APs</a>
+<br />
+<b>
+<a href="technologies_configuration_example09186a00808714fe.shtml.html#t2">Cisco IOS DHCP Server</a>
+</b>
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="technologies_configuration_example09186a00808714fe.shtml.html#p3">Cisco Aironet 1130, 1200, 1240 APs</a>
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="technologies_configuration_example09186a00808714fe.shtml.html#p4">Cisco Aironet 1000 Series APs</a>
+<br />
+<b>
+<a href="technologies_configuration_example09186a00808714fe.shtml.html#t3">Sun Solaris DHCP Server</a>
+</b>
+<br />
+<b>
+<a href="technologies_configuration_example09186a00808714fe.shtml.html#t4">Linux DHCP Server</a>
+</b>
+<br />
+<b>
+<a href="technologies_configuration_example09186a00808714fe.shtml.html#CNR">Cisco Network Registrar DHCP Server</a>
+</b>
+<br />
+<b>
+<a href="technologies_configuration_example09186a00808714fe.shtml.html#Lucent">Lucent QIP DHCP Server</a>
+</b>
+<br />
+<b>
+<a href="technologies_configuration_example09186a00808714fe.shtml.html#veri">Verify</a>
+</b>
+<br />
+<b>
+<a href="technologies_configuration_example09186a00808714fe.shtml.html#tshoot">Troubleshoot</a>
+</b>
+<br />
+<b>
+<a href="technologies_configuration_example09186a00808714fe.shtml.html#NetPro">NetPro Discussion Forums - Featured Conversations</a>
+</b>
+<br />
+<b>
+<a href="technologies_configuration_example09186a00808714fe.shtml.html#related">Related Information</a>
+</b>
+<br />
+</blockquote>
+<hr />
+    
+<h2>
+<a name="intro">Introduction</a>
+</h2> 
+ 
+  <p>When Cisco's Wirelesss Unified Architecture is deployed, the
+	 Lightweight Cisco Aironet Access Points (AP) can use a vendor specific Dynamic
+	 Host Control Protocol (DHCP) Option 43 to join specific Wireless LAN
+	 Controllers (WLCs) when the WLC is in a different subnet than the LAP. This
+	 document describes how to use DHCP Option 43 and provides sample configurations
+	 for DHCP Option 43 for lightweight Cisco Aironet (APs) for these DHCP
+	 servers:</p> <ul> 
+  <li> 
+	 <p>Microsoft Windows 2003 Enterprise DHCP Server</p>
+</li> 
+  <li> 
+	 <p>Cisco IOS DHCP Server </p>
+</li> 
+  <li> 
+	 <p>Sun Solaris DHCP Server</p>
+</li> 
+  <li> 
+	 <p>Linux DHCP Server</p>
+</li> 
+  <li> 
+	 <p>Cisco Network Registrar DHCP Server</p>
+</li> 
+  <li> 
+	 <p>Lucent QIP DHCP Server</p>
+</li>
+</ul> 
+  <p>Refer to
+	 <a href="http://www.cisco.com/en/US/products/ps6366/products_configuration_example09186a0080665cdf.shtml">Wireless
+	 LAN Controller and Lightweight Access Point Basic Configuration Example</a>
+	 for information on how to configure an AP to join a WLC.</p> 
+  <p></p> 
+  <h2>
+<a name="prereq">Prerequisites</a>
+</h2> 
+<h3>
+<a name="req">Requirements</a>
+</h3> 
+  <p>Cisco recommends that you have knowledge of these topics:</p> 
+  <ul> 
+  <li> 
+	 <p>Basic knowledge of DHCP</p>
+</li> 
+  <li> 
+	 <p>Basic Knowledge of the Windows DHCP server
+		configuration</p>
+</li> 
+  <li> 
+	 <p>Basic Knowledge of the Sun Solaris DHCP server
+		configuration</p>
+</li> 
+  <li> 
+	 <p>Basic Knowledge of the Linux DHCP server
+		configuration</p>
+</li> </ul> 
+ 
+<h3>
+<a name="hw">Components Used</a>
+</h3> 
+  <p>This document is not restricted to specific software and hardware
+	 versions.</p> 
+  <p>The information in this document was created from the devices in a
+	 specific lab environment. All of the devices used in this document started with
+	 a cleared (default) configuration. If your network is live, make sure that you
+	 understand the potential impact of any command.</p> 
+ 
+<h3>
+<a name="conv">Conventions</a>
+</h3> 
+  <p>Refer to
+	 <a href="http://www.cisco.com/en/US/tech/tk801/tk36/technologies_tech_note09186a0080121ac5.shtml">Cisco
+	 Technical Tips Conventions</a> for more information on document
+	 conventions.</p> 
+  
+<h2>
+<a name="backinfo">Vendor Specific DHCP Options</a>
+</h2> 
+ 
+  <p>RFC 2132 defines two DHCP Options that are relevant to vendor specific
+	 options. They are Option 60 and Option 43. DHCP Option 60 is the Vendor Class
+	 Identifier (VCI). The VCI is a text string that uniquely identifies a type of
+	 vendor device. <a href="technologies_configuration_example09186a00808714fe.shtml.html#tab">Table 1</a> lists the VCIs used by Cisco
+	 access points. </p> 
+  <a name="tab" />
+<table bgcolor="#FFFFFF" cellpadding="3" cellspacing="1" border="1" width="60%"> 
+	 <b>Table 1</b>
+<p /> 
+	  
+		<tr>
+<th height="" width="185" bgcolor="FFFFFF" colspan="1" rowspan="1"> 
+			 <p>Access Point</p>
+</th>
+<th height="" width="323" bgcolor="FFFFFF" colspan="1" rowspan="1"> 
+			 <p>Vendor Class Identifier (VCI</p>
+</th> 
+		</tr> 
+	  
+		<tr>
+<td height="" width="185" bgcolor="FFFFFF" colspan="1" rowspan="1"> 
+			 <p>Cisco Aironet 1000 series</p>
+</td>
+<td height="" width="323" bgcolor="FFFFFF" colspan="1" rowspan="1"> 
+			 <p>Airespace.AP1200</p>
+</td> 
+		</tr> 
+		<tr>
+<td height="" width="185" bgcolor="FFFFFF" colspan="1" rowspan="1"> 
+			 <p>Cisco Aironet 1100 series</p>
+</td>
+<td height="" width="323" bgcolor="FFFFFF" colspan="1" rowspan="1"> 
+			 <p>Cisco AP c1100</p>
+</td> 
+		</tr> 
+		<tr>
+<td height="" width="185" bgcolor="FFFFFF" colspan="1" rowspan="1"> 
+			 <p>Cisco Aironet 1130 series</p>
+</td>
+<td height="" width="323" bgcolor="FFFFFF" colspan="1" rowspan="1"> 
+			 <p>Cisco AP c1130</p>
+</td> 
+		</tr> 
+		<tr>
+<td height="" width="185" bgcolor="FFFFFF" colspan="1" rowspan="1"> 
+			 <p>Cisco Aironet 1200 series</p>
+</td>
+<td height="" width="323" bgcolor="FFFFFF" colspan="1" rowspan="1"> 
+			 <p>Cisco AP c1200</p>
+</td> 
+		</tr> 
+		<tr>
+<td height="" width="185" bgcolor="FFFFFF" colspan="1" rowspan="1"> 
+			 <p>Cisco Aironet 1230 series</p>
+</td>
+<td height="" width="323" bgcolor="FFFFFF" colspan="1" rowspan="1"> 
+			 <p>Cisco AP c1200</p>
+</td> 
+		</tr> 
+		<tr>
+<td height="" width="185" bgcolor="FFFFFF" colspan="1" rowspan="1"> 
+			 <p>Cisco Aironet 1240 series</p>
+</td>
+<td height="" width="323" bgcolor="FFFFFF" colspan="1" rowspan="1"> 
+			 <p>Cisco AP c1240</p>
+</td> 
+		</tr> 
+		<tr>
+<td height="" width="185" bgcolor="FFFFFF" colspan="1" rowspan="1"> 
+			 <p>Cisco Aironet 1250 Series </p>
+</td>
+<td height="" width="323" bgcolor="FFFFFF" colspan="1" rowspan="1"> 
+			 <p>Cisco AP c1250 </p>
+</td> 
+		</tr> 
+		<tr>
+<td height="" width="185" bgcolor="FFFFFF" colspan="1" rowspan="1"> 
+			 <p>Cisco Aironet 1300 series</p>
+</td>
+<td height="" width="323" bgcolor="FFFFFF" colspan="1" rowspan="1"> 
+			 <p>Cisco AP c1300</p>
+</td> 
+		</tr> 
+		<tr>
+<td height="" width="185" bgcolor="FFFFFF" colspan="1" rowspan="1"> 
+			 <p>Cisco Aironet 1500 series</p>
+</td>
+<td height="" width="323" bgcolor="FFFFFF" colspan="1" rowspan="1"> 
+			 <p>Cisco AP c1500<sup>1</sup>
+</p> 
+			 <p>Cisco AP.OAP1500<sup>2</sup>
+</p> 
+			 <p>Cisco AP.LAP1505<sup>3</sup>
+</p> 
+			 <p>Cisco AP.LAP1510<sup>4</sup>
+</p> 
+			 <p>Cisco AP c1520</p> 
+			 <p>Airespace.AP1200<sup>5</sup>
+</p>
+</td> 
+		</tr> 
+		<tr>
+<td height="" width="185" bgcolor="FFFFFF" colspan="1" rowspan="1"> 
+			 <p>Cisco 3201 Lightweight Access Point</p>
+</td>
+<td height="" width="323" bgcolor="FFFFFF" colspan="1" rowspan="1">
+			 
+			 <p>Cisco Bridge/AP/WGB c3201</p>
+</td> 
+		</tr> 
+		<tr>
+<td height="" width="185" bgcolor="FFFFFF" colspan="1" rowspan="1"> 
+			 <p>Cisco 521 Wireless Express Access Point </p>
+</td>
+<td height="" width="323" bgcolor="FFFFFF" colspan="1" rowspan="1"> 
+			 <p>Cisco AP c520</p>
+</td> 
+		</tr> 
+		<tr>
+<td height="" width="185" bgcolor="FFFFFF" colspan="1" rowspan="1"> 
+			 <p>AP801 (embedded in 86x/88x series ISRs</p>
+</td>
+<td height="" width="323" bgcolor="FFFFFF" colspan="1" rowspan="1"> 
+			 <p>Cisco AP801 </p>
+</td> 
+		</tr> 
+	  
+  </table>
+<p /> 
+  <p>
+<sup>1</sup>Any 1500 Series AP that runs 4.1 software
+	 </p> 
+  <p>
+<sup>2</sup>1500 OAP AP that runs 4.0 software </p> 
+  <p>
+<sup>3</sup>1505 Model AP that runs 4.0 software
+	 </p> 
+  <p>
+<sup>4</sup>1510 Model AP that runs 4.0 software
+	 </p> 
+  <p>
+<sup>5</sup>Any 1500 Series AP that runs 3.2 software
+	 </p> 
+  <p>Option 60 is included in the initial DHCP <b>discover</b>
+	 message that a DHCP client broadcasts in search of an IP address. </p> 
+  <p>In order to facilitate AP discovery of WLAN controllers that use DHCP
+	 Option 43, the DHCP server must be programmed in order to return one or more
+	 WLAN controller management interface IP addresses based on the VCI of the AP.
+	 In order to do this, program the DHCP server in order to recognize the VCI for
+	 each access point type, and then define the vendor specific information.</p>
+  
+  <p>On the DHCP server, the vendor specific information is mapped to VCI
+	 text strings. When the DHCP server sees a recognizable VCI in a DHCP
+	 <b>discover</b> from a DHCP client, it returns the mapped vendor
+	 specific information in its DHCP <b>offer</b> to the client as DHCP
+	 Option 43. On the DHCP server , option 43 and 60 are defined in each DHCP pool
+	 (Scope) that offers IP address to the LAPs. </p> 
+  <p>RFC 2132 defines that DHCP servers must return vendor specific
+	 information as DHCP Option 43. The RFC allows vendors to define encapsulated
+	 vendor-specific sub-option codes between 0 and 255. The sub-options are all
+	 included in the DHCP offer as type-length-value (TLV) blocks embedded within
+	 Option 43. The definition of the sub-option codes and their related message
+	 format is left to the vendors.</p> 
+  <p>When DHCP servers are programmed to offer WLAN Controller IP addresses
+	 as Option 43 for Cisco 1000 series APs the sub-option TLV block is defined in
+	 this way:</p> <ul> 
+  <li> 
+	 <p>
+<b>Type</b>&#8212;0x66 (decimal 102)</p>
+</li> 
+  <li> 
+	 <p>
+<b>Length:</b>&#8212;A count of the characters of the ASCII
+		string in the Value field. Length must include the commas if there is more than
+		one controller specified, but not a zero-terminator.</p>
+</li> 
+  <li> 
+	 <p>
+<b>Value:</b>&#8212;A non-zero terminated ASCII string that is a
+		comma-separated list of controllers. No spaces should be embedded in the
+		list.</p>
+</li>
+</ul> 
+  <p>When DHCP servers are programmed to offer WLAN Controller IP addresses
+	 as Option 43 for Cisco Aironet LAPs, for example, Cisco Aironet 1130, 1200,
+	 1230 and/or 1240 series access points, the sub-option TLV block is defined in
+	 this way:</p> <ul> 
+  <li> 
+	 <p>
+<b>Type</b>&#8212;0xf1 (decimal 241)</p>
+</li> 
+  <li> 
+	 <p>
+<b>Length</b>&#8212;Number of controller IP addresses *
+		4</p>
+</li> 
+  <li> 
+	 <p>
+<b>Value</b>&#8212;List of the WLC management interfaces,
+		typically translated to hexadecimal values</p>
+</li>
+</ul> 
+  <p>The semantics of DHCP server configuration vary based on the DHCP
+	 server vendor. This document contains specific instructions on the Microsoft
+	 DHCP server, Cisco IOS DHCP server, Sun Solaris DHCP server, Linux DHCP server,
+	 Cisco Network Registrar DHCP server and Lucent QIP DHCP Server. For other DHCP
+	 server products, consult the vendor documentation for instructions on vendor
+	 specific options.</p> 
+ <h2>
+<a name="t1">Microsoft DHCP Server</a>
+</h2> 
+ 
+  <p>This section describes the configurations necessary on the Microsoft
+	 DHCP server in order to use DHCP Option 43 for WLAN Controller
+	 discovery.</p> 
+ 
+<h3>
+<a name="p1">Cisco 1000 Series APs</a>
+</h3> 
+  <p>This section describes how a Windows DHCP server is configured in order
+	 to return vendor specific information to Cisco 1000 APs. You need to know this
+	 key information:</p>
+<ul> 
+  <li> 
+	 <p> Vendor Class Identifier (VCI)</p>
+</li> 
+  <li> 
+	 <p>Option 43 sub-option code</p>
+</li> 
+  <li> 
+	 <p>Management IP address(es) of WLAN
+		controller(s)</p>
+</li>
+</ul> 
+  <p>The VCI for a Cisco 1000 series AP is always
+	 <b>Airespace.AP1200</b>. As stated, the Option 43 sub-option code for
+	 the Cisco 1000 series access points is type 102 (0x66). The example
+	 configurations are done with the Microsoft Management Console (MMC) utility.
+	 You can also use the DHCP Server Utility. The steps are virtually
+	 identical.</p>
+<ol type="1"> 
+  <li> 
+		<p> Create a new vendor class in order to program the DHCP server to
+		  recognize the VCI <b>Airespace.AP1200</b>. In the MMC, right-click
+		  the DHCP server icon, and choose <b>Define Vendor Classes</b>.
+		  </p>
+<p>
+<img alt="dhcp-option-43-1.gif" border="0" src="../../../../../image/gif/paws/97066/dhcp-option-43-1.gif" usemap="" />
+</p>
+	 
+  </li> 
+  <li> 
+		<p> Click<b> Add</b> in order to create the new class.
+		  </p>
+<p>
+<img alt="dhcp-option-43-2.gif" border="0" src="../../../../../image/gif/paws/97066/dhcp-option-43-2.gif" usemap="" />
+</p>
+	 
+  </li> 
+  <li> 
+		<p>Enter a value for the <b>Display Name</b>. In this
+		  example, <b>Airespace</b> is used as the Display Name. Also, add a
+		  short description of the vendor class in the <b>Description</b>
+		  field. Add the Vendor Class Identifier string. In order to do this, click the
+		  ASCII field, and type in the appropriate value, in this case
+		  <b>Airespace.AP1200</b>. Click <b>OK</b>.
+		  </p>
+<p>
+<img alt="dhcp-option-43-3.gif" border="0" src="../../../../../image/gif/paws/97066/dhcp-option-43-3.gif" usemap="" />
+</p>
+	 
+  </li> 
+  <li> 
+		<p>The new class is created. Click
+		  <b>Close</b>.</p>
+<p>
+<img alt="dhcp-option-43-4.gif" border="0" src="../../../../../image/gif/paws/97066/dhcp-option-43-4.gif" usemap="" />
+</p>
+	 
+  </li> 
+  <li> 
+		<p>Add an entry for the WLAN controller sub-option in the
+		  <b>Predefined Options</b> for the newly created Vendor Class. This is
+		  where you define the sub-option code type and the data format that is used to
+		  deliver the vendor specific information to the APs. In order to create a
+		  Predefined Option, right click server icon, and choose <b>Set Predefined
+		  Options</b>. </p>
+<p>
+<img alt="dhcp-option-43-5.gif" border="0" src="../../../../../image/gif/paws/97066/dhcp-option-43-5.gif" usemap="" />
+</p>
+	 
+  </li> 
+  <li> 
+		<p>A new window opens. Set the Option class to the value you
+		  configured for the vendor class. In this example, it is
+		  <b>Airespace</b>. Click <b>Add</b> in order to define the
+		  option code.</p>
+<p>
+<img alt="dhcp-option-43-6.gif" border="0" src="../../../../../image/gif/paws/97066/dhcp-option-43-6.gif" usemap="" />
+</p>
+	 
+  </li> 
+  <li> 
+		<p>The Option Type box appears. In the Name field, enter a descriptive
+		  string value, for example, <b>Airespace IP provision</b>. Choose
+		  <b>Binary</b> as the Data Type. In the Code field, enter the
+		  sub-option value <b>102</b>. Enter a Description, if desired. Click
+		  <b>OK</b>.</p>
+<p>
+<img alt="dhcp-option-43-7.gif" border="0" src="../../../../../image/gif/paws/97066/dhcp-option-43-7.gif" usemap="" />
+</p>
+	 
+  </li> 
+  <li> 
+		<p>The new Predefined Option appears. Click <b>OK</b>. This
+		  completes the creation of the Vendor class and sub-option type needed in order
+		  to support controller discovery.</p> 
+  </li> 
+  <li> 
+		<p>Right-click the <b>Server Options</b> folder under the
+		  DHCP scope, and choose <b>Configure Options</b>.
+		  </p>
+<p>
+<img alt="dhcp-option-43-8.gif" border="0" src="../../../../../image/gif/paws/97066/dhcp-option-43-8.gif" usemap="" />
+</p>
+	 
+  </li> 
+  <li> 
+		<p>The Scope Options box appears. Click the <b>Advanced</b>
+		  tab. Choose the Vendor Class that you plan to use, in this case,
+		  <b>Airespace</b>.</p> 
+  </li> 
+  <li> 
+		<p>Choose the predefined 102 sub-option to assign to this scope. In
+		  the Data Entry area, enter the controller management IP address(es) to return
+		  to the APs in the ASCII section. This is a comma delimited list. There is a
+		  period (.) in the initial empty Data Entry area. Make sure you remove this
+		  period from the list of IP addresses added in the data entry area.
+		  </p>
+<p>
+<img alt="dhcp-option-43-9.gif" border="0" src="../../../../../image/gif/paws/97066/dhcp-option-43-9.gif" usemap="" />
+</p>
+	 
+  </li> 
+  <li> 
+		<p> This is an example of the results. </p>
+<p>
+<img alt="dhcp-option-43-10.gif" border="0" src="../../../../../image/gif/paws/97066/dhcp-option-43-10.gif" usemap="" />
+</p>
+	 
+  </li> 
+  <li> 
+		<p>Once you complete this step, the DHCP Option 43 is configured. This
+		  DHCP option is available for all the DHCP scopes that are configured in the
+		  DHCP server. So when the LAPs request for an IP address, the DHCP server sends
+		  the option 43 as well as to the LAPs. </p> 
+		 
+		  <p>
+<b>Note:&nbsp;</b>Refer to
+			 <a target="_blank" href="http://technet.microsoft.com/en-us/library/cc737054.aspx">Creating Scopes on Microsoft 2003 server.</a>
+<img alt="leavingcisco.com" height="18" width="18" src="../../../../../images/exit.gif" /> for more
+			 information on how to create a DHCP scope on the WLC.</p> 
+		 
+  </li>
+</ol> 
+ 
+<h3>
+<a name="p2">Lightweight Cisco Aironet 1130, 1240, and 1200 Series APs</a>
+</h3> 
+   
+  <p>This section shows how the Windows DHCP server is configured in order
+	 to return vendor specific information to the other lightweight Cisco Aironet
+	 series APs. You need to know this key information: </p>
+<ul> 
+  <li> 
+	 <p>Vendor Class Identifier (VCI)</p>
+</li> 
+  <li> 
+	 <p>Option 43 sub-option code</p>
+</li> 
+  <li> 
+	 <p>Management IP address(es) of WLAN
+		controller(s)</p>
+</li>
+</ul> 
+  <p>The VCI for a lightweight Cisco Aironet series access point is specific
+	 to each model type. In order to support more than one AP model, a Vendor Class
+	 must be created for each model type. The Option 43 sub-option code for the
+	 other Cisco Aironet series access points is type 241 (0xf1).</p> 
+  <ol type="1"> 
+  <li> 
+		<p>In order to configure these options in the Windows DHCP server,
+		  open the DHCP Server Administration Tool or MMC. Right-click the DHCP root, and
+		  then choose <b>Define Vendor Classes</b>.
+		  </p>
+<p>
+<img alt="dhcp-option-43-1.gif" border="0" src="../../../../../image/gif/paws/97066/dhcp-option-43-1.gif" usemap="" />
+</p>
+	 
+  </li> 
+  <li> 
+		<p>The DHCP Vendor Classes utility appears. Click
+		  <b>Add</b>. </p>
+<p>
+<img alt="dhcp-option-43-11a.gif" border="0" src="../../../../../image/gif/paws/97066/dhcp-option-43-11a.gif" usemap="" />
+</p>
+	 
+  </li> 
+  <li> 
+		<p>A New Class configuration box appears. Enter a value for the
+		  Display Name field, for example, Cisco Aironet 1130 AP, and an appropriate
+		  description. Click the ASCII Section and enter the appropriate string value for
+		  the Vendor Class Identifier. Click <b>OK</b>. Then, click
+		  <b>Close</b> on the DHCP Vendor Classes window.
+		  </p>
+<p>
+<img alt="dhcp-option-43-11.gif" border="0" src="../../../../../image/gif/paws/97066/dhcp-option-43-11.gif" usemap="" />
+</p>
+	 
+  </li> 
+  <li> 
+		<p>Add an entry for the WLAN controller sub-type as a pre-defined
+		  option configured for the Vendor Class. Right-click the DHCP Server Root, and
+		  then choose <b>Set Predefined Options</b>. </p> 
+  </li> 
+  <li> 
+		<p> Choose the newly created Vendor Option Class in the Option Class
+		  field, and then click <b>Add</b>.</p> 
+  </li> 
+  <li> 
+		<p>The Option Type box appears. In the Name field, enter a string
+		  value, for example, Option 43. Choose <b>IP Address</b> as the Data
+		  Type. Check the <b>Array check box</b>. In the Code field, enter the
+		  sub-option code value 241 (0xf1). Enter a Description if desired. Click
+		  <b>OK</b>. </p>
+<p>
+<img alt="dhcp-option-43-13.gif" border="0" src="../../../../../image/gif/paws/97066/dhcp-option-43-13.gif" usemap="" />
+</p>
+	 
+  </li> 
+  <li> 
+		<p>The Vendor Class and sub-option are now programmed into the DHCP
+		  server. Now, the vendor specific information must be defined for the AP DHCP
+		  scope. Choose the appropriate DHCP scope. Right-click <b>Scope
+		  Options</b>, and choose <b>Configure Options</b>.
+		  </p> 
+  </li> 
+  <li> 
+		<p>Click the <b>Advanced</b> tab. Choose the Vendor Class
+		  you previously defined. Check the <b>241 Option 43 </b>check box, and
+		  then enter each WLC management interface IP address. Click
+		  <b>Apply</b>. </p>
+<p>
+<img alt="dhcp-option-43-14.gif" border="0" src="../../../../../image/gif/paws/97066/dhcp-option-43-14.gif" usemap="" />
+</p>
+	 
+  </li> 
+  <li> 
+		<p> Once you complete this step, the DHCP Option 43 is configured.
+		  This DHCP option isIP address, the DHCP server sends the option 43 as well as
+		  to the LAPs. Here is an example, which shows the DHCP option 43 that is made
+		  available for a newly created DHCP scope, Cisco. </p> 
+		<p>
+<img alt="dhcp-option-43-15.gif" border="0" src="../../../../../image/gif/paws/97066/dhcp-option-43-15.gif" usemap="" />
+</p>
+		
+		 
+		  <p>
+<b>Note:&nbsp;</b>A Vendor Class and sub-options must be defined for each type of
+			 lightweight Cisco Aironet AP. </p> 
+		 
+  </li>
+</ol> 
+
+<h2>
+<a name="t2">Cisco IOS DHCP Server</a>
+</h2> 
+<h3>
+<a name="p3">Cisco Aironet 1130, 1200, 1240 APs</a>
+</h3> 
+  <p>The Cisco IOS DHCP server only allows Option 43 definitions for one
+	 device type for each DHCP address pool, so only one AP type can be supported
+	 for each DHCP address pool. Complete these steps in order to configure DHCP
+	 Option 43 for lightweight Cisco Aironet access points in the embedded Cisco IOS
+	 DHCP server:</p>
+<ol type="1"> 
+  <li> 
+		<p>Enter configuration mode at the Cisco IOS command line interface
+		  (CLI).</p> 
+  </li> 
+  <li> 
+		<p>Create the DHCP pool, which includes the necessary parameters, such
+		  as the default router and server name. This is an example DHCP scope: </p> 
+		<blockquote>
+<pre>ip dhcp pool &lt;pool name&gt;
+network &lt;ip network&gt; &lt;netmask&gt;
+default-router &lt;default-router IP address&gt;
+dns-server &lt;dns server IP address&gt;</pre>
+</blockquote> 
+  </li> 
+  <li> 
+		<p>Add the Option 60 line with this syntax:</p> 
+		<blockquote>
+<pre>option 60 ascii "VCI string of the AP"</pre>
+</blockquote> 
+		 
+		  <p>
+<b>Note:&nbsp;</b>Avoid raw DHCP Option 43 without the specification of a VCI if
+			 possible. Raw DHCP Option 43 limits the DHCP server to support a single device
+			 type for vendor specific information for each DHCP scope. Also, every DHCP
+			 client receives the Option 43 values in a DHCP Offer, regardless of whether the
+			 values are relevant to the device.</p> 
+		 
+  </li> 
+  <li> 
+		<p>For the VCI string, use the value from <a href="technologies_configuration_example09186a00808714fe.shtml.html#tab">Table
+		  1</a>. The quotation marks must be included. </p> 
+  </li> 
+  <li> 
+		<p>Add the Option 43 line with this syntax:</p> 
+		<blockquote>
+<pre>option 43 hex &lt;hexadecimal string&gt; </pre>
+</blockquote> 
+		<p>The hexadecimal string in Step 4 is assembled as a sequence of the
+		  TLV values for the Option 43 sub-option: Type + Length + Value.
+		  <b>Type</b> is always the sub-option code 0xf1.
+		  <b>Length</b> is the number of controller management IP addresses
+		  times 4 in hex. <b>Value</b> is the IP address of the controller
+		  listed sequentially in hex.</p> 
+	  
+	  
+		<p>For example, suppose there are two controllers with management
+		  interface IP addresses, 192.168.10.5 and 192.168.10.20. The type is 0xf1. The
+		  length is 2 * 4 = 8 = 0x08. The IP addresses translate to c0a80a05
+		  (192.168.10.5) and c0a80a14 (192.168.10.20). When the string is assembled, it
+		  yields f108c0a80a05c0a80a14. The Cisco IOS command that is added to the DHCP
+		  scope is:</p> 
+		<blockquote>
+<pre>option 43 hex f108c0a80a05c0a80a14</pre>
+</blockquote> 
+	  
+  </li>
+</ol> 
+ 
+<h3>
+<a name="p4">Cisco Aironet 1000 Series APs</a>
+</h3> 
+  <p>The Cisco IOS DHCP server only allows Option 43 definitions for one
+	 device type for each DHCP address pool, so only one AP type can be supported
+	 for each DHCP address pool.</p> 
+  <p>Complete these steps in order to configure DHCP Option 43 for
+	 lightweight Cisco Aironet access points in the embedded Cisco IOS DHCP
+	 server:</p>
+<ol type="1"> 
+  <li> 
+		<p>Enter configuration mode at the Cisco IOS CLI.</p>
+	 
+  </li> 
+  <li> 
+		<p>Create the DHCP pool, which includes the necessary parameters, such
+		  as default router and server name. This is an example DHCP scope: </p> 
+		<blockquote>
+<pre>ip dhcp pool &lt;pool name&gt;
+network &lt;ip network&gt; &lt;netmask&gt;
+default-router &lt;default-router IP address&gt;
+dns-server &lt;dns server IP address&gt;</pre>
+</blockquote> 
+  </li> 
+  <li> 
+		<p>Add the Option 60 line with this syntax:</p> 
+		<blockquote>
+<pre>option 60 ascii "Airespace.AP1200"</pre>
+</blockquote> 
+		<p>The quotation marks must be included.</p> 
+  </li> 
+  <li> 
+		<p>Add the Option 43 line with this syntax:</p> 
+		<blockquote>
+<pre>option 43 ascii "Comma separated IP address list"</pre>
+</blockquote> 
+		 
+		  <p>
+<b>Note:&nbsp;</b>The quotation marks must be included. No sub-option value needs
+			 to be defined in the Cisco IOS DHCP server for Cisco 1000 series access
+			 points.</p> 
+		 
+		<p>For example, if you configure Option 43 for Cisco 1000 series APs
+		  with the controller IP Management IP addresses 192.168.10.5 and 192.168.10.20
+		  add this line to the DHCP pool in the Cisco IOS CLI:</p> 
+		<blockquote>
+<pre>option 43 ascii "192.168.10.5,192.168.10.20"</pre>
+</blockquote> 
+	  
+  </li>
+</ol> 
+   
+	  
+		<p>
+<b>Note:&nbsp;</b>You must use the management interface of the WLAN controller. The
+		  Cisco IOS DHCP server is limited to one Option 43 for each DHCP pool, so you
+		  can only configure a DHCP scope for a single access point type.</p> 
+	  
+   
+<h2>
+<a name="t3">Sun Solaris DHCP Server</a>
+</h2> 
+ 
+  <p>This section contains information on how the Sun Solaris DHCP server is
+	 configured in order to return vendor specific information to lightweight Cisco
+	 Aironet series APs.</p> 
+  <blockquote>
+<pre>allow bootp;
+option space Cisco_LWAPP_AP;
+option Cisco_LWAPP_AP.server-address code 43 = string;
+
+subnet 192.168.10.0 netmask 255.255.255.0 {
+	authoritative;
+	option routers 192.168.10.1;
+	option subnet-mask 255.255.255.0;
+	option domain-name "cisco.com";
+	option domain-name-servers 192.168.10.2, 192.168.10.3;
+	range dynamic-bootp 192.168.10.11 192.168.10.254;
+	default-lease-time 86400;
+
+
+<i>
+<font color="#0000ff">!--- This section provides for legacy 
+!--- APs--substitute the IP addresses in text</font>
+</i>
+
+class "Airespace 1200" {
+match if option vendor-class-identifier = "Airespace 1200";
+option vendor-class-identifier "Airespace 1200";
+vendor-option-space Cisco_LWAPP_AP;
+option Cisco_LWAPP_AP.server-address "192.168.10.5"; }
+
+class "Airespace.AP1200" {
+match if option vendor-class-identifier = "Airespace.AP1200";
+option vendor-class-identifier "Airespace 1200";
+vendor-option-space Cisco_LWAPP_AP;
+option Cisco_LWAPP_AP.server-address "192.168.10.5"; }
+
+<i>
+<font color="#0000ff">!--- This section provides for APs converted to LWAPP and Cisco LAP models.
+!--- Cisco Aironet APs use the type-length-value (TLV) format for DHCP
+!--- Option 43. DHCP servers must be programmed to return the option based
+!--- on the APs DHCP Vendor Class Identifier (VCI) string (DHCP Option 60).
+!--- The format of the TLV block is:
+!--- Type: 0xf1 (decimal 241)
+!--- Length: Number of controller IP addresses * 4 = 1*4 = 4 (or 0x04)
+!--- Value: List of WLC Management interface IP addresses converted to hex
+!--- These samples show 1 controller IP Managementaddress, 
+!--- 192.168.10.5 (or c0:a8:0a:05)</font>
+</i>
+
+class "Cisco AP c1200" {
+match if option vendor-class-identifier = "Cisco AP c1200";
+option vendor-class-identifier "Cisco AP c1200";
+vendor-option-space Cisco_LWAPP_AP;
+option Cisco_LWAPP_AP.server-address f1:04:c0:a8:0a:05; }
+
+
+class "Cisco AP c1130" {
+match if option vendor-class-identifier = "Cisco AP c1130";
+option vendor-class-identifier "Cisco AP c1130";
+vendor-option-space Cisco_LWAPP_AP;
+option Cisco_LWAPP_AP.server-address f1:04:c0:a8:0a:05; }
+
+class "Cisco AP c1240" {
+match if option vendor-class-identifier = "Cisco AP c1240";
+option vendor-class-identifier "Cisco AP c1240";
+vendor-option-space Cisco_LWAPP_AP;
+option Cisco_LWAPP_AP.server-address f1:04:c0:a8:0a:05; }
+}</pre>
+</blockquote> 
+<h2>
+<a name="t4">Linux DHCP Server</a>
+</h2> 
+ 
+  <p>This section contains information on how the Linux DHCP server is
+	 configured in order to return vendor specific information to lightweight Cisco
+	 Aironet series APs.</p> 
+  <blockquote>
+<pre>ddns-update-style interim;
+allow bootp;
+#    option opt-43 code 43 = text;
+ option space Cisco_LWAPP_AP;
+ option Cisco_LWAPP_AP.server-address code 43 = string;
+  
+ subnet 192.168.247.0 netmask 255.255.255.0 {
+     authoritative;
+     option routers 192.168.247.1;
+     option subnet-mask 255.255.255.0;
+     option domain-name "cisco.com";
+     option domain-name-servers 192.168.247.2, 192.168.247.3;
+ #    option opt-43 = "192.168.247.5";
+     range dynamic-bootp 192.168.247.11 192.168.247.254;
+     default-lease-time 300;
+  
+ 
+ class "Cisco AP c1200" {
+   match if option vendor-class-identifier = "Cisco AP c1200";
+   option vendor-class-identifier "Cisco AP c1200";
+   vendor-option-space Cisco_LWAPP_AP;
+   option Cisco_LWAPP_AP.server-address f1:04:c0:a8:f7:05; }
+  
+ class "Cisco AP c1130" {
+   match if option vendor-class-identifier = "Cisco AP c1130";
+   option vendor-class-identifier "Cisco AP c1130";
+   vendor-option-space Cisco_LWAPP_AP;
+   option Cisco_LWAPP_AP.server-address f1:04:c0:a8:f7:05; }
+  
+ class "Cisco AP c1240" {
+   match if option vendor-class-identifier = "Cisco AP c1240";
+   option vendor-class-identifier "Cisco AP c1240";
+   vendor-option-space Cisco_LWAPP_AP;
+   option Cisco_LWAPP_AP.server-address f1:04:c0:a8:f7:05; }
+  
+ class "Airespace 1200" {
+   match if option vendor-class-identifier = "Airespace 1200";
+   option vendor-class-identifier "Airespace 1200";
+   vendor-option-space Cisco_LWAPP_AP;
+   option Cisco_LWAPP_AP.server-address "192.168.247.5"; }
+  
+ class "Airespace.AP1200" {
+   match if option vendor-class-identifier = "Airespace.AP1200";
+   option vendor-class-identifier "Airespace 1200";
+   vendor-option-space Cisco_LWAPP_AP;
+   option Cisco_LWAPP_AP.server-address "192.168.247.5"; }
+  
+ }</pre>
+</blockquote>
+<h2>
+<a name="CNR">Cisco Network Registrar DHCP Server</a>
+</h2> 
+ 
+  <p>The Cisco Network Registrar DHCP server supports Vendor Specific
+	 attributes. However, the configuration of these attributes is not possible with
+	 the graphical interface. The CLI must be used.</p> 
+  <p>Complete these configuration steps in order to support L3-LWAPP
+	 Discovery with DHCP Option 43:</p> 
+   
+	 <p>
+<b>Note:&nbsp;</b>The CLI Command tool can be found in the Network registrar directory:
+		<b>C:\Program Files\Network Registrar\BIN\ nrcmd.bat </b>
+</p> 
+  <ol type="1"> 
+  <li> 
+	 <p>Log into the DHCP server. Complete these steps:</p> 
+	 <blockquote>
+<pre>username: admin
+password:
+100 Ok
+session:
+    cluster = localhost
+    default-format = user
+    user-name = admin
+    visibility = 5
+nrcmd&gt;</pre>
+</blockquote>
+</li> 
+  <li> 
+	 <p>Create the Vendor Class Identifier for Cisco AP1000 Series
+		APs:</p> 
+	 <blockquote>
+<pre>nrcmd&gt; vendor-option airespace create Airespace.AP1200
+100 Ok
+airespace:
+    name = airespace
+    read-only = disabled
+    vendor-class-id = Airespace.AP1200</pre>
+</blockquote> 
+	 <p>Create the Vendor Class Identifier for Cisco AP1200 Series
+		APs:</p> 
+	 <blockquote>
+<pre>nrcmd&gt; vendor-option aironet1200 create "Cisco AP c1200"
+100 Ok
+aironet1200:
+    name = aironet
+    read-only = disabled
+    vendor-class-id = &#8220;Cisco AP c1200&#8221;</pre>
+</blockquote> 
+	  
+		<p>
+<b>Note:&nbsp;</b>For other models of LAP, replace the vendor-class-id parameter with
+		  the specific VCI string from Table 1.</p> 
+	 </li> 
+  <li> 
+	 <p>Associate the values that can be sent in the DHCP Offer by the server
+		when it receives a request with Option 60 set to
+		<b>Airespace.AP1200</b>. The DHCP Option 43 can support multiple
+		values in the same Option 43 field. These options need to be identified
+		individually by a subtype.</p> 
+	 <p>In this case, only one value is required, without any subtype.
+		However, the CNR configuration requires that you create a subtype option:
+		</p> 
+	 <p>
+<b>For Cisco AP1000 Series APs:</b>
+</p> 
+	 <blockquote>
+<pre>nrcmd&gt;<b>vendor-option</b> airespace definesuboption controller_ip 1 BYTE_ARRAY 
+no-suboption-opcode,no-suboption-len
+100 Ok
+    controller_ip(1) : byte_array(no-suboption-opcode,no-suboption-len)</pre>
+</blockquote> 
+	 <p>
+<b>For Cisco AP1200 Series APs</b>:</p> 
+	 <blockquote>
+<pre>nrcmd&gt;<b>vendor-option</b> aironet1200 definesuboption controller_ip 241 IPADDR_ARRAY
+100 Ok
+    Controller_ip(241) : ipaddr_array
+100 Ok
+vendor-option aironet1200 enable read-only
+100 Ok
+read-only=enabled
+nrcmd&gt;<b>policy system_default_policy</b> setVendorOption aironet1200 
+controller_ip 1.2.3.4,2.3.4.5
+100 Ok
+aironet1200 controller_ip[0](241) IPADDR_ARRAY(1) = 1.2.3.4,2.3.4.5</pre>
+</blockquote>
+</li> 
+  <li> 
+	 <p>However, in order to hide the subtype feature and send only a row
+		string (BYTE_ARRAY) with the IP values, CNR supports specific flags in order to
+		remove the subtype ids and length. These are no-suboption-opcode and
+		no-suboption-len flags.</p> 
+	 <p>
+<b>For Cisco AP1000 Series APs:</b>
+</p> 
+	 <blockquote>
+<pre>nrcmd&gt;<b>vendor-option list</b>
+100 Ok
+airespace:
+    name = airespace
+    read-only = disabled
+    vendor-class-id = Airespace.AP1200
+
+nrcmd&gt; vendor-option airespace listsuboptions
+100 Ok
+    controller_ip(241) : byte_array(no-suboption-opcode,no-suboption-len)</pre>
+</blockquote> 
+	 <p>
+<b>For Cisco AP1200 Series APs:</b>
+</p> 
+	 <blockquote>
+<pre>nrcmd&gt;<b>vendor-option list</b>
+100 Ok
+airespace:
+    name = aironet1200
+    read-only = enabled
+    vendor-class-id = aironet1200
+
+nrcmd&gt;<b>vendor-option</b> aironet1200 listsuboptions
+100 Ok
+    controller_ip(241) : ipaddr_array(no-suboption-opcode,no-suboption-len)</pre>
+</blockquote>
+</li> 
+  <li> 
+	 <p>Associate values based on the DHCP pools:</p> 
+	 <p>
+<b>For Cisco AP1000 Series APs:</b>
+</p> 
+	 <blockquote>
+<pre>nrcmd&gt;<b>policy VLAN-52</b> setvendoroption airespace controller_ip 
+31:30:2E:31:35:30:2E:31:2E:31:35:2C:31:30:2E:31:35:30:2E:35:30:2E:31:35:2C
+100 Ok
+airespace controller_ip[0](1) BYTE_ARRAY(1) = 
+31:30:2e:31:35:30:2e:31:2e:31:35:2c:31:30:2e:31:35:30:2e:35:30:2e:31:35:2c</pre>
+</blockquote> 
+	 <p>
+<b>For Cisco AP1200 Series APs:</b>
+</p> 
+	 <blockquote>
+<pre>nrcmd&gt;<b>policy system_default_policy</b> setVendorOption aironet1200 
+controller_ip 1.2.3.4,2.3.4.5
+100 Ok
+aironet1200 controller_ip[0](241) IPADDR_ARRAY(1) = 1.2.3.4,2.3.4.5</pre>
+</blockquote> 
+	 <p>In this example, the DHCP Pool named VLAN-52, which is already
+		defined in CNR by the graphical interface, is configured with Option 43
+		<b>10.150.1.15,10.150.50.15</b> when it receives a request from an
+		<b>Airespace.AP1200</b> device. </p> 
+	  
+		<p>
+<b>Note:&nbsp;</b>31:30:2e:31:35:30:2e:31:2e:31:35:2c:31:30:2e:31:35:30:2e:35:30:2e:31:35:2c
+		  is the hexadecimal representation of the string
+		  <b>10.150.1.15,10.150.50.15</b>.</p> 
+	 </li> 
+  <li> 
+	 <p>Finally, save the DHCP configuration and reload. </p> 
+	 <blockquote>
+<pre>nrcmd&gt;<b>save</b>
+100 Ok</pre>
+</blockquote> 
+	 <blockquote>
+<pre>nrcmd&gt;<b>dhcp reload</b>
+100 Ok
+nrcmd&gt;<b>exit</b>
+</pre>
+</blockquote>
+</li>
+</ol> 
+  <p>Refer to
+	 <a href="http://www.cisco.com/en/US/docs/net_mgmt/network_registrar/6.1/user/guide/14AdDHCP.html">Managing
+	 Advanced DHCP Server Properties</a> for more information on Vendor-Options
+	 configurations on a Cisco CNR DHCP server.</p> 
+<h2>
+<a name="Lucent">Lucent QIP DHCP Server</a>
+</h2> 
+ 
+  <p>This section provides a few tips for how to configure the Lucent QIP
+	 DHCP server in order to return vendor specific information to lightweight Cisco
+	 Aironet series APs.</p> 
+   
+	 <p>
+<b>Note:&nbsp;</b>For complete information and the steps involved, refer to the
+		documentation provided by the vendor. </p> 
+   
+  <p>The DHCP Option 43 can contain any vendor specific information. The
+	 DHCP server passes this information in the form of a hex string to the clients
+	 that receive the DHCP offer. </p> 
+  <p>On the Lucent QIP DHCP server, the vendor specific information can be
+	 provided on the <b>DHCP Option Template- Modify</b> page. You see the
+	 <b>Active Options</b> in this screen on the right side. Choose
+	 <b>Vendor Specific Options</b> and enter the information in the Value
+	 field, as shown. </p>
+<p>
+<img alt="Lucent-DHCP.gif" border="0" src="../../../../../image/gif/paws/97066/Lucent-DHCP.gif" usemap="" />
+</p>
+  
+  <p>In order to include the Controller IP addresses in the DHCP option 43
+	 message, enter the information to the DHCP Option template in QIP as a single
+	 hex value: <b>[ip hex]</b>
+</p> 
+  <p>In order to send more than one IP address with DHCP Option 43, enter
+	 the information to the DHCP Option template in QIP as a single hex
+	 value:<b>[ip hex ip hex]</b> and <b>not [ip hex],[ip
+	 hex]</b>. In this case, the comma in the middle causes problems for DHCP
+	 to parse the string passed from QIP.</p> 
+  <p>For example, suppose there are two controllers with management
+	 interface IP addresses, 192.168.10.5 and 192.168.10.20. The type is 0xf1. The
+	 length is 2 * 4 = 8 = 0x08. The IP addresses translate to c0a80a05
+	 (192.168.10.5) and c0a80a14 (192.168.10.20). When the string is assembled, it
+	 yields f108c0a80a05c0a80a14. On the Lucent QIP DHCP server, the hex string that
+	 needs to be added to the DHCP scope is:</p> 
+  <blockquote>
+<pre>
+<b>[f108c0a80a05c0a80a14]</b>
+</pre>
+</blockquote> 
+  <p>The hex string must be given within square brackets. The square
+	 brackets are mandatory. Once the DHCP option 43 is modified to reflect this
+	 value, the LAPs are able to find and register with the controller. </p> 
+<h2>
+<a name="veri">Verify</a>
+</h2> 
+ 
+  <p>Use this section in order to verify your configuration. </p> 
+  <p>If you use 1130 /1200/1230/1240 series LAPs, which have a console port,
+	 you can check that the WLC IP addresses are provided to the LAPs during DHCP IP
+	 address assignment. This is a sample output from a Cisco 1230 series
+	 LAP:</p> 
+  <blockquote>
+<pre>*Mar  1 00:00:17.497: %LINEPROTO-5-UPDOWN: Line protocol on Interface Dot11Radio1, changed state to down
+*Mar  1 00:00:17.898: %LINEPROTO-5-UPDOWN: Line protocol on Interface Dot11Radio0, changed state to down
+*Mar  1 00:00:25.352: %DOT11-6-FREQ_USED: Interface Dot11Radio0, frequency 2447 selected
+*Mar  1 00:00:25.353: %LINK-3-UPDOWN: Interface Dot11Radio0, changed state to up
+*Mar  1 00:00:26.352: %LINEPROTO-5-UPDOWN: Line protocol on Interface Dot11Radio0, changed state to up
+*Mar  1 00:00:29.440: %LWAPP-5-CHANGED: LWAPP changed state to DISCOVERY
+*Mar  1 00:00:29.475: %LINK-5-CHANGED: Interface Dot11Radio0, changed state to reset
+*Mar  1 00:00:29.704: %LINK-3-UPDOWN: Interface Dot11Radio1, changed state to up
+*Mar  1 00:00:30.121: Logging LWAPP message to 255.255.255.255.
+
+%SYS-6-LOGGINGHOST_STARTSTOP: Logging to host 255.255.255.255 started - CLI initiated
+%LINK-3-UPDOWN: Interface Dot11Radio0, changed state to up
+%LINK-5-CHANGED: Interface Dot11Radio1, changed state to reset
+%LINK-3-UPDOWN: Interface Dot11Radio1, changed state to up
+%LINK-5-CHANGED: Interface Dot11Radio0, changed state to reset
+%LINK-3-UPDOWN: Interface Dot11Radio0, changed state to up
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Dot11Radio1, changed state to up
+Translating "CISCO-LWAPP-CONTROLLER"...domain server (255.255.255.255)
+%DHCP-6-ADDRESS_ASSIGN: <b>Interface FastEthernet0 assigned DHCP address 20.0.0.6, mask 255.0.0.0, hostname AP001b.d4e3.a81b</b>
+%LWAPP-3-CLIENTEVENTLOG: <b>Controller address 192.168.10.5 obtained through DHCP</b>
+%LWAPP-3-CLIENTEVENTLOG: <b>Controller address 192.168.10.5 obtained through DHCP</b>
+</pre>
+</blockquote> 
+  <p>If you use a Cisco IOS DHCP server, issue the <b>show ip dhcp
+	 binding </b>command in order to view the list of the DHCP addresses
+	 assigned to DHCP clients. Here is an example: </p> 
+  <blockquote>
+<pre>2800-ISR-TSWEB#<b>show ip dhcp binding</b>
+
+Bindings from all pools not associated with VRF:
+IP address          Client-ID/              Lease expiration        Type
+                    Hardware address/
+                    User name
+192.168.25.1        000b.855b.fbd0          Jun 29 2007 11:49 AM    Automatic</pre>
+</blockquote> 
+  <p>On the WLC CLI, you can issue the <b>show ap
+	 summary</b> command in order to verify that the APs registered with
+	 the WLC. Here is an example: </p> 
+  <blockquote>
+<pre>    ((Cisco Controller) &gt;<b>show ap summary</b>
+
+    AP Name        Slots  AP Model   Ethernet MAC       Location          Port
+    -------------  -----  ---------  -----------------  ----------------  ----
+    ap:5b:fb:d0    2      AP1010     00:0b:85:5b:fb:d0  default_location  1</pre>
+</blockquote> 
+  <p>If you have Wireless LANs configured, you can issue the
+	 <b>show client summary</b> command in order to see the
+	 clients that are registered with the WLC:</p> 
+  <blockquote>
+<pre>(Cisco Controller) &gt;<b>show client summary</b>
+
+    Number of Clients................................ 1
+
+    MAC Address        AP Name        Status         WLAN  Auth  Protocol  Port
+    -----------------  -------------  -------------  ----  ----  --------  ----
+    00:40:96:a1:45:42  ap:64:a3:a0    Associated     4     Yes   802.11a   1</pre>
+</blockquote> 
+  <h2>
+<a name="tshoot">Troubleshoot</a>
+</h2> 
+ 
+  <p>Use this section in order to troubleshoot your configuration. </p> 
+  <p>Issue the <b>debug dhcp message enable</b> command
+	 on the WLC in order to view the sequence of events that occur between the DHCP
+	 server and client. Here is an example: </p> 
+  <blockquote>
+<pre>(Cisco Controller) &gt;Thu Jun 28 17:07:53 2007: 00:0b:85:5b:fb:d0 dhcp option len, 
+    including the magic cookie = 38
+Thu Jun 28 17:07:53 2007: 00:0b:85:5b:fb:d0 dhcp option: <b>received DHCP DISCOVER msg</b>
+Thu Jun 28 17:07:53 2007: 00:0b:85:5b:fb:d0 dhcp option: skipping option 57, len 2
+Thu Jun 28 17:07:53 2007: 00:0b:85:5b:fb:d0 dhcp option: skipping option 55, len 6
+Thu Jun 28 17:07:53 2007: 00:0b:85:5b:fb:d0 dhcp option: <b>
+    vendor class id = Airespace.AP1200 (len 16)</b>
+Thu Jun 28 17:07:53 2007: 00:0b:85:5b:fb:d0 dhcpParseOptions: options end, 
+    len 38, actual 64
+Thu Jun 28 17:07:53 2007: dhcpd: sending 300 bytes raw   
+    0.0.0.0:68 -&gt; 10.77.244.212:1067
+Thu Jun 28 17:07:53 2007: dhcpd: Received 300 byte dhcp packet 
+    from 0xd4f44d0a 10.77.244.212:68
+Thu Jun 28 17:07:58 2007: 00:0b:85:5b:fb:d0 dhcp option len, including 
+    the magic cookie = 50
+Thu Jun 28 17:07:58 2007: 00:0b:85:5b:fb:d0 dhcp option: received DHCP REQUEST msg
+Thu Jun 28 17:07:58 2007: 00:0b:85:5b:fb:d0 dhcp option: <b>requested ip = 192.168.25.1</b>
+Thu Jun 28 17:07:58 2007: 00:0b:85:5b:fb:d0 dhcp option: <b>server id = 192.168.25.10</b>
+Thu Jun 28 17:07:58 2007: 00:0b:85:5b:fb:d0 dhcp option: skipping option 57, len 2
+Thu Jun 28 17:07:58 2007: 00:0b:85:5b:fb:d0 dhcp option: skipping option 55, len 6</pre>
+</blockquote> 
+  <p>This is <b>debug lwapp packet enable</b> command
+	 output from the WLC that indicates that DHCP option 43 is used as the discovery
+	 method in order to discover WLC IP addresses:</p> 
+  <blockquote>
+<pre>Thu Jun 28 17:51:47 2007: Received LWAPP DISCOVERY REQUEST from AP 00:0b:85:5b:fb:d0 
+    to 00:0b:85:33:84:a0 on port '1'
+Thu Jun 28 17:51:47 2007: Successful transmission of LWAPP Discovery-Response 
+    to AP 00:0b:85:5b:fb:d0 on Port 1
+Thu Jun 28 19:22:39 2007: Start of Packet
+Thu Jun 28 19:22:39 2007: Ethernet Source MAC (LRAD):      00:D0:58:AD:AE:CB
+Thu Jun 28 19:22:39 2007: Msg Type       :
+Thu Jun 28 19:22:39 2007:    DISCOVERY_REQUEST
+Thu Jun 28 19:22:39 2007: Msg Length     :   31
+Thu Jun 28 19:22:39 2007: Msg SeqNum     :   0
+Thu Jun 28 19:22:39 2007: 
+    	IE            :  <b> UNKNOWN IE 58</b>
+Thu Jun 28 19:22:39 2007: 	IE Length     :   1
+Thu Jun 28 19:22:39 2007: 	Decode routine not available, Printing Hex Dump
+Thu Jun 28 19:22:39 2007: <b>00000000: 03 </b>                                               .
+Thu Jun 28 19:22:39 2007: </pre>
+</blockquote> 
+  <p>The value of the IE 58 parameter indicates the discovery type. For DCHP
+	 Option 43 it is 3.</p> 
+  <p>If you use the Cisco IOS DHCP server on the router, you can issue the
+	 <b>debug dhcp detail</b> command and the <b>debug
+	 ip dhcp server events </b>command in order to view the DHCP client
+	 and server activity. Here is an example from the <b>debug ip dhcp
+	 server events</b> command:</p> 
+  <blockquote>
+<pre>*Jun 28 11:49:33.107: DHCPD: Sending notification of DISCOVER:
+*Jun 28 11:49:33.107:   DHCPD: htype 1 chaddr 000b.855b.fbd0
+*Jun 28 11:49:33.107:   DHCPD: remote id 020a0000c0a8190a01000000
+*Jun 28 11:49:33.107:   DHCPD: circuit id 00000000
+*Jun 28 11:49:33.107: DHCPD: Seeing if there is an internally specified pool class:
+*Jun 28 11:49:33.107:   DHCPD: htype 1 chaddr 000b.855b.fbd0
+*Jun 28 11:49:33.107:   DHCPD: remote id 020a0000c0a8190a01000000
+*Jun 28 11:49:33.107:   DHCPD: circuit id 00000000
+*Jun 28 11:49:38.603: DHCPD: Sending notification of ASSIGNMENT:
+*Jun 28 11:49:38.603:  DHCPD: address 192.168.25.1 mask 255.255.255.0
+*Jun 28 11:49:38.603:   DHCPD: htype 1 chaddr 000b.855b.fbd0
+*Jun 28 11:49:38.603:   DHCPD: lease time remaining (secs) = 86400
+*Jun 28 11:49:38.607: DHCPD: <b>Sending notification of ASSIGNMENT:</b>
+*Jun 28 11:49:38.607:  DHCPD: <b>address 192.168.25.1 mask 255.255.255.0</b>
+*Jun 28 11:49:38.607:   DHCPD: htype 1 chaddr 000b.855b.fbd0
+*Jun 28 11:49:38.607:   DHCPD: lease time remaining (secs) = 86400</pre>
+</blockquote> 
+  <p>Issue the <b>show ip dhcp binding</b> command in
+	 order to view the list of the DHCP addresses assigned to DHCP clients. </p> 
+  <blockquote>
+<pre>2800-ISR-TSWEB#<b>show ip dhcp binding</b>
+
+Bindings from all pools not associated with VRF:
+IP address          Client-ID/              Lease expiration        Type
+                    Hardware address/
+                    User name
+192.168.25.1        000b.855b.fbd0          Jun 29 2007 11:49 AM    Automatic </pre>
+</blockquote> 
+
+<h2>
+<a name="NetPro">NetPro Discussion Forums - Featured Conversations</a>
+</h2> 
+<concept>
+<Para>Networking Professionals Connection is a forum for networking professionals to share questions, suggestions, and information about networking solutions, products, and technologies.  The featured links are some of the most recent conversations available in this technology.</Para>
+<table border="1">
+<tr>
+<td bgcolor="CCCCFF"> 
+		  			NetPro Discussion Forums - Featured Conversations for Wireless
+		  		</td>
+</tr>
+<tr>
+<tr>
+<td> 
+  			Wireless - Mobility: WLAN Radio Standards
+  		</td>
+</tr>
+<tr>
+<td>
+<script id="" src="../../../../../../forums.cisco.com/NetproTopics/feed.ee6e8c2.html" language="javascript">
+	 	 	function dummy(){
+	 	 		//Please don't remove this function, required to render properly in IE browser.	 	 	
+	 	 		//Will render properly in Netscape without this method
+ 	 	}
+	 	 </script>
+</td>
+</tr>
+<tr>
+<td> 
+		  			Wireless - Mobility: Security and Network Management
+		  		</td>
+</tr>
+<tr>
+<td>
+<script id="" src="../../../../../../forums.cisco.com/NetproTopics/feed.ee6e8c0.html" language="javascript">
+	 	 	function dummy(){
+	 	 		//Please don't remove this function, required to render properly in IE browser.	 	 	
+	 	 		//Will render properly in Netscape without this method
+	 	 	}
+	 	 </script>
+</td>
+</tr>
+<td> 
+		  			Wireless - Mobility: Wireless IP Voice and Video
+		  		</td>
+</tr>
+<tr>
+<td>
+<script id="" src="../../../../../../forums.cisco.com/NetproTopics/feed.ee6e8bc.html" language="javascript">
+	 	 	function dummy(){
+	 	 		//Please don't remove this function, required to render properly in IE browser.	 	 	
+	 	 		//Will render properly in Netscape without this method
+	 	 	}
+	 	 </script>
+</td>
+</tr>
+<tr>
+<td> 
+		  			Wireless - Mobility: Getting Started with Wireless
+		  		</td>
+</tr>
+<tr>
+<td>
+<script id="" src="../../../../../../forums.cisco.com/NetproTopics/feed.ee7c7c3.html" language="javascript">
+	  			function dummy(){
+					//Please don't remove this function, required to render properly in IE browser.	 	 	
+					//Will render properly in Netscape without this method
+	 	 		}
+	  		</script>
+</td>
+</tr>
+<tr>
+<td> 
+		  			Wireless - Mobility: General
+		  		</td>
+</tr>
+<tr>
+<td>
+<script id="" src="../../../../../../forums.cisco.com/NetproTopics/feed.ee6e8b8.html" language="javascript">
+	  			function dummy(){
+					//Please don't remove this function, required to render properly in IE browser.	 	 	
+					//Will render properly in Netscape without this method
+	 	 		}
+	  		</script>
+</td>
+</tr>
+</table>
+</concept>
+<hr />
+<h2>
+<a name="related">Related Information</a>
+</h2>
+<ul> 
+  <li>
+<b> 
+	 <a href="http://www.cisco.com/en/US/docs/wireless/access_point/conversion/lwapp/upgrade/guide/lwapnote.html">Upgrading
+		Autonomous Cisco Aironet Access Points to Lightweight Mode</a> 
+  </b>
+</li> 
+  <li>
+<b> 
+	 <a href="http://www.cisco.com/en/US/docs/wireless/technology/controller/deployment/guide/dep.html">Deploying
+		Cisco 440X Series Wireless LAN Controllers</a> 
+  </b>
+</li> 
+  <li>
+<b> 
+	 <a href="http://www.cisco.com/web/psa/technologies/tsd_technology_support_configure_guide.html?c=268435588">Wireless
+		Support Page</a> 
+  </b>
+</li> 
+  <li>
+<b> 
+	  <a href="http://www.cisco.com/en/US/support/index.html">Technical Support &amp;
+		Documentation - Cisco Systems</a> 
+  </b>
+</li> 
+</ul> <p xmlns:cal="xalan://java.util.GregorianCalendar" />
+<hr xmlns:cal="xalan://java.util.GregorianCalendar" />
+<p xmlns:cal="xalan://java.util.GregorianCalendar" />
+
+<p xmlns:cal="xalan://java.util.GregorianCalendar" />
+<font xmlns:cal="xalan://java.util.GregorianCalendar" size="-1">
+
+</font>
+<!-- PIDLMD --><hr width=100%><table width=100%><tr><td align=left>Updated: Oct 10, 2008</td><td align=right>Document ID: 97066</td></tr></table><hr width=100%><!-- PIDLMD -->
+</span></div><!--googleoff: index-->
+							<table id="content-right-bottom" align="right" border="0" cellspacing="0" cellpadding="0" summary="">
+								<tr><td valign="top" align="right"></td></tr>
+								<tr><td valign="top" align="right"></td></tr>
+								<tr><td valign="top" align="right"></td></tr>
+								<tr><td valign="top" align="right"></td></tr>
+							</table><!--googleon: index-->
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+        					<!-- End of the actual text content --><!--googleoff: index-->
+							<!-- CDC-DM: Main Col End -->
+							<!-- Search Start -->
+						</div>
+					</td>
+					<td id="framework-column-right">
+
+						<div id="framework-content-right">
+							<!-- Search End -->
+							<!-- CDC-DM: Right Col Start -->
+							<!-- Related Tools Start -->
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							<!-- CDC-DM: Right Col End -->
+							<!-- Related Tools End -->
+							<!-- Footer Start -->
+						</div>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+	</td>
+	</tr>
+</table>
+<!-- $Revision: 1.5 $ -->
+<a name="pagefooter"></a>
+<div id="framework-footer">
+	<div id="footer-nav">
+	
+	<a href="http://www.cisco.com/web/siteassets/contacts/index.html">Contacts</a> | 
+	<a href="http://forums.cisco.com/eforum/servlet/viewsflash?cmd=showform&amp;pollid=cdcweb01!CDC_General_Feedback">Feedback</a> | 
+	<a href="http://www.cisco.com/web/help/index.html">Help</a> | 
+	<a href="http://www.cisco.com/web/siteassets/sitemap/index.html">Site Map</a>
+	
+	</div>
+	<div id="footer-copyright">&copy; 1992-2008 Cisco Systems, Inc. All rights reserved.</div><div id="footer-legal"><a href="http://www.cisco.com/web/siteassets/legal/terms_condition.html">Terms &amp; Conditions</a> | <a href="http://www.cisco.com/web/siteassets/legal/privacy.html">Privacy Statement</a> | <a href="http://www.cisco.com/web/siteassets/legal/privacy.html#cookies">Cookie Policy</a> | <a href="http://www.cisco.com/web/siteassets/legal/trademark.html">Trademarks of Cisco Systems, Inc.</a></div>
+	
+</div>		
+<!--googleon: index-->
+</body>
+</html>
+<!-- Footer End -->

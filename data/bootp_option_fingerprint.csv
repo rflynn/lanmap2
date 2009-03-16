@@ -1,0 +1,104 @@
+# ex: set ff=dos:
+# $Id$
+#
+# BOOTP/DHCP signature -> OS mapping
+#
+# DHCP is everywhere these days (and it is broadcast so it is easily visible).
+# Operating systems can be identified by the pattern of BOOTP options contained within.
+#
+# How to add signatures:
+#   Get a packet inspecting program such as tcpdump, wireshark, etc.
+#   If you have access to a machine
+#     restart the DHCP client
+#   otherwise
+#     just sit and wait
+#   When you see a packet, check it out and record it.
+#   If the packet already exists, add the machine type to it.
+#   If not, enter the data and classify it.
+#   The important thing is to classify things as *specifically* as possible at first,
+#     so if the packet was from Windows XP SP2, then just label it as that. It's very
+#     possible that SP1 has the same behavior, maybe NT4 does too. But until that is
+#     tested it's important to keep things as closely targetted as possible.
+#
+# TODO: BOOTP option 12 "hostname" i.e. "Hostname"
+# TODO: BOOTP option 60 "vendor class identifier" i.e. "MSFT 5.0"
+#
+# ttl,type,flags,reqflags,os
+# ttl=
+# type=type of BOOTP message [ Disc, Req, Offer, Inform, Nak, Rel ]
+# flags=
+# reqflags=
+# os=
+
+# Windows NT4
+# ttl,type,flags,reqflags,os
+128,Disc,"53,61,12,55","1,15,3,44,46,47,6",WinNT4=20
+128,Disc,"53,61,50,12,55","1,15,3,44,46,47,6",WinNT4=20
+128,Req,"53,61,50,54,12,55","1,15,3,44,46,47,6",WinNT4=20
+
+# Windows 2K Pro
+# get addr for the first time
+# ttl,type,flags,reqflags,os
+128,Disc,"53,251,61,50,12,60,55","1,15,3,6,44,46,47,31,33,43",WinNT5=40
+128,Req,"53,61,50,54,12,81,60,55","1,15,3,6,44,46,47,31,33,43",WinNT5=40
+# get IP address back
+128,Req,"53,61,12,81,60,55","53,61,12,81,60,55",WinNT5=40
+
+# Windows 2K Server and/or XP
+# get addr for the first time
+# ttl,type,flags,reqflags,os
+128,Disc,"53,251,61,12,60,55","1,15,3,6,44,46,47,31,33,43",WinNT5=40
+128,Req,"53,61,50,54,12,81,60,55","1,15,3,6,44,46,47,31,33,43",WinNT5=40
+# get IP address back
+128,Req,"53,61,50,12,81,60,55","1,15,3,6,44,46,47,31,33,43","WinNT5=40,WinNT5.1=40"
+128,Inf,"53,61,12,60,55","1,15,3,6,44,46,47,31,33,43,252","WinNT5=40,WinNT5.1=40"
+
+# Windows 2000 and XP
+# ttl,type,flags,reqflags,os
+128,Disc,"53,61,12,60,55","1,15,3,6,44,46,47,31,33,43","WinNT5=20,WinNT5.1=20"
+128,Inf,"53,61,12,60,55","1,15,3,6,44,46,47,31,33,249,43,252","WinNT5=20,WinNT5.1=20"
+128,Disc,"53,116,61,50,12,60,55","1,15,3,6,44,46,47,31,33,249,43","WinNT5.1SP1=20,WinNT5.1SP2=20"
+128,Req,"53,116,61,12,60,55","1,15,3,6,44,46,47,31,33,249,43","WinNT5.1SP1=20,WinNT5.1SP2=20"
+128,Req,"53,61,50,54,12,81,60,55","1,15,3,6,44,46,47,31,33,249,43","WinNT5.1SP1=20,WinNT5.1SP2=20"
+128,Req,"53,61,50,12,81,60,55","1,15,3,6,44,46,47,31,33,249,43","WinNT5.1SP1=20,WinNT5.1SP2=20"
+
+# Windows 2003 Server
+# ttl,type,flags,reqflags,os
+128,Req,"53,77,1,50,12,60,55","1,15,3,6,44,46,47,31,33,249,43",WinNT5.2=40
+
+# "Macromedia Flash Proxy Auto-Discovery" on Windows. Amazing.
+128,Inf,"43,53,55,60","43",Windows=1
+
+# OS X.4
+# NOTE: may very well apply to other OS X versions, verify!
+# ttl,type,flags,reqflags,os
+255,Disc,"53,55,57,61,51,12","1,3,6,15,112,113,78,79,95,252",OSX10.4=40
+255,Disc,"53,55,57,61,50,54,12","1,3,6,15,112,113,78,79,95,252",OSX10.4=40
+# OS X.5 re-requesting IP address
+255,Req,"53,55,57,61,50,51,12","",OSX10.5=40
+
+# Julia's OSX10.4 re-requesting address
+255,Disc,"53,55,57,61,50,51","1,3,6,15,119,95,252,44,46,47",OSX10.4=1
+
+# FreeBSD 4.x
+# ttl,type,flags,reqflags,os
+16,Disc,"53,50,55","1,28,2,3,15,6,12",FreeBSD4=1
+16,Req,"53,54,50,55","1,28,2,3,15,6,12",FreeBSD4=1
+
+# OpenBSD 3.x
+16,Disc,"53,50,12,55","1,28,3,15,6,12",OpenBSD3=40
+
+# Solaris 10 x86
+255,Disc,"53,57,51,60,55","1,3,6,12,15,28,43",Solaris10=40
+255,Req,"53,51,57,50,54,60,55","1,3,6,12,15,28,43",Solaris10=40
+
+# VMWare
+# NOTE: real TTL is 20, but we guess in powers of 2
+32,Disc,"53,55,57,97,93,94,60","1,2,3,5,6,11,12,13,15,16,17,18,43,54,60,67,128,129,130,131,132,133,134,135",VMWare=50
+
+# WRT54G denying itself
+# ttl,type,flags,reqflags,os
+64,Nak,"53,54","","WRT54G=1,Linux=1"
+64,Offer,"53,54,51,1,3,6,15","","WRT54G=1,Linux=1"
+64,Ack,"53,54,51,1,3,6,15","","WRT54G=1,Linux=1"
+

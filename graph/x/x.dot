@@ -1,0 +1,9 @@
+/* x.dot */
+/* dot -Tgif -ox.gif x.dot */
+graph mainmap {
+	labelloc="b";
+  URL="http://www.research.att.com/base.html";
+  "1:2:3" [shapefile="../../img/hardware/Router-Linksys-WRT54G-128.png", label="foo\nbar", URL=""];
+  "1:2:3" -- "4:5:6" [URL=""];
+}
+

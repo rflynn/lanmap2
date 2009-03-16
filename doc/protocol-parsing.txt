@@ -1,0 +1,40 @@
+# ex: set ff=dos ts=2 et:
+# $Id$
+
+
+How to Parse an Uncertain Chain of Protocol Data
+-------------------------------------------------
+
+enum Prot
+  Prot_None,
+  Prot_Count
+
+each protocol defines:
+  prot_id
+  OSI Level
+    Physical Layer
+    Data Link Layer
+    LLC
+    MAC
+    Network
+    Transport
+    Session
+    Presentation
+    Application
+  shortname
+  longname
+  string[] parent_shortnames
+    all possible parent protocols
+  parse(buf, int parent_protocol_id, const void *parent)
+  addr_id(char id[8])
+    generate a not-necessarily-unique id string for this address
+    this will be used to create a move-to-front hueristic for
+    candidate attempt order
+    
+candidates = protocols_at_our_capture_level()
+buf = get_full_packet()
+while buf.len > 0
+  
+  candidates = protocols_at_our_capture_level()
+
+

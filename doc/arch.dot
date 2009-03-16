@@ -1,0 +1,64 @@
+digraph {
+	graph [style=solid,color=Red];
+	overlap=false;
+	subgraph pcap {
+		label="libpcap";
+		node [style=filled];
+		node [label="network interfaces"] iface;
+		node [label="pcap_next_ex"] pcap_next;
+		style=filled;
+		color=blue
+	}
+	subgraph cap {
+		label="cap program";
+		shape=box;
+		subgraph parse {
+			label="parser";
+			node [label="parse()"] parse;
+			node [label="IEEE 802.3"] ieee802_3;
+			node [label="IP"] ip;
+			node [label="TCP"] tcp;
+			node [label="UDP"] udp;
+			node [label="HTTP"] http;
+			node [label="SSDP"] ssdp;
+		}
+	}
+	subgraph db {
+		label="database";
+		style=solid;
+		color=Blue;
+		penwidth=1;
+		node [label="map"] db_map;
+		node [label="addr"] db_addr;
+		node [label="hint"] db_hint;
+		node [label="traffic"] db_traffic;
+		node [label="host"] db_host;
+		node [label="host_addr"] db_host_addr;
+	}
+	iface -> pcap_next -> parse -> ieee802_3 -> ip -> tcp -> http
+	ip -> udp -> ssdp -> http
+	ieee802_3 -> report
+	ip -> report
+	tcp -> report
+	udp -> report
+	http -> report
+	ssdp -> report
+	report -> db_hint [label="libsqlite3"]
+	report -> db_addr [label="libsqlite3"]
+	report -> db_traffic [label="libsqlite3"]
+	subgraph graph_gen_1 {
+		node [label="aggregate-hosts",shape=box] aggregate_hosts;
+		node [label="gen-graph",shape=box] gen_graph;
+		node [label="fdp"] fdp;
+	}
+	db_addr -> aggregate_hosts 
+	db_hint	-> aggregate_hosts 
+	aggregate_hosts -> db_host -> db_host_addr
+	db_map -> gen_graph
+	db_addr -> gen_graph
+	db_hint -> gen_graph
+	db_traffic -> gen_graph
+	db_host -> gen_graph
+	db_host_addr -> gen_graph
+	gen_graph -> "net.dot" -> fdp -> "net.png"
+}

@@ -1,0 +1,519 @@
+Dynamic Host Configuration Protocol (DHCP) and Bootstrap Protocol (BOOTP) Parameters
+
+(last updated 2008-10-28)
+
+Registries included below:
+- BOOTP Vendor Extensions and DHCP Options 
+  - DHCP Message Type 53 Values
+  - Network/IP Option Type 63 Sub-Option Codes 
+  - DHCP Cablelabs Client Configuration Option Type 122 Sub-Option Codes 
+  - GeoConf Option fields (Value 123) - The Altitude (AT) field
+  - GeoConf Option fields (Value 123) - The Datum field
+- CableLabs Client Configuration Option Ticket Control Mask Bit Definitions
+- DHCP Relay Agent Sub-Option Codes
+  - Authentication Suboption (value 8) - Algorithm identifier values
+  - Authentication Suboption (value 8) - Replay Detection Method (RDM) identifier values 
+
+Note: 
+For the Civic Address Types Registry [RFC4776], please see:
+http://www.iana.org/assignments/civic-address-types-registry
+
+Registry Name: BOOTP Vendor Extensions and DHCP Options 
+Reference: [RFC2939]
+Registration Procedures: IETF Consensus
+
+Note: 
+The Bootstrap Protocol (BOOTP) [RFC951] describes an IP/UDP bootstrap
+protocol (BOOTP) which allows a diskless client machine to discover
+its own IP address, the address of a server host, and the name of a
+file to be loaded into memory and executed.  The Dynamic Host
+Configuration Protocol (DHCP) [RFC2131] provides a framework for
+automatic configuration of IP hosts.  The document "DHCP Options and 
+BOOTP Vendor Information Extensions" [RFC2132] describes options for 
+DHCP, some of which can also be used with BOOTP. Additional DHCP 
+options are described in other RFCs, as documented in this registry.
+
+Registry:
+                                           Data 
+Tag       Name                             Length  Meaning                                           Reference
+--------  -------------------------------  ------  ------------------------------------------------  ---------
+0         Pad                              0       None                                              [RFC2132]    
+1         Subnet Mask                      4       Subnet Mask Value                                 [RFC2132] 
+2         Time Offset                      4       Time Offset in Seconds from UTC                   [RFC2132]
+                                                   (note: deprecated by 100 and 101) 
+3         Router                           N       N/4 Router addresses                              [RFC2132] 
+4         Time Server                      N       N/4 Timeserver addresses                          [RFC2132] 
+5         Name Server                      N       N/4 IEN-116 Server addresses                      [RFC2132] 
+6         Domain Server                    N       N/4 DNS Server addresses                          [RFC2132] 
+7         Log Server                       N       N/4 Logging Server addresses                      [RFC2132] 
+8         Quotes Server                    N       N/4 Quotes Server addresses                       [RFC2132] 
+9         LPR Server                       N       N/4 Printer Server addresses                      [RFC2132] 
+10        Impress Server                   N       N/4 Impress Server addresses                      [RFC2132] 
+11        RLP Server                       N       N/4 RLP Server addresses                          [RFC2132] 
+12        Hostname                         N       Hostname string                                   [RFC2132] 
+13        Boot File Size                   2       Size of boot file in 512 byte chunks              [RFC2132] 
+14        Merit Dump File                  N       Client to dump and name the file to dump it to    [RFC2132] 
+15        Domain Name                      N       The DNS domain name of the client                 [RFC2132] 
+16        Swap Server                      N       Swap Server address                               [RFC2132] 
+17        Root Path                        N       Path name for root disk                           [RFC2132] 
+18        Extension File                   N       Path name for more BOOTP info                     [RFC2132] 
+19        Forward On/Off                   1       Enable/Disable IP Forwarding                      [RFC2132] 
+20        SrcRte On/Off                    1       Enable/Disable Source Routing                     [RFC2132] 
+21        Policy Filter                    N       Routing Policy Filters                            [RFC2132] 
+22        Max DG Assembly                  2       Max Datagram Reassembly Size                      [RFC2132] 
+23        Default IP TTL                   1       Default IP Time to Live                           [RFC2132] 
+24        MTU Timeout                      4       Path MTU Aging Timeout                            [RFC2132] 
+25        MTU Plateau                      N       Path MTU  Plateau Table                           [RFC2132] 
+26        MTU Interface                    2       Interface MTU Size                                [RFC2132] 
+27        MTU Subnet                       1       All Subnets are Local                             [RFC2132] 
+28        Broadcast Address                4       Broadcast Address                                 [RFC2132] 
+29        Mask Discovery                   1       Perform Mask Discovery                            [RFC2132] 
+30        Mask Supplier                    1       Provide Mask to Others                            [RFC2132] 
+31        Router Discovery                 1       Perform Router Discovery                          [RFC2132] 
+32        Router Request                   4       Router Solicitation Address                       [RFC2132] 
+33        Static Route                     N       Static Routing Table                              [RFC2132] 
+34        Trailers                         1       Trailer Encapsulation                             [RFC2132] 
+35        ARP Timeout                      4       ARP Cache Timeout                                 [RFC2132] 
+36        Ethernet                         1       Ethernet Encapsulation                            [RFC2132] 
+37        Default TCP TTL                  1       Default TCP Time to Live                          [RFC2132] 
+38        Keepalive Time                   4       TCP Keepalive Interval                            [RFC2132] 
+39        Keepalive Data                   1       TCP Keepalive Garbage                             [RFC2132] 
+40        NIS Domain                       N       NIS Domain Name                                   [RFC2132] 
+41        NIS Servers                      N       NIS Server Addresses                              [RFC2132] 
+42        NTP Servers                      N       NTP Server Addresses                              [RFC2132] 
+43        Vendor Specific                  N       Vendor Specific Information                       [RFC2132] 
+44        NETBIOS Name Srv                 N       NETBIOS Name Servers                              [RFC2132] 
+45        NETBIOS Dist Srv                 N       NETBIOS Datagram Distribution                     [RFC2132] 
+46        NETBIOS Node Type                1       NETBIOS Node Type                                 [RFC2132] 
+47        NETBIOS Scope                    N       NETBIOS Scope                                     [RFC2132] 
+48        X Window Font                    N       X Window Font Server                              [RFC2132] 
+49        X Window Manager                 N       X Window Display Manager                          [RFC2132] 
+50        Address Request                  4       Requested IP Address                              [RFC2132] 
+51        Address Time                     4       IP Address Lease Time                             [RFC2132] 
+52        Overload                         1       Overload "sname" or "file"                        [RFC2132] 
+53        DHCP Msg Type                    1       DHCP Message Type                                 [RFC2132] 
+54        DHCP Server Id                   4       DHCP Server Identification                        [RFC2132] 
+55        Parameter List                   N       Parameter Request List                            [RFC2132] 
+56        DHCP Message                     N       DHCP Error Message                                [RFC2132] 
+57        DHCP Max Msg Size                2       DHCP Maximum Message Size                         [RFC2132] 
+58        Renewal Time                     4       DHCP Renewal (T1) Time                            [RFC2132] 
+59        Rebinding Time                   4       DHCP Rebinding (T2) Time                          [RFC2132] 
+60        Class Id                         N       Class Identifier                                  [RFC2132] 
+61        Client Id                        N       Client Identifier                                 [RFC2132] 
+62        Netware/IP Domain                N       Netware/IP Domain Name                            [RFC2242] 
+63        Netware/IP Option                N       Netware/IP sub Options                            [RFC2242] 
+64        NIS-Domain-Name                  N       NIS+ v3 Client Domain Name                        [RFC2132] 
+65        NIS-Server-Addr                  N       NIS+ v3 Server Addresses                          [RFC2132] 
+66        Server-Name                      N       TFTP Server Name                                  [RFC2132] 
+67        Bootfile-Name                    N       Boot File Name                                    [RFC2132] 
+68        Home-Agent-Addrs                 N       Home Agent Addresses                              [RFC2132] 
+69        SMTP-Server                      N       Simple Mail Server Addresses                      [RFC2132] 
+70        POP3-Server                      N       Post Office Server Addresses                      [RFC2132] 
+71        NNTP-Server                      N       Network News Server Addresses                     [RFC2132] 
+72        WWW-Server                       N       WWW Server Addresses                              [RFC2132] 
+73        Finger-Server                    N       Finger Server Addresses                           [RFC2132] 
+74        IRC-Server                       N       Chat Server Addresses                             [RFC2132] 
+75        StreetTalk-Server                N       StreetTalk Server Addresses                       [RFC2132] 
+76        STDA-Server                      N       ST Directory Assist. Addresses                    [RFC2132] 
+77        User-Class                       N       User Class Information                            [RFC3004] 
+78        Directory Agent                  N       directory agent information                       [RFC2610] 
+79        Service Scope                    N       service location agent scope                      [RFC2610] 
+80        Rapid Commit                     0       Rapid Commit                                      [RFC4039] 
+81        Client FQDN                      N       Fully Qualified Domain Name                       [RFC4702] 
+82        Relay Agent Information          N       Relay Agent Information                           [RFC3046] 
+83        iSNS                             N       Internet Storage Name Service                     [RFC4174]
+84        REMOVED/Unassigned                                                                         [RFC3679]
+85        NDS Servers                      N       Novell Directory Services                         [RFC2241] 
+86        NDS Tree Name                    N       Novell Directory Services                         [RFC2241] 
+87        NDS Context                      N       Novell Directory Services                         [RFC2241] 
+88        BCMCS Controller Domain Name list                                                          [RFC4280]
+89        BCMCS Controller IPv4 address option                                                       [RFC4280]
+90        Authentication                   N       Authentication                                    [RFC3118] 
+91        client-last-transaction-time option                                                        [RFC4388]  
+92        associated-ip option                                                                       [RFC4388] 
+93        Client System                    N       Client System Architecture                        [RFC4578] 
+94        Client NDI                       N       Client Network Device Interface                   [RFC4578]
+95        LDAP                             N       Lightweight Directory Access Protocol             [RFC3679] 
+96        REMOVED/Unassigned                                                                         [RFC3679] 
+97        UUID/GUID                        N       UUID/GUID-based Client Identifier                 [RFC4578]
+98        User-Auth                        N       Open Group's User Authentication                  [RFC2485] 
+99        GEOCONF_CIVIC                                                                              [RFC4776]
+100       PCode                            N       IEEE 1003.1 TZ String                             [RFC4833]
+101       TCode                            N       Reference to the TZ Database                      [RFC4833] 
+102-107   REMOVED/Unassigned                                                                         [RFC3679]
+108       REMOVED/Unassigned                                                                         [RFC3679]
+109       Unassigned                                                                                 [RFC3679]
+110       REMOVED/Unassigned                                                                         [RFC3679]
+111       Unassigned                                                                                 [RFC3679]
+112       Netinfo Address                  N       NetInfo Parent Server Address                     [RFC3679] 
+113       Netinfo Tag                      N       NetInfo Parent Server Tag                         [RFC3679] 
+114       URL                              N       URL                                               [RFC3679]
+115       REMOVED/Unassigned                                                                         [RFC3679] 
+116       Auto-Config                      N       DHCP Auto-Configuration                           [RFC2563] 
+117       Name Service Search              N       Name Service Search                               [RFC2937] 
+118       Subnet Selection Option          4       Subnet Selection Option                           [RFC3011] 
+119       Domain Search                    N       DNS domain search list                            [RFC3397] 
+120       SIP Servers DHCP Option          N       SIP Servers DHCP Option                           [RFC3361] 
+121       Classless Static Route Option    N       Classless Static Route Option                     [RFC3442] 
+122       CCC                              N       CableLabs Client Configuration                    [RFC3495]
+123       GeoConf Option                   16      GeoConf Option                                    [RFC3825]
+124       V-I Vendor Class                         Vendor-Identifying Vendor Class                   [RFC3925]
+125       V-I Vendor-Specific Information          Vendor-Identifying Vendor-Specific Information    [RFC3925]
+126       Removed/Unassigned                                                                         [RFC3679]
+127       Removed/Unassigned                                                                         [RFC3679]
+128       PXE - undefined (vendor specific)                                                          [RFC4578]
+128       Etherboot signature. 6 bytes: E4:45:74:68:00:00	
+128       DOCSIS "full security" server IP address	
+128       TFTP Server IP address (for IP Phone software load)	
+129       PXE - undefined (vendor specific)                                                          [RFC4578]
+129       Kernel options. Variable length string	
+129       Call Server IP address 	
+130       PXE - undefined (vendor specific)                                                          [RFC4578]
+130       Ethernet interface. Variable length string.	
+130       Discrimination string (to identify vendor)	
+131       PXE - undefined (vendor specific)                                                          [RFC4578]
+131       Remote statistics server IP address 	
+132       PXE - undefined (vendor specific)                                                          [RFC4578]
+132       IEEE 802.1Q VLAN ID 	
+133       PXE - undefined (vendor specific)                                                          [RFC4578]
+133       IEEE 802.1D/p Layer 2 Priority	
+134       PXE - undefined (vendor specific)                                                          [RFC4578]
+134       Diffserv Code Point (DSCP) for VoIP signalling and media streams	
+135       PXE - undefined (vendor specific)                                                          [RFC4578]
+135       HTTP Proxy for phone-specific applications	
+136       OPTION_PANA_AGENT                                                                          [RFC5192]
+137       OPTION_V4_LOST                                                                             [RFC5223]
+138       OPTION_CAPWAP_AC_V4              N       CAPWAP Access Controller addresses                [RFC-ietf-capwap-dhc-ac-option-02.txt]
+139-149   Unassigned                                                                                 [RFC3942]
+150       TFTP server address (Tentatively Assigned - 2005-06-23)
+150       Etherboot	
+150       GRUB configuration path name	
+151-174   Unassigned                                                                                 [RFC3942]
+175       Etherboot (Tentatively Assigned - 2005-06-23)
+176       IP Telephone (Tentatively Assigned - 2005-06-23)
+177       Etherboot (Tentatively Assigned - 2005-06-23)
+177       PacketCable and CableHome (replaced by 122)	
+178-207   Unassigned                                                                                 [RFC3942]
+208       PXELINUX Magic                   4       magic string = F1:00:74:7E                        [RFC5071] Deprecated
+209       Configuration File               N       Configuration file                                [RFC5071]
+210       Path Prefix                      N       Path Prefix Option                                [RFC5071]
+211       Reboot Time                      4       Reboot Time                                       [RFC5071]
+212-219   Unassigned
+220       Subnet Allocation Option (Tentatively Assigned - 2005-06-23)
+221       Virtual Subnet Selection Option (Tentatively Assigned - 2005-06-23)
+222-223   Unassigned                                                                                 [RFC3942]
+224-254   Reserved (Private Use)
+255       End                              0         None                                            [RFC2132] 
+
+Sub-registry: DHCP Message Type 53 Values 
+Reference: [RFC2939]
+Registration Procedures: IETF Consensus
+
+Registry:
+Value  Message Type            Reference
+-----  ----------------------  ---------
+1      DHCPDISCOVER            [RFC2132]
+2      DHCPOFFER               [RFC2132]
+3      DHCPREQUEST             [RFC2132]
+4      DHCPDECLINE             [RFC2132]
+5      DHCPACK                 [RFC2132]
+6      DHCPNAK                 [RFC2132]
+7      DHCPRELEASE             [RFC2132]
+8      DHCPINFORM              [RFC2132]
+9      DHCPFORCERENEW          [RFC3203]
+10     DHCPLEASEQUERY          [RFC4388]
+11     DHCPLEASEUNASSIGNED     [RFC4388]
+12     DHCPLEASEUNKNOWN        [RFC4388]
+13     DHCPLEASEACTIVE         [RFC4388]
+
+Sub-registry: Network/IP Option Type 63 Sub-Option Codes 
+Reference: [RFC2242]
+Registration Procedures: Not defined
+
+Registry:
+Value   Message Type                  Reference
+------  ----------------------------  ---------
+1       NWIP_DOES_NOT_EXIST           [RFC2242] 
+2       NWIP_EXIST_IN_OPTIONS_AREA    [RFC2242]
+3       NWIP_EXIST_IN_SNAME_FILE      [RFC2242]
+4       NWIP_EXIST_BUT_TOO_BIG        [RFC2242]
+5       NSQ_BROADCAST                 [RFC2242]
+6       PREFERRED_DSS                 [RFC2242]
+7       NEAREST_NWIP_SERVER           [RFC2242]
+8       AUTORETRIES                   [RFC2242]
+9       AUTORETRY_SECS                [RFC2242]
+10      NWIP_1_1                      [RFC2242]
+11      PRIMARY_DSS                   [RFC2242]
+12-255  Unassigned
+
+Sub-registry: DHCP Cablelabs Client Configuration Option Type 122 Sub-Option Codes 
+Reference: [RFC3495]
+Registration Procedures: IETF Consensus
+
+Registry:
+Code    Sub-Option Description                      Reference 
+------  ------------------------------------------  --------- 
+1       TSP's Primary DHCP Server Address           [RFC3495] 
+2       TSP's Secondary DHCP Server Address         [RFC3495] 
+3       TSP's Provisioning Server Address           [RFC3495]
+4       TSP's AS-REQ/AS-REP Backoff and Retry       [RFC3495]
+5       TSP's AP-REQ/AP-REP Backoff and Retry       [RFC3495]
+6       TSP's Kerberos Realm Name                   [RFC3495]
+7       TSP's Ticket Granting Server Utilization    [RFC3495]
+8       TSP's Provisioning Timer Value              [RFC3495]
+9       TSP's Security Ticket Control               [RFC3594] 
+10      KDC Server Address                          [RFC3634]
+11-255  Unassigned
+
+
+Sub-registry: GeoConf Option fields (Value 123) - The Altitude (AT) field
+Reference: [RFC3825]
+Registration Procedures: Standards Action
+
+Value  Altitude Field Description                      Reference
+-----  ----------------------------------------------  ---------
+1      Meters - in 2s-complement fixed-point 22-bit    [RFC3825]
+       integer part with 8-bit fraction 
+2      Floors - in 2s-complement fixed-point 22-bit    [RFC3825]
+       integer part with 8-bit fraction
+
+
+Sub-registry: GeoConf Option fields (Value 123) - The Datum field
+Reference: [RFC3825]
+Registration Procedures: Standards Action
+
+Value  Datum Field Description                        Reference
+-----  ---------------------------------------------- ---------
+1      WGS 84 - (Geographical 3D)                     [RFC3825]
+       World Geodesic System 1984, CRS Code 4327, 
+       Prime Meridian Name: Greenwich
+
+2      NAD83 - North American Datum 1983,             [RFC3825]
+       CRS Code 4269, Prime Meridian Name: Greenwich; 
+       The associated vertical datum is the North 
+       American Vertical Datum of 1988 (NAVD88)
+
+       This datum pair to be used when referencing 
+       locations on land, not near tidal water (which 
+       would use Datum = 3 below)
+
+3      NAD83 - North American Datum 1983,             [RFC3825]
+       CRS Code 4269, Prime Meridian Name: Greenwich; 
+       The associated vertical datum is Mean Lower 
+       Low Water (MLLW)
+
+       This datum pair to be used when referencing 
+       locations on water/sea/ocean
+
+
+Registry Name: CableLabs Client Configuration Option Ticket Control Mask Bit Definitions
+Reference: [RFC3594] 
+Registration Procedures: IETF Consensus
+
+Registry:
+Bit     Description                             Reference
+------  --------------------------------------  ---------
+0       the PacketCable Provisioning Server     [RFC3594] 
+        used by the CCD.  
+1       the group of all PacketCable Call       [RFC3594] 
+        Management Servers used by the CCD. 
+2-15    Reserved and MUST be set to 0.   
+
+
+Registry Name: DHCP Relay Agent Sub-Option Codes
+Reference: [RFC3046]
+Registration Procedures: IETF Consensus
+
+Registry:
+Code    Sub-Option Description                   Reference
+------  ---------------------------------------  ---------
+1       Agent Circuit ID Sub-option              [RFC3046]
+2       Agent Remote ID Sub-option               [RFC3046]
+3       Sub-option 3 is reserved and should      [Droms]
+        not be assigned at this time;
+        proprietary and incompatible usages
+        of this sub-option value have been
+        seen limited deployment.
+4       DOCSIS Device Class Suboption            [RFC3256]
+5       Link selection Sub-option                [RFC3527]
+6       Subscriber-ID Suboption                  [RFC3993]
+7       RADIUS Attributes Sub-option             [RFC4014]
+8       Authentication Suboption                 [RFC4030] 
+9       Vendor-Specific Information Suboption    [RFC4243]
+10      Relay Agent Flags                        [RFC5010]
+11      Server Identifier Override Suboption     [RFC5107]
+
+
+Sub-registry: Authentication Suboption (value 8) - Algorithm identifier values
+Reference: [RFC4030]
+Registration Procedures: IETF consensus
+
+Value  Algorithm                            Reference
+-----  ---------------------------------    ---------
+0      Reserved                             [RFC4030] 
+1      HMAC-SHA1 keyed hash                 [RFC4030] 
+
+
+Sub-registry: Authentication Suboption (value 8) - Replay Detection Method (RDM) identifier values 
+Reference: [RFC4030]
+Registration Procedures: IETF consensus
+
+Value  Algorithm                                          Reference
+-----  -------------------------------------------------  ---------
+0      Reserved                                           [RFC4030] 
+1      use of a monotonically increasing counter value    [RFC4030] 
+          
+
+References
+----------
+[RFC951]  Croft, B., and J. Gilmore, "BOOTSTRAP Protocol (BOOTP)",
+          RFC-951, Stanford and SUN Microsytems, September 1985.
+
+[RFC2131]  Droms, R., "Dynamic Host Configuration Protocol", Bucknell
+           University, March 1997.
+
+[RFC2132]  Alexander, S., and R. Droms, "DHCP Options and BOOTP Vendor
+           Extensions", Silicon Graphics, Inc., Bucknell University,
+           March 1997.
+
+[RFC2241]  D. Provan, "DHCP Options for Novell Directory Services", 
+           RFC 2241, November 1997.
+
+[RFC2242]  R. Droms and K. Fong, "NetWare/IP Domain Name and 
+           Information", RFC 2242, November 1997.
+
+[RFC2485]  S. Drach, "DHCP Option for The Open Group's User Authentication 
+           Protocol", RFC 2485, January 1999.
+
+[RFC2489]  Droms, R., "Procedure for Defining New DHCP Options",
+           BCP 29, RFC 2489, January 1999.
+
+[RFC2563]  R. Troll, "DHCP Option to Disable Stateless Auto-Configuration 
+           in IPv4 Clients, RFC 2563, May 1999.
+
+[RFC2610]  C. Perkins and E. Guttman, "DHCP Options for Service Location 
+           Protocol", RFC 2610, June 1999.
+
+[RFC2937]  C. Smith, "The Name Service Search Option for DHCP", RFC 2937,
+           September 2000.
+
+[RFC2939]  R. Droms, "Procedures and IANA Guidelines for Definition of
+           New DHCP Options and Message Types", RFC 2939, September 2000.
+
+[RFC3004]  G. Stump, R. Droms, Y. Gu, R. Vyaghrapuri, A. Demirtjis, 
+           B. Beser, and J. Privat, "The User Class Option for DHCP", 
+           RFC 3004, November 2000.
+
+[RFC3011]  G. Waters, "The IPv4 Subnet Selection Option for DHCP",
+           RFC 3011, November 2000.  
+
+[RFC3046]  M. Patrick, "DHCP Relay Agent Information Option", 
+           RFC 3046, January 2001.
+
+[RFC3118]  R. Droms and W. Arbaugh, "Authentication for DHCP Messages",
+           RFC 3118, June 2001.
+
+[RFC3203]  Y. T'Jones, C. Hublet, and P. De Schrijver, "DHCP 
+           Reonfigure Extension", RFC 3203, December 2001.
+
+[RFC3256]  D. Jones and R. Woundy, "The DOCSIS Device Class DHCP 
+           Relay Agent Information Sub-option", RFC 3256,
+           April 2002.
+
+[RFC3361]  H. Schulzrinne, "DHCPv4 Option for SIP Servers", RFC 3361,
+           August 2002.
+
+[RFC3397]  B. Aboba and S. Cheshire, "Dynamic Host Configuration Protocol 
+           (DHCP) Domain Search Option", RFC 3397, November 2002.
+
+[RFC3442]  T. Lemon, S. Cheshire, and B. Volz, "The Classless Static 
+           Route Option for DHCPv4", RFC 3442, December 2002.
+
+[RFC3495]  B. Beser and P. Duffy, "DHCP Option for CableLabs Client 
+           Configuration", RFC 3495, March 2003.
+
+[RFC3527]  K. Kinnear, M. Stapp, R. Johnson, and J. Kumarasamy, 
+           "Link Selection sub-option for the Relay Agent Information 
+           Option for DHCPv4", RFC 3527, April 2003.
+
+[RFC3594]  P. Duffy, "PacketCable Security Ticket Control Sub-option for 
+           the DHCP CableLabs Client Configuration Option", RFC 3594,
+           September 2003.
+
+[RFC3679]  R. Droms, "Unused DHCP Option Codes", RFC 3679, January 2004.
+
+[RFC3634]  K. Luehrs, R. Woundy, J. Bevilacqua, N. Davoust,
+           "Key Distribution Center (KDC) Server Address Sub-option for
+           the Dynamic Host Configuration Protocol (DHCP) CableLabs Client 
+           Configuration (CCC) Option", RFC3634, December 2003.
+
+[RFC3825]  J. Polk, J. Schnizlein, and M. Linsner, "Dynamic Host Configuration 
+           Protocol Option for Coordinate-based Location Configuration 
+           Information", RFC 3825, July 2004.
+
+[RFC3925]  J. Littlefield, "Vendor-Identifying Vendor Options for DHCPv4",
+           RFC 3925, October 2004.
+
+[RFC3942]  B. Volz, "Reclassifying DHCPv4 Options", RFC 3942, November 2004.
+
+[RFC3993]  R. Johnson, T. Palaniappan, and M. Stapp, "Subscriber-ID Suboption 
+           for the DHCP Relay Agent Option", RFC 3993, March 2005.
+
+[RFC4014]  R. Droms and J. Schnizlein, "RADIUS Attributes Sub-option for the 
+           DHCP Relay Agent Information Option", RFC 4014, February 2005.
+
+[RFC4030]  M. Stapp and T. Lemon, "The Authentication Suboption for the 
+           DHCP Relay Agent Option", RFC 4030, March 2005.
+
+[RFC4039]  S. Park, P. Kim, and B. Volz, "Rapid Commit Option for DHCPv4", 
+           RFC 4039, March 2005.
+
+[RFC4174]  C. Monia, J. Tseng, and K. Gibbons, "The IPv4 DHCP Option for 
+           the Internet Storage Name Service", RFC 4174, September 2005.
+
+[RFC4243]  M. Stapp, R. Johnson, and T. Palaniappan, "Vendor-Specific Information 
+           Suboption for the DHCP Relay Agent Option", RFC 4243, December 2005.
+
+[RFC4280]  K. Chowdhury, P. Yegani and L. Madour, "DHCP Options for Broadcast 
+           and Multicast Control Servers", RFC 4280, November 2005.
+
+[RFC4388]  R. Woundy and Kim Kinnear, "DHCP Lease Query", RFC 4388, February 2006.
+ 
+[RFC4578]  M. Johnston and S. Venaas, "DHCP Options for the Intel Preboot eXecution
+           Environment (PXE)", RFC 4578, November 2006.
+
+[RFC4702]  M. Stapp, B. Volz and Y. Rekhter, "The DHCP Client FQDN Option", 
+           RFC 4702, October 2006.
+
+[RFC4776]  H. Schulzrinne, "Dynamic Host Configuration Protocol (DHCPv4 and DHCPv6) 
+           Option for Civic Addresses Configuration Information", RFC 4776, November 2006.
+
+[RFC4833]  E. Lear, P. Eggert, "A Timezone Option for DHCP", RFC 4833,
+            April 2007.
+
+[RFC5010]  K. Kinnear, M. Normoyle and M. Stapp, "DHCPv4 Relay Agent Flags Suboption", 
+           RFC 5010, September 2007.                      
+
+[RFC5071]  D. Hankins, "Dynamic Host Configuration Protocol Options Used by PXELINUX",
+           RFC 5071, December 2007.
+
+[RFC5107]  R. Johnson, J. Jumarasamy, K. Kinnear, M. Stapp, "DHCP Server Identifier 
+           Override Suboption", RFC 5107, February 2008.
+
+[RFC5192]  L. Morand, A. Yegin, S. Kumar, S. Madanapalli, "DHCP options for PANA 
+           Authentication Agents", RFC 5192, May 2008.
+
+[RFC5223]  H. Schulzrinne, J. Polk, H. Tschofenig, "A Dynamic Host Configuration 
+           Protocol (DHCP) based Location-to-Service Translation Protocol (LoST) 
+           Discovery Procedure", RFC 5223, August 2008.
+
+[RFC-ietf-capwap-dhc-ac-option-02.txt]
+           P. Calhoun, "CAPWAP Access Controller DHCP Option", RFC XXXX, Month Year.
+
+
+People
+------
+[Droms]  Ralph Droms, <rdroms&cisco.com>, January 2001.
+
+[]
+
