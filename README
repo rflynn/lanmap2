@@ -28,9 +28,12 @@ Dependencies:
 	php (to interface with db and generate graphviz input; plan on replacing with lua)
 	graphviz (for graph generating)
 
+  debian based (including ubuntu):
+    sudo apt-get install libpcap-dev libsqlite3-dev gcc graphviz php5-cli php5-sqlite
+
 1. Build the database
 
-	cd db && ./build-db.sh && cd -
+	db/build-db.sh
 
 2. Build the capture
 
@@ -42,7 +45,7 @@ Use
 
 1. Start capturing
 
-	sudo ./pcap
+  cd db && sudo ../src/cap && cd -
 
   The application has to run as root, which is a potential security hazard.
 
