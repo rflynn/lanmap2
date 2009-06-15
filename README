@@ -29,7 +29,7 @@ Dependencies:
 	graphviz (for graph generating)
 
   debian based (including ubuntu):
-    sudo apt-get install libpcap-dev libsqlite3-dev gcc graphviz php5-cli php5-sqlite
+    sudo apt-get install libpcap-dev libsqlite3-dev gcc graphviz php5-cli php5-sqlite sqlite3
 
 1. Build the database
 
