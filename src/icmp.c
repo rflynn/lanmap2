@@ -134,9 +134,9 @@ static size_t dump(const parse_frame *f, int options, FILE *out)
 {
   const icmp *i = (icmp *)f->off;
   int bytes = fprintf(out,
-      "%s type=%u(%s) code=0x%04hx(%s) chksum=0x%04hx\n",
+      "%s type=%u(%s) code=0x%04x(%s) chksum=0x%04hx\n",
       Iface_ICMP.shortname, i->head.type, type_longname(i->head.type),
-      i->head.code, code_str(i->head.type, i->head.code), i->head.chksum);
+      (unsigned)i->head.code, code_str(i->head.type, i->head.code), i->head.chksum);
   if (Type_Echo == i->head.code || Type_EchoReply == i->head.code) {
     /* "ping" or "pong" */
     bytes += dump_chars((char *)i->data.echo.payload,

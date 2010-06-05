@@ -149,14 +149,14 @@ static size_t dump_have(enum MsgType t, const void *buf, size_t len, FILE *out)
 {
   const bt_have *h = (bt_have *)buf;
   int bytes = fprintf(out, " %s len=%u index=%lu\n",
-    PerType[Have].name, len, (unsigned long)h->index);
+    PerType[Have].name, (unsigned)len, (unsigned long)h->index);
   return (size_t)bytes;
 }
 
 static size_t dump_bitfield(enum MsgType t, const void *buf, size_t len, FILE *out)
 {
   const bt_bitfield *b = (bt_bitfield *)buf;
-  int bytes = fprintf(out, " %s len=%u ", PerType[BitField].name, len);
+  int bytes = fprintf(out, " %s len=%u ", PerType[BitField].name, (unsigned)len);
   bytes += dump_hex(b->bits, len, out);
   fputc('\n', out);
   bytes++;
@@ -167,7 +167,7 @@ static size_t dump_request(enum MsgType t, const void *buf, size_t len, FILE *ou
 {
   const bt_req *r = (bt_req *)buf;
   int bytes = fprintf(out, " %s len=%u index=%lu begin=%lu length=%lu\n",
-    PerType[Request].name, len,
+    PerType[Request].name, (unsigned)len,
     (unsigned long)r->index, (unsigned long)r->begin, (unsigned long)r->length);
   return (size_t)bytes;
 }
@@ -176,7 +176,7 @@ static size_t dump_piece(enum MsgType t, const void *buf, size_t len, FILE *out)
 {
   const bt_piece *p = (bt_piece *)buf;
   int bytes = fprintf(out, " %s len=%u index=%lu begin=%lu piece=%lu\n",
-    PerType[Piece].name, len,
+    PerType[Piece].name, (unsigned)len,
     (unsigned long)p->index, (unsigned long)p->begin, (unsigned long)p->piece);
   return (size_t)bytes;
 }
@@ -185,7 +185,7 @@ static size_t dump_cancel(enum MsgType t, const void *buf, size_t len, FILE *out
 {
   const bt_cancel *c = (bt_cancel *)buf;
   int bytes = fprintf(out, " %s len=%u index=%lu begin=%lu length=%lu\n",
-    PerType[Cancel].name, len,
+    PerType[Cancel].name, (unsigned)len,
     (unsigned long)c->index, (unsigned long)c->begin, (unsigned long)c->length);
   return (size_t)bytes;
 }
