@@ -1,7 +1,7 @@
 /* ex: set ff=dos ts=2 et: */
 /* $Id$ */
 /*
- * Copyright 2008 Ryan Flynn
+ * Copyright 2010 Ryan Flynn
  * All rights reserved.
  */
 /*
@@ -176,10 +176,14 @@ static ptrdiff_t dump_opts(const tcp *t, const parse_frame *f, int opt, FILE *ou
     if (TCP_Opt_End == o->type || TCP_Opt_NOP == o->type) {
       cur++;
     } else {
-      printf(" len=%u ", o->len - 2);
+      printf(" len=%d ", (int)o->len - 2);
       if (o->len > 2)
         dump_bytes((char *)o->val, o->len - 2, stdout);
-      cur += o->len;
+      /* advance > 0; too far breaks loop */
+      if (o->len < 2)
+        cur += 2;
+      else
+        cur += o->len;
     }
     fputc('\n', stdout);
   }
@@ -202,7 +206,10 @@ static struct {
   char txt[128];
 } TestCase[] = {
   { 28, "\x9a\xe0\x4a\x23\xd5\xfc\x44\x7d\x00\x00\x00\x00\x70\x02\xff\xff\xa9\x79\x00\x00\x02\x04\x05\xb4\x01\x01\x04\x02" },
-  { 25, "\x9a\xc6\x20\xb6\xb7""2\xfb""3\x00\x00\x00\x00p\x02\xff\xffp]\x00\x00\x02\x04\x05\xb4\x01" }
+  { 25, "\x9a\xc6\x20\xb6\xb7""2\xfb""3\x00\x00\x00\x00p\x02\xff\xffp]\x00\x00\x02\x04\x05\xb4\x01" },
+  { 25, "\x9a\xc6\x20\xb6\xb7""2\xfb""3\x00\x00\x00\x00p\x02\xff\xffp]\x00\x00\x00\x00\x00\x00\x00" },
+  { 25, "\x9a\xc6\x20\xb6\xb7""2\xfb""3\x00\x00\x00\x00p\x02\xff\xffp]\x00\x00\xFF\xFF\xFF\xFF\xFF" },
+  { 25, "\x9a\xc6\x20\xb6\xb7""2\xfb""3\x00\x00\x00\x00p\x02\xff\xffp]\x00\x00\x6d\x00\x02\x00\x00" }
 }, *T = TestCase;
 
 static void test(void)
@@ -213,8 +220,8 @@ static void test(void)
     printf("#%2u: ", i);
     dump_chars(T->txt, T->len, stdout);
     fputc('\n', stdout);
-    parse(T->txt, T->len, &pf, NULL);
-    dump(&pf, 0, stdout);
+    tcp_parse(T->txt, T->len, &pf, NULL);
+    tcp_dump(&pf, 0, stdout);
     fputc('\n', stdout);
     T++;
   }
