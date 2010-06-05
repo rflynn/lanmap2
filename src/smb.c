@@ -205,11 +205,11 @@ static size_t do_dump(const parse_frame *pf, const char *buf, size_t len, int op
 
 int smb_init(void)
 {
-  printf("sizeof(smb_hdr) <- %u\n", sizeof(smb_hdr));
+  printf("sizeof(smb_hdr) <- %lu\n", sizeof(smb_hdr));
   assert(32 == sizeof(smb_hdr));
-  printf("sizeof(smb_mailslot) <- %u\n", sizeof(smb_mailslot));
+  printf("sizeof(smb_mailslot) <- %lu\n", sizeof(smb_mailslot));
   assert(8 == sizeof(smb_mailslot));
-  printf("sizeof(smb_trans_req) <- %u\n", sizeof(smb_trans_req));
+  printf("sizeof(smb_trans_req) <- %lu\n", sizeof(smb_trans_req));
   assert(38 == sizeof(smb_trans_req));
   assert(1 == offsetof(smb_trans_req, totalparam));
   return 1;
@@ -217,21 +217,36 @@ int smb_init(void)
 
 #ifdef TEST
 
-static char Sample[] =
-"\xffSMB\x25\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x11\x00\x00\x44\x00\x00\x00\x00\x00\x00\x00\x00\x00\xe8\x03\x00\x00\x00\x00\x00\x00\x00\x00\x44\x00V\x00\x03\x00\x01\x00\x00\x00\x02\x00U\x00\\MAILSLOT\\BROWSE\x00\x0f\x00\x80\xfc\x0a\x00PC785018295244\x00\x00\x05\x01\x03\x10\x05\x00\x0f\x01U\xaathe\x20madwomanintheattic's\x20memory\x20""box\x00";
+static struct {
+  size_t len;
+  char txt[256];
+} TestCase[] = {
+  { 175,
+    "\xffSMB\x25\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x11\x00\x00\x44\x00\x00\x00\x00"
+    "\x00\x00\x00\x00\x00\xe8\x03\x00\x00\x00\x00\x00\x00\x00\x00\x44\x00V\x00\x03\x00\x01\x00\x00\x00\x02\x00U\x00\\MAILSLOT\\BROWSE\x00\x0f\x00\x80\xfc\x0a"
+    "\x00PC785018295244\x00\x00\x05\x01\x03\x10\x05\x00\x0f\x01U\xaathe\x20madwomanintheattic's\x20memory\x20""box\x00" },
+  { 126,
+    "\xffSMB%\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x11\x00\x00)\x00\x00\x00\x00\x00\x00"
+    "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00)\x00V\x00\x03\x00\x01\x00\x01\x00\x02\x00:\x00\\MAILSLOT\\BROWSE\x00\x0f\x06\x80\xfc\x0a\x00"
+    "MAC001B63A495BC\x00\x04\x09\x03\x9a\x84\x00\x0f\x01U\xaaXXXXX\x20XXX"
+  }
+}, *T = TestCase;
 
 static void test(void)
 {
-  parse_frame f = { PROT_SMB, sizeof Sample - 1, Sample, NULL };
-  size_t bytes;
-  printf("Sample(%u bytes):", (unsigned)f.len);
-  dump_chars(Sample, f.len, stdout);
-  fputc('\n', stdout);
-  bytes = smb_parse(f.off, f.len, &f, NULL);
-  printf("Consumed(%u bytes):", (unsigned)bytes);
-  dump_chars(Sample, bytes, stdout);
-  fputc('\n', stdout);
-  dump(&f, 0, stdout);
+  unsigned i;
+  for (i = 0; i < sizeof TestCase / sizeof TestCase[0]; i++) {
+    parse_frame f = { PROT_SMB, T->len, T->txt, NULL };
+    size_t bytes;
+    printf("Sample(%u bytes):", (unsigned)f.len);
+    dump_chars(f.off, f.len, stdout);
+    fputc('\n', stdout);
+    bytes = smb_parse(f.off, f.len, &f, NULL);
+    printf("Consumed(%u bytes):", (unsigned)bytes);
+    dump_chars(f.off, bytes, stdout);
+    fputc('\n', stdout);
+    smb_dump(&f, 0, stdout);
+  }
 }
 
 int main(void)
