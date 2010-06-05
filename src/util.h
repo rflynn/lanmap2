@@ -36,13 +36,13 @@
 # define ASSERT(x)                                                \
   if (!(x)) {                                                     \
     LOGF(__FILE__, __LINE__, NULL, "ASSERTION FAILED: %s\n", #x); \
+    abort();                                                      \
   }
 
 #else /* Release, don't abort() on failure */
 # define ASSERT(x)                                                \
   if (!(x)) {                                                     \
     LOGF(__FILE__, __LINE__, NULL, "ASSERTION FAILED: %s\n", #x); \
-    abort();                                                      \
   }
 
 #endif
