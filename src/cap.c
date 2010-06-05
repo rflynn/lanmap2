@@ -1,7 +1,7 @@
 /* ex: set ff=dos ts=2 et: */
 /* $Id$ */
 /*
- * Copyright 2008 Ryan Flynn
+ * Copyright 2010 Ryan Flynn
  * All rights reserved.
  */
 /*
@@ -11,6 +11,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <pcap.h>
@@ -21,7 +22,7 @@
 #include "prot.h"
 
 #define PACKET_BUFLEN   (64 * 1024)
-#define IFACE_MAX       2
+#define IFACE_MAX       8
 
 extern int parse_init(void);
 extern int parse(char *buf, size_t len, int linktype, parse_status *);
@@ -39,16 +40,16 @@ int                       Shutdown   = 0;
 unsigned                  Verbosity  = 2;
 static long               SelectFreq = 1;
 static struct bpf_program Filter;
-static char              *Filter_Str = "not tcp port 22"/*"!tcp"*/;
+static char              *Filter_Str = "not tcp port 22"; /* prevent infinite loop when running over ssh */
 
 static int netiface_add(const char *name)
 {
   struct netiface *n = NetIface + NetIfaces;
+  assert(NetIfaces < sizeof NetIface / sizeof NetIface[0] && "Too many interfaces! Increase IFACE_MAX");
   if (Verbosity >= 2)
     printf("Adding dev '%s'...\n", name);
   strlcpy(n->name, name, sizeof n->name);
   NetIfaces++;
-  assert(NetIfaces < sizeof NetIface / sizeof NetIface[0]);
   return 1;
 }
 
@@ -58,7 +59,6 @@ static int netiface_add(const char *name)
 static int iface_list(void)
 {
   static char errbuf[PCAP_ERRBUF_SIZE];
-  int ok = 1;
   pcap_if_t *alldevs,
             *dev;
   int i;
@@ -80,16 +80,16 @@ static int iface_list(void)
     if (0 != geteuid())
       fprintf(stderr, "You may want to run as root.\n");
 #endif
-    ok = 0;
+    i = 0;
   }
   pcap_freealldevs(alldevs);
-  return ok;
+  return i > 0; /* any device found? */
 }
 
 /**
- * interfaces are set up in NetIface[], listen!
+ * interfaces (possibly multiple) set up in NetIface[], listen for activity and parse/dump incoming packets.
  */
-static int do_listen(void)
+static void do_listen(void)
 {
     /* all ifaces set up... */
     /* FIXME: how do i deal with one iface going down and the others staying up? */
@@ -116,7 +116,6 @@ static int do_listen(void)
 #endif
   }
   while (0 == Shutdown) {
-    static int CountdownToDoom = 0;
     int sel;
 #ifdef WIN32
     sel = WaitForMultipleObjects((DWORD)NetIfaces, handles, TRUE, (long)SelectFreq * 1000);
@@ -172,51 +171,6 @@ static int do_listen(void)
           dump(&st);
 #endif
 
-
-#if 0
-          /*
-           * Crash if we receive data that we did not parse,
-           * with the following exceptions...
-           */
-          if (st.frame[st.frames-1].id == PROT_UNKNOWN
-              /* enumerate all cases where we know we get unknown bytes */
-              && !(
-                /* ethernet frames are often padded with garbage to meet 60 bytes */
-                (PROT_IEEE802_3 == st.frame[1].id && 60 == st.frame[0].len)
-                /* junk after LLC... */
-                || (PROT_STP == st.frame[st.frames-2].id && 7 == st.frame[st.frames-1].len)
-                /* junk after SMB over LLC... */
-                || (PROT_SMB == st.frame[st.frames-2].id && PROT_LLC == st.frame[2].len)
-                /* junk zeroes after BOOTP */
-                || (PROT_BOOTP == st.frame[st.frames-2].id &&
-                  allzeroes(st.frame[st.frames-1].off, st.frame[st.frames-1].len))
-                /* junk after LLDP... */
-                || (PROT_LLDP == st.frame[st.frames-2].id && 2 == st.frame[st.frames-1].len)
-                /* mysterious message */
-                || (PROT_LLC == st.frame[2].id && 82 == st.frame[0].len)
-                /* TCP payload */
-                || (PROT_TCP == st.frame[st.frames-2].id)
-                /* ARP oftens contains garbage */
-                || (PROT_ARP == st.frame[st.frames-2].id)
-              )) {
-            abort();
-          }
-#endif
-
-
-#if 0
-          /* 
-           * the 'gprof' profiling tool requires a clean stop
-           * of the program being profiled in order to work.
-           * this causes that
-           */
-          if (CountdownToDoom++ > 4000)
-            Shutdown = 1;
-#endif
-
-
-
-
         }
           break;
         default:
@@ -235,7 +189,6 @@ static int do_listen(void)
       printf(" %s", NetIface[i].name);
     printf(" down...\n");
   }
-  return 1; 
 }
 
 /**
@@ -273,7 +226,8 @@ static int listen(void)
       n->pcap = pcap_open_live(n->name, PACKET_BUFLEN, promisc, 0, errbuf);
       if (!n->pcap) {
         fprintf(stderr, "Can't open interface '%s'! %s\n", n->name, errbuf);
-        fprintf(stderr, "Have you specified an interface with -i?. See -h for more -i info.\n");
+        fprintf(stderr, "Have you specified an interface with -i?\n");
+        iface_list();
         return 0;
       }
       if (-1 == pcap_lookupnet(n->name, &n->net, &n->mask, errbuf)) {
@@ -307,8 +261,32 @@ static int listen(void)
   return 0;
 }
 
-int main(void)
+/*
+ * note: use semi-standard getopt or getopt_long when they become the less-ugly alternative
+ */
+static void parse_cmdline_opt(int argc, char *argv[])
 {
+  char **cur = argv+1; /* argv[0] contains program name */
+  argc--;
+  while (argc > 0) {
+    if (0 == strcmp(*cur, "-l") || 0 == strcmp(*cur, "--list")) {
+      iface_list();
+      exit(EXIT_SUCCESS);
+    } else if (0 == strcmp(*cur, "-i")) {
+      if (argc < 2) {
+        fprintf(stderr, "-i needs interface parameter. use one of these:\n");
+        iface_list();
+      }
+      argc--, cur++;
+      netiface_add(*cur);
+    }
+    argc--, cur++; /* always consume at least one */
+  }
+}
+
+int main(int argc, char *argv[])
+{
+  parse_cmdline_opt(argc, argv);
   rep_init(stderr);
   parse_init();
   (void)iface_list();
