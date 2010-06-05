@@ -288,7 +288,6 @@ char * strtrim(char *s)
 
 /**
  * trim preceeding spaces off of a binary data field
- * originally added for CAS pollster, assumed will be useful elsewhere
  */
 size_t memltrim(char *m, size_t len)
 {
