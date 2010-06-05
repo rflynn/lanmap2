@@ -187,9 +187,6 @@ static ptrdiff_t dump_opts(const tcp *t, const parse_frame *f, int opt, FILE *ou
     }
     fputc('\n', stdout);
   }
-#if 0
-  assert(cur == end);
-#endif
   return cur - (u8*)t;
 }
 
