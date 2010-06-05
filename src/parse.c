@@ -119,24 +119,35 @@ static void map_children(void)
 {
   prot_mod *pi = Prot;
   size_t i;
-  printf("PROT_COUNT=%u\n", PROT_COUNT);
+  printf("Linking %u protocols...\n", PROT_COUNT);
   for (i = 0; i < sizeof Prot / sizeof Prot[0]; i++) {
     if (NULL != pi->iface) {
       const prot_parent *pp = Prot[i].iface->parent;
       size_t p;
+      if (pp) {
+        printf(" (%s <-", Prot[pp->id].iface->shortname);
+        fflush(stdout);
+      }
       for (p = 0; p < pi->iface->parents; p++) {
         assert(PROT_COUNT > pp->id && "Programmer error");
-        assert(pp->id != pi->id && "Whoops, you set a protocol's parent id to itself!");
-        printf("%s %s <- %s\n",
-          __func__, Prot[pp->id].iface->shortname, pi->iface->shortname);
-        Prot[pp->id].child[Prot[pp->id].children].par.id = pi->id;
-        Prot[pp->id].child[Prot[pp->id].children].par.test = pp->test;
-        Prot[pp->id].children++;
+        printf(" %s", pi->iface->shortname);
+        fflush(stdout);
+        if (pp->id == pi->id) {
+          fprintf(stderr, "(Whoops!!! skipping...) ");
+        } else {
+          Prot[pp->id].child[Prot[pp->id].children].par.id = pi->id;
+          Prot[pp->id].child[Prot[pp->id].children].par.test = pp->test;
+          Prot[pp->id].children++;
+        }
+        fflush(stdout);
         pp++;
       }
+      if (pp)
+        fputc(')', stdout);
     }
     pi++;
   }
+  fputc('\n', stdout);
 }
 
 /**
