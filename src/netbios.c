@@ -215,7 +215,7 @@ static size_t dump_qry(const netbios *n, const parse_frame *f, FILE *out)
   nametype_format(whobuf, sizeof whobuf, &q->who);
   used = fprintf(out, " QUERY localsess=0x%02x callernametype=0x%02x respcor=0x%02x who(\"%s\" type=0x%02x(%s)) name=\"%.*s\"\n", 
     q->localsess, q->callernametype, q->respcorollate, whobuf, q->who.type, type2short(q->who.type),
-    sizeof q->name, q->name);
+    (int)sizeof q->name, q->name);
   return (size_t)used;
 }
 
