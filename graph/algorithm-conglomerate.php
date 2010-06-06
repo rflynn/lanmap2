@@ -36,8 +36,8 @@ function conglomerate($set)
     $merged = 0;
     reset($set);
     while (list($k,$v) = each($set)) {
-			var_dump($k);
-			var_dump($v);
+      var_dump($k);
+      var_dump($v);
       foreach (array_keys($v) as $kk) {
         if ($k != $kk && isset($set[$kk])) {
           $set[$k] = array_merge($set[$k], $set[$kk]);
@@ -64,7 +64,7 @@ function conglomerate($set)
             #echo "merging kkk=".print_r($set[$kkk],1);
             #$set[$k] = array_merge($set[$k], $set[$kkk]);
             $set[$k] = merge_addrs($k, array_values($set[$k]),
-						                           array_values($set[$kkk]));
+                                       array_values($set[$kkk]));
             #echo "merged=".print_r($set[$k],1);
             unset($set[$kkk]);
             $merged++;

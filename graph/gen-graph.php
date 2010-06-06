@@ -51,7 +51,7 @@ $rows = $stmt->fetchAll();
 
 $addrs = array();
 foreach ($rows as $row) {
-	@$addrs[$row[0]]["children"][] = $row[1];
+  @$addrs[$row[0]]["children"][] = $row[1];
   #if (!isset($addrs[$row[0]]["OS"]))
   #  $addrs[$row[0]]["OS"] = array();
 }
@@ -71,11 +71,11 @@ function php_is_gay_array($a)
 $sql="
 SELECT
   ho.addr AS addr,
-	a.addr,
+  a.addr,
   m.map AS map,
   m.maptype AS maptype,
   --hi.contents,
-	SUM(m.weight) AS weight
+  SUM(m.weight) AS weight
 FROM host AS ho
 JOIN host_addr AS a ON a.host_id = ho.id
 JOIN hint hi ON hi.addr = a.addr
@@ -109,7 +109,7 @@ while (list($addrfrom,$foo) = each($addrs)) {
 }
 
 foreach ($rows as $row) {
-	@$addrs[$row["addr"]][$row["maptype"]][] = $row["map"];
+  @$addrs[$row["addr"]][$row["maptype"]][] = $row["map"];
 }
 
 $stmt = null;
