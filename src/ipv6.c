@@ -114,7 +114,7 @@ size_t ipv6_addr_format(char *dst, size_t dstlen, const void *addr)
   /* find the position and length of longest string of zeroes */
   zoff = memcspn(src, sizeof(ipv6_addr), "\x00", 1);
   zlen = memspn(src+zoff, sizeof(ipv6_addr)-zoff, "\x00", 1);
-  printf("(zoff=%u zlen=%u) ", zoff, zlen);
+  printf("(zoff=%u zlen=%u) ", (unsigned)zoff, (unsigned)zlen);
   if (0 == zoff)            /* 0 prefix */
     *dst++ = ':', dstlen--; 
   if (16 == zlen) {         /* "::", unspecified address */
@@ -273,8 +273,8 @@ static int addr_is_special(const ipv6_addr *addr)
  */
 int ipv6_addr_local(const void *addr)
 {
-  return addr_is_special(addr) ||
-         addr_is_multicast(addr);
+  return addr_is_special((const ipv6_addr *)addr) ||
+         addr_is_multicast((const ipv6_addr *)addr);
 }
 
 static void do_rep(const ipv6 *i, const parse_status *st)
