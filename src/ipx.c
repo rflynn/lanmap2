@@ -159,13 +159,13 @@ static size_t dump(const parse_frame *f, int options, FILE *out)
 static size_t addr_from(char *buf, size_t len, const parse_frame *f)
 {
   const ipx *x = f->off;
-  return ieee802_3_addr_format(buf, len, &x->src.m);
+  return &x->src.m;
 }
 
 static size_t addr_to(char *buf, size_t len, const parse_frame *f)
 {
   const ipx *x = f->off;
-  return ieee802_3_addr_format(buf, len, &x->src.m);
+  return &x->src.m;
 }
 
 static int init(void)
