@@ -266,7 +266,9 @@ size_t http_parse(char *buf, size_t len, parse_frame *f, const parse_status *st,
     buf = r->desc.start + r->desc.len +
       strspn(r->desc.start + r->desc.len, "\r\n");
     buf += http_parse_headers(buf, len - (buf - start), &r->headers);
+#if 0
     assert(buf-start <= (ptrdiff_t)len);
+#endif
     r->contents.start = buf;
     r->contents.len = len-(buf-start);
   } else if (do_test_http_header/*do_test_req_method*/(buf, len)) {
