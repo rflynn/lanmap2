@@ -348,9 +348,9 @@ static size_t do_dump_duplex(const cdp_data *d, const char *data, size_t len, FI
   };
   int bytes;
   if (d->d.duplex >= sizeof Dup / sizeof Dup[0])
-    bytes = fprintf(out, "?");
+    bytes = fputs("?", out);
   else
-    bytes = fprintf(out, Dup[d->d.duplex].descr);
+    bytes = fputs(Dup[d->d.duplex].descr, out);
   return (size_t)bytes;
 }
 
