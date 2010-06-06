@@ -284,6 +284,8 @@ size_t dns_calc_len_qd(const char *buf, size_t len)
 #endif
   if (bytes > len)
     bytes = len;
+  else if (bytes == 0) /* error, don't let me get stuck */
+    bytes = len;
   return bytes;
 }
 
