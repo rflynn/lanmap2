@@ -62,6 +62,8 @@ size_t tcp_parse(char *buf, size_t len, parse_frame *f, const parse_status *st)
 {
   tcp *t = (tcp *)buf;
   size_t bytes = t->off * 4;
+  if (bytes > len)
+    bytes = len;
   /* sanity check packet */
   /* convert endianness */
   t->srcport = ntohs(t->srcport);
@@ -178,7 +180,7 @@ static ptrdiff_t dump_opts(const tcp *t, const parse_frame *f, int opt, FILE *ou
     } else {
       printf(" len=%d ", (int)o->len - 2);
       if (o->len > 2)
-        dump_bytes((char *)o->val, o->len - 2, stdout);
+        dump_bytes((char *)o->val, MIN(o->len - 2, (end-cur)), stdout);
       /* advance > 0; too far breaks loop */
       if (o->len < 2)
         cur += 2;
@@ -202,6 +204,7 @@ static struct {
   size_t len;
   char txt[128];
 } TestCase[] = {
+  { 32, "\xca\xf0\x00P!\xfe\xfd+\xaf\x8d\x17\x83\x80\x10\x00l\xd5\xe3\x00\x00\x01\x01\x08\x0a\x00\x08\xf2\xabP\xc5Y\xcd" }, /* Alessio */
   { 28, "\x9a\xe0\x4a\x23\xd5\xfc\x44\x7d\x00\x00\x00\x00\x70\x02\xff\xff\xa9\x79\x00\x00\x02\x04\x05\xb4\x01\x01\x04\x02" },
   { 25, "\x9a\xc6\x20\xb6\xb7""2\xfb""3\x00\x00\x00\x00p\x02\xff\xffp]\x00\x00\x02\x04\x05\xb4\x01" },
   { 25, "\x9a\xc6\x20\xb6\xb7""2\xfb""3\x00\x00\x00\x00p\x02\xff\xffp]\x00\x00\x00\x00\x00\x00\x00" },
@@ -213,13 +216,15 @@ static void test(void)
 {
   unsigned i;
   for (i = 0; i < sizeof TestCase / sizeof TestCase[0]; i++) {
+    size_t parsed;
     parse_frame pf = { PROT_IPv4, T->len, T->txt, NULL };
-    printf("#%2u: ", i);
+    printf("#%2u (%u bytes): ", i, (unsigned)T->len);
     dump_chars(T->txt, T->len, stdout);
     fputc('\n', stdout);
-    tcp_parse(T->txt, T->len, &pf, NULL);
+    parsed = tcp_parse(T->txt, T->len, &pf, NULL);
     tcp_dump(&pf, 0, stdout);
-    fputc('\n', stdout);
+    printf(" (%u bytes parsed)\n", (unsigned)parsed);
+    assert(parsed <= T->len);
     T++;
   }
 }
