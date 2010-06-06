@@ -2,11 +2,11 @@
 # $Id$
 #
 
-CFLAGS = -W -Wall -pedantic -std=gnu99 -Wno-unused -ggdb -O0 -pedantic -DDEBUG
+CFLAGS = -W -Wall -pedantic -std=gnu99 -Wno-unused -Wno-unused-parameter -ggdb -O0 -pedantic -DDEBUG
 LDFLAGS = -lpcap -lsqlite3
-ALL = cap parse util logical linux_sll ieee802_3 llc arp ip csvread icmp symbol8781 cdp smb dns nbns ipv6 radius snmp ntp mssqlm rasadv ssdp dhcpv6 netbios rtsp bittorrent storm-botnet gnutella tcp tcp-fingerprint http
+ALL = cap parse util logical linux_sll ieee802_3 llc arp ip csvread icmp symbol8781 cdp smb dns nbns ipv6 radius snmp ntp mssqlm rasadv ssdp dhcpv6 netbios rtsp bittorrent storm-botnet gnutella tcp tcp-fingerprint http ipp
 
-cap: cap.o prot.o parse.o report.o util.o getopt.o logical.o linux_sll.o ieee802_3.o llc.o arp.o ipv4.o icmp.o icmp-fingerprint.o udp.o bootp.o ssdp.o nbdgm.o nbns.o smb.o tcp.o tcp-fingerprint.o http.o https.o tivoconn.o ipv6.o dns.o symbol8781.o cdp.o browse.o radius.o stp.o ipx.o lldp.o snmp.o ntp.o mcafee-rumor.o rtsp.o mssqlm.o rasadv.o dhcpv6.o netbios.o igmpv2.o bittorrent.o storm-botnet.o gnutella.o irc.o wsdd.o dce-rpc.o esp.o
+cap: cap.o prot.o parse.o report.o util.o getopt.o logical.o linux_sll.o ieee802_3.o llc.o arp.o ipv4.o icmp.o icmp-fingerprint.o udp.o bootp.o ssdp.o nbdgm.o nbns.o smb.o tcp.o tcp-fingerprint.o http.o https.o tivoconn.o ipv6.o dns.o symbol8781.o cdp.o browse.o radius.o stp.o ipx.o lldp.o snmp.o ntp.o mcafee-rumor.o rtsp.o mssqlm.o rasadv.o dhcpv6.o netbios.o igmpv2.o bittorrent.o storm-botnet.o gnutella.o irc.o wsdd.o dce-rpc.o esp.o ipp.o
 
 logical.o: logical.c logical.h prot.h
 linux_sll.o: linux_sll.c linux_sll.h prot.h
@@ -49,6 +49,7 @@ irc.o: irc.c irc.h prot.h
 wsdd.o: wsdd.c wsdd.h prot.h
 dce-rpc.o: dce-rpc.c dce-rpc.h prot.h
 esp.o: esp.c esp.h prot.h
+ipp.o: ipp.c ipp.h prot.h
 
 all: $(ALL)
 

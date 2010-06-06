@@ -80,6 +80,7 @@ enum Prot {
   PROT_WSDD,
   PROT_DCERPC,
   PROT_ESP,
+  PROT_IPP,
 #if 0
   PROT_AARP,        /* Apple Address Resolution Protocol */
   PROT_ICMPV6,
