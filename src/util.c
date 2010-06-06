@@ -179,18 +179,13 @@ size_t dump_chars(const char *buf, size_t len, FILE *f)
   size_t bytes = len;
   setlinebuf(f);
   while (len--) {
-    if ((isalnum((int)*buf) || ispunct((int)*buf)) && !(0x80 & *buf)) {
+    if ((' ' == *buf || isalnum((int)*buf) || ispunct((int)*buf)) && !(0x80 & *buf)) {
       fputc(*buf++, f);
     } else {
-#if 1
       fwrite(Hex[(u8)*buf++], 4, 1, f);
-#else
-      fprintf(f, "\\x%02x", (u8)*buf++);
-#endif
-      bytes += 3;
+      bytes += 3; /* 1 byte already assumed */
     }
   }
-  fflush(f);
   return bytes;
 }
 
@@ -302,17 +297,16 @@ size_t memltrim(char *m, size_t len)
   return len;
 }
 
-/**
- * record the number of bytes of buffer 'm' register non-zero with callback 'cb'.
- * @note intended for use with ctype's is* functions, i.e. isspace()
- * @return number of chars skipped
+/*
+ * consume consecutive bytes from 'm', of maximum length 'len', while cb() returns non-zero for them
  */
-size_t memmatch(char *m, size_t len, int (*cb)(int))
+ptrdiff_t memmatch(const char *m, size_t len, int (*cb)(int))
 {
-  size_t l = len;
-  while (len && cb(*m))
-    len--, m++;
-  return l - len;
+  const char *start = m,
+             *stop = m + len;
+  while (m < stop && cb(*m))
+    m++;
+  return m - start;
 }
 
 int str_endswith(const char *str, const char *match)
@@ -584,7 +578,6 @@ size_t decode_hex_dump(char *dst, size_t dstlen, const char *src, size_t srclen)
   }
   return (size_t)(dst-odst);
 }
-
 
 int allzeroes(const char *c, size_t len)
 {

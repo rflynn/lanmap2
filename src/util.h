@@ -64,7 +64,7 @@ char * strrtrim(char *s);
 char * strltrim(char *s);
 char * strtrim(char *s);
 size_t memltrim(char *, size_t);
-size_t memmatch(char *, size_t, int (*)(int));
+ptrdiff_t memmatch(const char *, size_t, int (*)(int));
 int str_endswith(const char *str, const char *match);
 
 const char * mempbrk(const char *hay, const char *need, size_t haylen, size_t needlen);
