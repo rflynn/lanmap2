@@ -191,17 +191,17 @@ size_t dump(const parse_frame *f, int options, FILE *out)
 static int init(void)
 {
   printf("offsetof(nb_dgm, id) -> %u\n",
-    offsetof(nb_dgm, id));
+    (unsigned)offsetof(nb_dgm, id));
   assert(2 == offsetof(nb_dgm, id));
   assert(4 == offsetof(nb_dgm, srcip));
   assert(8 == offsetof(nb_dgm, srcport));
   printf("offsetof(nb_dgm, srcport) -> %u\n",
-    offsetof(nb_dgm, srcport));
+    (unsigned)offsetof(nb_dgm, srcport));
   assert(10 == offsetof(nb_dgm, len));
   printf("offsetof(nb_dgm, len) -> %u\n",
-    offsetof(nb_dgm, len));
+    (unsigned)offsetof(nb_dgm, len));
   assert(12 == offsetof(nb_dgm, off));
-  printf("sizeof Dgm -> %u\n", sizeof Dgm);
+  printf("sizeof Dgm -> %u\n", (unsigned)sizeof Dgm);
   assert(14 == sizeof Dgm);
   return 1;
 }
