@@ -5,51 +5,53 @@
 CFLAGS = -W -Wall -pedantic -std=gnu99 -Wno-unused -Wno-unused-parameter -ggdb -O0 -pedantic -DDEBUG
 LDFLAGS = -lpcap -lsqlite3
 ALL = cap parse util logical linux_sll ieee802_3 llc arp ip csvread icmp symbol8781 cdp smb dns nbns ipv6 radius snmp ntp mssqlm rasadv ssdp dhcpv6 netbios rtsp bittorrent storm-botnet gnutella tcp tcp-fingerprint http ipp
+# universal dependencies
+DEP = prot.h util.o
 
 cap: cap.o prot.o parse.o report.o util.o getopt.o logical.o linux_sll.o ieee802_3.o llc.o arp.o ipv4.o icmp.o icmp-fingerprint.o udp.o bootp.o ssdp.o nbdgm.o nbns.o smb.o tcp.o tcp-fingerprint.o http.o https.o tivoconn.o ipv6.o dns.o symbol8781.o cdp.o browse.o radius.o stp.o ipx.o lldp.o snmp.o ntp.o mcafee-rumor.o rtsp.o mssqlm.o rasadv.o dhcpv6.o netbios.o igmpv2.o bittorrent.o storm-botnet.o gnutella.o irc.o wsdd.o dce-rpc.o esp.o ipp.o
 
-logical.o: logical.c logical.h prot.h
-linux_sll.o: linux_sll.c linux_sll.h prot.h
-ieee802_3.o: ieee802_3.c ieee802_3.h prot.h
-llc.o: llc.c llc.h prot.h
-arp.o: arp.c arp.h prot.h
-ipv4.o: ipv4.c ipv4.h prot.h
-icmp.o: icmp.c icmp.h prot.h
-udp.o: udp.c udp.h prot.h
-bootp.o: bootp.c bootp.h prot.h
-ssdp.o: ssdp.c ssdp.h http.h http.c prot.h
-nbdgm.o: nbdgm.c nbdgm.h prot.h
-nbns.o: nbns.c nbns.h prot.h
-tcp.o: tcp.c tcp.h prot.h
-http.o: http.c http.h prot.h
-https.o: https.c https.h prot.h
-tivoconn.o: tivoconn.c tivoconn.h prot.h
-ipv6.o: ipv6.c ipv6.h prot.h
-dns.o: dns.c dns.h prot.h
-smb.o: smb.c smb.h prot.h
-symbol8781.o: symbol8781.c symbol8781.h prot.h
-cdp.o: cdp.c cdp.h prot.h
-browse.o: browse.c browse.h prot.h
-radius.o: radius.c radius.h prot.h
-stp.o: stp.c stp.h prot.h
-ipx.o: ipx.c ipx.h prot.h
-lldp.o: lldp.c lldp.h prot.h
-snmp.o: snmp.c snmp.h prot.h
-ntp.o: ntp.c ntp.h prot.h
-mcafee-rumor.o: mcafee-rumor.c mcafee-rumor.h prot.h
-rtsp.o: rtsp.c rtsp.h http.c http.h prot.h
-mssqlm.o: mssqlm.c mssqlm.h prot.h
-rasadv.o: rasadv.c rasadv.h prot.h
-dhcpv6.o: dhcpv6.c dhcpv6.h prot.h
-netbios.o: netbios.c netbios.h prot.h
-bittorrent.o: bittorrent.c bittorrent.h prot.h
-storm-botnet.o: storm-botnet.c storm-botnet.h prot.h
-gnutella.o: gnutella.c gnutella.h prot.h
-irc.o: irc.c irc.h prot.h
-wsdd.o: wsdd.c wsdd.h prot.h
-dce-rpc.o: dce-rpc.c dce-rpc.h prot.h
-esp.o: esp.c esp.h prot.h
-ipp.o: ipp.c ipp.h prot.h
+logical.o: logical.c logical.h $(DEP)
+linux_sll.o: linux_sll.c linux_sll.h $(DEP)
+ieee802_3.o: ieee802_3.c ieee802_3.h $(DEP)
+llc.o: llc.c llc.h $(DEP)
+arp.o: arp.c arp.h $(DEP)
+ipv4.o: ipv4.c ipv4.h $(DEP)
+icmp.o: icmp.c icmp.h $(DEP)
+udp.o: udp.c udp.h $(DEP)
+bootp.o: bootp.c bootp.h $(DEP)
+ssdp.o: ssdp.c ssdp.h http.h http.c $(DEP)
+nbdgm.o: nbdgm.c nbdgm.h $(DEP)
+nbns.o: nbns.c nbns.h $(DEP)
+tcp.o: tcp.c tcp.h $(DEP)
+http.o: http.c http.h $(DEP)
+https.o: https.c https.h $(DEP)
+tivoconn.o: tivoconn.c tivoconn.h $(DEP)
+ipv6.o: ipv6.c ipv6.h $(DEP)
+dns.o: dns.c dns.h $(DEP)
+smb.o: smb.c smb.h $(DEP)
+symbol8781.o: symbol8781.c symbol8781.h $(DEP)
+cdp.o: cdp.c cdp.h $(DEP)
+browse.o: browse.c browse.h $(DEP)
+radius.o: radius.c radius.h $(DEP)
+stp.o: stp.c stp.h $(DEP)
+ipx.o: ipx.c ipx.h $(DEP)
+lldp.o: lldp.c lldp.h $(DEP)
+snmp.o: snmp.c snmp.h $(DEP)
+ntp.o: ntp.c ntp.h $(DEP)
+mcafee-rumor.o: mcafee-rumor.c mcafee-rumor.h $(DEP)
+rtsp.o: rtsp.c rtsp.h http.c http.h $(DEP)
+mssqlm.o: mssqlm.c mssqlm.h $(DEP)
+rasadv.o: rasadv.c rasadv.h $(DEP)
+dhcpv6.o: dhcpv6.c dhcpv6.h $(DEP)
+netbios.o: netbios.c netbios.h $(DEP)
+bittorrent.o: bittorrent.c bittorrent.h $(DEP)
+storm-botnet.o: storm-botnet.c storm-botnet.h $(DEP)
+gnutella.o: gnutella.c gnutella.h $(DEP)
+irc.o: irc.c irc.h $(DEP)
+wsdd.o: wsdd.c wsdd.h $(DEP)
+dce-rpc.o: dce-rpc.c dce-rpc.h $(DEP)
+esp.o: esp.c esp.h $(DEP)
+ipp.o: ipp.c ipp.h $(DEP)
 
 all: $(ALL)
 
