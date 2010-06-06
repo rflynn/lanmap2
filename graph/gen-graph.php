@@ -59,7 +59,7 @@ foreach ($rows as $row) {
 $stmt = null;
 $rows = null;
 
-function php_is_gay_array($a)
+function make_array($a)
 {
   if (is_array($a))
     return $a;
@@ -102,14 +102,30 @@ $rows = $stmt->fetchAll();
 $rev = array();
 reset($addrs);
 while (list($addrfrom,$foo) = each($addrs)) {
-  $addrto = php_is_gay_array(@$foo["children"]);
+  $addrto = make_array(@$foo["children"]);
   reset($addrto);
   while (list($k,$v) = each($addrto))
     $rev[$v] = $addrfrom;
 }
 
+# apply mappings to addresses....
+# problem is, address may be in $addrs[] or it may be a child of one, so we need to search two levels deep
+# TODO: two ways to improve would be to apply mappings earlier, before addresses become hierarchical... or
+# generate a reverse-mapping so at least the amount of work is based on number of addresses and not number of mappings...
 foreach ($rows as $row) {
-  @$addrs[$row["addr"]][$row["maptype"]][] = $row["map"];
+  if (isset($addrs[$row["addr"]])) {
+    @$addrs[$row["addr"]][$row["maptype"]][] = $row["map"];
+  } else {
+    # FIXME: quick and dirty and ugly
+    # search each key's array keys...
+    reset($addrs);
+    while (list($k,$v) = each($addrs)) {
+      if (isset($addrs[$row["addr"]])) {
+        @$addrs[$row["addr"]][$row["maptype"]][] = $row["map"];
+        break;
+      }
+    }
+  }
 }
 
 $stmt = null;
@@ -180,7 +196,7 @@ while (list($from,$srcv) = each($addrs)) {
     join("','",
       array_merge(
         array($from),
-        php_is_gay_array(@$srcv["children"]))));
+        make_array(@$srcv["children"]))));
   #echo "$sql\n";
   $stmt = $db->query($sql) or die(print_r($db->errorInfo(),1));
   while (FALSE !== list($to,$bytes,$encap,$cnt) = $stmt->fetch()) {
