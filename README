@@ -1,25 +1,32 @@
 # ex: set ff=dos ts=2 et:
 
-Author
-------
-Ryan Flynn
-parseerror+lanmap2@gmail.com
+Author: Ryan Flynn <parseerror+lanmap2@gmail.com>
 
 About
 -----
 
-lanmap2 is a successor to my original lanmap software; it passively listens
-to LAN traffic and can construct an interactive visualization of the machines,
-operating systems and applications present on the LAN from the "hints" it
-extracts.
+lanmap2 is a passive network monitoring/analysis framework; no SNMP required.
 
-lanmap2 is a bottom-up rewrite of lanmap; it fixes a lot of protocol parsing
-and abstracts much of the internal application behind well-defined interfaces;
-something lanmap did not do.
+it promiscuously listens to all passing data and sifts out potentially
+interesting factoids (addresses, names, fingerprints, unusual situations, etc.)
+into an sqlite database.
 
-That being said, it doesn't currently work quite as lanmap does, so buyer
-beware; however, lanmap2 contains the structure that will allow it to surpass
-lanmap once it is mature.
+scripts are provided to query the database and generate image graphs of
+network entities, overall connectivity, traffic and notable applications,
+operating systems and roles that systems play.
+
+it is meant to be an extensible framework; anyone who spends time looking 
+at network traffic and knows a little SQL should be able to contribute
+analysis-type 'mappings' (see data/*.sql)
+
+lanmap2's components are decoupled from each other and are fairly
+straight-forward and flexible; you can report things to the database without
+having to use them and you can work on analysis-type tasks or scripts while
+network capture is running.
+
+the current graphing scripts use php to query the database and generate input
+to graphviz; these can be modified fairly easily.
+
 
 Installation
 ------------
@@ -33,7 +40,8 @@ Dependencies:
 	php (to interface with db and generate graphviz input; plan on replacing with lua)
 	graphviz (for graph generating)
 
-  debian based (including ubuntu):
+  Ubuntu Linux:
+  Debian Linux:
     sudo apt-get install libpcap-dev libsqlite3-dev gcc graphviz php5-cli php5-sqlite sqlite3
 
 1. Build the database
