@@ -108,6 +108,8 @@ while (list($addrfrom,$foo) = each($addrs)) {
     $rev[$v] = $addrfrom;
 }
 
+#printf("/*\n%s\n*/\n", print_r($rows,1));
+
 # apply mappings to addresses....
 # problem is, address may be in $addrs[] or it may be a child of one, so we need to search two levels deep
 # TODO: two ways to improve would be to apply mappings earlier, before addresses become hierarchical... or
@@ -120,13 +122,15 @@ foreach ($rows as $row) {
     # search each key's array keys...
     reset($addrs);
     while (list($k,$v) = each($addrs)) {
-      if (isset($addrs[$row["addr"]])) {
-        @$addrs[$row["addr"]][$row["maptype"]][] = $row["map"];
+      if (in_array($row["addr"], $v["children"])) {
+        @$addrs[$k][$row["maptype"]][] = $row["map"];
         break;
       }
     }
   }
 }
+
+printf("/*\n%s\n*/\n", print_r($addrs,1));
 
 $stmt = null;
 $rows = null;
