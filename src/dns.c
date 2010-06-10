@@ -308,7 +308,7 @@ size_t dns_calc_len_name(const char *buf, size_t len)
     } else if ((u8)*buf >= len) {
       buf += len, len = 0;
       break;
-    } else if (0 == *buf) {
+    } else if (*buf < 1) {
       buf++, len--;
       break;
     } else {
