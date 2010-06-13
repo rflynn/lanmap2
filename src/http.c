@@ -249,7 +249,8 @@ size_t http_parse(char *buf, size_t len, parse_frame *f, const parse_status *st,
   fputc('>', stdout);
   fputc('\n', stdout);
 #endif
-  if (5 == sscanf(buf, "%31[^ /\r\n]/%u.%u %u %63[^ \r\n]\r\n",
+  /* FIXME: refactor this to use the slightly better do_test_http_header */
+  if (len >= 13 && 5 == sscanf(buf, "%31[^ /\r\n]/%u.%u %u %63[^ \r\n]\r\n",
     scratchbuf, &scratchint, &scratchint, &scratchint, scratchbuf)) {
     http_resp *r = &h->data.resp;
     h->type = HTTP_Type_RESP;
@@ -271,7 +272,7 @@ size_t http_parse(char *buf, size_t len, parse_frame *f, const parse_status *st,
 #endif
     r->contents.start = buf;
     r->contents.len = len-(buf-start);
-  } else if (do_test_http_header/*do_test_req_method*/(buf, len)) {
+  } else if (do_test_http_header(buf, len)) {
     /* something like "GET / HTTP/1.1" */
     size_t consumed;
     h->type = HTTP_Type_REQ;
