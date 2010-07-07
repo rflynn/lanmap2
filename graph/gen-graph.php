@@ -79,6 +79,9 @@ SELECT
 FROM host AS ho
 JOIN host_addr AS a ON a.host_id = ho.id
 JOIN hint hi ON hi.addr = a.addr
+-- only match hints that have occured for this host within the timeframe of the host;
+-- TODO: split this query into two; one for the host_perspective and one for the attributes of it
+AND hi.latest >= (SELECT earliest FROM host_perspective WHERE id = (SELECT MAX(id) from host_perspective))
 JOIN map m ON m.val = hi.contents
 -- we really, really want
 -- WHERE m.maptype = 'OS'
