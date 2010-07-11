@@ -71,7 +71,7 @@ static ptrdiff_t build_p0f_fingerprint(const tcp *t, size_t tcplen, const ipv4 *
   p->q.X = !!ip->flag.evil;
   p->q.A = !!t->ackno;
   p->q.F = t->psh | t->urg;
-  while (cur < end) {
+  while (cur + 1 < end && p->optlen < sizeof p->opt / sizeof p->opt[0]) {
     const tcp_opt *o = (tcp_opt *)cur;
 #if 0
     printf("Opt #%u (%s)", o->type,
@@ -89,23 +89,28 @@ static ptrdiff_t build_p0f_fingerprint(const tcp *t, size_t tcplen, const ipv4 *
       /* copy opt-specific ancillary data... */
       switch (o->type){
       case TCP_Opt_MSS:
-        p->opt[p->optlen].n = ntohs(*(u16*)o->val);
-        p->mss = p->opt[p->optlen].n;
+        if (cur + 2 + 2 <= end) {
+          p->opt[p->optlen].n = ntohs(*(u16*)o->val);
+          p->mss = p->opt[p->optlen].n;
+        }
         break;
       case TCP_Opt_WSOPT:
-        p->opt[p->optlen].n = *(u8*)o->val;
+        if (cur + 2 + 1 <= end)
+          p->opt[p->optlen].n = *(u8*)o->val;
         break;
       case TCP_Opt_TSOPT:
-        p->opt[p->optlen].n = !!*(u32*)o->val;
+        if (cur + 2 + 4 <= end)
+          p->opt[p->optlen].n = !!*(u32*)o->val;
         break;
       }
-      cur += o->len;
+      if (o->len >= 2)
+        cur += o->len;
+      else
+        goto done;
     }
     p->optlen++;
   }
-#if 0
-  assert(cur == end);
-#endif
+done:
   return cur - (u8*)t;
 }
 
