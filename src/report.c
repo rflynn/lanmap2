@@ -219,7 +219,7 @@ void rep_hint(const char *addrtype,
       fprintf(stderr, "%s HintUpd step failed: %s\n", __func__, sqlite3_errmsg(DB));
     }
     if (0 == sqlite3_changes(DB)) {
-      /* if update doesn't update anything it means the approrpriate record hasn't
+      /* if update doesn't update anything it means the appropriate record hasn't
        * been created yet (which will obviously happen exactly once per unique
        * record), but since the vast majority of reports are duplicates we call
        * update first. so, let's create the record. */
@@ -230,7 +230,7 @@ void rep_hint(const char *addrtype,
       ) {
         fprintf(stderr, "%s HintIns bind failed: %s\n", __func__, sqlite3_errmsg(DB));
       } else {
-          if (SQLITE_DONE == sqlite3_step(HintIns)) {
+        if (SQLITE_DONE == sqlite3_step(HintIns)) {
           printf("%s HintIns SQLITE_DONE\n", __func__);
         } else {
           fprintf(stderr, "%s HintIns step failed: %s\n", __func__, sqlite3_errmsg(DB));
