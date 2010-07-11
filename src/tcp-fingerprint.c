@@ -71,7 +71,7 @@ static ptrdiff_t build_p0f_fingerprint(const tcp *t, size_t tcplen, const ipv4 *
   p->q.X = !!ip->flag.evil;
   p->q.A = !!t->ackno;
   p->q.F = t->psh | t->urg;
-  while (cur + 1 < end && p->optlen < sizeof p->opt / sizeof p->opt[0]) {
+  while (cur < end && p->optlen < sizeof p->opt / sizeof p->opt[0]) {
     const tcp_opt *o = (tcp_opt *)cur;
 #if 0
     printf("Opt #%u (%s)", o->type,
@@ -82,6 +82,8 @@ static ptrdiff_t build_p0f_fingerprint(const tcp *t, size_t tcplen, const ipv4 *
       p->q.P = 1;
       break;
     }
+    if (cur + 1 == end)
+      break; /* anything other than EOL need 2 bytes... */
     p->opt[p->optlen].id = o->type;
     if (TCP_Opt_End == o->type || TCP_Opt_NOP == o->type) {
       cur++;
@@ -260,6 +262,12 @@ static struct {
   const char *expected_p0f,
              *proper_p0f;
 } TestCase[] = {
+  { 
+     0, "",
+     0, "",
+    "0:0:0:0::Z",
+    ""
+  },
   {
     20, "\x45\x00\x00\x30\x72\x60\x40\x00\x80\x06\xe3\x88\x0a\x2b\x61\x51\x42\x98\xf6\xca",
     28, "\x9e\x82\xac\x7f\x9a\x92\xbc\x0a\x00\x00\x00\x00\x70\x02\xff\xff\x3c\xa1\x00\x00\x02\x04\x05\xb4\x01\x01\x04\x02",
@@ -275,19 +283,31 @@ static struct {
   { 
     20, "\x45\x10\x00\x3c\x13\x69\x40\x00\x40\x06\x50\x5c\x0a\x2b\x61\x40\x0a\x2b\x61\x51",
     40, "\x04\xbb\x00\x17\xd7\xe1\x1d\xf4\x00\x00\x00\x00\xa0\x02\x16\xd0\x32\xce\x00\x00\x02\x04\x05\xb4\x04\x02\x08\x0a\x1e\x3d\x0e\x9d\x00\x00\x00\x00\x01\x03\x03\x00",
-    "",
+    "S4:64:1:60:M1460,S,T,N,W0:.",
     ""
   },
   { 
     20, "\x45\x00\x00\x3c\x58\x0f\x00\x00\x33\x06\xab\x2b\xc0\xa8\x01\xc8\xc0\xa8\x01\x69",
     40, "\x83\x9a\x00\x58\xc1\xc9\xd7\xc8\x00\x00\x00\x00\xa0\x02\x10\x00\x17\x2e\x00\x00\x03\x03\x0a\x01\x02\x04\x01\x09\x08\x0a\x3f\x3f\x3f\x3f\x00\x00\x00\x00\x00\x00",
-    "4096:51:0:60:W10,N,M265,T,E:P",
+    "4096:64:0:60:W10,N,M265,T,E:P",
     ""
   },
   { 
-     0, "",
-     0, "",
-    "",
+     20, "E\x00\x00<\xfa\x95@\x00@\x06\x96o\xc0\xa8\x01d\x18\x8f\xcf\x1b",
+     40, "\xba\x07\x00""P\x84\xcf\x9d\xbe\x00\x00\x00\x00\xa0\x02\x16\xd0""A)\x00\x00\x02\x04\x05\xb4\x04\x02\x08\x0a\x02?g+\x00\x00\x00\x00\x01\x03\x03\x07",
+    "S4:64:1:60:M1460,S,T,N,W7:.",
+    ""
+  },
+  { /* optlen too short */
+     20, "E\x00\x00<\xfa\x95@\x00@\x06\x96o\xc0\xa8\x01d\x18\x8f\xcf\x1b",
+     24, "\xba\x07\x00P\x84\xcf\x9d\xbe\x00\x00\x00\x00\xa0\x02\x16\xd0""A)\x00\x00\x02\x04\x05\x00",
+    "5840:64:1:44:M1280:.",
+    ""
+  },
+  { /* optlen too long */
+     20, "E\x00\x00<\xfa\x95@\x00@\x06\x96o\xc0\xa8\x01d\x18\x8f\xcf\x1b",
+     24, "\xba\x07\x00P\x84\xcf\x9d\xbe\x00\x00\x00\x00\xa0\x02\x16\xd0""A)\x00\x00\x02\x04\x05\xFF",
+    "5840:64:1:44:M1535:.",
     ""
   }
 }, *T = TestCase;
@@ -304,23 +324,25 @@ static void test(void)
     parse_frame pf2 = { PROT_TCP, T->tcplen, T->tcp, NULL };
     /* print */
     printf("#%2u:\n", i);
-    printf("  IP len=%u ", T->iplen);
-    dump_chars(T->ip, T->iplen, stdout);
-    fputc('\n', stdout);
-    printf("  TCP len=%u ", T->tcplen);
-    dump_chars(T->tcp, T->tcplen, stdout);
-    fputc('\n', stdout);
     /* parse ip and tcp in order */
     ipv4_parse(T->ip, T->iplen, &pf, NULL);
     tcp_parse(T->tcp, T->tcplen, &pf2, NULL);
-    ipv4_dump(&pf, 0, stdout);
-    tcp_dump(&pf2, 0, stdout);
     /* generate fingerprint */
     p0f2str(p0fbuf, sizeof p0fbuf, (tcp*)T->tcp, T->tcplen,
                                    (ipv4*)T->ip, T->iplen, 0);
-    printf("%s p0f:   %s\nexpected: %s)\n",
-      0 == strcmp(p0fbuf, T->expected_p0f) ? "OK" : "!!",
-      p0fbuf, T->expected_p0f);
+    if (0 == strcmp(p0fbuf, T->expected_p0f)) {
+      printf("OK\n");
+    } else {
+      printf("%s p0f:   %s\nexpected: %s)\n", "!!", p0fbuf, T->expected_p0f);
+      printf("  IP len=%u ", T->iplen);
+      dump_chars(T->ip, T->iplen, stdout);
+      fputc('\n', stdout);
+      printf("  TCP len=%u ", T->tcplen);
+      dump_chars(T->tcp, T->tcplen, stdout);
+      fputc('\n', stdout);
+      ipv4_dump(&pf, 0, stdout);
+      tcp_dump(&pf2, 0, stdout);
+    }
     T++;
   }
 }
