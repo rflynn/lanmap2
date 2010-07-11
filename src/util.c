@@ -177,6 +177,7 @@ size_t dump_chars(const char *buf, size_t len, FILE *f)
     "\\xf8", "\\xf9", "\\xfa", "\\xfb", "\\xfc", "\\xfd", "\\xfe", "\\xff"
   };
   size_t bytes = len;
+  assert(len < 0x10000000 && "len has probably overflowed");
   setlinebuf(f);
   while (len--) {
     if ((' ' == *buf || isalnum((int)*buf) || ispunct((int)*buf)) && !(0x80 & *buf)) {
