@@ -204,6 +204,7 @@ static struct {
   size_t len;
   char txt[128];
 } TestCase[] = {
+  { 28, "\xea\xa9\xc7[1^\x1c.\x00\x00\x00\x00p\x02 \x00\xd1;\x00\x00\x02\x04\x05\xb4\x01\x01\x04\x02" }, /* create_vibe */
   { 32, "\xca\xf0\x00P!\xfe\xfd+\xaf\x8d\x17\x83\x80\x10\x00l\xd5\xe3\x00\x00\x01\x01\x08\x0a\x00\x08\xf2\xabP\xc5Y\xcd" }, /* Alessio */
   { 28, "\x9a\xe0\x4a\x23\xd5\xfc\x44\x7d\x00\x00\x00\x00\x70\x02\xff\xff\xa9\x79\x00\x00\x02\x04\x05\xb4\x01\x01\x04\x02" },
   { 25, "\x9a\xc6\x20\xb6\xb7""2\xfb""3\x00\x00\x00\x00p\x02\xff\xffp]\x00\x00\x02\x04\x05\xb4\x01" },
@@ -217,7 +218,7 @@ static void test(void)
   unsigned i;
   for (i = 0; i < sizeof TestCase / sizeof TestCase[0]; i++) {
     size_t parsed;
-    parse_frame pf = { PROT_IPv4, T->len, T->txt, NULL };
+    parse_frame pf = { PROT_IPv4, T->len, T->txt, NULL }; /* dummy frame */
     printf("#%2u (%u bytes): ", i, (unsigned)T->len);
     dump_chars(T->txt, T->len, stdout);
     fputc('\n', stdout);
