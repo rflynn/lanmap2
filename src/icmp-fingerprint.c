@@ -77,18 +77,28 @@ static void fprint2str(char *buf, size_t len, const echo_fingerprint *f)
   }
 }
 
+static u8 ttl_normalize(u8 ttl)
+{
+  ttl--;
+  ttl |= ttl >> 1;
+  ttl |= ttl >> 2;
+  ttl |= ttl >> 4;
+  ttl++;
+  return ttl;
+}
+
 /**
  * @note called in context of 'parse', so parse stack
  */
 void report_echo_fingerprint(const icmp *i, size_t len, const parse_status *st)
 {
   if (PROT_IPv4 == st->frame[st->frames-1].id) {
-    char fbuf[1500 * 4],
+    char fbuf[1500 * 4 + 1],
         ipbuf[48];
     const ipv4 *ip = st->frame[st->frames-1].off;
     size_t flen;
     echo_fingerprint f = {
-      i->head.type, ip->ttl, !ip->id, !!ip->flag.dontfrag,
+      i->head.type, ttl_normalize(ip->ttl), !ip->id, !!ip->flag.dontfrag,
       len - (i->data.echo.payload - (u8*)i), i->data.echo.payload
     };
     (void)ipv4_addr_format(ipbuf, sizeof ipbuf, ip->src);
