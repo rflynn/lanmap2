@@ -11,6 +11,8 @@ INSERT INTO map(maptype,map,src,val)VALUES('OS', 'Linux',   'ICMP.Echo.Fingerpri
 INSERT INTO map(maptype,map,src,val)VALUES('OS', 'Linux',   'ICMP.Echo.Fingerprint','echo,ttl=64,idz=1,df=0,bytes=56,payload=........\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f !"#$%&''()*+,-./01234567');
 
 INSERT INTO map(maptype,map,src,val)VALUES('OS', 'BSD', 'ICMP.Echo.Fingerprint','echo,ttl=64,idz=0,df=0,bytes=56,payload=........\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f !"#$%&''()*+,-./01234567');
+-- idz=1,df=1 from FreeBSD7.3
+INSERT INTO map(maptype,map,src,val)VALUES('OS', 'FreeBSD', 'ICMP.Echo.Fingerprint','echo,ttl=64,idz=1,df=1,bytes=56,payload=........\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f !"#$%&''()*+,-./01234567');
 
 -- some OSes with ancient BSD heritage use a TTL of 255 and a Muuss payload
 -- "In December of 1983...  The folks at Berkeley eagerly took back my kernel modifications and the PING source code, and it's been a standard part of Berkeley UNIX ever since."
