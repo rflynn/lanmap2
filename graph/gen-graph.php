@@ -98,7 +98,7 @@ $stmt = $db->query($sql) or die(print_r($db->errorInfo(),1));
 $stmt->setFetchMode(PDO::FETCH_ASSOC);
 $rows = $stmt->fetchAll();
 
-#echo "rows=".print_r($rows,1);
+printf("/*\n%s\n*/\n", print_r($rows,1));
 #exit;
 
 # now build an array to map addrs child -> parent, so we can aggregate traffic
@@ -214,6 +214,8 @@ while (list($from,$srcv) = each($addrs)) {
   }
 }
 
+echo "/* edges=".print_r($edge,1)."*/";
+
 function colorize($n)
 {
   $c = 0xF0 - log($n) / log(2) * 10;
@@ -222,6 +224,22 @@ function colorize($n)
     return sprintf("#%02x0000", $c);
   } else {
     return sprintf("#%02x%02x%02x", $c, $c, $c);
+  }
+}
+
+
+# total "Outside" Gateway edges
+# any traffic going to or from a Gateway is assumed to be to/from "Outside"
+reset($edge);
+while (list($from,$fromv) = each($edge)) {
+  reset($fromv);
+  while (list($to,$bytes) = each($fromv)) {
+    # show route to outside for all routers,
+    # even if we can't detect them directly
+    if (@in_array("Gateway", $addrs[$to]["Role"]))
+      @$edge[$to]["Outside"] += $bytes;
+    if (@in_array("Gateway", $addrs[$from]["Role"]))
+      @$edge["Outside"][$from] += $bytes;
   }
 }
 
@@ -236,10 +254,6 @@ while (list($from,$fromv) = each($edge)) {
       $width = 0.1;
     printf("\"%s\" -> \"%s\" [penwidth=%.1f,color=\"%s\"]\n",
       $from, $to, $width, colorize($bytes));
-    # show route to outside for all routers,
-    # even if we can't detect them directly
-    if (@in_array("Router", $addrs[$from]["Role"]))
-      printf("\"%s\" -> \"Outside\" [];\n", $from);
   }
 }
 
