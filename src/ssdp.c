@@ -140,14 +140,20 @@ static void report(const parse_status *st, const parse_frame *f)
     (void)ipv4_addr_format(ipbuf, sizeof ipbuf, ip->src);
     for (i = 0; i < h->cnt; i++) {
       const struct head_kv *kv = h->h+i;
+      const char *name;
       if (0 == kv->key.len || 0 == kv->val.cnt)
         continue;
-      if (6 == kv->key.len && 0 == strncasecmp(kv->key.start, "SERVER", 6)) {
-        rep_hint("4", ipbuf, "SSDP.Server", kv->val.p[0].start, kv->val.p[0].len);
-      } else if (8 == kv->key.len && 0 == strncasecmp(kv->key.start, "LOCATION", 8)) {
-        rep_hint("4", ipbuf, "SSDP.Location", kv->val.p[0].start, kv->val.p[0].len);
-      } else if (2 == kv->key.len && 0 == strncasecmp(kv->key.start, "NT", 2)) {
-        rep_hint("4", ipbuf, "SSDP.NT", kv->val.p[0].start, kv->val.p[0].len);
+      if (6 == kv->key.len && 0 == strncasecmp(kv->key.start, "SERVER", 6))
+        name = "SSDP.Server";
+      else if (8 == kv->key.len && 0 == strncasecmp(kv->key.start, "LOCATION", 8))
+        name = "SSDP.Location";
+      else if (2 == kv->key.len && 0 == strncasecmp(kv->key.start, "NT", 2))
+        name = "SSDP.NT";
+      else
+        name = 0;
+      if (name) {
+        fprintf(stderr, "%s %s %.*s\n", ipbuf, name, (unsigned)kv->val.p[0].len, kv->val.p[0].start);
+        rep_hint("4", ipbuf, name, kv->val.p[0].start, kv->val.p[0].len);
       }
     }
   } else {
