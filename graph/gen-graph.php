@@ -27,6 +27,34 @@ function icon($addrs, $addr)
   return $icon;
 }
 
+# convert from array(key1 => weight1, [keyn => weightn]) to array(key1,...,keyn), key1 being the "best"
+# given an array of mappings, merge general and specific mappings
+# example: mappings for "Linux" should be merged with "Linux2.6"
+function merge_map($a)
+{
+  # sort so that longer names go first; therefore "Linux2.6" will come before "Linux";
+  # this is so when we reach "Linux" we can see that we already
+  krsort($a);
+  $prefix = array();
+  $score = array();
+  foreach (array_keys($a) as $k) {
+	  $pre = preg_match('/^(\D+)/', $k, $m) ? $m[0] : '';
+	  # only add a prefix entry if we ourselves are not a prefix, or
+	  # if we are if there haven't been any that came before us.
+	  # in this case "Linux2.6" adds the "Linux" prefix, then "Linux" sees
+	  # that "Linux" has been added
+	  if ($pre != $k || !@$score[$pre])
+		  @$prefix[$k] = $pre;
+	  @$score[$pre] += $a[$k];
+  }
+  $b = array();
+  foreach (array_keys($prefix) as $k)
+	  $b[$k] = $score[$prefix[$k]];
+  # sort by weight
+  arsort($b);
+  return array_keys($b);
+}
+
 # calculate our timestamp for inclusion
 $addrs = array();
 
@@ -119,19 +147,25 @@ while (list($addrfrom,$foo) = each($addrs)) {
 # generate a reverse-mapping so at least the amount of work is based on number of addresses and not number of mappings...
 foreach ($rows as $row) {
   if (isset($addrs[$row["addr"]])) {
-    @$addrs[$row["addr"]][$row["maptype"]][] = $row["map"];
+    @$addrs[$row["addr"]][$row["maptype"]][$row["map"]] = $row["weight"];
   } else {
     # FIXME: quick and dirty and ugly
     # search each key's array keys...
     reset($addrs);
     while (list($k,$v) = each($addrs)) {
       if (in_array($row["addr"], $v["children"])) {
-        @$addrs[$k][$row["maptype"]][] = $row["map"];
+        @$addrs[$k][$row["maptype"]][$row["map"]] = $row["weight"];
         break;
       }
     }
   }
 }
+
+# merge mappings
+foreach (array_keys($addrs) as $k)
+  foreach (array_keys($addrs[$k]) as $k2)
+    if ($k2 != "children")
+      $addrs[$k][$k2] = merge_map($addrs[$k][$k2]);
 
 printf("/*\n%s\n*/\n", print_r($addrs,1));
 
