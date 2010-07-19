@@ -102,6 +102,11 @@ static size_t parse(char *buf, size_t len, parse_frame *f, const parse_status *s
   i.extra.start = buf;
   i.extra.len = memcspn(buf, len, "\"\r\n", 3);
   f->pass = &i;
+  /* TODO: reports:
+   * - extract host from uri, report host as a printer
+   * - associate make with host
+   * - associate info with host, maybe
+   */
   return olen;
 }
 
@@ -127,7 +132,7 @@ static struct {
   size_t len;
   char txt[128];
 } TestCase[] = {
-  { 182, "b00e 3 ipp://192.168.1.106:631/printers/EPSON_Stylus_Photo_1400 \"Julia Lin\xe2\x80\x99s iMac (3)\" "
+  { 182, "b00e 3 ipp://192.168.1.106:631/printers/EPSON_Stylus_Photo_1400 \"User Name\xe2\x80\x99s iMac (3)\" "
          "\"EPSON Stylus Photo 1400\" \"EPSON SP 1400 Series (2)\" job-sheets=none,none lease-duration=300\x0a" }
 }, *T = TestCase;
 
