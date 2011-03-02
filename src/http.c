@@ -8,6 +8,40 @@
  * HTTP
  */
 
+#if 0
+len=81
+\x00!)p\xeaF\x00%dG\xb3\xfe\x08\x00E\x00\x00C\x96\x90@\x00@\x11>Y\xc0\xa8\x01\xc8\xa7\xce\xfb\x81\xb0F\x005\x00/f\x01\xd8f\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x03ecx\x0dimages-amazon\x03com\x00\x00\x01\x00\x01
+linktype=1
+parsed 802.3 len=81 bytes=14
+parsed IPv4 len=67 bytes=20
+test_ipv4 0x11=0x11 protocol=0x06
+parsed TCP len=47 bytes=32
+cap: http.c:273: http_parse: Assertion `r->contents.len < 0x10000000' failed.
+
+Program received signal SIGABRT, Aborted.
+[Switching to Thread 0x7fee490ad6f0 (LWP 30691)]
+0x00007fee486b6fb5 in raise () from /lib/libc.so.6
+
+(gdb) bt
+#0  0x00007fee486b6fb5 in raise () from /lib/libc.so.6
+#1  0x00007fee486b8bc3 in abort () from /lib/libc.so.6
+#2  0x00007fee486aff09 in __assert_fail () from /lib/libc.so.6
+#3  0x000000000040cd6f in http_parse (
+    buf=0x7fee47983099 "Date: Thu, 22 Jul 2010 17:59:34 GMT\r\nServer: Apache\r\nLast-Modified: Wed, 20 May 2009 11:43:31 GMT\r\nETag: \"35c288-1f4-46a56895abec0\"\r\nAccept-Ranges: bytes\r\nVary: Accept-Encoding\r\nContent-Encoding: gzip"..., len=15, f=0x63a518, st=0x63a480, 
+    h=0x6411c0) at http.c:273
+#4  0x000000000040ca5f in _http_parse (
+    buf=0x7fee47983088 "HTTP/1.1 200 OK\r\nDate: Thu, 22 Jul 2010 17:59:34 GMT\r\nServer: Apache\r\nLast-Modified: Wed, 20 May 2009 11:43:31 GMT\r\nETag: \"35c288-1f4-46a56895abec0\"\r\nAccept-Ranges: bytes\r\nVary: Accept-Encoding\r\nConte"..., len=15, f=0x63a518, st=0x63a480)
+    at http.c:233
+#5  0x00000000004028e3 in do_parse (
+    buf=0x7fee47983088 "HTTP/1.1 200 OK\r\nDate: Thu, 22 Jul 2010 17:59:34 GMT\r\nServer: Apache\r\nLast-Modified: Wed, 20 May 2009 11:43:31 GMT\r\nETag: \"35c288-1f4-46a56895abec0\"\r\nAccept-Ranges: bytes\r\nVary: Accept-Encoding\r\nConte"..., len=15, st=0x63a480) at parse.c:194
+#6  0x0000000000402de4 in parse (buf=0x7fee47983046 "", len=81, linktype=1, st=0x63a480) at parse.c:306
+#7  0x0000000000401ffb in do_listen () at cap.c:167
+#8  0x0000000000402386 in listen () at cap.c:258
+#9  0x0000000000402498 in main (argc=1, argv=0x7fff510d18d8) at cap.c:292
+
+
+#endif
+
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
@@ -64,17 +98,19 @@ static int test_tcp_port(const char *buf, size_t len, const parse_status *st)
       || http_is_tcp_port(t->srcport);
 }
 
+static int do_test_req_method(const char *buf, size_t len);
+
 static int do_test_http_header(const char *buf, size_t len)
 {
-  char unused[1024];
-  unsigned unused2;
+  static char method[9], path[4096];
+  unsigned int v;
   /* shortest possible header: "A * HTTP/1.1\r\n" */
   /* NOTE: we use this parser for other HTTP-based protocols such
    * as SSDP and RTSP */
   return
     len >= 13 &&
-    5 == sscanf(buf, "%31[^ \r\n] %1023[^ \r\n] %31[^/\r\n]/%u.%u\r\n",
-      unused, unused, unused, &unused2, &unused2);
+    do_test_req_method(buf, len) &&
+    5 == sscanf(buf, "%9[A-Z] %1023[^ \r\n] HTTP/%u.%u\r\n", method, path, &v, &v);
 }
 
 static int do_test_req_method(const char *buf, size_t len)
@@ -120,7 +156,7 @@ static ptrdiff_t do_parse_req(char *buf, size_t len, http_req *r)
     l = memcspn(buf, len, "\r\n", 2);
     r->ver.start = buf;
     r->ver.len = l;
-printf("HTTP ver=<%.*s> (%u)\n", r->ver.len, r->ver.start, r->ver.len);
+    printf("HTTP ver=<%.*s> (%u)\n", r->ver.len, r->ver.start, r->ver.len);
     buf += l, len -= l;
     /* skip newline */
     /* NOTE: we must skip only a single set of "\r\n" */
@@ -149,25 +185,32 @@ static int test_reqhead(const char *buf, size_t len, const parse_status *st)
  */
 static int test_resphead(const char *buf, size_t len, const parse_status *st)
 {
-  return len > 5 &&
+  /* shortests possibe: "HTTP/#.# ### X\r\n" */
+  return len >= 16 &&
          0 == memcmp(buf, "HTTP/", 5);
 }
 
+/* FIXME: do not assume string headers */
 size_t http_dump_headers(const http_headers *h, int opt, FILE *out)
 {
+  static char buf[4096];
 # define DUMP_KEY_ALIGN 24
   static const char Dots[DUMP_KEY_ALIGN] = "........................";
   int bytes = 0;
   unsigned i, j;
   for (i = 0; i < h->cnt; i++) {
-    bytes += fprintf(out, "  %.*s%.*s",
-      h->h[i].key.len, h->h[i].key.start,
-      h->h[i].key.len > DUMP_KEY_ALIGN ? 0 : DUMP_KEY_ALIGN - h->h[i].key.len, Dots);
-    for (j = 0; j < h->h[i].val.cnt; j++)
-      bytes += fprintf(out, "%.*s",
-        h->h[i].val.p[j].len, h->h[i].val.p[j].start);
-    fputc('\n', out);
-    bytes++;
+    const char *ks = h->h[i].key.start;
+    const size_t kl = h->h[i].key.len,
+                 kdlen = dump_chars_buf(buf, sizeof buf, ks, kl);
+    bytes += fprintf(out, "  %.*s%.*s", kdlen, buf,
+      kdlen > DUMP_KEY_ALIGN ? 0 : DUMP_KEY_ALIGN - kdlen, Dots);
+    for (j = 0; j < h->h[i].val.cnt; j++) {
+      const char *vs = h->h[i].val.p[j].start;
+      const size_t vl = h->h[i].val.p[j].len,
+                   vdlen = dump_chars_buf(buf, sizeof buf, vs, vl);
+      bytes += fprintf(out, "%.*s", vdlen, buf);
+    }
+    fputc('\n', out), bytes++;
   }
   return (size_t)bytes;
 }
@@ -217,6 +260,7 @@ size_t http_parse_headers(char *buf, size_t len, http_headers *head)
     v++;
     kv++;
   }
+  assert(buf >= orig);
   return (size_t)(buf - orig);
 }
 
@@ -232,46 +276,35 @@ static size_t _http_parse(char *buf, size_t len, parse_frame *f, const parse_sta
   return http_parse(buf, len, f, st, &h);
 }
 
-
 /**
  * @return number of octets used by this protocol, or zero upon error
  */
 size_t http_parse(char *buf, size_t len, parse_frame *f, const parse_status *st, http *h)
 {
-  char        scratchbuf[64];
-  unsigned    scratchint;
   size_t      olen = len;
   const char *start = buf,
              *end = buf + len;
-#if 0
-  printf("HTTP %s len=%u bytes=<", __func__, (unsigned)len);
-  dump_chars(buf, len, stdout);
-  fputc('>', stdout);
-  fputc('\n', stdout);
-#endif
-  /* FIXME: refactor this to use the slightly better do_test_http_header */
-  if (len >= 13 && 5 == sscanf(buf, "%31[^ /\r\n]/%u.%u %u %63[^ \r\n]\r\n",
-    scratchbuf, &scratchint, &scratchint, &scratchint, scratchbuf)) {
+
+  if (test_resphead(buf, len, st)) {
     http_resp *r = &h->data.resp;
     h->type = HTTP_Type_RESP;
     /* TODO: break out to separate function a la do_parse_req() */
     /* something like "HTTP/1.1 301 Moved Permanently" */
     r->ver.start = buf;
     r->ver.len = memcspn(r->ver.start, len, " ", 1);
-    r->code.start = r->ver.start + r->ver.len +
-            strspn(r->ver.start + r->ver.len, " ");
+    r->code.start = r->ver.start + r->ver.len + strspn(r->ver.start + r->ver.len, " ");
     r->code.len = strcspn(r->code.start, " ");
-    r->desc.start = r->code.start + r->code.len +
-            strspn(r->code.start + r->code.len, " ");
+    r->desc.start = r->code.start + r->code.len + strspn(r->code.start + r->code.len, " ");
     r->desc.len = strcspn(r->desc.start, "\r\n");
-    buf = r->desc.start + r->desc.len +
-      strspn(r->desc.start + r->desc.len, "\r\n");
+    buf = r->desc.start + r->desc.len + strspn(r->desc.start + r->desc.len, "\r\n");
     buf += http_parse_headers(buf, len - (buf - start), &r->headers);
 #if 0
     assert(buf-start <= (ptrdiff_t)len);
 #endif
+    assert(buf >= start);
     r->contents.start = buf;
     r->contents.len = len-(buf-start);
+    assert(r->contents.len < 0x10000000);
   } else if (do_test_http_header(buf, len)) {
     /* something like "GET / HTTP/1.1" */
     size_t consumed;
@@ -283,6 +316,7 @@ size_t http_parse(char *buf, size_t len, parse_frame *f, const parse_status *st,
       buf += consumed, len -= consumed;
       h->data.req.contents.start = buf;
       h->data.req.contents.len = len;
+      assert(len < 0x10000000);
     }
   } else {
     h->type = HTTP_Type_DATA;
@@ -434,7 +468,7 @@ static struct code {
 
 static struct {
   size_t len;
-  char txt[512];
+  const char *txt;
 } TestCase[] = {
   { 0, ""                    },
   { 1, "a"                   },
@@ -459,7 +493,8 @@ static struct {
   { 5, "a: b\r"              },
   { 5, "a: b\r"              },
   { 6, "a: b\r\n"            },
-  { 13, "a: b\r\nc:d\r\n\r\n"}
+  { 13, "a: b\r\nc:d\r\n\r\n"},
+  { 14, "x:y[\x1bt\xe6\xf4\xfd\x06\x06`\x24z" }
 }, *T = TestCase;
 
 static void test(void)
