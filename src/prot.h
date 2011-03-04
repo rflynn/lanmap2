@@ -81,6 +81,8 @@ enum Prot {
   PROT_DCERPC,
   PROT_ESP,
   PROT_IPP,
+  PROT_Oscar,
+  PROT_DHT,
 #if 0
   PROT_AARP,        /* Apple Address Resolution Protocol */
   PROT_ICMPV6,

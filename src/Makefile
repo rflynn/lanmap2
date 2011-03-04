@@ -8,7 +8,7 @@ ALL = cap parse util logical linux_sll ieee802_3 llc arp ip csvread icmp symbol8
 # universal dependencies
 DEP = prot.h util.o
 
-cap: cap.o prot.o parse.o report.o util.o getopt.o logical.o linux_sll.o ieee802_3.o llc.o arp.o ipv4.o icmp.o icmp-fingerprint.o udp.o bootp.o ssdp.o nbdgm.o nbns.o smb.o tcp.o tcp-fingerprint.o http.o https.o tivoconn.o ipv6.o dns.o symbol8781.o cdp.o browse.o radius.o stp.o ipx.o lldp.o snmp.o ntp.o mcafee-rumor.o rtsp.o mssqlm.o rasadv.o dhcpv6.o netbios.o igmpv2.o bittorrent.o storm-botnet.o gnutella.o irc.o wsdd.o dce-rpc.o esp.o ipp.o
+cap: cap.o prot.o parse.o report.o util.o getopt.o logical.o linux_sll.o ieee802_3.o llc.o arp.o ipv4.o icmp.o icmp-fingerprint.o udp.o bootp.o ssdp.o nbdgm.o nbns.o smb.o tcp.o tcp-fingerprint.o http.o https.o tivoconn.o ipv6.o dns.o symbol8781.o cdp.o browse.o radius.o stp.o ipx.o lldp.o snmp.o ntp.o mcafee-rumor.o rtsp.o mssqlm.o rasadv.o dhcpv6.o netbios.o igmpv2.o bittorrent.o storm-botnet.o gnutella.o irc.o wsdd.o dce-rpc.o esp.o ipp.o dht.o
 
 logical.o: logical.c logical.h $(DEP)
 linux_sll.o: linux_sll.c linux_sll.h $(DEP)
@@ -52,6 +52,7 @@ wsdd.o: wsdd.c wsdd.h $(DEP)
 dce-rpc.o: dce-rpc.c dce-rpc.h $(DEP)
 esp.o: esp.c esp.h $(DEP)
 ipp.o: ipp.c ipp.h $(DEP)
+dht.o: dht.c dht.h $(DEP)
 
 all: $(ALL)
 
@@ -99,7 +100,7 @@ ipv4: ipv4.c ipv4.h ieee802_3.h util.c util.h
 tcp: tcp.c tcp.h util.c util.h
 	$(RM) util.o
 	$(CC) $(CFLAGS) -c -o util.o util.c
-	$(CC) $(CFLAGS) -c -DTEST -o tcp.o tcp.c
+	$(CC) $(CFLAGS) -c -DTEST -DNOREP -o tcp.o tcp.c
 	$(CC) $(CFLAGS) -o tcp tcp.o util.o
 
 tcp-fingerprint: tcp.c tcp.h util.c util.h tcp-fingerprint.h tcp-fingerprint.c ipv4.c ipv4.h
@@ -124,7 +125,7 @@ http: tcp.c tcp.h util.c util.h http.h http.c ipv4.c ipv4.h
 	$(RM) ipv4.o
 	$(CC) $(CFLAGS) -c -o ipv4.o ipv4.c
 	$(RM) tcp.o
-	$(CC) $(CFLAGS) -c -o tcp.o tcp.c
+	$(CC) $(CFLAGS) -c -DNOREP -o tcp.o tcp.c
 	$(CC) $(CFLAGS) -c -DTEST -o http.o http.c
 	$(CC) $(CFLAGS) -o http http.o tcp.o util.o ipv4.o
 
