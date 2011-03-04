@@ -50,12 +50,6 @@
   ...
 */
 
-struct ptrlen {
-  const char *start;
-  size_t len;
-};
-typedef struct ptrlen ptrlen;
-
 /**
  * @ref #1 
  */

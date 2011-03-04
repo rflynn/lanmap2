@@ -22,5 +22,17 @@ typedef uint32_t u32;
 typedef  int64_t s64;
 typedef uint64_t u64;
 
+struct ptrlen {
+  char *start;
+  unsigned len;
+};
+typedef struct ptrlen ptrlen;
+
+struct ptrlen_list {
+  unsigned cnt;
+  ptrlen p[8];
+};
+typedef struct ptrlen_list ptrlen_list;
+
 #endif
 

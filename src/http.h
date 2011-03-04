@@ -110,18 +110,6 @@ enum HTTP_Code {
   HTTP_Code_COUNT
 };
 
-struct ptrlen {
-  char *start;
-  unsigned len;
-};
-typedef struct ptrlen ptrlen;
-
-struct ptrlen_list {
-  unsigned cnt;
-  ptrlen p[8];
-};
-typedef struct ptrlen_list ptrlen_list;
-
 struct http_headers {
   unsigned cnt;
   struct head_kv {

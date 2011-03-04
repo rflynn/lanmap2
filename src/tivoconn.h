@@ -58,21 +58,6 @@ services=FooService:1234,BarService:4321
 */
 #endif
 
-struct ptrlen {
-  char *start;
-  unsigned len;
-};
-typedef struct ptrlen ptrlen;
-
-#if 0
-#define PTRLENL_MAX 2
-struct ptrlenl {
-  unsigned cnt;
-  ptrlen item[PTRLENL_MAX];
-};
-typedef struct ptrlenl ptrlenl;
-#endif
-
 struct kkv {
   enum Key key;
   ptrlen  keystr,
