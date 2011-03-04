@@ -59,7 +59,8 @@ extern const prot_iface Iface_Trailing,
                         Iface_WSDD,
                         Iface_DCERPC,
                         Iface_ESP,
-                        Iface_IPP;
+                        Iface_IPP,
+                        Iface_DHT;
 
 static prot_mod Prot[PROT_COUNT] = {
   { PROT_UNKNOWN,     &Iface_Trailing,    0, { { { 0, NULL }, 0 } } },
@@ -106,7 +107,8 @@ static prot_mod Prot[PROT_COUNT] = {
   { PROT_WSDD,        &Iface_WSDD,        0, { { { 0, NULL }, 0 } } },
   { PROT_DCERPC,      &Iface_DCERPC,      0, { { { 0, NULL }, 0 } } },
   { PROT_ESP,         &Iface_ESP,         0, { { { 0, NULL }, 0 } } },
-  { PROT_IPP,         &Iface_IPP,         0, { { { 0, NULL }, 0 } } }
+  { PROT_IPP,         &Iface_IPP,         0, { { { 0, NULL }, 0 } } },
+  { PROT_DHT,         &Iface_DHT,         0, { { { 0, NULL }, 0 } } }
 };
 
 /**
