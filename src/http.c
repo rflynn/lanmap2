@@ -1,7 +1,7 @@
 /* ex: set ff=dos ts=2 et: */
 /* $Id$ */
 /*
- * Copyright 2008 Ryan Flynn
+ * Copyright 2008-2011 Ryan Flynn
  * All rights reserved.
  */
 /*
@@ -54,6 +54,7 @@ Program received signal SIGABRT, Aborted.
 #include "ipv4.h"
 #include "tcp.h"
 #include "http.h"
+#include "report.h"
 
 static size_t _http_parse(char *, size_t, parse_frame *, const parse_status *);
 static size_t _http_dump (const parse_frame *, int opt, FILE *);
@@ -110,7 +111,7 @@ static int do_test_http_header(const char *buf, size_t len)
   return
     len >= 13 &&
     do_test_req_method(buf, len) &&
-    5 == sscanf(buf, "%9[A-Z] %1023[^ \r\n] HTTP/%u.%u\r\n", method, path, &v, &v);
+    4 == sscanf(buf, "%9[A-Z] %1023[^ \r\n] HTTP/%u.%u\r\n", method, path, &v, &v);
 }
 
 static int do_test_req_method(const char *buf, size_t len)
@@ -118,8 +119,8 @@ static int do_test_req_method(const char *buf, size_t len)
   return len >= 8 &&
      /* Ref #1 p.35 */
      (  0 == memcmp(buf, "GET ",     4)
-     || 0 == memcmp(buf, "HEAD ",    5)
      || 0 == memcmp(buf, "POST ",    5)
+     || 0 == memcmp(buf, "HEAD ",    5)
      || 0 == memcmp(buf, "PUT ",     4)
      || 0 == memcmp(buf, "OPTIONS ", 8)
      || 0 == memcmp(buf, "DELETE ",  7)
@@ -132,6 +133,7 @@ static int do_test_req_method(const char *buf, size_t len)
  * @param buf data; already validated that it contains something that looks like an HTTP header
  * @return number of bytes consumed; 0 means error and 'r' will not be populated
  */
+// FIXME: "GET /common/jquery.autocomplete.js HTTP/1.1\x0d\x0a" -> HTTP req meth=HTT uri=/1.1 304 Not Modified
 static ptrdiff_t do_parse_req(char *buf, size_t len, http_req *r)
 {
   const char *orig = buf;
@@ -156,14 +158,17 @@ static ptrdiff_t do_parse_req(char *buf, size_t len, http_req *r)
     l = memcspn(buf, len, "\r\n", 2);
     r->ver.start = buf;
     r->ver.len = l;
-    printf("HTTP ver=<%.*s> (%u)\n", r->ver.len, r->ver.start, r->ver.len);
+    printf("HTTP meth=<%.*s> uri=<%.*s> ver=<%.*s> (%u)\n",
+      (int)r->meth.len, r->meth.start,
+      (int)r->uri.len, r->uri.start,
+      (int)r->ver.len, r->ver.start, r->ver.len);
     buf += l, len -= l;
     /* skip newline */
     /* NOTE: we must skip only a single set of "\r\n" */
     if (len >= 2 && '\r' == buf[0] && '\n' == buf[1])
       buf += 2, len -= 2;
   }
-#if 0
+#if 1
   /* debug */
   printf("%s ver=<%.*s> buf=<%.*s>\n",
     __func__, (int)r->ver.len, r->ver.start, 20, buf);
@@ -190,7 +195,6 @@ static int test_resphead(const char *buf, size_t len, const parse_status *st)
          0 == memcmp(buf, "HTTP/", 5);
 }
 
-/* FIXME: do not assume string headers */
 size_t http_dump_headers(const http_headers *h, int opt, FILE *out)
 {
   static char buf[4096];
@@ -202,13 +206,13 @@ size_t http_dump_headers(const http_headers *h, int opt, FILE *out)
     const char *ks = h->h[i].key.start;
     const size_t kl = h->h[i].key.len,
                  kdlen = dump_chars_buf(buf, sizeof buf, ks, kl);
-    bytes += fprintf(out, "  %.*s%.*s", kdlen, buf,
-      kdlen > DUMP_KEY_ALIGN ? 0 : DUMP_KEY_ALIGN - kdlen, Dots);
+    bytes += fprintf(out, "  %.*s%.*s", (int)kdlen, buf,
+      (int)(kdlen > DUMP_KEY_ALIGN ? 0 : DUMP_KEY_ALIGN - kdlen), Dots);
     for (j = 0; j < h->h[i].val.cnt; j++) {
       const char *vs = h->h[i].val.p[j].start;
       const size_t vl = h->h[i].val.p[j].len,
                    vdlen = dump_chars_buf(buf, sizeof buf, vs, vl);
-      bytes += fprintf(out, "%.*s", vdlen, buf);
+      bytes += fprintf(out, "%.*s", (int)vdlen, buf);
     }
     fputc('\n', out), bytes++;
   }
@@ -260,7 +264,6 @@ size_t http_parse_headers(char *buf, size_t len, http_headers *head)
     v++;
     kv++;
   }
-  assert(buf >= orig);
   return (size_t)(buf - orig);
 }
 
@@ -270,11 +273,13 @@ size_t http_parse_headers(char *buf, size_t len, http_headers *head)
  * supplying their own storage; we'll never need more than 1 http structure
  * ourselves because http cannot contain instances of itself
  */
+static http Http;
 static size_t _http_parse(char *buf, size_t len, parse_frame *f, const parse_status *st)
 {
-  static http h;
-  return http_parse(buf, len, f, st, &h);
+  return http_parse(buf, len, f, st, &Http);
 }
+
+static void do_req_rep(const http_req *, const parse_status *);
 
 /**
  * @return number of octets used by this protocol, or zero upon error
@@ -298,13 +303,8 @@ size_t http_parse(char *buf, size_t len, parse_frame *f, const parse_status *st,
     r->desc.len = strcspn(r->desc.start, "\r\n");
     buf = r->desc.start + r->desc.len + strspn(r->desc.start + r->desc.len, "\r\n");
     buf += http_parse_headers(buf, len - (buf - start), &r->headers);
-#if 0
-    assert(buf-start <= (ptrdiff_t)len);
-#endif
-    assert(buf >= start);
     r->contents.start = buf;
     r->contents.len = len-(buf-start);
-    assert(r->contents.len < 0x10000000);
   } else if (do_test_http_header(buf, len)) {
     /* something like "GET / HTTP/1.1" */
     size_t consumed;
@@ -316,7 +316,7 @@ size_t http_parse(char *buf, size_t len, parse_frame *f, const parse_status *st,
       buf += consumed, len -= consumed;
       h->data.req.contents.start = buf;
       h->data.req.contents.len = len;
-      assert(len < 0x10000000);
+      do_req_rep(&h->data.req, st);
     }
   } else {
     h->type = HTTP_Type_DATA;
@@ -324,14 +324,7 @@ size_t http_parse(char *buf, size_t len, parse_frame *f, const parse_status *st,
   }
   f->pass = h;
   printf("%s -> %u\n", __func__, (unsigned)(buf-start));
-  /* FIXME: naughty */
-#if 0
-  assert(end >= buf);
-  assert((size_t)(buf-start) <= olen);
-  return (size_t)(buf-start);
-#else
   return olen;
-#endif
 }
 
 static size_t dump_req(const parse_frame *f, int opt, FILE *out, const http *h)
@@ -393,6 +386,41 @@ size_t http_dump(const parse_frame *f, int opt, FILE *out, const http *h, const 
     name, Dump[h->type].name);
   bytes += (*Dump[h->type].dump)(f, opt, out, h);
   return (size_t)bytes;
+}
+
+const struct head_kv * http_header_find_key(const http_headers *h, const char *key)
+{
+  size_t len = strlen(key);
+  unsigned i;
+  for (i = 0; i < h->cnt; i++)
+    if (h->h[i].key.len == len && 0 == memcmp(h->h[i].key.start, key, len))
+      return h->h + i;
+  return 0;
+}
+
+/*
+ * report IP/User-Agent combo
+ *
+ * TODO: add support for IPv6
+ */
+static void do_req_rep(const http_req *r, const parse_status *st)
+{
+#ifndef TEST
+  if (st->frames >= 2) { /* assume [IPv4][TCP][HTTP] */
+    const struct head_kv *uah = http_header_find_key(&r->headers, "User-Agent");
+    if (uah) {
+      const ptrlen *ua = uah->val.p;
+      /* TODO: this IP/foo hint reporting is ugly and common, abstract it */
+      const parse_frame *fi = st->frame + st->frames - 2;
+      if (PROT_IPv4 == fi->id) {
+        char ipbuf[48];
+        const ipv4 *ip = fi->off;
+        (void)ipv4_addr_format(ipbuf, sizeof ipbuf, ip->src);
+        rep_hint("4", ipbuf, "HTTP.User-Agent", ua->start, ua->len);
+      }
+    }
+  }
+#endif
 }
 
 int http_is_tcp_port(u16 port)
@@ -480,11 +508,13 @@ static struct {
   { 2, " :"                  },
   { 2, "::"                  },
   { 2, "a:"                  },
+  { 3, ":\r:"                },
   { 2, "\r\n"                },
   { 3, "\r\n\r"              },
   { 4, "\r\n\r\n"            },
   { 5, "\r\n\r\n\r"          },
   { 6, "\r\n\r\n\r\n"        },
+  { 3, ":\r\n"               },
   { 3, "a: "                 },
   { 3, "a: "                 },
   { 4, "a: b"                },
@@ -502,14 +532,16 @@ static void test(void)
   unsigned i;
   for (i = 0; i < sizeof TestCase / sizeof TestCase[0]; i++) {
     http_headers h;
-    size_t bytes;
+    size_t len, bytes;
+    len = T->len ? T->len : strlen(T->txt);
     printf("#%2u: ", i);
-    dump_chars(T->txt, T->len, stdout);
+    dump_chars(T->txt, len, stdout);
     fflush(stdout);
     memset(&h, 0, sizeof h);
-    bytes = http_parse_headers(T->txt, T->len, &h);
-    printf(" len=%u parsed=%u\n", (unsigned)T->len, (unsigned)bytes);
-    assert(bytes <= T->len);
+    bytes = http_parse_headers(T->txt, len, &h);
+    printf(" len=%u parsed=%u\n", (unsigned)len, (unsigned)bytes);
+    (void)http_dump_headers(&h, 0, stdout);
+    assert(bytes <= len);
     T++;
   }
 }
