@@ -13,18 +13,40 @@ require_once("algorithm-conglomerate.php");
 
 define('ICON_PATH', '../img/');
 
+#
+# given an array of 'children' addresses from a dev-hint-less entity, try
+# to guess what kind of device it might be
+#
+function guess_dev($children)
+{
+  foreach ($children as $c) {
+    # apple machines specifically often contain the device type as a suffix
+    if (preg_match('/(ipod|macbook|imac(?:-\d+)?)$/i', $c, $m)) {
+      $dev = strtolower($m[1]);
+      if ($dev == 'ipod') return 'iPod';
+      if ($dev == 'macbook') return 'Macbook';
+      return 'iMac' . $m[1];
+    }
+  }
+  return '';
+}
+
 function icon($addrs, $addr)
 {
-  $icon = "dev/Generic-PC";
-  if (isset($addrs[$addr]["HW"][0])) {
-    $icon = "hw/" . $addrs[$addr]["HW"][0];
+  if (@$addrs[$addr]["Role"][0]) {
+    $icon = "role/" . $addrs[$addr]["Role"][0] . "-64.png";
+  } else if (isset($addrs[$addr]["HW"][0])) {
+    $icon = "hw/" . $addrs[$addr]["HW"][0] . "-32.png";
   } else if (@$addrs[$addr]["Dev"][0]) {
-    $icon = "dev/" . $addrs[$addr]["Dev"][0];
+    $icon = "dev/" . $addrs[$addr]["Dev"][0] . "-32.png";
   } else if (@$addrs[$addr]["OS"][0]) {
-    $icon = "os/" . $addrs[$addr]["OS"][0];
+    $icon = "os/" . $addrs[$addr]["OS"][0] . "-32.png";
+  } else if (($guess = guess_dev(@$addrs[$addr]["children"]))) {
+    $icon = "dev/" . $guess . "-32.png";
+  } else {
+    $icon = "dev/Generic-PC-16.png";
   }
-  $icon = ICON_PATH . $icon . "-32.png";
-  return $icon;
+  return ICON_PATH . $icon;
 }
 
 # convert from array(key1 => weight1, [keyn => weightn]) to array(key1,...,keyn), key1 being the "best"
@@ -64,10 +86,13 @@ $db = new PDO("sqlite:$DB_PATH") or die();
 $sql = "
   SELECT
     h.addr,
-    a.addr
+    a.addr,
+    o.org
   FROM host h
   JOIN host_addr a
   ON a.host_id = h.id
+  LEFT JOIN oui o
+  ON o.oui = SUBSTR(LOWER(a.addr), 1, 8)
   WHERE h.hp_id = (SELECT MAX(id) FROM host_perspective)";
 #echo "$sql\n";
 $stmt = $db->query($sql) or die(print_r($db->errorInfo(),1));
@@ -79,7 +104,7 @@ $rows = $stmt->fetchAll();
 
 $addrs = array();
 foreach ($rows as $row) {
-  @$addrs[$row[0]]["children"][] = $row[1];
+  @$addrs[$row[0]]["children"][] = $row[1] . ($row[2] ? " ($row[2])" : "");
   #if (!isset($addrs[$row[0]]["OS"]))
   #  $addrs[$row[0]]["OS"] = array();
 }
@@ -177,13 +202,13 @@ $rows = null;
 #echo "---\n"; print_r($addrs); exit;
 
 printf("digraph {\n");
-printf("  node [fontsize=8,penwidth=1,color=\"#EEEEEE\",shape=record,overlap=vpsc,fontname=\"Verdana\"];\n");
+printf("  node [fontsize=8,penwidth=1,color=\"#FFFFFF\",shape=record,overlap=vpsc,fontname=\"Verdana\"];\n");
 printf("  edge [color=\"#777777\",arrowsize=0.5,fontname=\"Verdana\",fontsize=4];\n");
 
 # "Outside" CLOUD
 printf("  \"%s\" [label=<
 <TABLE BORDER=\"0\" CELLSPACING=\"1\" CELLPADDING=\"0\">
-  <TR><TD><IMG SRC=\"%sicons-tango/network-cloud.png\"/></TD></TR><TR>
+  <TR><TD><IMG SRC=\"%srole/Cloud-48.png\"/></TD></TR><TR>
   <TD>%s<BR/>",
   "Outside", ICON_PATH, "Outside");
 printf("</TD></TR></TABLE>>];\n");
@@ -198,22 +223,22 @@ while (list($addrk,$addrto) = each($addrs)) {
     <TR><TD><IMG SRC=\"%s\"/></TD></TR><TR>
     <TD>%s<BR/>",
     $addrk, icon($addrs, $addrk), $addrk);
-  if (is_array(@$addrto["Dev"])) {
-    printf("Dev=%s<BR/>", join(",", $addrto["Dev"]));
-  }
-  if (is_array(@$addrto["Role"])) {
-    printf("Role=%s<BR/>", join(",", $addrto["Role"]));
-  }
-  if (is_array(@$addrto["OS"])) {
-    printf("OS=%s<BR/>", join(",", $addrto["OS"]));
-  }
+  if (is_array(@$addrto["Dev"]))
+    printf("%s<BR/>", join(",", $addrto["Dev"]));
+  if (is_array(@$addrto["OS"]))
+    printf("Running %s<BR/>", join(",", $addrto["OS"]));
+  if (is_array(@$addrto["Role"]))
+    printf("(%s)<BR/>", join(",", $addrto["Role"]));
   if (is_array(@$addrto["children"])) {
     reset($addrto["children"]);
     while (list($addrtok,$addrtov) = each($addrto["children"]))
       if ($addrtov != $addrk)
         printf("%s<BR/>", $addrtov);
   }
-  printf("</TD></TR></TABLE>>];\n");
+  printf("</TD></TR></TABLE>>");
+  if (@$addrto["Dev"] || @$addrto["Role"] || @$addrto["OS"] || @$addrto["children"])
+    printf("color=beige,style=filled");
+  printf("];\n");
 }
 
 #draw edges
@@ -270,9 +295,9 @@ while (list($from,$fromv) = each($edge)) {
   while (list($to,$bytes) = each($fromv)) {
     # show route to outside for all routers,
     # even if we can't detect them directly
-    if (@in_array("Gateway", $addrs[$to]["Role"]))
+    if (@in_array("Router", $addrs[$to]["Role"]))
       @$edge[$to]["Outside"] += $bytes;
-    if (@in_array("Gateway", $addrs[$from]["Role"]))
+    if (@in_array("Router", $addrs[$from]["Role"]))
       @$edge["Outside"][$from] += $bytes;
   }
 }
