@@ -74,8 +74,7 @@ static int iface_list(void)
     fprintf(stderr, "No interfaces found!\n");
 #ifdef WIN32
     fprintf(stderr, "Ensure WinPcap is installed; see http://www.winpcap.org/\n"
-                    "Ensure the service is running and you have appropriate access.\n"
-                    "LANMap's corporate customers with lucrative support contracts may override this error by pressing the 'Just Make It Work!' button.");
+                    "Ensure the service is running and you have appropriate access.\n");
 #else /* UNIX-ish */
     if (0 != geteuid())
       fprintf(stderr, "You may want to run as root.\n");
