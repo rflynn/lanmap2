@@ -38,6 +38,7 @@ INSERT INTO prottype VALUES ('BitTorrent','',             '');
 INSERT INTO prottype VALUES ('BOOTP',     '',             '');
 INSERT INTO prottype VALUES ('BROWSE',    '',             '');
 INSERT INTO prottype VALUES ('CDP',       '',             '');
+INSERT INTO prottype VALUES ('CUPS',      '',             '');
 INSERT INTO prottype VALUES ('DCHPv6',    '',             '');
 INSERT INTO prottype VALUES ('DNS',       '',             '');
 INSERT INTO prottype VALUES ('Gnutella',  '',             '');
@@ -83,6 +84,7 @@ CREATE TABLE addrtype (
 
 INSERT INTO addrtype VALUES ('BH',  'BOOTP',    'BOOTP Hostname',   '');
 INSERT INTO addrtype VALUES ('BR',  'BROWSE',   'BROWSE Hostname',  '');
+INSERT INTO addrtype VALUES ('CUPS','CUPS',     'CUPS.Location',    '');
 INSERT INTO addrtype VALUES ('D',   'DNS',      'DNS name',         '');
 INSERT INTO addrtype VALUES ('M',   'MAC',      'IEEE802.3',        '');
 INSERT INTO addrtype VALUES ('N',   'NetBIOS',  'NetBIOS',          '');
@@ -103,11 +105,15 @@ CREATE TABLE hintsrc (
 
 INSERT INTO hintsrc VALUES ('BOOTP.VendorClass',    'BOOTP',    '');
 INSERT INTO hintsrc VALUES ('BOOTP.Fingerprint',    'BOOTP',    '');
+INSERT INTO hintsrc VALUES ('BOOTP.Offer',          'BOOTP',    '');
+INSERT INTO hintsrc VALUES ('BOOTP.Router',         'BOOTP',    '');
+INSERT INTO hintsrc VALUES ('BOOTP.DHCPD',          'BOOTP',    '');
 INSERT INTO hintsrc VALUES ('BROWSE.OS',            'BROWSE',   '');
 INSERT INTO hintsrc VALUES ('BROWSE.Browser',       'BROWSE',   '');
 INSERT INTO hintsrc VALUES ('BROWSE.Comment',       'BROWSE',   '');
 INSERT INTO hintsrc VALUES ('CDP.Platform',         'CDP',      '');
 INSERT INTO hintsrc VALUES ('CDP.SoftVer',          'CDP',      '');
+INSERT INTO hintsrc VALUES ('CUPS.Location',        'CUPS',     '');
 INSERT INTO hintsrc VALUES ('DNS.TXT',              'DNS',      '');
 INSERT INTO hintsrc VALUES ('DNS.LOCAL',            'DNS',      '');
 INSERT INTO hintsrc VALUES ('Gnutella.User-Agent',  'Gnutella', '');
