@@ -1,7 +1,7 @@
 /* ex: set ff=dos ts=2 et: */
 /* $Id$ */
 /*
- * Copyright 2008-2009 Ryan Flynn
+ * Copyright 2008-2011 Ryan Flynn
  * All rights reserved.
  */
 /*
@@ -340,6 +340,4 @@ int main(void)
   return 0;
 }
 #endif
-
-
 
