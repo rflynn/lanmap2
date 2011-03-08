@@ -22,8 +22,8 @@
 static int    init (void);
 static size_t parse(char *, size_t, parse_frame *, const parse_status *);
 static size_t dump (const parse_frame *, int options, FILE *);
-static size_t addr_from(char *buf, size_t len, const parse_frame *f);
-static size_t addr_to  (char *buf, size_t len, const parse_frame *f);
+static const void * addr_from(const parse_frame *);
+static const void * addr_to  (const parse_frame *);
 
 static int test_sll(const char *, size_t, const parse_status *);
 static const prot_parent Test[] = {
@@ -156,13 +156,13 @@ static size_t dump(const parse_frame *f, int options, FILE *out)
   return (size_t)bytes;
 }
 
-static size_t addr_from(char *buf, size_t len, const parse_frame *f)
+static const void * addr_from(const parse_frame *f)
 {
   const ipx *x = f->off;
   return &x->src.m;
 }
 
-static size_t addr_to(char *buf, size_t len, const parse_frame *f)
+static const void * addr_to(const parse_frame *f)
 {
   const ipx *x = f->off;
   return &x->src.m;
