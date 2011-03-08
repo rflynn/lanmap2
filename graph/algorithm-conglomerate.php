@@ -27,6 +27,7 @@ function merge_addrs($key, $a, $b)
 }
 
 /**
+ * Group lists containing matching elements;
  * Perform the following transformation:
  *  [[a,b],[b,c],[c,d],[x,y]] -> [[a,b,c,d], [x,y]]
  */

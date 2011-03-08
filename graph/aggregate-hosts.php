@@ -83,16 +83,22 @@ $sql = sprintf("
   SELECT from_, to_
   FROM addr
   WHERE latest >= DATETIME(%s,'LOCALTIME')
-
+  -- AND earliest <= DATETIME(%s,'LOCALTIME')
+  AND from_ NOT LIKE 'htype=%%'
+  AND to_ NOT LIKE 'htype=%%'
   UNION
   -- any MAC addresses that haven't got any other addresses associated
   -- with them, but do have a hint or two
   SELECT DISTINCT addr, addr
   FROM hint
   WHERE addrtype = 'M'
-  AND latest >= DATETIME(%s,'LOCALTIME')",
+  AND addr NOT LIKE 'htype=%%'
+  AND latest >= DATETIME(%s,'LOCALTIME')
+  AND earliest <= DATETIME(%s,'LOCALTIME')",
     $db->quote($early_ts),
-    $db->quote($early_ts));
+    $db->quote($late_ts),
+    $db->quote($early_ts),
+    $db->quote($late_ts));
 echo "$sql\n";
 $stmt = $db->query($sql) or die(print_r($db->errorInfo(),1));
 $res = $stmt->setFetchMode(PDO::FETCH_ASSOC);
