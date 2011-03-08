@@ -119,7 +119,7 @@ static const struct percmd {
   { Cmd_DomainWorkgroup,  "Dom/Wg Ann",   "Domain/Workgroup Ann.",  parse_domwg,dump_domwg, NULL     },
   { 0xd,                  "(d)",          "(d)",                    NULL,       NULL,       NULL     },
   { 0xe,                  "(e)",          "(e)",                    NULL,       NULL,       NULL     },
-  { Cmd_LocalMaster,      "LclMstrAnn",   "Local Master Announce",  parse_host, dump_host,  rep_host }
+  { Cmd_LocalMaster,      "LocalMaster",  "Local Master Announce",  parse_host, dump_host,  rep_host }
 };
 
 static const struct percmd * get_percmd(u8 cmd)
@@ -137,6 +137,7 @@ static size_t do_parse(browse *b, char *buf, size_t len, const parse_status *st)
   const struct percmd *p = get_percmd(b->cmd);
   size_t bytes = 0;
   if (p) {
+    buf[len-1] = '\0'; /* for now, just prevent us from running off the end */
     if (p->parse) {
       bytes = (*p->parse)(b, buf, len, st);
     } else {
@@ -280,10 +281,6 @@ static void rep_host(char *buf, size_t len, const parse_frame *f)
     /* NOTE: may also be LLC or something else */
     const ipv4 *ip = fi->off;
     (void)ipv4_addr_format(ipbuf, sizeof ipbuf, ip->src);
-    if ('\0' != h->hostname[0] && strlen((char *)h->hostname) == dump_chars_buf2(val, sizeof val, (char *)h->hostname, strlen((char *)h->hostname))) {
-      /* ensure that parsing was sane */
-      rep_addr("4", ipbuf, "BR", val, "BROWSE", 1);
-    }
     snprintf(val, sizeof val, "%u.%u", h->os_maj, h->os_min);
     rep_hint("4", ipbuf, "BROWSE.OS", val, -1);
     snprintf(val, sizeof val, "%u.%u", h->browser_maj, h->browser_min);
