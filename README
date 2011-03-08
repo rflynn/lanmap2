@@ -44,13 +44,13 @@ Dependencies:
   Debian Linux:
     sudo apt-get install libpcap-dev libsqlite3-dev gcc graphviz php5-cli php5-sqlite sqlite3
 
-1. Build the database
+1. Run make
 
-	db/build-db.sh
+  make
 
-2. Build the capture
-
-	cd src && make 2>&1 | grep -v bit-field; cd -
+  
+  This will build and populate the database file 'db/db'
+  And the parse/capture program 'src/cap'
 
 
 Use
