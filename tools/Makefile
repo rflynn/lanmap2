@@ -8,5 +8,5 @@ os-graph: os-graph.o nary.o ../src/csvread.o ../src/util.o
 
 
 clean:
-	$(RM) *.o os-graph
+	$(RM) *.o os-graph oui2insert
 
