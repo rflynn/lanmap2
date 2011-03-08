@@ -263,6 +263,23 @@ static void do_parse_opt(
         p->reqflags.opt[p->reqflags.len++] = *param++; 
     }
     break;
+  case OPT_ROUTER:
+    if (st->frames >= 3 && PROT_IEEE802_3 == st->frame[st->frames-3].id) {
+      const ethernet2_frame *e = st->frame[st->frames-3].off;
+      (void)ieee802_3_addr_format(macbuf, sizeof macbuf, &e->src);
+      (void)ipv4_addr_format(buf, sizeof buf, (char *)o + sizeof *o);
+      rep_hint("M", macbuf, "BOOTP.Router", buf, -1);
+    }
+    break;
+  case OPT_DNS_SERVER:
+    if (st->frames >= 3 && PROT_IEEE802_3 == st->frame[st->frames-3].id) {
+      const ethernet2_frame *e = st->frame[st->frames-3].off;
+      (void)ieee802_3_addr_format(macbuf, sizeof macbuf, &e->src);
+      (void)ipv4_addr_format(buf, sizeof buf, (char *)o + sizeof *o);
+      rep_hint("M", macbuf, "BOOTP.DHCPD", buf, -1);
+    }
+    break;
+
   default:
     break;
   }
@@ -274,9 +291,11 @@ static void octlist2str(char *dst, size_t dstlen, const struct octlist *l)
   unsigned i;
   int off = 0;
   if (l->len)
-    off = snprintf(dst, dstlen, "%u", l->opt[0]);
+    off = snprintf(dst, dstlen, "%u", (u8)l->opt[0]);
   for (i = 1; off >= 0 && off < (int)dstlen && i < l->len; i++)
-    off += snprintf(dst+off, dstlen-off, ",%u", l->opt[i]);
+    off += snprintf(dst+off, dstlen-off, ",%u", (u8)l->opt[i]);
+  if (off <= 0)
+    *dst = '\0';
 }
 
 static char * fp2str(char *dst, size_t dstlen, const bootp_fingerprint *p)
