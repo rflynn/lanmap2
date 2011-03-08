@@ -1,7 +1,7 @@
 /* ex: set ff=dos ts=2 et: */
 /* $Id$ */
 /*
- * Copyright 2010 Ryan Flynn
+ * Copyright 2010-2011 Ryan Flynn
  * All rights reserved.
  */
 /*
@@ -9,12 +9,15 @@
  */
 
 #include <stdio.h>
+#include <string.h>
 #include <arpa/inet.h>
 #include "env.h"
 #include "prot.h"
 #include "util.h"
 #include "udp.h"
 #include "ipp.h"
+#include "ipv4.h"
+#include "report.h"
 
 static size_t parse(char *, size_t, parse_frame *, const parse_status *);
 static size_t dump(const parse_frame *, int options, FILE *);
@@ -59,7 +62,7 @@ static int test_udp(const char *buf, size_t len, const parse_status *st)
 static ptrdiff_t nextfield(const char *buf, size_t len, ptrlen *f)
 {
   size_t l = memcspn(buf, len, " \r\n", 3);
-  f->start = buf;
+  f->start = (char*)buf;
   f->len = l;
   buf += l, len -= l;
   l = memspn(buf, len, " ", 1);
@@ -76,7 +79,7 @@ static ptrdiff_t nextstring(const char *buf, size_t len, ptrlen *f)
   size_t l;
   if (len && *buf == '"')
     buf++, len--;
-  f->start = buf;
+  f->start = (char*)buf;
   l = memcspn(buf, len, "\"\r\n", 3);
   f->len = l;
   buf += l, len -= l;
@@ -107,6 +110,21 @@ static size_t parse(char *buf, size_t len, parse_frame *f, const parse_status *s
    * - associate make with host
    * - associate info with host, maybe
    */
+#ifndef TEST
+  {
+    const parse_frame *fi = st->frame + st->frames - 2;
+    if (PROT_IPv4 == fi->id) {
+      char ipbuf[48],
+           locbuf[64];
+      size_t loclen = i.loc.len < sizeof locbuf ? i.loc.len : sizeof locbuf - 1;
+      const ipv4 *ip = fi->off;
+      (void)ipv4_addr_format(ipbuf, sizeof ipbuf, ip->src);
+      memcpy(locbuf, i.loc.start, loclen);
+      locbuf[loclen] = '\0';
+      rep_addr("4", ipbuf, "CUPS", locbuf, "CUPS.Location", 1);
+    }
+  }
+#endif
   return olen;
 }
 
