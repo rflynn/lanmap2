@@ -8,40 +8,6 @@
  * HTTP
  */
 
-#if 0
-len=81
-\x00!)p\xeaF\x00%dG\xb3\xfe\x08\x00E\x00\x00C\x96\x90@\x00@\x11>Y\xc0\xa8\x01\xc8\xa7\xce\xfb\x81\xb0F\x005\x00/f\x01\xd8f\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x03ecx\x0dimages-amazon\x03com\x00\x00\x01\x00\x01
-linktype=1
-parsed 802.3 len=81 bytes=14
-parsed IPv4 len=67 bytes=20
-test_ipv4 0x11=0x11 protocol=0x06
-parsed TCP len=47 bytes=32
-cap: http.c:273: http_parse: Assertion `r->contents.len < 0x10000000' failed.
-
-Program received signal SIGABRT, Aborted.
-[Switching to Thread 0x7fee490ad6f0 (LWP 30691)]
-0x00007fee486b6fb5 in raise () from /lib/libc.so.6
-
-(gdb) bt
-#0  0x00007fee486b6fb5 in raise () from /lib/libc.so.6
-#1  0x00007fee486b8bc3 in abort () from /lib/libc.so.6
-#2  0x00007fee486aff09 in __assert_fail () from /lib/libc.so.6
-#3  0x000000000040cd6f in http_parse (
-    buf=0x7fee47983099 "Date: Thu, 22 Jul 2010 17:59:34 GMT\r\nServer: Apache\r\nLast-Modified: Wed, 20 May 2009 11:43:31 GMT\r\nETag: \"35c288-1f4-46a56895abec0\"\r\nAccept-Ranges: bytes\r\nVary: Accept-Encoding\r\nContent-Encoding: gzip"..., len=15, f=0x63a518, st=0x63a480, 
-    h=0x6411c0) at http.c:273
-#4  0x000000000040ca5f in _http_parse (
-    buf=0x7fee47983088 "HTTP/1.1 200 OK\r\nDate: Thu, 22 Jul 2010 17:59:34 GMT\r\nServer: Apache\r\nLast-Modified: Wed, 20 May 2009 11:43:31 GMT\r\nETag: \"35c288-1f4-46a56895abec0\"\r\nAccept-Ranges: bytes\r\nVary: Accept-Encoding\r\nConte"..., len=15, f=0x63a518, st=0x63a480)
-    at http.c:233
-#5  0x00000000004028e3 in do_parse (
-    buf=0x7fee47983088 "HTTP/1.1 200 OK\r\nDate: Thu, 22 Jul 2010 17:59:34 GMT\r\nServer: Apache\r\nLast-Modified: Wed, 20 May 2009 11:43:31 GMT\r\nETag: \"35c288-1f4-46a56895abec0\"\r\nAccept-Ranges: bytes\r\nVary: Accept-Encoding\r\nConte"..., len=15, st=0x63a480) at parse.c:194
-#6  0x0000000000402de4 in parse (buf=0x7fee47983046 "", len=81, linktype=1, st=0x63a480) at parse.c:306
-#7  0x0000000000401ffb in do_listen () at cap.c:167
-#8  0x0000000000402386 in listen () at cap.c:258
-#9  0x0000000000402498 in main (argc=1, argv=0x7fff510d18d8) at cap.c:292
-
-
-#endif
-
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
