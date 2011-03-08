@@ -2,7 +2,7 @@
 # $Id$
 #
 
-CFLAGS = -W -Wall -pedantic -std=gnu99 -Wno-unused -Wno-unused-parameter -ggdb -O0 -pedantic -DDEBUG
+CFLAGS = -W -Wall -std=gnu99 -Wno-unused -Wno-unused-parameter -ggdb -O0 -DDEBUG
 LDFLAGS = -lpcap -lsqlite3
 ALL = cap parse util logical linux_sll ieee802_3 llc arp ip csvread icmp symbol8781 cdp smb dns nbns ipv6 radius snmp ntp mssqlm rasadv ssdp dhcpv6 netbios rtsp bittorrent storm-botnet gnutella tcp tcp-fingerprint http ipp
 # universal dependencies
