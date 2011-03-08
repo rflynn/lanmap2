@@ -180,7 +180,7 @@ size_t dump_chars(const char *buf, size_t len, FILE *f)
   assert(len < 0x10000000 && "len has probably overflowed");
   setlinebuf(f);
   while (len--) {
-    if (*buf >= 0x20 && *buf < 0x80 && (' ' == *buf || isalnum((int)*buf) || ispunct((int)*buf)))
+    if (*buf >= 0x20 && (' ' == *buf || isalnum((int)*buf) || ispunct((int)*buf)))
       fputc(*buf++, f);
     else {
       fwrite(Hex[(u8)*buf++], 4, 1, f);
