@@ -6,10 +6,10 @@ echo "Generating db...";
 
 echo "Creating fingerprints...";
 
-for f in data/*.sql;
+for f in ../data/*.sql;
 do
 	echo "$f"
-	cat "$f" | sqlite3 db/db
+	cat "$f" | sqlite3 db
 done
 
 echo "Done."
