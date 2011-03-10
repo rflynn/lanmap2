@@ -197,7 +197,6 @@ static size_t parse_domwg(const browse *b, char *buf, size_t len, const parse_st
   printf("%s %s (bytes=%u):", __FILE__, __func__, (unsigned)bytes);
   dump_chars((char *)d, bytes, stdout);
   fputc('\n', stdout);
-  assert(bytes == len);
   return bytes;
 }
 
