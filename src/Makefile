@@ -229,6 +229,14 @@ radius: radius.c radius.h ieee802_3.h util.c util.h
 	$(CC) $(CFLAGS) -c -DTEST -o radius.o radius.c
 	$(CC) $(CFLAGS) -o radius radius.o util.o
 
+lldp: lldp.c lldp.h ieee802_3.h util.c util.h
+	$(RM) util.o
+	$(CC) $(CFLAGS) -c -o util.o util.c
+	$(RM) ieee802_3.o
+	$(CC) $(CFLAGS) -c -o ieee802_3.o ieee802_3.c
+	$(CC) $(CFLAGS) -c -DTEST -o lldp.o lldp.c
+	$(CC) $(CFLAGS) -o lldp lldp.o ieee802_3.o util.o
+
 snmp: snmp.c snmp.h ieee802_3.h util.c util.h
 	$(CC) $(CFLAGS) -c -o util.o util.c
 	$(CC) $(CFLAGS) -c -DTEST -o snmp.o snmp.c

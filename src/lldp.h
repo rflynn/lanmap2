@@ -1,7 +1,7 @@
 /* ex: set ff=dos ts=2 et: */
 /* $Id$ */
 /*
- * Copyright 2008 Ryan Flynn
+ * Copyright 2008-2011 Ryan Flynn
  * All rights reserved.
  */
 /*
@@ -71,7 +71,6 @@ struct orgspec {
 };
 #pragma pack(pop)
 typedef struct orgspec orgspec;
-
 
 #endif
 
