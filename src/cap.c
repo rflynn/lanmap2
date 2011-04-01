@@ -30,7 +30,8 @@ extern void dump(const parse_status *);
 extern void traffic(const parse_status *);
 
 struct netiface {
-  char        name[64];
+  char        name[256];
+  unsigned    is_file;
   bpf_u_int32 net,
               mask;
   pcap_t     *pcap;
@@ -49,6 +50,7 @@ static int netiface_add(const char *name)
   if (Verbosity >= 2)
     printf("Adding dev '%s'...\n", name);
   strlcpy(n->name, name, sizeof n->name);
+  n->is_file = (0 == strcmp(name, "-") || NULL != strchr(name, '/')); /* stdin or obvious file path */
   NetIfaces++;
   return 1;
 }
@@ -222,7 +224,10 @@ static int listen(void)
       if (Verbosity >= 1)
         printf("opening dev '%s' in %s mode...\n",
           n->name, promisc ? "promiscuous" : "normal");
-      n->pcap = pcap_open_live(n->name, PACKET_BUFLEN, promisc, 0, errbuf);
+      if (n->is_file)
+        n->pcap = pcap_open_offline(n->name, errbuf);
+      else
+        n->pcap = pcap_open_live(n->name, PACKET_BUFLEN, promisc, 0, errbuf);
       if (!n->pcap) {
         fprintf(stderr, "Can't open interface '%s'! %s\n", n->name, errbuf);
         fprintf(stderr, "Have you specified an interface with -i?\n");
