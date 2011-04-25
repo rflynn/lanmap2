@@ -2,6 +2,8 @@
 
 Author: Ryan Flynn <parseerror+lanmap2@gmail.com>
 
+Bugs: https://github.com/pizza/lanmap2/issues
+
 About
 -----
 
@@ -15,6 +17,17 @@ scripts are provided to query the database and generate image graphs of
 network entities, overall connectivity, traffic and notable applications,
 operating systems and roles that systems play.
 
+     network
+     stream
+     /~/
+    /~/      "cap"         sqlite
+   /~/~~~~~~~~/~/  hints   _______
+             /~/--------->(_______) graph.sh   __map___
+ /~/~~~~~~~~/~/           |       |---------->|        |
+/~/                       |_______|           | X--X   |
+                                              |  `---X |
+                                              |________|
+
 it is meant to be an extensible framework; anyone who spends time looking 
 at network traffic and knows a little SQL should be able to contribute
 analysis-type 'mappings' (see data/*.sql)
@@ -26,7 +39,6 @@ network capture is running.
 
 the current graphing scripts use php to query the database and generate input
 to graphviz; these can be modified fairly easily.
-
 
 Installation
 ------------
@@ -84,4 +96,9 @@ TODO
   runtime and libraries within the lanmap2 package; this will simplify the
   dependencies and allow more people to run it.
 
+* There are always more protocols to support
+
+* I'd eventually like to turn the graphing portion into a full-on IDE-like
+  environment where one can filter machines, traffic and identify unknown machines,
+  erroneous situations, etc.
 
