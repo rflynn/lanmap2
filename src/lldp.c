@@ -106,23 +106,21 @@ static const struct type_struct {
 static size_t do_parse(lldp *l, size_t len, const parse_status *st)
 {
   const u8 *obuf = (u8 *)l;
-  while (len >= sizeof *l) {
+  while (len >= 2) {
+    unsigned msglen;
     u16 *u = (u16 *)l;
     *u = ntohs(*u);
-    printf("%s:%u sizeof *l=%zu len=%zu l->len=%hu\n",__func__, __LINE__, sizeof *l, len, l->len);
-    if (2U + l->len > len)
+    printf("%s:%u sizeof *l=%zu len=%zu l->len=%hu l->type=%hu\n",__func__, __LINE__, sizeof *l, len, l->len, l->type);
+    msglen = 2U + l->len;
+    if (msglen > len)
       break;
-    if (Type_EndOfMsg == l->type) {
-      l = (lldp *)((u8 *)l + 2);
-      break;
-    }
     if (l->type < sizeof ByType / sizeof ByType[0]) {
       if (ByType[l->type].parse)
         (*ByType[l->type].parse)((char *)l->val, l->len, st);
       if (ByType[l->type].rep)
         (*ByType[l->type].rep)((char *)l->val, l->len, st);
     }
-    len -= 2U + l->len;
+    len -= msglen;
     l = (lldp *)(l->val + l->len);
   }
   return (size_t)((u8 *)l - obuf);
@@ -208,6 +206,7 @@ static struct {
 "\x45\x53\x54\x00\x00\x00\x00\x00"
 "\x00\x00\x00\x00\x00\x00" },
   { 152, "\x02\x07\x04\x00\x1d\xb3\xc5\x94\xa0\x04\x03\x07""13\x06\x02\x00x\x08\x02""13\x0a\x1dHP 2510 asu rem spichka urtop\x0cYProCurve J9019B Switch 2510B-24, revision Q.11.26, ROM Q.10.02 (/sw/code/build/harp(bh2))\x0e\x04\x00\x04\x00\x04\x10\x0c\x05\x01\x0a\x0a\x01o\x02\x00\x00\x00\x00\x00\x00\x00" }
+  ,{ 143, "\x02\x07\x04\x00%a.\xd5\x00\x04\x02\x072\x06\x02\x00x\x08\x012\x0a\x08dmz1-sw1\x0cYProCurve J9022A Switch 2810-48G, revision N.11.25, ROM N.10.01 (/sw/code/build/bass(bh2))\x0e\x04\x00\x04\x00\x04\x10\x0c\x05\x01\x80'h\x03\x02\x00\x00\x00\x00\x00\x00\x00" }
 }, *T = TestCase;
 
 static void test(void)
