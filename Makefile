@@ -11,3 +11,6 @@ clean:
 	$(MAKE) -C tools clean
 	$(MAKE) -C src clean
 
+nuke-database:
+	$(MAKE) -C db nuke-database
+

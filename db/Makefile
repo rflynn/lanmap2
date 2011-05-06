@@ -8,3 +8,8 @@ all:
 clean:
 	$(RM) db
 
+nuke-database:
+	$(MAKE) clean
+	$(MAKE) all
+
+
