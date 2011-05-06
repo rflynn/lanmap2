@@ -280,6 +280,7 @@ static void parse_cmdline_opt(int argc, char *argv[])
       if (argc < 2) {
         fprintf(stderr, "-i needs interface parameter. use one of these:\n");
         iface_list();
+        exit(1);
       }
       argc--, cur++;
       netiface_add(*cur);
