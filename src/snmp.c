@@ -136,8 +136,6 @@ static size_t do_parse(u8 *buf, size_t len, parse_frame *f)
   } else {
     Save.pdu = NULL;
   }
-  assert(bytes == 2u + Save.pdu->len);
-  //assert(0u == len);
   f->pass = &Save;
   return olen;
 }
