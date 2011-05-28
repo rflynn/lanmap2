@@ -284,8 +284,11 @@ static void rep_host(char *buf, size_t len, const parse_frame *f)
     rep_hint("4", ipbuf, "BROWSE.OS", val, -1);
     snprintf(val, sizeof val, "%u.%u", h->browser_maj, h->browser_min);
     rep_hint("4", ipbuf, "BROWSE.Browser", val, -1);
-    if ('\0' != h->host_comment[0] && strlen((char *)h->host_comment) == dump_chars_buf2(val, sizeof val, (char *)h->host_comment, strlen((char *)h->host_comment))) {
-      /* ensure that parsing was sane */
+    if ('\0' != h->host_comment[0]) {
+      /* don't fall off the end of non-string host_comments */
+      size_t max_hc_buf = len - (buf - (char*)h->host_comment);
+      dump_chars_buf2(val, sizeof val, (char *)h->host_comment,
+        strlen_bound((char *)h->host_comment, max_hc_buf));
       rep_hint("4", ipbuf, "BROWSE.Comment", val, -1);
     } else if ('\0' != h->host_comment[0]) {
       assert(0 && "Parsing still broken?!");
