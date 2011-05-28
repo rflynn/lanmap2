@@ -541,6 +541,11 @@ size_t memcspn(const char *mem, size_t memlen, const char *reject, size_t reject
   return (size_t)(m - mem);
 }
 
+size_t strlen_bound(const char *mem, size_t memlen)
+{
+  return memcspn(mem, memlen, "\0", 1);
+}
+
 void strupper(char *s, size_t len)
 {
   while (len--)

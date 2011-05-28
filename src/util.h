@@ -73,6 +73,7 @@ const char * memrstr(const char *hay, const char *need, size_t haylen);
 
 size_t memspn(const char *mem, size_t memlen, const char *accept, size_t acceptlen);
 size_t memcspn(const char *mem, size_t memlen, const char *reject, size_t rejectlen);
+size_t strlen_bound(const char *mem, size_t memlen);
 
 char hexint (const u8);
 char hexint2(const u8 *);
