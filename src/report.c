@@ -16,6 +16,12 @@
 #include "util.h"
 #include "report.h"
 
+#if SQLITE_VERSION_NUMBER < 3005002
+/* older versions of sqlite3 do not have _v2 */
+#define sqlite3_prepare_v2 sqlite3_prepare
+int sqlite3_clear_bindings(sqlite3_stmt*_unused){ return 0; }
+#endif
+
 static const char DbFile[] = "../db/db";
 static sqlite3 *DB;
 static sqlite3_stmt *AddrUpd,
