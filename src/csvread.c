@@ -95,7 +95,7 @@ static void splitfields(csvread *r)
   r->fieldlen[r->fields] = r->line + i - r->field[r->fields] - 1;
   r->fields++;
 done:
-  0; /* can't have label at the end of a function */
+  return; /* can't have label at the end of a function */
 }
 
 /**
