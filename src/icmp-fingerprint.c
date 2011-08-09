@@ -96,7 +96,6 @@ void report_echo_fingerprint(const icmp *i, size_t len, const parse_status *st)
     char fbuf[1500 * 4 + 1],
         ipbuf[48];
     const ipv4 *ip = st->frame[st->frames-1].off;
-    size_t flen;
     echo_fingerprint f = {
       i->head.type, ttl_normalize(ip->ttl), !ip->id, !!ip->flag.dontfrag,
       len - (i->data.echo.payload - (u8*)i), i->data.echo.payload
