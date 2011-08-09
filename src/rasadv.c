@@ -53,13 +53,20 @@ const prot_iface Iface_RASADV = {
   DINIT(parent,       Test)
 };
 
+/* rasadv destination IP address always 239.255.2.2 */
+#ifdef __BIG_ENDIAN
+# define RASADV_IP 0x0202ffefUL
+#else
+# define RASADV_IP 0xefff0202UL
+#endif
+
 static int test_udp(const char *buf, size_t len, const parse_status *st)
 {
   const ipv4 *i = st->frame[st->frames-2].off;
   const udp  *u = st->frame[st->frames-1].off;
   return RASADV_UDP_PORT == u->dstport
       && PROT_IPv4 == st->frame[st->frames-2].id
-      && inet_addr("239.255.2.2") == *(u32 *)i->dst;
+      && RASADV_IP == *(u32 *)i->dst;
 }
 
 static size_t do_parse(char *buf, size_t len, parse_frame *);
@@ -90,7 +97,7 @@ static size_t dump(const parse_frame *f, int options, FILE *out)
 }
 
 /**
- * consume a single token of the pattern "[^;]*;", write it's start and
+ * consume a single token of the pattern "[^;]*;", write it's start and 
  * length in 'p' and return the total number of bytes consumed
  */
 static size_t do_parse_token(char *buf, size_t len, ptrlen *p)
@@ -166,8 +173,9 @@ static void report(const parse_frame *f, const parse_status *st)
 
 static int init(void)
 {
-  printf("inet_addr(239.255.2.2)=0x%08lx\n",
-    (unsigned long)inet_addr("239.255.2.2"));
+  printf("RASADV_IP=0x%08lx inet_addr(239.255.2.2)=0x%08lx\n",
+    RASADV_IP, (unsigned long)inet_addr("239.255.2.2"));
+  assert(RASADV_IP == inet_addr("239.255.2.2"));
   return 1;
 }
 
