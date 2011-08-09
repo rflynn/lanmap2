@@ -38,14 +38,6 @@ static const prot_parent Test[] = {
 };
 
 /**
- * method dictionary, tied to 'enum SSDP_Method'
- */
-static const char *Meth[] = {
-  "(None)",
-  "NOTIFY",
-};
-
-/**
  * exported interface
  */
 const prot_iface Iface_SSDP = {
