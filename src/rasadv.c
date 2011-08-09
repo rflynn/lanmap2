@@ -39,7 +39,7 @@ const prot_iface Iface_RASADV = {
   DINIT(id,           PROT_RASADV),
   DINIT(osi,          OSI_App),
   DINIT(shortname,    "RASADV"),
-  DINIT(propername,   "Routing and Remote Access Server Adveritsement"),
+  DINIT(propername,   "Routing and Remote Access Server Advertisement"),
   DINIT(init,         init),
   DINIT(unload,       NULL),
   DINIT(parse,        parse),
