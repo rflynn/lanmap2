@@ -164,7 +164,6 @@ static size_t do_parse_args(const char *buf, size_t len, dht_pkt *p)
 
 static size_t do_parse_hdr(const char *buf, size_t len, dht_pkt *p)
 {
-  ptrlen_list *args = &p->args;
   ptrlen kv[2];
   unsigned i = 0;
   size_t b, total = 0;
