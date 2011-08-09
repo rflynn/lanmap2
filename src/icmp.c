@@ -18,6 +18,7 @@
 #include "icmp.h"
 #include "icmp-fingerprint.h"
 
+static int    init(void);
 static size_t parse(char *, size_t, parse_frame *, const parse_status *);
 static size_t dump(const parse_frame *, int options, FILE *);
 
@@ -34,7 +35,7 @@ const prot_iface Iface_ICMP = {
   DINIT(osi,          OSI_Net),
   DINIT(shortname,    "ICMP"),
   DINIT(propername,   "Internet Control Message Protocol"),
-  DINIT(init,         NULL),
+  DINIT(init,         init),
   DINIT(unload,       NULL),
   DINIT(parse,        parse),
   DINIT(dump,         dump),
@@ -56,7 +57,6 @@ static int test_ipv4(const char *buf, size_t len, const parse_status *st)
   return 1 == ip->protocol;
 }
 
-static const char * type_shortname(u8 type);
 static const char * type_longname (u8 type);
 static const char * code_str      (u8 type, u8 code);
 
@@ -106,6 +106,20 @@ const struct permsg PerMsg[Type_COUNT] = {
   { Type_InfoReply,       "nforep", "InfoReply",      sizeof I.head + sizeof I.data.info,     Nothing,        1 }
 };
 
+static void sanity_check(void)
+{
+  unsigned i;
+  /* check that PerMsg .code == index */
+  for (i = 0; i < sizeof PerMsg / sizeof PerMsg[0]; i++)
+    assert(PerMsg[i].code == i);
+}
+
+static int init(void)
+{
+  sanity_check();
+  return 1;
+}
+
 /**
  * @return number of octets used by this protocol, or zero upon error
  */
@@ -145,22 +159,6 @@ static size_t dump(const parse_frame *f, int options, FILE *out)
     bytes++;
   }
   return (size_t)bytes;
-}
-
-static void sanity_check(void)
-{
-  unsigned i;
-  /* check that PerMsg .code == index */
-  for (i = 0; i < sizeof PerMsg / sizeof PerMsg[0]; i++)
-    assert(PerMsg[i].code == i);
-}
-
-static const char * type_shortname(u8 type)
-{
-  const char *s = "?";
-  if (type < sizeof PerMsg / sizeof PerMsg[0])
-    s = PerMsg[type].shortname;
-  return s;
 }
 
 static const char * type_longname(u8 type)
