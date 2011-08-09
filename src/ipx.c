@@ -112,6 +112,7 @@ static const struct bysocket {
   { IPX_Socket_Dynamic,   "Dynamic"         }
 };
 
+#if 0
 static const struct bytype * bytype(u8 type)
 {
   const struct bytype *t = NULL;
@@ -137,6 +138,7 @@ static const struct bysocket * bysocket(u16 socket)
   }
   return s;
 }
+#endif
 
 static size_t dump(const parse_frame *f, int options, FILE *out)
 {
