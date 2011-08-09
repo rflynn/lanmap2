@@ -185,7 +185,6 @@ cleanup_ins:
       sqlite3_clear_bindings(AddrIns);
     }
   }
-cleanup_upd:
   sqlite3_reset(AddrUpd);
   sqlite3_clear_bindings(AddrUpd);
 #endif
@@ -242,7 +241,6 @@ cleanup_ins:
       sqlite3_clear_bindings(HintIns);
     }
   }
-cleanup_upd:
   sqlite3_reset(HintUpd);
   sqlite3_clear_bindings(HintUpd);
 #endif
@@ -368,7 +366,6 @@ cleanup_ins:
       sqlite3_clear_bindings(TrafIns);
     }
   }
-cleanup_upd:
   sqlite3_reset(TrafUpd);
   sqlite3_clear_bindings(TrafUpd);
 #endif
