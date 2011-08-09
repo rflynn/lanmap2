@@ -472,7 +472,9 @@ found:
   return (i > -1 ? hay+i : NULL);
 }
 
+#ifndef LONG_BIT
 #define LONG_BIT 32
+#endif
 
 #define IDX(c)  ((unsigned char)(c) / LONG_BIT)
 #define BIT(c)  ((unsigned long)1 << ((unsigned char)(c) % LONG_BIT))
