@@ -581,7 +581,6 @@ static const char * type2str(u16 t)
 static char * addrformat(u16 t, char *dst, size_t dstlen,
                                       const char *src, size_t srclen)
 {
-  const char *s = "?";
   const struct dns_qtype *q = dns_qtype(t);
   *dst = '\0';
   if (q)
