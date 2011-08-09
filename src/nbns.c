@@ -58,8 +58,6 @@ static int test_udp(const char *buf, size_t len, const parse_status *st)
       || NBNS_UDP_PORT == u->srcport;
 }
 
-static size_t calc_len(const char *, size_t, const dns *);
-
 /**
  * @return number of octets used by this protocol, or zero upon error
  */
