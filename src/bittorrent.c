@@ -233,7 +233,13 @@ static size_t dump(const parse_frame *f, int options, FILE *out)
 static int init(void)
 {
   char bit19[4] = "\x13""Bit";
-  assert(*(u32 *)bit19 == BIT19 && "Fix your endianness");
+  if (*(u32 *)bit19 != BIT19)
+  {
+    fprintf(stderr,
+      "BIT19:0x%08lx != bit19:0x%08lx : Programmer error re:endianness!\n",
+      (unsigned long)BIT19, (unsigned long)*(u32 *)bit19);
+    exit(1);
+  }
   return 1;
 }
 
