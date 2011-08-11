@@ -34,5 +34,11 @@ struct ptrlen_list {
 };
 typedef struct ptrlen_list ptrlen_list;
 
+#if defined(__BIG_ENDIAN__) || defined(__BIG_ENDIAN)
+# define LANMAP2_BIG_ENDIAN
+#else
+# define LANMAP2_LITTLE_ENDIAN
+#endif
+
 #endif
 
