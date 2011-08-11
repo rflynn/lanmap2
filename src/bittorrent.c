@@ -48,21 +48,14 @@ const prot_iface Iface_BitTorrent = {
   DINIT(parent,       Test)
 };
 
-/*
- * An efficient means of checking whether or not the protocol is BitTorrent in a single comparison
- * 19,'B','i','t'
- */
-#ifdef __BIG_ENDIAN
-# define BIT19 0x74694213UL
-#else
-# define BIT19 0x13426974UL
-#endif
-
 static int test_tcp(const char *buf, size_t len, const parse_status *st)
 {
   const bt_hdr *b = (bt_hdr *)buf;
   return len >= sizeof *b
-      && BIT19 == *(u32 *)buf /* check first 4 characters at once */
+      && '\x13' == buf[0]
+      && 'B'    == buf[1]
+      && 'i'    == buf[2]
+      && 't'    == buf[3]
       && 0 == memcmp("BitTorrent protocol", b->name, sizeof b->name);
 }
 
@@ -232,14 +225,6 @@ static size_t dump(const parse_frame *f, int options, FILE *out)
 
 static int init(void)
 {
-  char bit19[4] = "\x13""Bit";
-  if (*(u32 *)bit19 != BIT19)
-  {
-    fprintf(stderr,
-      "BIT19:0x%08lx != bit19:0x%08lx : Programmer error re:endianness!\n",
-      (unsigned long)BIT19, (unsigned long)*(u32 *)bit19);
-    exit(1);
-  }
   return 1;
 }
 
