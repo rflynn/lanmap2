@@ -54,11 +54,7 @@ const prot_iface Iface_RASADV = {
 };
 
 /* rasadv destination IP address always 239.255.2.2 */
-#ifdef __BIG_ENDIAN
-# define RASADV_IP 0x0202ffefUL
-#else
-# define RASADV_IP 0xefff0202UL
-#endif
+#define RASADV_IP 0x0202ffefUL
 
 static int test_udp(const char *buf, size_t len, const parse_status *st)
 {
