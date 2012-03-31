@@ -2,13 +2,17 @@
 # $Id$
 #
 
-CFLAGS = -W -Wall -std=gnu99 -Wno-unused -Wno-unused-parameter -ggdb -O0 -DDEBUG
+# FIXME: get rid of -Wno-unused and clean up your code!
+CFLAGS = -W -Wall -std=gnu99 -Wno-unused -ggdb -O0 -DDEBUG
 LDFLAGS = -lpcap -lsqlite3
 ALL = cap parse util logical linux_sll ieee802_3 llc arp ip csvread icmp symbol8781 cdp smb dns nbns ipv6 radius snmp ntp mssqlm rasadv ssdp dhcpv6 netbios rtsp bittorrent storm-botnet gnutella tcp tcp-fingerprint http ipp
 # universal dependencies
 DEP = prot.h util.o
 
-cap: cap.o prot.o parse.o report.o util.o getopt.o logical.o linux_sll.o ieee802_3.o llc.o arp.o ipv4.o icmp.o icmp-fingerprint.o udp.o bootp.o ssdp.o nbdgm.o nbns.o smb.o tcp.o tcp-fingerprint.o http.o https.o tivoconn.o ipv6.o dns.o symbol8781.o cdp.o browse.o radius.o stp.o ipx.o lldp.o snmp.o ntp.o mcafee-rumor.o rtsp.o mssqlm.o rasadv.o dhcpv6.o netbios.o igmpv2.o bittorrent.o storm-botnet.o gnutella.o irc.o wsdd.o dce-rpc.o esp.o ipp.o dht.o
+OBJS = cap.o prot.o parse.o report.o util.o getopt.o logical.o linux_sll.o ieee802_3.o llc.o arp.o ipv4.o icmp.o icmp-fingerprint.o udp.o bootp.o ssdp.o nbdgm.o nbns.o smb.o tcp.o tcp-fingerprint.o http.o https.o tivoconn.o ipv6.o dns.o symbol8781.o cdp.o browse.o radius.o stp.o ipx.o lldp.o snmp.o ntp.o mcafee-rumor.o rtsp.o mssqlm.o rasadv.o dhcpv6.o netbios.o igmpv2.o bittorrent.o storm-botnet.o gnutella.o irc.o wsdd.o dce-rpc.o esp.o ipp.o dht.o
+
+cap: $(OBJS)
+	cc $(CFLAGS) -o cap $(OBJS) $(LDFLAGS)
 
 logical.o: logical.c logical.h $(DEP)
 linux_sll.o: linux_sll.c linux_sll.h $(DEP)
