@@ -39,8 +39,11 @@ struct netiface {
 unsigned                  NetIfaces  = 0;
 int                       Shutdown   = 0;
 unsigned                  Verbosity  = 2;
+#ifdef WIN32
 static long               SelectFreq = 1;
+#endif
 static struct bpf_program Filter;
+/* FIXME: make this an cmdline option */
 static char              *Filter_Str = "not tcp port 22"; /* prevent infinite loop when running over ssh */
 
 static int netiface_add(const char *name)
