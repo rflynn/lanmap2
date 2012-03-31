@@ -103,9 +103,6 @@ static void do_listen(void)
   fd_set rd;
   int fdmax = -1;
 #endif
-  /* initial setup for select()ing */
-  tv.tv_sec = 1;
-  tv.tv_usec = 0;
   for (i = 0; i < NetIfaces; i++) {
     struct netiface *n = NetIface + i;
 #ifdef WIN32
@@ -118,13 +115,16 @@ static void do_listen(void)
   }
   while (0 == Shutdown) {
     int sel;
+    /* initial setup for select()ing */
+    tv.tv_sec = 1;
+    tv.tv_usec = 0;
 #ifdef WIN32
     sel = WaitForMultipleObjects((DWORD)NetIfaces, handles, TRUE, (long)SelectFreq * 1000);
 #else
     FD_ZERO(&rd);
     for (i = 0; i < NetIfaces; i++)
       FD_SET(fds[i], &rd);
-    sel = select(fdmax + 1, &rd, NULL, NULL, NULL);
+    sel = select(fdmax + 1, &rd, NULL, NULL, &tv);
 #endif
     switch (sel) {
 #ifdef WIN32
@@ -139,7 +139,6 @@ static void do_listen(void)
 #else
     case 0: /* timeout */
 #endif
-      fprintf(stderr, "timeout...\n");
       continue;
       break;
     default: /* one or more readable */
