@@ -5,7 +5,7 @@
  * All rights reserved.
  */
 /*
- * 
+ *
  */
 
 #include <assert.h>
@@ -200,7 +200,7 @@ static int listen(void)
   char *dev;
   unsigned i;
   /* listen loop */
-  do { 
+  do {
     int promisc = 1;
     if (0 == NetIfaces) { /* no devs specified, find one */
       dev = pcap_lookupdev(errbuf);
@@ -238,12 +238,12 @@ static int listen(void)
           n->name, errbuf);
         /* no ip address up?! keep on truckin... */
       }
-  
+
       /* TODO: human-readable output, perhaps? */
       if (Verbosity >= 2)
         printf("interface '%s' net: 0x%08X, mask: 0x%08X\n",
           n->name, n->net, n->mask);
-    
+
       /* set filter if we've been supplied one and we've got an ip addres... */
       printf("Applying Filter_Str=\"%s\"...\n", Filter_Str);
       if (NULL != Filter_Str && 0 != n->net && 0 != n->mask) {
