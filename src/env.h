@@ -21,5 +21,15 @@
 # define DINIT(field, val)  val
 #endif
 
+#if defined(__LITTLE_ENDIAN__)
+# define IS_BIG_ENDIAN    0
+# define IS_LITTLE_ENDIAN 1
+#elif defined(__BIG_ENDIAN__)
+# define IS_BIG_ENDIAN    1
+# define IS_LITTLE_ENDIAN 0
+#else
+# error fix endianness detection!
+#endif
+
 #endif
 

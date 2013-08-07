@@ -54,7 +54,11 @@ const prot_iface Iface_RASADV = {
 };
 
 /* rasadv destination IP address always 239.255.2.2 */
-#define RASADV_IP 0x0202ffefUL
+#if IS_LITTLE_ENDIAN
+# define RASADV_IP 0x0202ffefUL
+#else
+# define RASADV_IP 0xefff0202UL
+#endif
 
 static int test_udp(const char *buf, size_t len, const parse_status *st)
 {
@@ -171,7 +175,7 @@ static int init(void)
 {
   printf("RASADV_IP=0x%08lx inet_addr(239.255.2.2)=0x%08lx\n",
     RASADV_IP, (unsigned long)inet_addr("239.255.2.2"));
-  assert(RASADV_IP == inet_addr("239.255.2.2"));
+  assert(RASADV_IP == *(u32*)"\xef\xff\x02\x02");
   return 1;
 }
 
