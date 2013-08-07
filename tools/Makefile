@@ -1,5 +1,5 @@
 
-CFLAGS = -W -Wall -Wno-unused -pedantic -I../src -ggdb
+CFLAGS = -W -Wall -Wno-unused -pedantic -I../src -ggdb -Wno-unused-parameter
 LDFLAGS = -ggdb
 
 all: oui2insert os-graph
