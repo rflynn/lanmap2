@@ -54,7 +54,10 @@ const prot_iface Iface_LLC = {
   DINIT(parent,       Test)
 };
 
-static const ieee802_3_mac_addr LLC_MAC;
+static const ieee802_3_mac_addr LLC_MAC = {
+  { 0x01, 0x00, 0x0C, 0xCC, 0xCC, 0xCC }
+};
+
 
 static int test_ieee802_3(const char *buf, size_t len, const parse_status *st)
 {
@@ -157,7 +160,6 @@ static int init(void)
 {
   sanity_check();
   /* initialize data */
-  memcpy(&LLC_MAC.o, "\x01\x00\x0C\xCC\xCC\xCC", 6);
   return 1;
 }
 
