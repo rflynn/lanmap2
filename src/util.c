@@ -63,6 +63,8 @@ void LOGF(const char *file, unsigned line, const char *fmt, ...)
   }
 }
 
+#if !defined(_FORTIFY_SOURCE)
+
 /**
  * Safe openbsd-style string copying. Guarentees \0.
  * @param dest destination buffer
@@ -110,6 +112,8 @@ size_t strlcat(char *dst, const char *src, size_t size)
   }
   return (size_t)(dst - orig);
 }
+
+#endif
 
 /**
  * dump hex bytes to stdout

@@ -50,8 +50,10 @@
 void DEBUGF(const char *, unsigned, const char *, ...);
 void LOGF(const char *file, unsigned line, const char *fmt, ...);
 
+#if !defined(_FORTIFY_SOURCE)
 size_t strlcpy(char *dst, const char *src, size_t size);
 size_t strlcat(char *dst, const char *src, size_t size);
+#endif
 
 size_t dump_bytes(const char *buf, size_t len, FILE *);
 size_t dump_bytes_buf(char *dst, size_t dstlen, const char *buf, size_t len);
